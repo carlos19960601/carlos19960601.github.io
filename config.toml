@@ -89,7 +89,7 @@ uglyURLs = false
 # 作者信息
 [author]
     # 名字
-    name = "懒癌正患者"
+    name = "无颜"
     # 邮箱
     email = "zengqiang96@gmail.com"
     # 座右铭或简介
@@ -97,9 +97,9 @@ uglyURLs = false
     # 头像
     avatar = "/icons/apple-touch-icon.png"
     # 网站（默认值：baseURL）
-    website = "https://www.wemeng.top/"
+    website = "https://zengqiang96.github.io/"
     # 推特
-    twitter = "懒癌正患者"
+    twitter = "无颜"
 
 # 相关文章
 [related]
@@ -751,12 +751,12 @@ uglyURLs = false
     # 文章目录
 
     # 是否开启（全局设置）
-    enableTOC = true
+    enableTOC = false
     # 说明：文章的 Front Matter 中的 `toc`
     #      的优先级高于此处
 
     # 是否显示目录标题
-    displayTOCTitle = true
+    displayTOCTitle = false
 
     # 是否显示数字（全局设置）
     displayTOCNum = false
