@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.81.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -14,7 +14,7 @@
 
     <title>RocketMQ通信的数据格式 | 无颜</title>
 
-    <link rel="stylesheet" href="/css/meme.min.37bb4e34802e85f89284e127209d140d05d7559668dd9035992d9ee2f43cc330.css"/>
+    <link rel="stylesheet" href="/css/meme.min.d2c7f524fcc6e813e9aaad4cd77345ae9e105f050cd1b69c7e7e380348905ae1.css"/>
 
     
     
@@ -27,7 +27,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB&#43;Garamond:ital,wght@0,400;0,500;0,700;1,400;1,700&amp;family=Noto&#43;Serif&#43;SC:wght@400;500;700&amp;family=Source&#43;Code&#43;Pro:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" /></noscript>
 
-    <meta name="author" content="懒癌正患者" /><meta name="description" content="直接上图，下图就是RocketMQ的数据格式 length: 表示序列化类型&#43;header length &#43; header data &#43; body data的字节长度 序列化类型: 在RockerMQ源码的SerializeType枚举中可以看到，支持只JSON和RocketMQ自定义的2种格式 Header length: 表示header data部分的字节长度 header data: header的数据 body length: body的数据 RocketMQ支持的序列化类型 1 2 3 4 public enum SerializeType { JSON((byte) 0), ROCKETMQ((byte) 1); } 对整体结构有认识后，接下来再结合一下源码在巩固一下，同时如果哪天你也需要写底层网络通讯那块内容，也可以借鉴一下RocketMQ的代……" />
+    <meta name="author" content="无颜" /><meta name="description" content="直接上图，下图就是RocketMQ的数据格式 length: 表示序列化类型&#43;header length &#43; header data &#43; body data的字节长度 序列化类型: 在RockerMQ源码的SerializeType枚举中可以看到，支持只JSON和RocketMQ自定义的2种格式 Header length: 表示header data部分的字节长度 header data: header的数据 body length: body的数据 RocketMQ支持的序列化类型 1 2 3 4 public enum SerializeType { JSON((byte) 0), ROCKETMQ((byte) 1); } 对整体结构有认识后，接下来再结合一下源码在巩固一下，同时如果哪天你也需要写底层网络通讯那块内容，也可以借鉴一下RocketMQ的代……" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2a6df4" />
@@ -67,8 +67,8 @@
             "description": "Viva La Vida",
             "email": "zengqiang96@gmail.com",
             "image": "http://zengqiang96.github.io/icons/apple-touch-icon.png",
-            "url": "https://www.wemeng.top/",
-            "name": "懒癌正患者"
+            "url": "https://zengqiang96.github.io/",
+            "name": "无颜"
         },
         "license": "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)",
         "publisher": {
@@ -93,7 +93,7 @@
 
 
 <meta name="twitter:site" content="@懒癌正患者" />
-<meta name="twitter:creator" content="@懒癌正患者" />
+<meta name="twitter:creator" content="@无颜" />
 
     
 
@@ -250,8 +250,8 @@
 
             
 
-            <nav class="contents"></nav><div class="post-body e-content">
-              <p>直接上图，下图就是RocketMQ的数据格式</p>
+            <div class="post-body e-content">
+                <p>直接上图，下图就是RocketMQ的数据格式</p>
 <p><img src="/RocketMQ%E9%80%9A%E4%BF%A1%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/image-20190923182812710.png" alt="RocketMQ通信的数据格式"></p>
 <ul>
 <li>length: 表示序列化类型+header length + header data + body data的字节长度</li>
@@ -607,7 +607,7 @@
     
     
         <ul class="post-copyright">
-            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://www.wemeng.top/" class="p-author h-card" target="_blank" rel="noopener">懒癌正患者</a></li>
+            <li class="copyright-item author"><span class="copyright-item-text">作者</span>：<a href="https://zengqiang96.github.io/" class="p-author h-card" target="_blank" rel="noopener">无颜</a></li>
             
                 
                 
@@ -829,7 +829,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;懒癌正患者</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     
