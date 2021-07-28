@@ -1,7 +1,7 @@
 ---
 title: "【译】Go并发模式"
 date: 2021-07-27T22:19:26+08:00
-draft: true
+draft: false
 original: true
 categories: 
   - Golang
