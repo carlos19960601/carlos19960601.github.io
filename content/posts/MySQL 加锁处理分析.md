@@ -4,8 +4,9 @@ date: 2021-07-29T09:04:49+08:00
 draft: false
 original: false
 categories: 
-  - 转载
+  - MySQL 
 tags: 
+
   - MySQL
   - 锁
   - MVCC
