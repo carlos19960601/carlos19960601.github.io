@@ -19,6 +19,8 @@ tags:
 
 以上這些情況如果只發生在自己的 side project 那就沒差。但如果是真的要在團隊內跟人合作，或是要參與 Github 上破千個 contributor 的開源專案，那這種類型的 commit 保證被幹譙到飛起來，不然就是被丟在一旁根本沒人想幫你 review
 
+<!--more-->
+
 ![](/试试gitrebase吧/1_JXZ3N6S_lGehIPPw1Xt-Vg.png)
 
 但同樣身為工程師，我也知道腦袋進入開發模式之後，一晃眼就是幾千行起跳，中間根本沒時間慢慢 commit；或是有時太專心開發根本沒發現程式碼有 typo，只好另外開一個 commit 來修 typo
