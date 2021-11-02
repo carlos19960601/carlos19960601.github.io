@@ -219,7 +219,7 @@ func addtimer(t *timer) {
 
 addtimer首先对参数进行了校验，timer的初始化status必须是timerNoStatus(计时器尚未设置状态)，然后将timer的status切换成timerWaiting(等待计时器启动)
 
-然后调用cleantimers(pp)处理P中timers堆顶上已经取消(timerDeleted)或者时间发生改变(timerModifiedEarlier/timerModifiedLater的timer)，堆timers进行清理
+然后调用cleantimers(pp)处理P中timers堆顶上已经取消(timerDeleted)或者时间发生改变(timerModifiedEarlier/timerModifiedLater的timer)，对timers进行清理
 
 ```go
 // 清理堆顶部的timer，与adjusttimers方法类似，只是adjusttimers会遍历搜索的timers
