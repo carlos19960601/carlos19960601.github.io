@@ -22,6 +22,8 @@ cessing*)
 
 It  painfully obvious, but different applications have different requirements
 
+<!--more-->
+
 **Data Systems**
 
 - no longer neatly fit into traditional categories
