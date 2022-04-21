@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -262,7 +262,7 @@
 <p>首先先测试一下，下面的2个结构体占用多大的空间</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -282,25 +282,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T1</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
-</span><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
-</span><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">T2</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
-</span><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
-</span><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
-</span><span class="c1"></span><span class="p">}</span>
-
-<span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">t1</span><span class="p">)</span> <span class="c1">// 24
-</span><span class="c1"></span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">t2</span><span class="p">)</span> <span class="c1">// 16
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">T1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">T2</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">t1</span><span class="p">)</span> <span class="c1">// 24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Sizeof</span><span class="p">(</span><span class="nx">t2</span><span class="p">)</span> <span class="c1">// 16
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>不知道有没有回答正确，反正我第一次是没有回答正确的，接下来让我来说一下我的理解过程。</p>
 <h3 id="struct的内存布局"><a href="#struct的内存布局" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>struct的内存布局</h3>
@@ -324,7 +324,7 @@
 <p>我们来分析一下T1为啥需要24字节</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -333,14 +333,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">T1</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
-</span><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
-</span><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
-</span><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">T1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">A</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">B</span> <span class="kt">uint16</span> <span class="c1">//2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">E</span> <span class="kt">uint8</span>  <span class="c1">//1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">C</span> <span class="kt">uint32</span> <span class="c1">//4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">D</span> <span class="kt">uint64</span> <span class="c1">//8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>T1的对齐大小是8字节</p>
 <ul>
@@ -358,7 +358,7 @@
 <p>这种场景非常好理解，struct {} 字段类型在最前面，这种类型不占空间，所以自然第二个字段的地址和整个变量的地址一致。</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -374,21 +374,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Object1 类型变量占用 1 个字节
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">s</span> <span class="kd">struct</span> <span class="p">{}</span>
- <span class="nx">b</span> <span class="kt">byte</span>
-<span class="p">}</span>
-
-<span class="c1">// Object2 类型变量占用 8 个字节
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Object2</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">s</span> <span class="kd">struct</span> <span class="p">{}</span>
- <span class="nx">n</span> <span class="kt">int64</span>
-<span class="p">}</span>
-
-<span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span><span class="p">{</span> <span class="p">}</span>
-<span class="nx">o2</span> <span class="o">:=</span> <span class="nx">Object2</span><span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Object1 类型变量占用 1 个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span> <span class="kd">struct</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b</span> <span class="kt">byte</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Object2 类型变量占用 8 个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Object2</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span> <span class="kd">struct</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span><span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">o2</span> <span class="o">:=</span> <span class="nx">Object2</span><span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>内存怎么分配？</p>
 <ul>
@@ -399,7 +399,7 @@
 <h4 id="struct--在中间"><a href="#struct--在中间" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>struct {} 在中间</h4>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -409,15 +409,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Object1 类型变量占用 16 个字节
-</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">b</span>  <span class="kt">byte</span>
- <span class="nx">s</span>  <span class="kd">struct</span><span class="p">{}</span>
- <span class="nx">b1</span> <span class="kt">int64</span>
-<span class="p">}</span>
-
-<span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span><span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// Object1 类型变量占用 16 个字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b</span>  <span class="kt">byte</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span>  <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b1</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span><span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><ul>
 <li>按照对齐规则，变量 <code>o1</code> 占用 16 个字节；</li>
@@ -427,7 +427,7 @@
 <h4 id="struct--在最后"><a href="#struct--在最后" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>struct {} 在最后</h4>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -455,33 +455,33 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">b</span> <span class="kt">byte</span>
- <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">Object2</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">n</span> <span class="kt">int64</span>
- <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">Object3</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">n</span> <span class="kt">int16</span>
- <span class="nx">m</span> <span class="kt">int16</span>
- <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="kd">type</span> <span class="nx">Object4</span> <span class="kd">struct</span> <span class="p">{</span>
- <span class="nx">n</span>  <span class="kt">int16</span>
- <span class="nx">m</span>  <span class="kt">int64</span>
- <span class="nx">s</span>  <span class="kd">struct</span><span class="p">{}</span>
-<span class="p">}</span>
-
-<span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span> <span class="p">{</span> <span class="p">}</span>
-<span class="nx">o2</span> <span class="o">:=</span> <span class="nx">Object2</span> <span class="p">{</span> <span class="p">}</span>
-<span class="nx">o3</span> <span class="o">:=</span> <span class="nx">Object3</span> <span class="p">{</span> <span class="p">}</span>
-<span class="nx">o4</span> <span class="o">:=</span> <span class="nx">Object4</span> <span class="p">{</span> <span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Object1</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b</span> <span class="kt">byte</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Object2</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span> <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Object3</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span> <span class="kt">int16</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">m</span> <span class="kt">int16</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span> <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Object4</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span>  <span class="kt">int16</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">m</span>  <span class="kt">int64</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">s</span>  <span class="kd">struct</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">o1</span> <span class="o">:=</span> <span class="nx">Object1</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">o2</span> <span class="o">:=</span> <span class="nx">Object2</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">o3</span> <span class="o">:=</span> <span class="nx">Object3</span> <span class="p">{</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">o4</span> <span class="o">:=</span> <span class="nx">Object4</span> <span class="p">{</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>编译器在遇到这种 <code>struct {}</code>  在<strong>最后一个字段</strong>的场景，会进行特殊填充，<code>struct { }</code> 作为最后一个字段，会被填充对齐到前一个字段的大小，地址偏移对齐规则不变；</p>
 <p>可以现在心里思考下，<code>o1</code>，<code>o2</code>，<code>o3</code>，<code>o4</code>  这四个对象的内存分配分别占多少空间？下面解密：</p>
@@ -727,7 +727,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

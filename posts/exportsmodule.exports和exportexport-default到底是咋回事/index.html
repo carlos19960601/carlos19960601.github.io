@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -283,7 +283,7 @@ module.exports / exports: 只有 node 支持的导出
 <p>那下面我们来看看代码的吧。</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -299,21 +299,21 @@ module.exports / exports: 只有 node 支持的导出
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//utils.js
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">);</span> <span class="c1">//能打印出结果为：{}
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">exports</span><span class="p">);</span> <span class="c1">//能打印出结果为：{}
-</span><span class="c1"></span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">//这里辛苦劳作帮 module.exports 的内容给改成 {a : 200}
-</span><span class="c1"></span>
-<span class="nx">exports</span> <span class="o">=</span> <span class="s1">&#39;指向其他内存区&#39;</span><span class="p">;</span> <span class="c1">//这里把exports的指向指走
-</span><span class="c1"></span>
-<span class="c1">//test.js
-</span><span class="c1"></span>
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;/utils&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// 打印为 {a : 200} 
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//utils.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="p">);</span> <span class="c1">//能打印出结果为：{}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">exports</span><span class="p">);</span> <span class="c1">//能打印出结果为：{}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">exports</span><span class="p">.</span><span class="nx">a</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">//这里辛苦劳作帮 module.exports 的内容给改成 {a : 200}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">exports</span> <span class="o">=</span> <span class="s1">&#39;指向其他内存区&#39;</span><span class="p">;</span> <span class="c1">//这里把exports的指向指走
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">//test.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;/utils&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="c1">// 打印为 {a : 200} 
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><blockquote>
 <p>从上面可以看出，其实require导出的内容是module.exports的指向的内存块内容，并不是exports的。</p>
@@ -337,7 +337,7 @@ module.exports / exports: 只有 node 支持的导出
 <p>testEs6Export.js</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -358,31 +358,31 @@ module.exports / exports: 只有 node 支持的导出
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="s1">&#39;use strict&#39;</span>
-<span class="c1">//导出变量
-</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">;</span>  
-
- <span class="c1">//导出方法
-</span><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">dogSay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;wang wang&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-
- <span class="c1">//导出方法第二种
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">catSay</span><span class="p">(){</span>
-   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;miao miao&#39;</span><span class="p">);</span> 
-<span class="p">}</span>
-<span class="kr">export</span> <span class="p">{</span> <span class="nx">catSay</span> <span class="p">};</span>
-
-<span class="c1">//export default导出
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">m</span><span class="p">;</span> 
-<span class="c1">//export defult const m = 100;// 这里不能写这种格式。
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="s1">&#39;use strict&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//导出变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c1">//导出方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="kr">const</span> <span class="nx">dogSay</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(){</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;wang wang&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c1">//导出方法第二种
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">catSay</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;miao miao&#39;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="p">{</span> <span class="nx">catSay</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//export default导出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">m</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">m</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">//export defult const m = 100;// 这里不能写这种格式。
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>index.js</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -406,29 +406,29 @@ module.exports / exports: 只有 node 支持的导出
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//index.js
-</span><span class="c1"></span><span class="s1">&#39;use strict&#39;</span>
-<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
-
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">dogSay</span><span class="p">,</span> <span class="nx">catSay</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span> <span class="c1">//导出了 export 方法 
-</span><span class="c1"></span><span class="kr">import</span> <span class="nx">m</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span>  <span class="c1">//导出了 export default 
-</span><span class="c1"></span>
-<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">testModule</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span> <span class="c1">//as 集合成对象导出
-</span><span class="c1"></span>
-<span class="cm">/* GET home page. */</span>
-<span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">dogSay</span><span class="p">();</span>
-  <span class="nx">catSay</span><span class="p">();</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">m</span><span class="p">);</span>
-  <span class="nx">testModule</span><span class="p">.</span><span class="nx">dogSay</span><span class="p">();</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testModule</span><span class="p">.</span><span class="nx">m</span><span class="p">);</span> <span class="c1">// undefined , 因为  as 导出是 把 零散的 export 聚集在一起作为一个对象，而export default 是导出为 default属性。
-</span><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testModule</span><span class="p">.</span><span class="k">default</span><span class="p">);</span> <span class="c1">// 100
-</span><span class="c1"></span>  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;恭喜你，成功验证&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//index.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;use strict&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">express</span><span class="p">.</span><span class="nx">Router</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">dogSay</span><span class="p">,</span> <span class="nx">catSay</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span> <span class="c1">//导出了 export 方法 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">m</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span>  <span class="c1">//导出了 export default 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">testModule</span> <span class="nx">from</span> <span class="s1">&#39;./testEs6Export&#39;</span><span class="p">;</span> <span class="c1">//as 集合成对象导出
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* GET home page. */</span>
+</span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dogSay</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">catSay</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">testModule</span><span class="p">.</span><span class="nx">dogSay</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testModule</span><span class="p">.</span><span class="nx">m</span><span class="p">);</span> <span class="c1">// undefined , 因为  as 导出是 把 零散的 export 聚集在一起作为一个对象，而export default 是导出为 default属性。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">testModule</span><span class="p">.</span><span class="k">default</span><span class="p">);</span> <span class="c1">// 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;恭喜你，成功验证&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">router</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>从上面可以看出，确实感觉ES6的模块系统非常灵活的。</p>
             </div>
@@ -611,7 +611,7 @@ module.exports / exports: 只有 node 支持的导出
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

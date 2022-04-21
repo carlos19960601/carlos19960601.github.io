@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -267,7 +267,7 @@
 <p>首先用docker起一个dns服务器</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -289,27 +289,27 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">dnsmasq</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">sx-dnsmasq</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">andyshinn/dnsmasq</span><span class="w">
-</span><span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">NET_ADMIN</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;53:53/tcp&#34;</span><span class="w">
-</span><span class="w">      </span>- <span class="s2">&#34;53:53/udp&#34;</span><span class="w">
-</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">./etc/resolv.dnsmasq:/etc/resolv.dnsmasq</span><span class="w">
-</span><span class="w">      </span>- <span class="l">./etc/dnsmasq.conf:/etc/dnsmasq.conf</span><span class="w">
-</span><span class="w">      </span>- <span class="l">./etc/dnsmasqhosts:/etc/dnsmasqhosts</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">sx-net</span><span class="w">
-</span><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">sx-net</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">dnsmasq</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">sx-dnsmasq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">andyshinn/dnsmasq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">cap_add</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">NET_ADMIN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;53:53/tcp&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;53:53/udp&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./etc/resolv.dnsmasq:/etc/resolv.dnsmasq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./etc/dnsmasq.conf:/etc/dnsmasq.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">./etc/dnsmasqhosts:/etc/dnsmasqhosts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">sx-net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">sx-net</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>详情请参考 <a href="https://github.com/zengqiang96/docker-compose/tree/local/dns-server" target="_blank" rel="noopener">https://github.com/zengqiang96/docker-compose/tree/local/dns-server</a></p>
 <p>主要就是三个配置文件<code>/etc/resolv.dnsmasq</code>、<code>/etc/dnsmasq.conf</code>、<code>/etc/dnsmasqhosts</code></p>
@@ -318,7 +318,7 @@
 <p>手机配置</p>
 <p><img src="/docker%E6%90%AD%E5%BB%BAdns%E6%9C%8D%E5%8A%A1%E5%99%A8/%E6%89%8B%E6%9C%BA%E9%85%8D%E7%BD%AEdns.jpg" alt=""></p>
 <p>然后可以用域名访问一下，我在mac上用dig或ping试一下</p>
-<pre><code>dig minio.wemeng.com
+<pre tabindex="0"><code>dig minio.wemeng.com
 
 ; &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; minio.wemeng.com
 ;; global options: +cmd
@@ -338,7 +338,7 @@ minio.wemeng.com.	0	IN	A	192.168.0.199
 ;; SERVER: 192.168.0.199#53(192.168.0.199)
 ;; WHEN: Thu Aug 20 15:11:36 CST 2020
 ;; MSG SIZE  rcvd: 61
-</code></pre><pre><code>ping minio.wemeng.com
+</code></pre><pre tabindex="0"><code>ping minio.wemeng.com
 PING minio.wemeng.com (192.168.0.199): 56 data bytes
 64 bytes from 192.168.0.199: icmp_seq=0 ttl=64 time=1.886 ms
 64 bytes from 192.168.0.199: icmp_seq=1 ttl=64 time=24.368 ms
@@ -347,7 +347,7 @@ PING minio.wemeng.com (192.168.0.199): 56 data bytes
 <li>53端口被占用</li>
 </ol>
 <p>dns服务默认是用的53端口被占用了。查看本机端口占用情况：</p>
-<pre><code>$ lsof -i:53
+<pre tabindex="0"><code>$ lsof -i:53
 COMMAND   PID            USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 systemd-r 804 systemd-resolve   12u  IPv4  22393      0t0  UDP localhost:domain
 systemd-r 804 systemd-resolve   13u  IPv4  22394      0t0  TCP localhost:domain (LISTEN)
@@ -356,19 +356,19 @@ systemd-r 804 systemd-resolve   13u  IPv4  22394      0t0  TCP localhost:domain 
 <p>Note that the package “dnsmasq” interferes with Network Manager which can use “dnsmasq-base” to provide DHCP services when sharing an internet connection. Therefore, if you use network manager (fine in simple set-ups only), then install dnsmasq-base, but not dnsmasq. If you have a more complicated set-up, uninstall network manager, use dnsmasq, or similar software (bind9, dhcpd, etc), and configure things by hand.</p>
 </blockquote>
 <p>发现是systemd-r命令占用了53端口，Google一下发现是systemd-resolved.service启动的，所以停掉该服务</p>
-<pre><code>systemctl stop systemd-resolved.service
+<pre tabindex="0"><code>systemctl stop systemd-resolved.service
 systemctl disable systemd-resolved.service
 </code></pre><p>这样虽然可以可以启动<strong>dnsmasq</strong>了，但是你会发现你机器上不能访问外网。</p>
 <p>如何让<strong>dnsmasq</strong>和systemd-resolved.service一起，我还没发现渐变的方法，还是先禁用systemd-resolved.service</p>
 <p>既然我们已经搭建了<strong>dnsmasq</strong>作为dns服务器 ，能不能让宿主机的dns走<strong>dnsmasq</strong>呢？</p>
 <p>当然是没问题的啦，修改<code>/etc/resolv.conf</code>文件就行了</p>
-<pre><code># This file is managed by man:systemd-resolved(8). Do not edit.
+<pre tabindex="0"><code># This file is managed by man:systemd-resolved(8). Do not edit.
 #
 # This is a dynamic resolv.conf file for connecting local clients to the
 # internal DNS stub resolver of systemd-resolved. This file lists all
 # configured search domains.
 #
-# Run &quot;systemd-resolve --status&quot; to see details about the uplink DNS servers
+# Run &#34;systemd-resolve --status&#34; to see details about the uplink DNS servers
 # currently in use.
 #
 # Third party programs must not access this file directly, but only through the
@@ -611,7 +611,7 @@ options edns0
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

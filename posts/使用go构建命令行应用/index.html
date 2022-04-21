@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -262,7 +262,7 @@
 <p><a href="https://github.com/urfave/cli" target="_blank" rel="noopener">cli</a>的设计哲学是API应该有趣且简洁的，所以<a href="https://github.com/urfave/cli" target="_blank" rel="noopener">cli</a>应用只需要在main方法中一行代码就能完成</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -274,20 +274,20 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="p">(</span><span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{}).</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">(</span><span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{}).</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>运行结果</p>
-<pre><code>$ go run main.go
+<pre tabindex="0"><code>$ go run main.go
 NAME:
    main - A new cli application
 
@@ -302,7 +302,7 @@ GLOBAL OPTIONS:
 </code></pre><p>可以看到运行结果中显示简单的帮助信息，但是这并没有多大的用处。接下来再添加一些action可以执行和一些帮助文档</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -328,34 +328,34 @@ GLOBAL OPTIONS:
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;boom&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;make an explosive entrance&#34;</span><span class="p">,</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;boom! I say!&#34;</span><span class="p">)</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;boom&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;make an explosive entrance&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;boom! I say!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>运行结果</p>
-<pre><code>$ go run main.go
+<pre tabindex="0"><code>$ go run main.go
 boom! I say!
 
 $ go run main.go --help
@@ -375,7 +375,7 @@ GLOBAL OPTIONS:
 <p>接下来以一个greet的程序示例来看看如果使用<a href="https://github.com/urfave/cli" target="_blank" rel="noopener">cli</a>来完成更多的功能</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -401,34 +401,34 @@ GLOBAL OPTIONS:
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello friend!&#34;</span><span class="p">)</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello friend!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>编译成可执行程序，然后运行程序</p>
-<pre><code>$ go build -o greet
+<pre tabindex="0"><code>$ go build -o greet
 
 $ greet
 Hello friend!
@@ -449,7 +449,7 @@ GLOBAL OPTIONS:
 <p>你可以在<code>cli.Context</code>中获取到命令行参数</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -475,40 +475,40 @@ GLOBAL OPTIONS:
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Hello %q&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Hello %q&#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>运行一下，并加入参数</p>
-<pre><code>$ greet golang
-Hello &quot;golang&quot;
+<pre tabindex="0"><code>$ greet golang
+Hello &#34;golang&#34;
 </code></pre><h3 id="flags"><a href="#flags" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Flags</h3>
 <p>设置flag也很简单</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -549,49 +549,49 @@ Hello &quot;golang&quot;
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
-			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;lang&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">String</span><span class="p">(</span><span class="s">&#34;lang&#34;</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello&#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>看下有什么变化，发现指定的flag在帮助文档的GLOBAL OPTION部分显示，而且可以通过c.String(&quot;name&quot;)的方式获取到指定flag的参数值</p>
-<pre><code>$ greet --help
+<pre tabindex="0"><code>$ greet --help
 NAME:
    greet - fight the loneliness!
 
@@ -602,7 +602,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --lang value  language for greeting (default: &quot;english&quot;)
+   --lang value  language for greeting (default: &#34;english&#34;)
    --help, -h    show help (default: false)
    
 $ greet golang
@@ -613,7 +613,7 @@ Hola  golang
 </code></pre><p>除了c.String(&quot;name&quot;)方式外，可以指定flag值存放到变量中</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -657,56 +657,56 @@ Hola  golang
 </span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">language</span> <span class="kt">string</span>
-
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
-				<span class="nx">Destination</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">language</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
-			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">if</span> <span class="nx">language</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">language</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Destination</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">language</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">language</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>试试刚才运行的命令会得到同样的结果</p>
 <h4 id="占位符值"><a href="#占位符值" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>占位符值</h4>
 <p>有时在帮助文案中想使用指定flag的值，可以使用反引号的占位符</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -734,36 +734,36 @@ Hola  golang
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;config&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
-				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;Load configuration from `FILE`&#34;</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;config&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;Load configuration from `FILE`&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>看看帮助文档内容</p>
-<pre><code>$ greet --help
+<pre tabindex="0"><code>$ greet --help
 NAME:
    greet - fight the loneliness!
 
@@ -777,7 +777,7 @@ GLOBAL OPTIONS:
    --config FILE, -c FILE  Load configuration from FILE
    --help, -h              show help (default: false)
 </code></pre><p>可以看到出现了</p>
-<pre><code>--config FILE, -c FILE   Load configuration from FILE
+<pre tabindex="0"><code>--config FILE, -c FILE   Load configuration from FILE
 </code></pre><blockquote>
 <p>注意：只有第一个反引号占位符有效，后续的反引号会按原样显示</p>
 </blockquote>
@@ -785,7 +785,7 @@ GLOBAL OPTIONS:
 <p>你可能需要设置一个可选的参数名(或短flag)，可以提供一个逗号分割的列表给<code>Name</code>当作可选名称</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -830,54 +830,54 @@ GLOBAL OPTIONS:
 </span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;fmt&#34;</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">language</span> <span class="kt">string</span>
-
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
-				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
-				<span class="nx">Destination</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">language</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
-			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">if</span> <span class="nx">language</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
-			<span class="p">}</span>
-			<span class="k">return</span> <span class="kc">nil</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">language</span> <span class="kt">string</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;language for greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Destination</span><span class="p">:</span> <span class="o">&amp;</span><span class="nx">language</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">name</span> <span class="o">:=</span> <span class="s">&#34;Bob&#34;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">c</span><span class="p">.</span><span class="nf">NArg</span><span class="p">()</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">name</span> <span class="p">=</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">Get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="nx">language</span> <span class="o">==</span> <span class="s">&#34;spanish&#34;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hola &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Hello &#34;</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>这样就可以使用<code>--lang spanish</code>或<code>-l spanish</code>指定flag的值</p>
 <p>看一下帮助文档的变化并使用别名运行试试</p>
-<pre><code>$ greet --help
+<pre tabindex="0"><code>$ greet --help
 NAME:
    greet - fight the loneliness!
 
@@ -888,7 +888,7 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --lang value, -l value  language for greeting (default: &quot;english&quot;)
+   --lang value, -l value  language for greeting (default: &#34;english&#34;)
    --help, -h              show help (default: false)
    
 $ greet golang
@@ -903,7 +903,7 @@ Hola  golang
 <p>flag和command默认是按定义的顺序显示的。然而可以使用<code>FlagsByName</code> or <code>CommandsByName</code>进行重新排序</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -957,62 +957,62 @@ Hola  golang
 </span><span class="lnt">52
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-	<span class="s">&#34;sort&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
-			<span class="p">},</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;config, c&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Load configuration from `FILE`&#34;</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-		<span class="nx">Commands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
-			<span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;complete&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
-				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;complete a task on the list&#34;</span><span class="p">,</span>
-				<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="kc">nil</span>
-				<span class="p">},</span>
-			<span class="p">},</span>
-			<span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;add&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">},</span>
-				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;add a task to the list&#34;</span><span class="p">,</span>
-				<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-					<span class="k">return</span> <span class="kc">nil</span>
-				<span class="p">},</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">sort</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">cli</span><span class="p">.</span><span class="nf">FlagsByName</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">Flags</span><span class="p">))</span>
-	<span class="nx">sort</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">cli</span><span class="p">.</span><span class="nf">CommandsByName</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">Commands</span><span class="p">))</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;sort&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;config, c&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Load configuration from `FILE`&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Commands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;complete&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;complete a task on the list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">				<span class="p">},</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">			<span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;add&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;add a task to the list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">					<span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">				<span class="p">},</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">sort</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">cli</span><span class="p">.</span><span class="nf">FlagsByName</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">Flags</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sort</span><span class="p">.</span><span class="nf">Sort</span><span class="p">(</span><span class="nx">cli</span><span class="p">.</span><span class="nf">CommandsByName</span><span class="p">(</span><span class="nx">app</span><span class="p">.</span><span class="nx">Commands</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>没有排序前</p>
-<pre><code>greet h
+<pre tabindex="0"><code>greet h
 NAME:
    greet - fight the loneliness!
 
@@ -1025,11 +1025,11 @@ COMMANDS:
    help, h      Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --lang value   Language for the greeting (default: &quot;english&quot;)
+   --lang value   Language for the greeting (default: &#34;english&#34;)
    --config FILE  Load configuration from FILE
    --help, -h     show help (default: false)
 </code></pre><p>排序后</p>
-<pre><code>greet h
+<pre tabindex="0"><code>greet h
 NAME:
    greet - fight the loneliness!
 
@@ -1043,13 +1043,13 @@ COMMANDS:
 
 GLOBAL OPTIONS:
    --config FILE  Load configuration from FILE
-   --lang value   Language for the greeting (default: &quot;english&quot;)
+   --lang value   Language for the greeting (default: &#34;english&#34;)
    --help, -h     show help (default: false)
 </code></pre><h4 id="环境变量中读取值"><a href="#环境变量中读取值" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>环境变量中读取值</h4>
 <p>也可以使用<code>EnvVars</code>从环境变量中读取值作为默认值</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1079,40 +1079,40 @@ GLOBAL OPTIONS:
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
-				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
-				<span class="nx">EnvVars</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;APP_LANG&#34;</span><span class="p">},</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">EnvVars</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;APP_LANG&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>如果<code>EnvVars</code>包含多个string，第一个环境变量将会用来作为默认值</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1141,40 +1141,40 @@ GLOBAL OPTIONS:
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-  <span class="s">&#34;log&#34;</span>
-  <span class="s">&#34;os&#34;</span>
-
-  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-    <span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-      <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
-        <span class="nx">Value</span><span class="p">:</span>   <span class="s">&#34;english&#34;</span><span class="p">,</span>
-        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;language for the greeting&#34;</span><span class="p">,</span>
-        <span class="nx">EnvVars</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;LEGACY_COMPAT_LANG&#34;</span><span class="p">,</span> <span class="s">&#34;APP_LANG&#34;</span><span class="p">,</span> <span class="s">&#34;LANG&#34;</span><span class="p">},</span>
-      <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">}</span>
-
-  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Value</span><span class="p">:</span>   <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;language for the greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">EnvVars</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;LEGACY_COMPAT_LANG&#34;</span><span class="p">,</span> <span class="s">&#34;APP_LANG&#34;</span><span class="p">,</span> <span class="s">&#34;LANG&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h4 id="从文件中读取值"><a href="#从文件中读取值" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>从文件中读取值</h4>
 <p>也可以使用<code>FilePath</code>从文件中读取值作为默认值</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1201,32 +1201,32 @@ GLOBAL OPTIONS:
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-  <span class="s">&#34;log&#34;</span>
-  <span class="s">&#34;os&#34;</span>
-
-  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nf">NewApp</span><span class="p">()</span>
-
-  <span class="nx">app</span><span class="p">.</span><span class="nx">Flags</span> <span class="p">=</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span> <span class="p">{</span>
-    <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-      <span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;password, p&#34;</span><span class="p">,</span>
-      <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;password for the mysql database&#34;</span><span class="p">,</span>
-      <span class="nx">FilePath</span><span class="p">:</span> <span class="s">&#34;/etc/mysql/password&#34;</span><span class="p">,</span>
-    <span class="p">},</span>
-  <span class="p">}</span>
-
-  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nf">NewApp</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">app</span><span class="p">.</span><span class="nx">Flags</span> <span class="p">=</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Name</span><span class="p">:</span> <span class="s">&#34;password, p&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;password for the mysql database&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">FilePath</span><span class="p">:</span> <span class="s">&#34;/etc/mysql/password&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><blockquote>
 <p>注意：从文件中读取的默认值优先于环境变量中设置的默认值</p>
@@ -1235,7 +1235,7 @@ GLOBAL OPTIONS:
 <p>可以设置<code>Required</code>字段为<code>true</code>是flag是必须提供的flag。如果不提供这个必须的flag将会报错</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1266,39 +1266,39 @@ GLOBAL OPTIONS:
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
-	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-	<span class="s">&#34;os&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
-		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
-		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
-				<span class="nx">Name</span><span class="p">:</span>     <span class="s">&#34;lang&#34;</span><span class="p">,</span>
-				<span class="nx">Aliases</span><span class="p">:</span>  <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
-				<span class="nx">Value</span><span class="p">:</span>    <span class="s">&#34;english&#34;</span><span class="p">,</span>
-				<span class="nx">Usage</span><span class="p">:</span>    <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
-				<span class="nx">EnvVars</span><span class="p">:</span>  <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;APP_LANG&#34;</span><span class="p">},</span>
-				<span class="nx">Required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-			<span class="p">},</span>
-		<span class="p">},</span>
-	<span class="p">}</span>
-
-	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span> <span class="s">&#34;github.com/sirupsen/logrus&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">app</span> <span class="o">:=</span> <span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;greet&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;fight the loneliness!&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">StringFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Name</span><span class="p">:</span>     <span class="s">&#34;lang&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Aliases</span><span class="p">:</span>  <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;l&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Value</span><span class="p">:</span>    <span class="s">&#34;english&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Usage</span><span class="p">:</span>    <span class="s">&#34;Language for the greeting&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">EnvVars</span><span class="p">:</span>  <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;APP_LANG&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">				<span class="nx">Required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">			<span class="p">},</span>
+</span></span><span class="line"><span class="cl">		<span class="p">},</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>不指定<code>lang</code>运行会报错，指定了正常运行</p>
-<pre><code>greet
+<pre tabindex="0"><code>greet
 NAME:
    greet - fight the loneliness!
 
@@ -1309,14 +1309,14 @@ COMMANDS:
    help, h  Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --lang value, -l value  Language for the greeting (default: &quot;english&quot;) [$APP_LANG]
+   --lang value, -l value  Language for the greeting (default: &#34;english&#34;) [$APP_LANG]
    --help, -h              show help (default: false)
-FATA[0000] Required flag &quot;lang&quot; not set   
+FATA[0000] Required flag &#34;lang&#34; not set   
 </code></pre><h4 id="帮助文档中的默认值"><a href="#帮助文档中的默认值" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>帮助文档中的默认值</h4>
 <p>有时指定flag的默认值的文案是很有用的。比如这个默认值不是确定的，而是计算出来的，可以使用<code>DefaultText</code>指定默认值的文案</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1344,36 +1344,36 @@ FATA[0000] Required flag &quot;lang&quot; not set
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-  <span class="s">&#34;log&#34;</span>
-  <span class="s">&#34;os&#34;</span>
-
-  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-    <span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
-      <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">IntFlag</span><span class="p">{</span>
-        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;port&#34;</span><span class="p">,</span>
-        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;Use a randomized port&#34;</span><span class="p">,</span>
-        <span class="nx">Value</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="nx">DefaultText</span><span class="p">:</span> <span class="s">&#34;random&#34;</span><span class="p">,</span>
-      <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">}</span>
-
-  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Flags</span><span class="p">:</span> <span class="p">[]</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Flag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">IntFlag</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;port&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;Use a randomized port&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Value</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">DefaultText</span><span class="p">:</span> <span class="s">&#34;random&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>输出会像这样</p>
-<pre><code>--port value  Use a randomized port (default: random)
+<pre tabindex="0"><code>--port value  Use a randomized port (default: random)
 </code></pre><h4 id="优先级"><a href="#优先级" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>优先级</h4>
 <p>flag的优先级如下(从高到低)：</p>
 <ol start="0">
@@ -1386,7 +1386,7 @@ FATA[0000] Required flag &quot;lang&quot; not set
 <p>子命令可以参考git命令来理解</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1450,69 +1450,69 @@ FATA[0000] Required flag &quot;lang&quot; not set
 </span><span class="lnt">62
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="kn">import</span> <span class="p">(</span>
-  <span class="s">&#34;fmt&#34;</span>
-  <span class="s">&#34;log&#34;</span>
-  <span class="s">&#34;os&#34;</span>
-
-  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
-    <span class="nx">Commands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
-      <span class="p">{</span>
-        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;add&#34;</span><span class="p">,</span>
-        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">},</span>
-        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;add a task to the list&#34;</span><span class="p">,</span>
-        <span class="nx">Action</span><span class="p">:</span>  <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-          <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;added task: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
-          <span class="k">return</span> <span class="kc">nil</span>
-        <span class="p">},</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;complete&#34;</span><span class="p">,</span>
-        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
-        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;complete a task on the list&#34;</span><span class="p">,</span>
-        <span class="nx">Action</span><span class="p">:</span>  <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-          <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;completed task: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
-          <span class="k">return</span> <span class="kc">nil</span>
-        <span class="p">},</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="nx">Name</span><span class="p">:</span>        <span class="s">&#34;template&#34;</span><span class="p">,</span>
-        <span class="nx">Aliases</span><span class="p">:</span>     <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;t&#34;</span><span class="p">},</span>
-        <span class="nx">Usage</span><span class="p">:</span>       <span class="s">&#34;options for task templates&#34;</span><span class="p">,</span>
-        <span class="nx">Subcommands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
-          <span class="p">{</span>
-            <span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;add&#34;</span><span class="p">,</span>
-            <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;add a new template&#34;</span><span class="p">,</span>
-            <span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-              <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;new task template: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
-              <span class="k">return</span> <span class="kc">nil</span>
-            <span class="p">},</span>
-          <span class="p">},</span>
-          <span class="p">{</span>
-            <span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;remove&#34;</span><span class="p">,</span>
-            <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;remove an existing template&#34;</span><span class="p">,</span>
-            <span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-              <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;removed task template: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
-              <span class="k">return</span> <span class="kc">nil</span>
-            <span class="p">},</span>
-          <span class="p">},</span>
-        <span class="p">},</span>
-      <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">}</span>
-
-  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
-  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;github.com/urfave/cli/v2&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">app</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">cli</span><span class="p">.</span><span class="nx">App</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Commands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;add&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;add a task to the list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Action</span><span class="p">:</span>  <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;added task: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Name</span><span class="p">:</span>    <span class="s">&#34;complete&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Aliases</span><span class="p">:</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;c&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Usage</span><span class="p">:</span>   <span class="s">&#34;complete a task on the list&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Action</span><span class="p">:</span>  <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;completed task: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">          <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Name</span><span class="p">:</span>        <span class="s">&#34;template&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Aliases</span><span class="p">:</span>     <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;t&#34;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Usage</span><span class="p">:</span>       <span class="s">&#34;options for task templates&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">Subcommands</span><span class="p">:</span> <span class="p">[]</span><span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Command</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;add&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;add a new template&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;new task template: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">              <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Name</span><span class="p">:</span>  <span class="s">&#34;remove&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Usage</span><span class="p">:</span> <span class="s">&#34;remove an existing template&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">Action</span><span class="p">:</span> <span class="kd">func</span><span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">cli</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;removed task template: &#34;</span><span class="p">,</span> <span class="nx">c</span><span class="p">.</span><span class="nf">Args</span><span class="p">().</span><span class="nf">First</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">              <span class="k">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">err</span> <span class="o">:=</span> <span class="nx">app</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div>
             </div>
@@ -1735,7 +1735,7 @@ FATA[0000] Required flag &quot;lang&quot; not set
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

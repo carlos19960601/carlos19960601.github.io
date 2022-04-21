@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -266,7 +266,7 @@
 <p>直接上构建RocketMQ镜像的Dockerfile文件</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -347,92 +347,92 @@
 </span><span class="lnt">79
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># 基于openjdk8镜像构建</span><span class="w">
-</span><span class="w"></span><span class="l">FROM openjdk:8-alpine</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 安装需要的工具</span><span class="w">
-</span><span class="w"></span><span class="l">RUN apk add --no-cache bash gettext nmap-ncat openssl busybox-extras </span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="l">ARG user=rocketmq</span><span class="w">
-</span><span class="w"></span><span class="l">ARG group=rocketmq</span><span class="w">
-</span><span class="w"></span><span class="l">ARG uid=3000</span><span class="w">
-</span><span class="w"></span><span class="l">ARG gid=3000</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># RocketMQ is run with user `rocketmq`, uid = 3000</span><span class="w">
-</span><span class="w"></span><span class="c"># If you bind mount a volume from the host or a data container,</span><span class="w">
-</span><span class="w"></span><span class="c"># ensure you use the same uid</span><span class="w">
-</span><span class="w"></span><span class="l">RUN addgroup --gid ${gid} ${group} \</span><span class="w">
-</span><span class="w">    </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">adduser --uid ${uid} -G ${group} ${user} -s /bin/bash -D</span><span class="w">
-</span><span class="w">    
-</span><span class="w"></span><span class="c"># 可以通过命令行指定构建RocketMQ的版本</span><span class="w">
-</span><span class="w"></span><span class="l">ARG version </span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Rocketmq version</span><span class="w">
-</span><span class="w"></span><span class="l">ENV ROCKETMQ_VERSION ${version}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 设置RocketMQ的路径</span><span class="w">
-</span><span class="w"></span><span class="l">ENV ROCKETMQ_HOME  /home/rocketmq/rocketmq-${ROCKETMQ_VERSION} </span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="l">WORKDIR  ${ROCKETMQ_HOME}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Install</span><span class="w">
-</span><span class="w"></span><span class="l">RUN set -eux; \</span><span class="w">
-</span><span class="w">    </span><span class="l">apk add --virtual .build-deps curl gnupg unzip; \</span><span class="w">
-</span><span class="w">    </span><span class="l">curl https://dist.apache.org/repos/dist/release/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip -o rocketmq.zip; \</span><span class="w">
-</span><span class="w">    </span><span class="l">curl https://dist.apache.org/repos/dist/release/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip.asc -o rocketmq.zip.asc; \</span><span class="w">
-</span><span class="w">    </span><span class="c">#https://www.apache.org/dist/rocketmq/KEYS</span><span class="w">
-</span><span class="w">	</span><span class="l">curl https://www.apache.org/dist/rocketmq/KEYS -o KEYS; \</span><span class="w">
-</span><span class="w">	</span><span class="l">\</span><span class="w">
-</span><span class="w">	</span><span class="l">gpg --import KEYS; \</span><span class="w">
-</span><span class="w">    </span><span class="l">gpg --batch --verify rocketmq.zip.asc rocketmq.zip; \</span><span class="w">
-</span><span class="w">    </span><span class="l">unzip rocketmq.zip; \</span><span class="w">
-</span><span class="w">	</span><span class="l">mv rocketmq-all*/* . ; \</span><span class="w">
-</span><span class="w">	</span><span class="l">rmdir rocketmq-all* ; \</span><span class="w">
-</span><span class="w">	</span><span class="l">rm rocketmq.zip rocketmq.zip.asc KEYS; \</span><span class="w">
-</span><span class="w">	</span><span class="l">apk del .build-deps ; \</span><span class="w">
-</span><span class="w">    </span><span class="l">rm -rf /var/cache/apk/* ; \</span><span class="w">
-</span><span class="w">    </span><span class="l">rm -rf /tmp/*</span><span class="w">
-</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 拷贝自定义的运行脚本，在scripts目录下可以修改配置，比如JVM启动时的堆大小等，RocketMQ发行版本中的JVM的堆大小设置成4G，我们可以通过这个自定义脚本覆盖这些配置</span><span class="w">
-</span><span class="w"></span><span class="l">COPY scripts/ ${ROCKETMQ_HOME}/bin/</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="l">RUN chown -R ${uid}:${gid} ${ROCKETMQ_HOME}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Expose namesrv port</span><span class="w">
-</span><span class="w"></span><span class="l">EXPOSE 9876</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 覆盖namesrv的脚本</span><span class="w">
-</span><span class="w"></span><span class="l">RUN mv ${ROCKETMQ_HOME}/bin/runserver-customize.sh ${ROCKETMQ_HOME}/bin/runserver.sh \</span><span class="w">
-</span><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/runserver.sh \</span><span class="w">
-</span><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/mqnamesrv</span><span class="w">
-</span><span class="w"> 
-</span><span class="w"> </span><span class="c"># Expose broker ports</span><span class="w">
-</span><span class="w"></span><span class="l">EXPOSE 10909 10911 10912</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># 覆盖broker的脚本</span><span class="w">
-</span><span class="w"></span><span class="l">RUN mv ${ROCKETMQ_HOME}/bin/runbroker-customize.sh ${ROCKETMQ_HOME}/bin/runbroker.sh \</span><span class="w">
-</span><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/runbroker.sh \</span><span class="w">
-</span><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/mqbroker</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Export Java options</span><span class="w">
-</span><span class="w"></span><span class="c"># 在RocketMQ源码中有些默认值是根据用户名的路径下，所以这么设置很方便，但是就我部署来看，这条语句还想并没有生效</span><span class="w">
-</span><span class="w"></span><span class="c"># 可以参考 https://stackoverflow.com/questions/33379393/docker-env-vs-run-export</span><span class="w">
-</span><span class="w"></span><span class="c"># RUN export JAVA_OPT=&#34; -Duser.home=/opt&#34; </span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># Add ${JAVA_HOME}/lib/ext as java.ext.dirs</span><span class="w">
-</span><span class="w"></span><span class="l">RUN sed -i &#39;s/${JAVA_HOME}\/jre\/lib\/ext/${JAVA_HOME}\/jre\/lib\/ext:${JAVA_HOME}\/lib\/ext/&#39; ${ROCKETMQ_HOME}/bin/tools.sh</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="l">USER ${user}</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="l">WORKDIR ${ROCKETMQ_HOME}/bin</span><span class="w">
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="c"># 基于openjdk8镜像构建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">FROM openjdk:8-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 安装需要的工具</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN apk add --no-cache bash gettext nmap-ncat openssl busybox-extras </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ARG user=rocketmq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ARG group=rocketmq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ARG uid=3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ARG gid=3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># RocketMQ is run with user `rocketmq`, uid = 3000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># If you bind mount a volume from the host or a data container,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># ensure you use the same uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN addgroup --gid ${gid} ${group} \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">adduser --uid ${uid} -G ${group} ${user} -s /bin/bash -D</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 可以通过命令行指定构建RocketMQ的版本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ARG version </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Rocketmq version</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV ROCKETMQ_VERSION ${version}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 设置RocketMQ的路径</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">ENV ROCKETMQ_HOME  /home/rocketmq/rocketmq-${ROCKETMQ_VERSION} </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR  ${ROCKETMQ_HOME}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Install</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN set -eux; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">apk add --virtual .build-deps curl gnupg unzip; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">curl https://dist.apache.org/repos/dist/release/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip -o rocketmq.zip; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">curl https://dist.apache.org/repos/dist/release/rocketmq/${ROCKETMQ_VERSION}/rocketmq-all-${ROCKETMQ_VERSION}-bin-release.zip.asc -o rocketmq.zip.asc; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c">#https://www.apache.org/dist/rocketmq/KEYS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">curl https://www.apache.org/dist/rocketmq/KEYS -o KEYS; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">\</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">gpg --import KEYS; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">gpg --batch --verify rocketmq.zip.asc rocketmq.zip; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">unzip rocketmq.zip; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">mv rocketmq-all*/* . ; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">rmdir rocketmq-all* ; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">rm rocketmq.zip rocketmq.zip.asc KEYS; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="l">apk del .build-deps ; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">rm -rf /var/cache/apk/* ; \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">rm -rf /tmp/*</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 拷贝自定义的运行脚本，在scripts目录下可以修改配置，比如JVM启动时的堆大小等，RocketMQ发行版本中的JVM的堆大小设置成4G，我们可以通过这个自定义脚本覆盖这些配置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">COPY scripts/ ${ROCKETMQ_HOME}/bin/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN chown -R ${uid}:${gid} ${ROCKETMQ_HOME}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Expose namesrv port</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">EXPOSE 9876</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 覆盖namesrv的脚本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN mv ${ROCKETMQ_HOME}/bin/runserver-customize.sh ${ROCKETMQ_HOME}/bin/runserver.sh \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/runserver.sh \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/mqnamesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="c"># Expose broker ports</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">EXPOSE 10909 10911 10912</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 覆盖broker的脚本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN mv ${ROCKETMQ_HOME}/bin/runbroker-customize.sh ${ROCKETMQ_HOME}/bin/runbroker.sh \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/runbroker.sh \</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> </span><span class="cp">&amp;&amp;</span><span class="w"> </span><span class="l">chmod a+x ${ROCKETMQ_HOME}/bin/mqbroker</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Export Java options</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 在RocketMQ源码中有些默认值是根据用户名的路径下，所以这么设置很方便，但是就我部署来看，这条语句还想并没有生效</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># 可以参考 https://stackoverflow.com/questions/33379393/docker-env-vs-run-export</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># RUN export JAVA_OPT=&#34; -Duser.home=/opt&#34; </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Add ${JAVA_HOME}/lib/ext as java.ext.dirs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">RUN sed -i &#39;s/${JAVA_HOME}\/jre\/lib\/ext/${JAVA_HOME}\/jre\/lib\/ext:${JAVA_HOME}\/lib\/ext/&#39; ${ROCKETMQ_HOME}/bin/tools.sh</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">USER ${user}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">WORKDIR ${ROCKETMQ_HOME}/bin</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>在构建yml文件中使用了自定义的脚本文件，这些文件在scripts目录下，所以还需要创建scripts目录，并且使用2个自定义的脚本配置文件，分别是server(namesrv是通过这个启动的)和broker的</p>
 <p>先看runserver-customize.sh</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -558,137 +558,137 @@
 </span><span class="lnt">124
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-error_exit <span class="o">()</span>
-<span class="o">{</span>
-    <span class="nb">echo</span> <span class="s2">&#34;ERROR: </span><span class="nv">$1</span><span class="s2"> !!&#34;</span>
-    <span class="nb">exit</span> <span class="m">1</span>
-<span class="o">}</span>
-
-find_java_home<span class="o">()</span>
-<span class="o">{</span>
-    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
-        Darwin<span class="o">)</span>
-            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
-        <span class="p">;;</span>
-        *<span class="o">)</span>
-            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="k">$(</span>which javac<span class="k">))))</span>
-        <span class="p">;;</span>
-    <span class="k">esac</span>
-<span class="o">}</span>
-
-find_java_home
-
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/jdk/java
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> error_exit <span class="s2">&#34;Please set the JAVA_HOME variable in your environment, We need java(x64)!&#34;</span>
-
-<span class="nb">export</span> JAVA_HOME
-<span class="nb">export</span> <span class="nv">JAVA</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span>
-<span class="nb">export</span> <span class="nv">BASE_DIR</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>/..
-<span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span>/conf:<span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span>
-
-<span class="c1">#===========================================================================================</span>
-<span class="c1"># JVM Configuration</span>
-<span class="c1">#===========================================================================================</span>
-calculate_heap_sizes<span class="o">()</span>
-<span class="o">{</span>
-    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
-        Linux<span class="o">)</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>free -m<span class="p">|</span> sed -n <span class="s1">&#39;2p&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>egrep -c <span class="s1">&#39;processor([[:space:]]+):.*&#39;</span> /proc/cpuinfo<span class="sb">`</span>
-        <span class="p">;;</span>
-        FreeBSD<span class="o">)</span>
-            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.physmem <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-        <span class="p">;;</span>
-        SunOS<span class="o">)</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>prtconf <span class="p">|</span> awk <span class="s1">&#39;/Memory size:/ {print $3}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>psrinfo <span class="p">|</span> wc -l<span class="sb">`</span>
-        <span class="p">;;</span>
-        Darwin<span class="o">)</span>
-            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.memsize <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-        <span class="p">;;</span>
-        *<span class="o">)</span>
-            <span class="c1"># assume reasonable defaults for e.g. a modern desktop or</span>
-            <span class="c1"># cheap server</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;2048&#34;</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>
-        <span class="p">;;</span>
-    <span class="k">esac</span>
-
-    <span class="c1"># some systems like the raspberry pi don&#39;t report cores, use at least 1</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$system_cpu_cores</span><span class="s2">&#34;</span> -lt <span class="s2">&#34;1&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
-    <span class="k">fi</span>
-
-    <span class="c1"># set max heap size based on the following</span>
-    <span class="c1"># max(min(1/2 ram, 1024MB), min(1/4 ram, 8GB))</span>
-    <span class="c1"># calculate 1/2 ram and cap to 1024MB</span>
-    <span class="c1"># calculate 1/4 ram and cap to 8192MB</span>
-    <span class="c1"># pick the max</span>
-    <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_mb</span> / 2<span class="sb">`</span>
-    <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$half_system_memory_in_mb</span> / 2<span class="sb">`</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;1024&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;1024&#34;</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;8192&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;8192&#34;</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span>
-    <span class="k">else</span>
-        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span>
-    <span class="k">fi</span>
-    <span class="nv">MAX_HEAP_SIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_heap_size_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-
-    <span class="c1"># Young gen: min(max_sensible_per_modern_cpu_core * num_cores, 1/4 * heap size)</span>
-    <span class="nv">max_sensible_yg_per_core_in_mb</span><span class="o">=</span><span class="s2">&#34;100&#34;</span>
-    <span class="nv">max_sensible_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_sensible_yg_per_core_in_mb</span> <span class="s2">&#34;*&#34;</span> <span class="nv">$system_cpu_cores</span><span class="sb">`</span>
-
-    <span class="nv">desired_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_heap_size_in_mb</span> / 4<span class="sb">`</span>
-
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$desired_yg_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$max_sensible_yg_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_sensible_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-    <span class="k">else</span>
-        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">desired_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-    <span class="k">fi</span>
-<span class="o">}</span>
-
-calculate_heap_sizes
-
-<span class="c1"># Dynamically calculate parameters, for reference.</span>
-<span class="nv">Xms</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
-<span class="nv">Xmx</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
-<span class="nv">Xmn</span><span class="o">=</span><span class="nv">$HEAP_NEWSIZE</span>
-<span class="c1"># Set for `JAVA_OPT`.</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -server -Xms</span><span class="si">${</span><span class="nv">Xms</span><span class="si">}</span><span class="s2"> -Xmx</span><span class="si">${</span><span class="nv">Xmx</span><span class="si">}</span><span class="s2"> -Xmn</span><span class="si">${</span><span class="nv">Xmn</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8  -XX:-UseParNewGC&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -verbose:gc -Xloggc:/dev/shm/rmq_srv_gc.log -XX:+PrintGCDetails&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-OmitStackTraceInFastThrow&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2">  -XX:-UseLargePages&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -Djava.ext.dirs=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span><span class="s2">/jre/lib/ext:</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">/lib&#34;</span>
-<span class="c1">#JAVA_OPT=&#34;${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">JAVA_OPT_EXT</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -cp </span><span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span><span class="s2">&#34;</span>
-
-<span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">error_exit <span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;ERROR: </span><span class="nv">$1</span><span class="s2"> !!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">find_java_home<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
+</span></span><span class="line"><span class="cl">        Darwin<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="k">$(</span>which javac<span class="k">))))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">find_java_home
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/jdk/java
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> error_exit <span class="s2">&#34;Please set the JAVA_HOME variable in your environment, We need java(x64)!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> JAVA_HOME
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">BASE_DIR</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>/..
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span>/conf:<span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#===========================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># JVM Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#===========================================================================================</span>
+</span></span><span class="line"><span class="cl">calculate_heap_sizes<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
+</span></span><span class="line"><span class="cl">        Linux<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>free -m<span class="p">|</span> sed -n <span class="s1">&#39;2p&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>egrep -c <span class="s1">&#39;processor([[:space:]]+):.*&#39;</span> /proc/cpuinfo<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        FreeBSD<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.physmem <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        SunOS<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>prtconf <span class="p">|</span> awk <span class="s1">&#39;/Memory size:/ {print $3}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>psrinfo <span class="p">|</span> wc -l<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        Darwin<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.memsize <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># assume reasonable defaults for e.g. a modern desktop or</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># cheap server</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;2048&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># some systems like the raspberry pi don&#39;t report cores, use at least 1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$system_cpu_cores</span><span class="s2">&#34;</span> -lt <span class="s2">&#34;1&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># set max heap size based on the following</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># max(min(1/2 ram, 1024MB), min(1/4 ram, 8GB))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># calculate 1/2 ram and cap to 1024MB</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># calculate 1/4 ram and cap to 8192MB</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># pick the max</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_mb</span> / 2<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$half_system_memory_in_mb</span> / 2<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;1024&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;1024&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;8192&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;8192&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">MAX_HEAP_SIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_heap_size_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Young gen: min(max_sensible_per_modern_cpu_core * num_cores, 1/4 * heap size)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">max_sensible_yg_per_core_in_mb</span><span class="o">=</span><span class="s2">&#34;100&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">max_sensible_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_sensible_yg_per_core_in_mb</span> <span class="s2">&#34;*&#34;</span> <span class="nv">$system_cpu_cores</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">desired_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_heap_size_in_mb</span> / 4<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$desired_yg_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$max_sensible_yg_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_sensible_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">desired_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">calculate_heap_sizes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Dynamically calculate parameters, for reference.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xms</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xmx</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xmn</span><span class="o">=</span><span class="nv">$HEAP_NEWSIZE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set for `JAVA_OPT`.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -server -Xms</span><span class="si">${</span><span class="nv">Xms</span><span class="si">}</span><span class="s2"> -Xmx</span><span class="si">${</span><span class="nv">Xmx</span><span class="si">}</span><span class="s2"> -Xmn</span><span class="si">${</span><span class="nv">Xmn</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseConcMarkSweepGC -XX:+UseCMSCompactAtFullCollection -XX:CMSInitiatingOccupancyFraction=70 -XX:+CMSParallelRemarkEnabled -XX:SoftRefLRUPolicyMSPerMB=0 -XX:+CMSClassUnloadingEnabled -XX:SurvivorRatio=8  -XX:-UseParNewGC&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -verbose:gc -Xloggc:/dev/shm/rmq_srv_gc.log -XX:+PrintGCDetails&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-OmitStackTraceInFastThrow&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2">  -XX:-UseLargePages&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -Djava.ext.dirs=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span><span class="s2">/jre/lib/ext:</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">/lib&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#JAVA_OPT=&#34;${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">JAVA_OPT_EXT</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -cp </span><span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>可以直接修改上面的<code>JAVA_OPT</code>成我们想要的配置</p>
 <p>看完了runserver-customize.sh，再看看runbroker-customize.sh</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">  1
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
 </span><span class="lnt">  3
 </span><span class="lnt">  4
@@ -828,148 +828,148 @@ calculate_heap_sizes
 </span><span class="lnt">138
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>
-error_exit <span class="o">()</span>
-<span class="o">{</span>
-    <span class="nb">echo</span> <span class="s2">&#34;ERROR: </span><span class="nv">$1</span><span class="s2"> !!&#34;</span>
-    <span class="nb">exit</span> <span class="m">1</span>
-<span class="o">}</span>
-
-find_java_home<span class="o">()</span>
-<span class="o">{</span>
-    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
-        Darwin<span class="o">)</span>
-            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
-        <span class="p">;;</span>
-        *<span class="o">)</span>
-            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="k">$(</span>which javac<span class="k">))))</span>
-        <span class="p">;;</span>
-    <span class="k">esac</span>
-<span class="o">}</span>
-
-find_java_home
-
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/jdk/java
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java
-<span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> error_exit <span class="s2">&#34;Please set the JAVA_HOME variable in your environment, We need java(x64)!&#34;</span>
-
-<span class="nb">export</span> JAVA_HOME
-<span class="nb">export</span> <span class="nv">JAVA</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span>
-<span class="nb">export</span> <span class="nv">BASE_DIR</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>/..
-<span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span>/conf:<span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span>
-
-<span class="c1">#===========================================================================================</span>
-<span class="c1"># JVM Configuration</span>
-<span class="c1">#===========================================================================================</span>
-calculate_heap_sizes<span class="o">()</span>
-<span class="o">{</span>
-    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
-        Linux<span class="o">)</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>free -m<span class="p">|</span> sed -n <span class="s1">&#39;2p&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>egrep -c <span class="s1">&#39;processor([[:space:]]+):.*&#39;</span> /proc/cpuinfo<span class="sb">`</span>
-        <span class="p">;;</span>
-        FreeBSD<span class="o">)</span>
-            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.physmem <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-        <span class="p">;;</span>
-        SunOS<span class="o">)</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>prtconf <span class="p">|</span> awk <span class="s1">&#39;/Memory size:/ {print $3}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>psrinfo <span class="p">|</span> wc -l<span class="sb">`</span>
-        <span class="p">;;</span>
-        Darwin<span class="o">)</span>
-            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.memsize <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
-        <span class="p">;;</span>
-        *<span class="o">)</span>
-            <span class="c1"># assume reasonable defaults for e.g. a modern desktop or</span>
-            <span class="c1"># cheap server</span>
-            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;2048&#34;</span>
-            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>
-        <span class="p">;;</span>
-    <span class="k">esac</span>
-
-    <span class="c1"># some systems like the raspberry pi don&#39;t report cores, use at least 1</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$system_cpu_cores</span><span class="s2">&#34;</span> -lt <span class="s2">&#34;1&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
-    <span class="k">fi</span>
-
-    <span class="c1"># set max heap size based on the following</span>
-    <span class="c1"># max(min(1/2 ram, 1024MB), min(1/4 ram, 8GB))</span>
-    <span class="c1"># calculate 1/2 ram and cap to 1024MB</span>
-    <span class="c1"># calculate 1/4 ram and cap to 8192MB</span>
-    <span class="c1"># pick the max</span>
-    <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_mb</span> / 2<span class="sb">`</span>
-    <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$half_system_memory_in_mb</span> / 2<span class="sb">`</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;1024&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;1024&#34;</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;8192&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;8192&#34;</span>
-    <span class="k">fi</span>
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span>
-    <span class="k">else</span>
-        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span>
-    <span class="k">fi</span>
-    <span class="nv">MAX_HEAP_SIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_heap_size_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-
-    <span class="c1"># Young gen: min(max_sensible_per_modern_cpu_core * num_cores, 1/4 * heap size)</span>
-    <span class="nv">max_sensible_yg_per_core_in_mb</span><span class="o">=</span><span class="s2">&#34;100&#34;</span>
-    <span class="nv">max_sensible_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_sensible_yg_per_core_in_mb</span> <span class="s2">&#34;*&#34;</span> <span class="nv">$system_cpu_cores</span><span class="sb">`</span>
-
-    <span class="nv">desired_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_heap_size_in_mb</span> / 4<span class="sb">`</span>
-
-    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$desired_yg_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$max_sensible_yg_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
-    <span class="k">then</span>
-        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_sensible_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-    <span class="k">else</span>
-        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">desired_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
-    <span class="k">fi</span>
-<span class="o">}</span>
-
-calculate_heap_sizes
-
-<span class="c1"># Dynamically calculate parameters, for reference.</span>
-<span class="nv">Xms</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
-<span class="nv">Xmx</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
-<span class="nv">Xmn</span><span class="o">=</span><span class="nv">$HEAP_NEWSIZE</span>
-<span class="nv">MaxDirectMemorySize</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
-<span class="c1"># Set for `JAVA_OPT`.</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -server -Xms</span><span class="si">${</span><span class="nv">Xms</span><span class="si">}</span><span class="s2"> -Xmx</span><span class="si">${</span><span class="nv">Xmx</span><span class="si">}</span><span class="s2"> -Xmn</span><span class="si">${</span><span class="nv">Xmn</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseG1GC -XX:G1HeapRegionSize=16m -XX:G1ReservePercent=25 -XX:InitiatingHeapOccupancyPercent=30 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:SurvivorRatio=8&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -verbose:gc -Xloggc:/dev/shm/mq_gc_%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintAdaptiveSizePolicy&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-OmitStackTraceInFastThrow&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+AlwaysPreTouch&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:MaxDirectMemorySize=</span><span class="si">${</span><span class="nv">MaxDirectMemorySize</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-UseLargePages -XX:-UseBiasedLocking&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -Djava.ext.dirs=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span><span class="s2">/jre/lib/ext:</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">/lib&#34;</span>
-<span class="c1">#JAVA_OPT=&#34;${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">JAVA_OPT_EXT</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -cp </span><span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span><span class="s2">&#34;</span>
-
-numactl --interleave<span class="o">=</span>all <span class="nb">pwd</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span>
-<span class="k">then</span>
-	<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$RMQ_NUMA_NODE</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
-		numactl --interleave<span class="o">=</span>all <span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
-	<span class="k">else</span>
-		numactl --cpunodebind<span class="o">=</span><span class="nv">$RMQ_NUMA_NODE</span> --membind<span class="o">=</span><span class="nv">$RMQ_NUMA_NODE</span> <span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
-	<span class="k">fi</span>
-<span class="k">else</span>
-	<span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
-<span class="k">fi</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl">error_exit <span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;ERROR: </span><span class="nv">$1</span><span class="s2"> !!&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">find_java_home<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
+</span></span><span class="line"><span class="cl">        Darwin<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>/usr/libexec/java_home<span class="k">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="k">$(</span>dirname <span class="k">$(</span>dirname <span class="k">$(</span>readlink -f <span class="k">$(</span>which javac<span class="k">))))</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">find_java_home
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/jdk/java
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/java
+</span></span><span class="line"><span class="cl"><span class="o">[</span> ! -e <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> error_exit <span class="s2">&#34;Please set the JAVA_HOME variable in your environment, We need java(x64)!&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> JAVA_HOME
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">BASE_DIR</span><span class="o">=</span><span class="k">$(</span>dirname <span class="nv">$0</span><span class="k">)</span>/..
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">CLASSPATH</span><span class="o">=</span>.:<span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span>/conf:<span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#===========================================================================================</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># JVM Configuration</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#===========================================================================================</span>
+</span></span><span class="line"><span class="cl">calculate_heap_sizes<span class="o">()</span>
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="s2">&#34;`uname`&#34;</span> in
+</span></span><span class="line"><span class="cl">        Linux<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>free -m<span class="p">|</span> sed -n <span class="s1">&#39;2p&#39;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>egrep -c <span class="s1">&#39;processor([[:space:]]+):.*&#39;</span> /proc/cpuinfo<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        FreeBSD<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.physmem <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        SunOS<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>prtconf <span class="p">|</span> awk <span class="s1">&#39;/Memory size:/ {print $3}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>psrinfo <span class="p">|</span> wc -l<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        Darwin<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_bytes</span><span class="o">=</span><span class="sb">`</span>sysctl hw.memsize <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_bytes</span> / <span class="m">1024</span> / 1024<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="sb">`</span>sysctl hw.ncpu <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">        *<span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># assume reasonable defaults for e.g. a modern desktop or</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># cheap server</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;2048&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;2&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">esac</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># some systems like the raspberry pi don&#39;t report cores, use at least 1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$system_cpu_cores</span><span class="s2">&#34;</span> -lt <span class="s2">&#34;1&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">system_cpu_cores</span><span class="o">=</span><span class="s2">&#34;1&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># set max heap size based on the following</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># max(min(1/2 ram, 1024MB), min(1/4 ram, 8GB))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># calculate 1/2 ram and cap to 1024MB</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># calculate 1/4 ram and cap to 8192MB</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># pick the max</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$system_memory_in_mb</span> / 2<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$half_system_memory_in_mb</span> / 2<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;1024&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">half_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;1024&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;8192&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">quarter_system_memory_in_mb</span><span class="o">=</span><span class="s2">&#34;8192&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$half_system_memory_in_mb</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">max_heap_size_in_mb</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$quarter_system_memory_in_mb</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">MAX_HEAP_SIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_heap_size_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Young gen: min(max_sensible_per_modern_cpu_core * num_cores, 1/4 * heap size)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">max_sensible_yg_per_core_in_mb</span><span class="o">=</span><span class="s2">&#34;100&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">max_sensible_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_sensible_yg_per_core_in_mb</span> <span class="s2">&#34;*&#34;</span> <span class="nv">$system_cpu_cores</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nv">desired_yg_in_mb</span><span class="o">=</span><span class="sb">`</span>expr <span class="nv">$max_heap_size_in_mb</span> / 4<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$desired_yg_in_mb</span><span class="s2">&#34;</span> -gt <span class="s2">&#34;</span><span class="nv">$max_sensible_yg_in_mb</span><span class="s2">&#34;</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">max_sensible_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">HEAP_NEWSIZE</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">desired_yg_in_mb</span><span class="si">}</span><span class="s2">M&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">calculate_heap_sizes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Dynamically calculate parameters, for reference.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xms</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xmx</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Xmn</span><span class="o">=</span><span class="nv">$HEAP_NEWSIZE</span>
+</span></span><span class="line"><span class="cl"><span class="nv">MaxDirectMemorySize</span><span class="o">=</span><span class="nv">$MAX_HEAP_SIZE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Set for `JAVA_OPT`.</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -server -Xms</span><span class="si">${</span><span class="nv">Xms</span><span class="si">}</span><span class="s2"> -Xmx</span><span class="si">${</span><span class="nv">Xmx</span><span class="si">}</span><span class="s2"> -Xmn</span><span class="si">${</span><span class="nv">Xmn</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseG1GC -XX:G1HeapRegionSize=16m -XX:G1ReservePercent=25 -XX:InitiatingHeapOccupancyPercent=30 -XX:SoftRefLRUPolicyMSPerMB=0 -XX:SurvivorRatio=8&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -verbose:gc -Xloggc:/dev/shm/mq_gc_%p.log -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCApplicationStoppedTime -XX:+PrintAdaptiveSizePolicy&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=5 -XX:GCLogFileSize=30m&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-OmitStackTraceInFastThrow&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:+AlwaysPreTouch&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:MaxDirectMemorySize=</span><span class="si">${</span><span class="nv">MaxDirectMemorySize</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -XX:-UseLargePages -XX:-UseBiasedLocking&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -Djava.ext.dirs=</span><span class="si">${</span><span class="nv">JAVA_HOME</span><span class="si">}</span><span class="s2">/jre/lib/ext:</span><span class="si">${</span><span class="nv">BASE_DIR</span><span class="si">}</span><span class="s2">/lib&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#JAVA_OPT=&#34;${JAVA_OPT} -Xdebug -Xrunjdwp:transport=dt_socket,address=9555,server=y,suspend=n&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> </span><span class="si">${</span><span class="nv">JAVA_OPT_EXT</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">JAVA_OPT</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span><span class="s2"> -cp </span><span class="si">${</span><span class="nv">CLASSPATH</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">numactl --interleave<span class="o">=</span>all <span class="nb">pwd</span> &gt; /dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="o">[</span> -z <span class="s2">&#34;</span><span class="nv">$RMQ_NUMA_NODE</span><span class="s2">&#34;</span> <span class="o">]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">		numactl --interleave<span class="o">=</span>all <span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span>
+</span></span><span class="line"><span class="cl">		numactl --cpunodebind<span class="o">=</span><span class="nv">$RMQ_NUMA_NODE</span> --membind<span class="o">=</span><span class="nv">$RMQ_NUMA_NODE</span> <span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">	<span class="k">fi</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="nv">$JAVA</span> <span class="si">${</span><span class="nv">JAVA_OPT</span><span class="si">}</span> <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>到现在我们的目录如下</p>
-<pre><code>.
+<pre tabindex="0"><code>.
 ├── Dockerfile
 └── scripts
     ├── runbroker-customize.sh
@@ -977,33 +977,33 @@ numactl --interleave<span class="o">=</span>all <span class="nb">pwd</span> &gt;
 </code></pre><p>现在尝试在这个目录下运行下面的命令来构建RocketMQ镜像</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker build --no-cache -t rocketmq:<span class="si">${</span><span class="nv">ROCKETMQ_VERSION</span><span class="si">}</span>-alpine <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">ROCKETMQ_VERSION</span><span class="si">}</span> <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">uid</span><span class="o">=</span><span class="k">$(</span>id -u<span class="k">)</span> <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">gid</span><span class="o">=</span><span class="k">$(</span>id -g<span class="k">)</span> .
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build --no-cache -t rocketmq:<span class="si">${</span><span class="nv">ROCKETMQ_VERSION</span><span class="si">}</span>-alpine <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">ROCKETMQ_VERSION</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">uid</span><span class="o">=</span><span class="k">$(</span>id -u<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">gid</span><span class="o">=</span><span class="k">$(</span>id -g<span class="k">)</span> .
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>其中ROCKETMQ_VERSION是我们想要构建的RocketMQ的版本，可以参考<a href="https://dist.apache.org/repos/dist/release/rocketmq/" target="_blank" rel="noopener">这里</a>查看RocketMQ的发行版本</p>
 <p>比如我现在制定版本是<code>4.5.2</code></p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker build --no-cache -t rocketmq:4.5.2-alpine <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">version</span><span class="o">=</span>4.5.2 <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">uid</span><span class="o">=</span><span class="k">$(</span>id -u<span class="k">)</span> <span class="se">\
-</span><span class="se"></span>--build-arg <span class="nv">gid</span><span class="o">=</span><span class="k">$(</span>id -g<span class="k">)</span> .
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker build --no-cache -t rocketmq:4.5.2-alpine <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">version</span><span class="o">=</span>4.5.2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">uid</span><span class="o">=</span><span class="k">$(</span>id -u<span class="k">)</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--build-arg <span class="nv">gid</span><span class="o">=</span><span class="k">$(</span>id -g<span class="k">)</span> .
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><blockquote>
 <p>注意：在写Dockerfile时，注释最好单独成行，不要在语句后面写注释，会出现一些异常</p>
@@ -1013,21 +1013,21 @@ numactl --interleave<span class="o">=</span>all <span class="nb">pwd</span> &gt;
 <p>如果想单独运行rocketmq-console-ng，可以参考<a href="https://github.com/apache/rocketmq-externals/tree/master/rocketmq-console" target="_blank" rel="noopener">文档</a>，比如直接运行下面命令</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker pull styletang/rocketmq-console-ng
-
-docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false&#34;</span> -p 8080:8080 -t styletang/rocketmq-console-ng
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull styletang/rocketmq-console-ng
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false&#34;</span> -p 8080:8080 -t styletang/rocketmq-console-ng
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="编写docker-composeyml文件"><a href="#编写docker-composeyml文件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>编写docker-compose.yml文件</h3>
 <p>正如文章开头说的那样，生产环境肯定不能通过命令行单独去部署namesrv，broker和console的，所以我们需要编写docker-compose.yml文件，同样可以与其他服务一起使用docker stack进行部署</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1094,82 +1094,82 @@ docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:
 </span><span class="lnt">65
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
-</span><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">namesrv</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
-</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqnamesrv</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">9876</span><span class="p">:</span><span class="m">9876</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">net</span><span class="w">
-</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="c"># 在Dockerfile中我们制定了user.home是/opt，RocketMQ源码中的文件默认都是基于user.home的</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/namesrv/logs:/home/rocketmq/logs</span><span class="w">
-</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqnamesrv</span><span class="w">
-</span><span class="w">  </span><span class="nt">broker1</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
-</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqbroker-a</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">net</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10909</span><span class="p">:</span><span class="m">10909</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10911</span><span class="p">:</span><span class="m">10911</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10912</span><span class="p">:</span><span class="m">10912</span><span class="w">
-</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
-</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">NAMESRV_ADDR=namesrv:9876</span><span class="w">
-</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/logs:/home/rocketmq/logs</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/store:/home/rocketmq/store</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf</span><span class="w">
-</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqbroker -c ../conf/broker.conf</span><span class="w">
-</span><span class="w">  </span><span class="nt">broker2</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
-</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqbroker-b</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">net</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10929</span><span class="p">:</span><span class="m">10909</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10931</span><span class="p">:</span><span class="m">10911</span><span class="w">
-</span><span class="w">      </span>- <span class="m">10932</span><span class="p">:</span><span class="m">10912</span><span class="w">
-</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
-</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">NAMESRV_ADDR=namesrv:9876</span><span class="w">
-</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/logs:/home/rocketmq/logs</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/store:/home/rocketmq/store</span><span class="w">
-</span><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf</span><span class="w">
-</span><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqbroker -c ../conf/broker.conf</span><span class="w">
-</span><span class="w">  </span><span class="nt">console</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">styletang/rocketmq-console-ng:latest</span><span class="w">
-</span><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqconsole</span><span class="w">
-</span><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">net</span><span class="w">
-</span><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="m">8080</span><span class="p">:</span><span class="m">8080</span><span class="w">
-</span><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
-</span><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
-</span><span class="w">     </span><span class="nt">JAVA_OPTS</span><span class="p">:</span><span class="w"> </span>-<span class="l">Drocketmq.config.namesrvAddr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false</span><span class="w">
-</span><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">net</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">172.27.0.0</span><span class="l">/16</span><span class="w">
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;3.7&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namesrv</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqnamesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">9876</span><span class="p">:</span><span class="m">9876</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># 在Dockerfile中我们制定了user.home是/opt，RocketMQ源码中的文件默认都是基于user.home的</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/namesrv/logs:/home/rocketmq/logs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqnamesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">broker1</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqbroker-a</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10909</span><span class="p">:</span><span class="m">10909</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10911</span><span class="p">:</span><span class="m">10911</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10912</span><span class="p">:</span><span class="m">10912</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">NAMESRV_ADDR=namesrv:9876</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/logs:/home/rocketmq/logs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/store:/home/rocketmq/store</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker1/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqbroker -c ../conf/broker.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">broker2</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">choaya/rocketmq:4.5.2-alpine</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqbroker-b</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10929</span><span class="p">:</span><span class="m">10909</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10931</span><span class="p">:</span><span class="m">10911</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">10932</span><span class="p">:</span><span class="m">10912</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">NAMESRV_ADDR=namesrv:9876</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/logs:/home/rocketmq/logs</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/store:/home/rocketmq/store</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">~/wemeng/rocketMQ/data/broker/broker2/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l">sh mqbroker -c ../conf/broker.conf</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">console</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">styletang/rocketmq-console-ng:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l">rmqconsole</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">net</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="m">8080</span><span class="p">:</span><span class="m">8080</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">namesrv</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">environment</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">     </span><span class="nt">JAVA_OPTS</span><span class="p">:</span><span class="w"> </span>-<span class="l">Drocketmq.config.namesrvAddr=namesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">networks</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">net</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ipam</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">subnet</span><span class="p">:</span><span class="w"> </span><span class="m">172.27.0.0</span><span class="l">/16</span><span class="w">
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>broker.conf的配置这里就不贴了，个人根据自己的需求进行配置就行</p>
 <p>然后使用部署</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">docker-compose -f docker-compose.yml up
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker-compose -f docker-compose.yml up
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h3 id="验证部署成功"><a href="#验证部署成功" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>验证部署成功</h3>
 <p>访问RocketMQ的Console页面，可以看到Namesrv和Broker的信息就算是成功了</p>
@@ -1180,7 +1180,7 @@ docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:
 </blockquote>
 <p>如果想发送和消费消息，初始化Client时指定的是namesrv的地址，broker会将自己的ip信息注册到namesrv，由于是在docker环境中，broker注册到namesrv的ip是docker的ip，这个就是上面console中看到docker ip的原因</p>
 <p>那么Producer和Consumer是根据namesrv获取到broker的ip的，所以它们会拿着这个docker ip去建立连接并发送和消费消息，可想而知肯定是连接不上的，ip都不正确，如果你尝试发送消息的话会看到如下的错误</p>
-<pre><code>Exception in thread &quot;main&quot; org.apache.rocketmq.remoting.exception.RemotingTooMuchRequestException: sendDefaultImpl call timeout
+<pre tabindex="0"><code>Exception in thread &#34;main&#34; org.apache.rocketmq.remoting.exception.RemotingTooMuchRequestException: sendDefaultImpl call timeout
 	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.sendDefaultImpl(DefaultMQProducerImpl.java:640)
 	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1310)
 	at org.apache.rocketmq.client.impl.producer.DefaultMQProducerImpl.send(DefaultMQProducerImpl.java:1256)
@@ -1191,8 +1191,8 @@ docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:
 22:04:41.329 [NettyClientSelector_1] INFO  RocketmqRemoting closeChannel: close the connection to remote address[] result: true
 </code></pre><p>那么该如何解决这个问题呢，知道原因了，解决问题还不简单，我们已经知道是由于docker环境下broker上报自己的ip不正确导致的，那么我们看一下这段逻辑，看看能不能修改一下上报的ip就可以了呗，这里就不看源码了，以后再分析吧。直接给解决方案</p>
 <p>在docker-compose.yml中，我们映射了broker的配置文件，可以添加brokerIP1配置，值就是你主机正确的ip地址，源码中BrokerConfig中有brokerIP1属性，上报namesrv的就是这个属性，所以通过配置文件直接覆盖了这个属性</p>
-<pre><code> - ~/wemeng/rocketMQ/data/broker/broker2/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf
-</code></pre><pre><code># brokerIP1 上报到namesrv的ip地址，docker环境下上报的是docker的ip
+<pre tabindex="0"><code> - ~/wemeng/rocketMQ/data/broker/broker2/conf/broker.conf:/home/rocketmq/rocketmq-4.5.2/conf/broker.conf
+</code></pre><pre tabindex="0"><code># brokerIP1 上报到namesrv的ip地址，docker环境下上报的是docker的ip
 # brokerIP1=[你主机的ip地址]
 </code></pre>
             </div>
@@ -1431,7 +1431,7 @@ docker run -e <span class="s2">&#34;JAVA_OPTS=-Drocketmq.namesrv.addr=127.0.0.1:
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

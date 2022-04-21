@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -263,23 +263,23 @@
 <p>RocketMQ支持的序列化类型</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">SerializeType</span> <span class="o">{</span>
-    <span class="n">JSON</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="n">0</span><span class="o">),</span>
-    <span class="n">ROCKETMQ</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="n">1</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">enum</span> <span class="n">SerializeType</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">JSON</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="n">0</span><span class="o">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ROCKETMQ</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>对整体结构有认识后，接下来再结合一下源码在巩固一下，同时如果哪天你也需要写底层网络通讯那块内容，也可以借鉴一下RocketMQ的代码实现(个人觉得这块写得不怎么样)</p>
 <p>首先看一下如何编码，RocketMQ将传输的数据抽象成了RemotingCommand</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -306,49 +306,49 @@
 </span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NettyEncoder</span> <span class="kd">extends</span> <span class="n">MessageToByteEncoder</span><span class="o">&lt;</span><span class="n">RemotingCommand</span><span class="o">&gt;</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">InternalLogger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">RemotingHelper</span><span class="o">.</span><span class="na">ROCKETMQ_REMOTING</span><span class="o">);</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="n">RemotingCommand</span> <span class="n">remotingCommand</span><span class="o">,</span> <span class="n">ByteBuf</span> <span class="n">out</span><span class="o">)</span>
-        <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="c1">// 编码Header
-</span><span class="c1"></span>            <span class="n">ByteBuffer</span> <span class="n">header</span> <span class="o">=</span> <span class="n">remotingCommand</span><span class="o">.</span><span class="na">encodeHeader</span><span class="o">();</span>
-            <span class="c1">// 向ByteBuf中写入header数据
-</span><span class="c1"></span>            <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
-            <span class="c1">// 向ByteBuf中写入body数据
-</span><span class="c1"></span>            <span class="kt">byte</span><span class="o">[]</span> <span class="n">body</span> <span class="o">=</span> <span class="n">remotingCommand</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">body</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="n">body</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;encode exception, &#34;</span> <span class="o">+</span> <span class="n">RemotingHelper</span><span class="o">.</span><span class="na">parseChannelRemoteAddr</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">()),</span> <span class="n">e</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">remotingCommand</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">remotingCommand</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-            <span class="o">}</span>
-            <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">closeChannel</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NettyEncoder</span> <span class="kd">extends</span> <span class="n">MessageToByteEncoder</span><span class="o">&lt;</span><span class="n">RemotingCommand</span><span class="o">&gt;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">InternalLogger</span> <span class="n">log</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">RemotingHelper</span><span class="o">.</span><span class="na">ROCKETMQ_REMOTING</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">encode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="n">RemotingCommand</span> <span class="n">remotingCommand</span><span class="o">,</span> <span class="n">ByteBuf</span> <span class="n">out</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 编码Header
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">ByteBuffer</span> <span class="n">header</span> <span class="o">=</span> <span class="n">remotingCommand</span><span class="o">.</span><span class="na">encodeHeader</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 向ByteBuf中写入header数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="n">header</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 向ByteBuf中写入body数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="kt">byte</span><span class="o">[]</span> <span class="n">body</span> <span class="o">=</span> <span class="n">remotingCommand</span><span class="o">.</span><span class="na">getBody</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">body</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">out</span><span class="o">.</span><span class="na">writeBytes</span><span class="o">(</span><span class="n">body</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;encode exception, &#34;</span> <span class="o">+</span> <span class="n">RemotingHelper</span><span class="o">.</span><span class="na">parseChannelRemoteAddr</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">()),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">remotingCommand</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="n">remotingCommand</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">closeChannel</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>这里只看到写入header和body，上面图中的length和序列化类型在哪呢？不要慌，点进去看看header里面时什么数据</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="kd">public</span> <span class="n">ByteBuffer</span> <span class="nf">encodeHeader</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">encodeHeader</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">body</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="na">body</span><span class="o">.</span><span class="na">length</span> <span class="o">:</span> <span class="n">0</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ByteBuffer</span> <span class="nf">encodeHeader</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">encodeHeader</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">body</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">this</span><span class="o">.</span><span class="na">body</span><span class="o">.</span><span class="na">length</span> <span class="o">:</span> <span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -379,40 +379,40 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="kd">public</span> <span class="n">ByteBuffer</span> <span class="nf">encodeHeader</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">bodyLength</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 1&gt; header length size
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>
-
-    <span class="c1">// 2&gt; header data length
-</span><span class="c1"></span>    <span class="kt">byte</span><span class="o">[]</span> <span class="n">headerData</span><span class="o">;</span>
-    <span class="c1">// 将header使用设置的SerializeType进行序列化，RockerMQ默认使用JSON进行序列化
-</span><span class="c1"></span>    <span class="n">headerData</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">headerEncode</span><span class="o">();</span>
-
-    <span class="n">length</span> <span class="o">+=</span> <span class="n">headerData</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-
-    <span class="c1">// 3&gt; body data length
-</span><span class="c1"></span>    <span class="n">length</span> <span class="o">+=</span> <span class="n">bodyLength</span><span class="o">;</span>
-		<span class="c1">// 在此之前 length = 4 +  headerData.length + bodyLength，所以这个result的ByteBuffer大小是 4 + 4 +  headerData.length，其中第一个4是消息的代表写入length，第二个4是markProtocolType()方法写入，最后是headerData
-</span><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">4</span> <span class="o">+</span> <span class="n">length</span> <span class="o">-</span> <span class="n">bodyLength</span><span class="o">);</span>
-
-    <span class="c1">// 写入length
-</span><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">length</span><span class="o">);</span>
-
-    <span class="c1">// 写入header length
-</span><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">markProtocolType</span><span class="o">(</span><span class="n">headerData</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">serializeTypeCurrentRPC</span><span class="o">));</span>
-
-    <span class="c1">// header data
-</span><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">headerData</span><span class="o">);</span>
-
-    <span class="n">result</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
-
-    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-JAVA" data-lang="JAVA"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">ByteBuffer</span> <span class="nf">encodeHeader</span><span class="o">(</span><span class="kd">final</span> <span class="kt">int</span> <span class="n">bodyLength</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 1&gt; header length size
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 2&gt; header data length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">byte</span><span class="o">[]</span> <span class="n">headerData</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将header使用设置的SerializeType进行序列化，RockerMQ默认使用JSON进行序列化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">headerData</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">headerEncode</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">length</span> <span class="o">+=</span> <span class="n">headerData</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 3&gt; body data length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">length</span> <span class="o">+=</span> <span class="n">bodyLength</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 在此之前 length = 4 +  headerData.length + bodyLength，所以这个result的ByteBuffer大小是 4 + 4 +  headerData.length，其中第一个4是消息的代表写入length，第二个4是markProtocolType()方法写入，最后是headerData
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ByteBuffer</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ByteBuffer</span><span class="o">.</span><span class="na">allocate</span><span class="o">(</span><span class="n">4</span> <span class="o">+</span> <span class="n">length</span> <span class="o">-</span> <span class="n">bodyLength</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 写入length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">putInt</span><span class="o">(</span><span class="n">length</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 写入header length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">markProtocolType</span><span class="o">(</span><span class="n">headerData</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">serializeTypeCurrentRPC</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// header data
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">result</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">headerData</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">result</span><span class="o">.</span><span class="na">flip</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -423,23 +423,23 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">markProtocolType</span><span class="o">(</span><span class="kt">int</span> <span class="n">source</span><span class="o">,</span> <span class="n">SerializeType</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">byte</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">4</span><span class="o">];</span>
-
-    <span class="n">result</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">type</span><span class="o">.</span><span class="na">getCode</span><span class="o">();</span>
-    <span class="n">result</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">16</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
-    <span class="n">result</span><span class="o">[</span><span class="n">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
-    <span class="n">result</span><span class="o">[</span><span class="n">3</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">(</span><span class="n">source</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
-    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">byte</span><span class="o">[]</span> <span class="nf">markProtocolType</span><span class="o">(</span><span class="kt">int</span> <span class="n">source</span><span class="o">,</span> <span class="n">SerializeType</span> <span class="n">type</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">4</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">result</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">type</span><span class="o">.</span><span class="na">getCode</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">16</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span><span class="o">[</span><span class="n">2</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">8</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">result</span><span class="o">[</span><span class="n">3</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="kt">byte</span><span class="o">)</span> <span class="o">(</span><span class="n">source</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>现在可以理解 length 是 序列化类型 + header length + header data + body data 的字节长度了吧</p>
 <p>其中markProtocolType方法其实是header length和SerializeType，第1个字节表示SerializeType，后面3个字节才是表示header length</p>
 <p>到这里Encode基本就完了，可以说还是比较简单的，接下来我们再看看Decode</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -471,61 +471,61 @@
 </span><span class="lnt">30
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NettyDecoder</span> <span class="kd">extends</span> <span class="n">LengthFieldBasedFrameDecoder</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="nf">NettyDecoder</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">super</span><span class="o">(</span><span class="n">FRAME_MAX_LENGTH</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">decode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="n">ByteBuf</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-        <span class="n">ByteBuf</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">frame</span> <span class="o">=</span> <span class="o">(</span><span class="n">ByteBuf</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="n">in</span><span class="o">);</span>
-            <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">frame</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="na">nioBuffer</span><span class="o">();</span>
-
-            <span class="k">return</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;decode exception, &#34;</span> <span class="o">+</span> <span class="n">RemotingHelper</span><span class="o">.</span><span class="na">parseChannelRemoteAddr</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">()),</span> <span class="n">e</span><span class="o">);</span>
-            <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">closeChannel</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">());</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">frame</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">frame</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NettyDecoder</span> <span class="kd">extends</span> <span class="n">LengthFieldBasedFrameDecoder</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="nf">NettyDecoder</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">super</span><span class="o">(</span><span class="n">FRAME_MAX_LENGTH</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">decode</span><span class="o">(</span><span class="n">ChannelHandlerContext</span> <span class="n">ctx</span><span class="o">,</span> <span class="n">ByteBuf</span> <span class="n">in</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ByteBuf</span> <span class="n">frame</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">frame</span> <span class="o">=</span> <span class="o">(</span><span class="n">ByteBuf</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">frame</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="na">nioBuffer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">byteBuffer</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;decode exception, &#34;</span> <span class="o">+</span> <span class="n">RemotingHelper</span><span class="o">.</span><span class="na">parseChannelRemoteAddr</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">()),</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">closeChannel</span><span class="o">(</span><span class="n">ctx</span><span class="o">.</span><span class="na">channel</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">frame</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">frame</span><span class="o">.</span><span class="na">release</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>RocketMQ解码实现是通过<code>NettyDecoder</code>这个类，它继承了Netty的<code>LengthFieldBasedFrameDecoder</code>，调用了<code>LengthFieldBasedFrameDecoder</code>的构造函数</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">super</span><span class="o">(</span><span class="n">FRAME_MAX_LENGTH</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">super</span><span class="o">(</span><span class="n">FRAME_MAX_LENGTH</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>这个参数设置就是解析是跳过最开始的4个字节，上面编码的时候最开始的4个字节表示的就是最开始图中的length部分，那么经过</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">frame</span> <span class="o">=</span> <span class="o">(</span><span class="n">ByteBuf</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="n">in</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">frame</span> <span class="o">=</span> <span class="o">(</span><span class="n">ByteBuf</span><span class="o">)</span> <span class="kd">super</span><span class="o">.</span><span class="na">decode</span><span class="o">(</span><span class="n">ctx</span><span class="o">,</span> <span class="n">in</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>得到的frame其实就是 **序列化类型 + header length + header data + body data **</p>
 <p>然后调用**RemotingCommand.decode(byteBuffer);**进行解码</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -550,54 +550,54 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">RemotingCommand</span> <span class="nf">decode</span><span class="o">(</span><span class="kd">final</span> <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">limit</span><span class="o">();</span>
-    <span class="c1">// 读取一个int，这里就是 序列化类型 + header length
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">oriHeaderLen</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">getInt</span><span class="o">();</span>
-    <span class="c1">// 从oriHeaderLen解析出header length
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">headerLength</span> <span class="o">=</span> <span class="n">getHeaderLength</span><span class="o">(</span><span class="n">oriHeaderLen</span><span class="o">);</span>
-
-    <span class="kt">byte</span><span class="o">[]</span> <span class="n">headerData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">headerLength</span><span class="o">];</span>
-    <span class="n">byteBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">headerData</span><span class="o">);</span>
-		<span class="c1">// getProtocolType从oriHeaderLen解析出 序列化类型
-</span><span class="c1"></span>    <span class="c1">// headerDecode 就是根据 序列化类型 进行反序列化，这里没什么说的
-</span><span class="c1"></span>    <span class="n">RemotingCommand</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">headerDecode</span><span class="o">(</span><span class="n">headerData</span><span class="o">,</span> <span class="n">getProtocolType</span><span class="o">(</span><span class="n">oriHeaderLen</span><span class="o">));</span>
-
-    <span class="kt">int</span> <span class="n">bodyLength</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="n">4</span> <span class="o">-</span> <span class="n">headerLength</span><span class="o">;</span>
-    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bodyData</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">bodyLength</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">bodyData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">bodyLength</span><span class="o">];</span>
-        <span class="n">byteBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bodyData</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="n">cmd</span><span class="o">.</span><span class="na">body</span> <span class="o">=</span> <span class="n">bodyData</span><span class="o">;</span>
-
-    <span class="k">return</span> <span class="n">cmd</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">RemotingCommand</span> <span class="nf">decode</span><span class="o">(</span><span class="kd">final</span> <span class="n">ByteBuffer</span> <span class="n">byteBuffer</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">limit</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 读取一个int，这里就是 序列化类型 + header length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">oriHeaderLen</span> <span class="o">=</span> <span class="n">byteBuffer</span><span class="o">.</span><span class="na">getInt</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 从oriHeaderLen解析出header length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">headerLength</span> <span class="o">=</span> <span class="n">getHeaderLength</span><span class="o">(</span><span class="n">oriHeaderLen</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">headerData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">headerLength</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">byteBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">headerData</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// getProtocolType从oriHeaderLen解析出 序列化类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// headerDecode 就是根据 序列化类型 进行反序列化，这里没什么说的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">RemotingCommand</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">headerDecode</span><span class="o">(</span><span class="n">headerData</span><span class="o">,</span> <span class="n">getProtocolType</span><span class="o">(</span><span class="n">oriHeaderLen</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">bodyLength</span> <span class="o">=</span> <span class="n">length</span> <span class="o">-</span> <span class="n">4</span> <span class="o">-</span> <span class="n">headerLength</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">byte</span><span class="o">[]</span> <span class="n">bodyData</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">bodyLength</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bodyData</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="n">bodyLength</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">byteBuffer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">bodyData</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cmd</span><span class="o">.</span><span class="na">body</span> <span class="o">=</span> <span class="n">bodyData</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">cmd</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getHeaderLength</span><span class="o">(</span><span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">length</span> <span class="o">&amp;</span> <span class="n">0xFFFFFF</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getHeaderLength</span><span class="o">(</span><span class="kt">int</span> <span class="n">length</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">length</span> <span class="o">&amp;</span> <span class="n">0xFFFFFF</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">SerializeType</span> <span class="nf">getProtocolType</span><span class="o">(</span><span class="kt">int</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">SerializeType</span><span class="o">.</span><span class="na">valueOf</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">24</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">));</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">SerializeType</span> <span class="nf">getProtocolType</span><span class="o">(</span><span class="kt">int</span> <span class="n">source</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">SerializeType</span><span class="o">.</span><span class="na">valueOf</span><span class="o">((</span><span class="kt">byte</span><span class="o">)</span> <span class="o">((</span><span class="n">source</span> <span class="o">&gt;&gt;</span> <span class="n">24</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">0xFF</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>上面代码的注解把decode的过程描述得还算比较清楚吧</p>
 
@@ -829,7 +829,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

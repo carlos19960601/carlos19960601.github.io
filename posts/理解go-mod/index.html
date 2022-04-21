@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -275,19 +275,19 @@
 <p>那么项目 A 的依赖关系就会变成下面这个样子</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nf">require</span> <span class="p">(</span>
-    <span class="nx">B</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span>
-    <span class="nx">B1</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
-</span><span class="c1"></span>    <span class="nx">B2</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nf">require</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">B</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">B1</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">B2</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h5 id="gomod-文件中缺失部分依赖"><a href="#gomod-文件中缺失部分依赖" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>go.mod 文件中缺失部分依赖</h5>
 <blockquote>
@@ -297,17 +297,17 @@
 <p>此时项目 A 的依赖关系就会变成下面这个样子</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nf">require</span> <span class="p">(</span>
-    <span class="nx">B</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span>
-    <span class="nx">B2</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
-</span><span class="c1"></span><span class="p">)</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nf">require</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">B</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">B2</span> <span class="nx">vx</span><span class="p">.</span><span class="nx">x</span><span class="p">.</span><span class="nx">x</span> <span class="c1">// indirect
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">)</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>间接依赖出现在 go.mod 中，可以一定程度上说明依赖有瑕疵，要么是其不支持 Go module，要么是其 go.mod 文件不完整。
 由于 Go 语言从 v1.11 版本才推出 module 的特性，众多开源软件迁移到 go module 还需要一段时间，在过渡期必然会出现间接依赖，但随着时间的推进，在 go.mod 中出现 //indirect 的机率会越来越低。
@@ -334,7 +334,7 @@
 <p>在我的项目中，直接引用只有beats这一个项目</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -347,21 +347,21 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
-	<span class="s">&#34;os&#34;</span>
-
-	<span class="s">&#34;github.com/elastic/beats/v7/x-pack/filebeat/cmd&#34;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nf">Filebeat</span><span class="p">().</span><span class="nf">Execute</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/elastic/beats/v7/x-pack/filebeat/cmd&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nf">Filebeat</span><span class="p">().</span><span class="nf">Execute</span><span class="p">();</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">os</span><span class="p">.</span><span class="nf">Exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>直接运行<code>go run main.go</code>，然后就报错了</p>
-<pre><code>go: github.com/elastic/beats/v7@v7.10.1 requires
+<pre tabindex="0"><code>go: github.com/elastic/beats/v7@v7.10.1 requires
 	github.com/Shopify/sarama@v0.0.0-00010101000000-000000000000: invalid version: unknown revision 000000000000
 </code></pre><p>报错 很明显，就是<code>github.com/elastic/beats/v7</code>依赖的<code>github.com/Shopify/sarama</code>找不到相应的版本，我打开了<code>github.com/elastic/beats/v7</code>的go.mod文件，确认了一下</p>
 <p><img src="/%E7%90%86%E8%A7%A3gomod/beatsmod.png" alt=""></p>
@@ -374,17 +374,17 @@
 </blockquote>
 <h4 id="出现checksum-mismatch"><a href="#出现checksum-mismatch" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>出现checksum mismatch</h4>
 <p>删除go.sum，清空mod缓存，重新下载包</p>
-<pre><code>$rm go.sum
+<pre tabindex="0"><code>$rm go.sum
 $go clean -modcache
 </code></pre><p>如果还不行，那就把checksum的校验关了吧</p>
-<pre><code>GOSUMDB='off'
+<pre tabindex="0"><code>GOSUMDB=&#39;off&#39;
 </code></pre><h4 id="case-insensitive-import-collision"><a href="#case-insensitive-import-collision" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>case-insensitive import collision</h4>
 <p>这个问题报错是这样子的</p>
-<pre><code>go/pkg/mod/github.com/apache/pulsar-client-go@v0.3.0/pulsar/internal/compression/zstd_cgo.go:27:2: case-insensitive import collision: &quot;github.com/datadog/zstd&quot; and &quot;github.com/DataDog/zstd&quot;
+<pre tabindex="0"><code>go/pkg/mod/github.com/apache/pulsar-client-go@v0.3.0/pulsar/internal/compression/zstd_cgo.go:27:2: case-insensitive import collision: &#34;github.com/datadog/zstd&#34; and &#34;github.com/DataDog/zstd&#34;
 </code></pre><p>根据报错信息我们知道因为引入包存在大小写不同的2种包导致</p>
 <p>最初我以为是因为<code>github.com/apache/pulsar-client-go@v0.3.0</code>这个包导致的，而且也有人提了<a href="https://github.com/apache/pulsar-client-go/issues/379" target="_blank" rel="noopener">issue</a>，但是这个issue中使用的是v0.2.0，v0.3.0已经修复这个问题了，将依赖都改成了<code>github.com/datadog/zstd</code></p>
 <p>说明我们项目中还有依赖<code>github.com/DataDog/zstd</code>，可以使用<code>go mod why github.com/DataDog/zstd</code>来看看<code>github.com/DataDog/zstd</code>是怎么引用进来的</p>
-<pre><code>$ go mod why github.com/DataDog/zstd
+<pre tabindex="0"><code>$ go mod why github.com/DataDog/zstd
 # github.com/DataDog/zstd
 gitlab.xiaoduoai.com/xxx/xxxxx
 github.com/elastic/beats/v7/x-pack/filebeat/cmd
@@ -397,7 +397,7 @@ github.com/dgraph-io/badger/v2/y
 github.com/DataDog/zstd
 </code></pre><p>可以看到<code>github.com/DataDog/zstd</code>是由<code>github.com/dgraph-io/badger/v2</code>引入的，我也去badger项目确认了一下，它们确实使用的是<code>github.com/DataDog/zstd</code></p>
 <p>原以为这个问题使用replace也能解决，类似这样</p>
-<pre><code>replace (
+<pre tabindex="0"><code>replace (
 ...
 github.com/DataDog/zstd =&gt; github.com/DataDog/zstd va.b.c
 ...
@@ -629,7 +629,7 @@ github.com/DataDog/zstd =&gt; github.com/DataDog/zstd va.b.c
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

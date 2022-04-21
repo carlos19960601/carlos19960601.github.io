@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -288,7 +288,7 @@
 <p>首先来个简单的程序</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -300,32 +300,32 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="c1">//go:noinline
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-	<span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//go:noinline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">add</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>不清楚<code>//go:noinline</code>是什么的同学可以看看<a href="../golang%E4%B8%AD%E7%9A%84pragmas">我的这篇博客</a></p>
 <p>然后编译一下</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="nx">tool</span> <span class="nx">compile</span> <span class="o">-</span><span class="nx">S</span> <span class="o">-</span><span class="nx">N</span> <span class="nx">main</span><span class="p">.</span><span class="k">go</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">go</span> <span class="nx">tool</span> <span class="nx">compile</span> <span class="o">-</span><span class="nx">S</span> <span class="o">-</span><span class="nx">N</span> <span class="nx">main</span><span class="p">.</span><span class="k">go</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>先看main函数</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -353,38 +353,38 @@
 </span><span class="lnt">26
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">main</span> <span class="nx">STEXT</span> <span class="nx">size</span><span class="p">=</span><span class="mi">71</span> <span class="nx">args</span><span class="p">=</span><span class="mh">0x0</span> <span class="nx">locals</span><span class="p">=</span><span class="mh">0x20</span>
-	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">main</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">32</span><span class="o">-</span><span class="mi">0</span> <span class="c1">// 栈大小32，参数大小0
-</span><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nf">MOVQ</span>	<span class="p">(</span><span class="nx">TLS</span><span class="p">),</span> <span class="nx">CX</span>
-	<span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">CMPQ</span>	<span class="nx">SP</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">CX</span><span class="p">)</span>
-	<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
-	<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">JLS</span>	<span class="mi">64</span>
-	<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
-	<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">SUBQ</span>	<span class="err">$</span><span class="mi">32</span><span class="p">,</span> <span class="nx">SP</span> <span class="c1">// 分配 32 字节栈空间
-</span><span class="c1"></span>	<span class="mh">0x0013</span> <span class="mo">0001</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">BP</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// 将旧的BP存储到SP+24
-</span><span class="c1"></span>	<span class="mh">0x0018</span> <span class="mo">00024</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span> <span class="c1">// BP指向SP+24
-</span><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
-</span><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
-</span><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">SP</span><span class="p">)</span>   <span class="c1">// 设置参数值1到SP
-</span><span class="c1"></span>	<span class="mh">0x0025</span> <span class="mo">00037</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>  <span class="c1">// 设置参数值2到SP+8
-</span><span class="c1"></span>	<span class="mh">0x002e</span> <span class="mo">00046</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="err">$</span><span class="mi">0</span>
-	<span class="mh">0x002e</span> <span class="mo">00046</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">CALL</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// 调用add方法，将call指令的下一条指令压栈
-</span><span class="c1"></span>	<span class="mh">0x0033</span> <span class="mo">00051</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span> <span class="c1">// 恢复BP为旧的BP值
-</span><span class="c1"></span>	<span class="mh">0x0038</span> <span class="mo">00056</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="err">$</span><span class="mi">32</span><span class="p">,</span> <span class="nx">SP</span>    <span class="c1">// 栈缩容，回收32字节的栈空间
-</span><span class="c1"></span>	<span class="mh">0x003c</span> <span class="mo">00060</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">RET</span>
-	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">NOP</span>
-	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
-	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
-	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">NOP</span>
-	<span class="mh">0x0040</span> <span class="mo">00064</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">CALL</span>	<span class="nx">runtime</span><span class="p">.</span><span class="nf">morestack_noctxt</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span>
-	<span class="mh">0x0045</span> <span class="mo">0006</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
-	<span class="mh">0x0045</span> <span class="mo">0006</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">JMP</span>	<span class="mi">0</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">main</span> <span class="nx">STEXT</span> <span class="nx">size</span><span class="p">=</span><span class="mi">71</span> <span class="nx">args</span><span class="p">=</span><span class="mh">0x0</span> <span class="nx">locals</span><span class="p">=</span><span class="mh">0x20</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">main</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">32</span><span class="o">-</span><span class="mi">0</span> <span class="c1">// 栈大小32，参数大小0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nf">MOVQ</span>	<span class="p">(</span><span class="nx">TLS</span><span class="p">),</span> <span class="nx">CX</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">CMPQ</span>	<span class="nx">SP</span><span class="p">,</span> <span class="mi">16</span><span class="p">(</span><span class="nx">CX</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x000d</span> <span class="mo">00013</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">JLS</span>	<span class="mi">64</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x000f</span> <span class="mo">00015</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">SUBQ</span>	<span class="err">$</span><span class="mi">32</span><span class="p">,</span> <span class="nx">SP</span> <span class="c1">// 分配 32 字节栈空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0013</span> <span class="mo">0001</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">BP</span><span class="p">,</span> <span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// 将旧的BP存储到SP+24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0018</span> <span class="mo">00024</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">LEAQ</span>	<span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span> <span class="c1">// BP指向SP+24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">SP</span><span class="p">)</span>   <span class="c1">// 设置参数值1到SP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0025</span> <span class="mo">00037</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>  <span class="c1">// 设置参数值2到SP+8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x002e</span> <span class="mo">00046</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="err">$</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x002e</span> <span class="mo">00046</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">CALL</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// 调用add方法，将call指令的下一条指令压栈
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0033</span> <span class="mo">00051</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">BP</span> <span class="c1">// 恢复BP为旧的BP值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0038</span> <span class="mo">00056</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="err">$</span><span class="mi">32</span><span class="p">,</span> <span class="nx">SP</span>    <span class="c1">// 栈缩容，回收32字节的栈空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x003c</span> <span class="mo">00060</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">RET</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">10</span><span class="p">)</span>	<span class="nx">NOP</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x003d</span> <span class="mo">00061</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">NOP</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0040</span> <span class="mo">00064</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">CALL</span>	<span class="nx">runtime</span><span class="p">.</span><span class="nf">morestack_noctxt</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0045</span> <span class="mo">0006</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">PCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="err">$</span><span class="o">-</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0045</span> <span class="mo">0006</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">8</span><span class="p">)</span>	<span class="nx">JMP</span>	<span class="mi">0</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>再来看看add方法</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -395,39 +395,39 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">add</span> <span class="nx">STEXT</span> <span class="nx">nosplit</span> <span class="nx">size</span><span class="p">=</span><span class="mi">25</span> <span class="nx">args</span><span class="p">=</span><span class="mh">0x18</span> <span class="nx">locals</span><span class="p">=</span><span class="mh">0x0</span>
-	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">NOSPLIT</span><span class="p">|</span><span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">0</span><span class="o">-</span><span class="mi">24</span> <span class="c1">// 栈大小为0，参数大小24字节
-</span><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
-</span><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
-</span><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="err">~</span><span class="nx">r2</span><span class="o">+</span><span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// 将返回值SP+24，也就是返回值置为0
-</span><span class="c1"></span>	<span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">// .a表示助记符，没有特别含义，AX = SP+8中的值(a)，也就是AX = 1
-</span><span class="c1"></span>	<span class="mh">0x000e</span> <span class="mo">00014</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">b</span><span class="o">+</span><span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">//.b表示助记符，没有特别含义，AX = AX + SP+16的值(b)，也就是AX = 1 + 2
-</span><span class="c1"></span>	<span class="mh">0x0013</span> <span class="mo">0001</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">AX</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="err">~</span><span class="nx">r2</span><span class="o">+</span><span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// AX的值赋值给SP+24
-</span><span class="c1"></span>	<span class="mh">0x0018</span> <span class="mo">00024</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">RET</span> <span class="c1">// 栈顶的返回地址弹出
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">add</span> <span class="nx">STEXT</span> <span class="nx">nosplit</span> <span class="nx">size</span><span class="p">=</span><span class="mi">25</span> <span class="nx">args</span><span class="p">=</span><span class="mh">0x18</span> <span class="nx">locals</span><span class="p">=</span><span class="mh">0x0</span>
+</span></span><span class="line"><span class="cl">	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">TEXT</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="nx">SB</span><span class="p">),</span> <span class="nx">NOSPLIT</span><span class="p">|</span><span class="nx">ABIInternal</span><span class="p">,</span> <span class="err">$</span><span class="mi">0</span><span class="o">-</span><span class="mi">24</span> <span class="c1">// 栈大小为0，参数大小24字节
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">FUNCDATA</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="nx">gclocals</span><span class="err">·</span><span class="mi">33</span><span class="nf">cdeccccebe80329f1fdbee7f5874cb</span><span class="p">(</span><span class="nx">SB</span><span class="p">)</span> <span class="c1">// FUNCDATA 跟垃圾回收有关
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0000</span> <span class="mo">00000</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">4</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="err">~</span><span class="nx">r2</span><span class="o">+</span><span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// 将返回值SP+24，也就是返回值置为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">// .a表示助记符，没有特别含义，AX = SP+8中的值(a)，也就是AX = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x000e</span> <span class="mo">00014</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">b</span><span class="o">+</span><span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">//.b表示助记符，没有特别含义，AX = AX + SP+16的值(b)，也就是AX = 1 + 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0013</span> <span class="mo">0001</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="nx">AX</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">.</span><span class="err">~</span><span class="nx">r2</span><span class="o">+</span><span class="mi">24</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span> <span class="c1">// AX的值赋值给SP+24
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="mh">0x0018</span> <span class="mo">00024</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">RET</span> <span class="c1">// 栈顶的返回地址弹出
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>从这段代码中可以看出Go使用栈进行参数和返回值的传递</p>
 <p>这里我的疑惑是在main方法中，参数是设置在<code>(SP)</code>和<code>8(SP)</code>位置的，也就是下面这2行</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">SP</span><span class="p">)</span>   <span class="c1">// 设置参数值1到SP
-</span><span class="c1"></span><span class="mh">0x0025</span> <span class="mo">00037</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>  <span class="c1">// 设置参数值2到SP+8
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="mh">0x001d</span> <span class="mo">0002</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">SP</span><span class="p">)</span>   <span class="c1">// 设置参数值1到SP
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mh">0x0025</span> <span class="mo">00037</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="err">$</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">)</span>  <span class="c1">// 设置参数值2到SP+8
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>但是在add方法中，获取参数是从<code>8(SP)</code>和<code>16(SP)</code>获取的，也就是这2行</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">// .a表示助记符，没有特别含义，AX = SP+8中的值(a)，也就是AX = 1
-</span><span class="c1"></span><span class="mh">0x000e</span> <span class="mo">00014</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">b</span><span class="o">+</span><span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">//.b表示助记符，没有特别含义，AX = AX + SP+16的值(b)，也就是AX = 1 + 2
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="mh">0x0009</span> <span class="mo">0000</span><span class="mi">9</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">MOVQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">a</span><span class="o">+</span><span class="mi">8</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">// .a表示助记符，没有特别含义，AX = SP+8中的值(a)，也就是AX = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="mh">0x000e</span> <span class="mo">00014</span> <span class="p">(</span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>	<span class="nx">ADDQ</span>	<span class="s">&#34;&#34;</span><span class="p">.</span><span class="nx">b</span><span class="o">+</span><span class="mi">16</span><span class="p">(</span><span class="nx">SP</span><span class="p">),</span> <span class="nx">AX</span> <span class="c1">//.b表示助记符，没有特别含义，AX = AX + SP+16的值(b)，也就是AX = 1 + 2
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>为什么偏移位置变了，猜测是SP向下偏移了8字节，那么SP的修改是在哪改动的呢？如果SP向下偏移了8个字节，但是在main函数中销毁栈的时候却只销毁了24个字节的空间，那么这8个字节是怎么增加和销毁的呢？</p>
 <p>这个就和call指令有关系了，call指令执行过程中，call指令会把当前rip的值入栈（入栈的位置就是返回地址），栈顶SP也会下移到返回地址位置，然后把rip的值修改为call指令后面的操作数，也就是add函数第一条指令的地址，这样cpu就会跳转到add函数去执行。与call指令相反的操作就是ret指令了。</p>
@@ -439,7 +439,7 @@
 <p>一切从简</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -450,20 +450,20 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
-
-<span class="c1">//go:noinline
-</span><span class="c1"></span><span class="kd">func</span> <span class="nf">stringParam</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{}</span>
-
-<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="s">&#34;abcc&#34;</span>
-	<span class="nf">stringParam</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//go:noinline
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">stringParam</span><span class="p">(</span><span class="nx">s</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">x</span> <span class="p">=</span> <span class="s">&#34;abcc&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">stringParam</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>汇编后main函数得到的结果</p>
-<pre><code>&quot;&quot;.main STEXT size=72 args=0x0 locals=0x18
-	0x0000 00000 (main.go:6)	TEXT	&quot;&quot;.main(SB), ABIInternal, $24-0 // 栈帧大小24字节
+<pre tabindex="0"><code>&#34;&#34;.main STEXT size=72 args=0x0 locals=0x18
+	0x0000 00000 (main.go:6)	TEXT	&#34;&#34;.main(SB), ABIInternal, $24-0 // 栈帧大小24字节
 	0x0000 00000 (main.go:6)	MOVQ	(TLS), CX
 	0x0009 00009 (main.go:6)	CMPQ	SP, 16(CX)
 	0x000d 00013 (main.go:6)	PCDATA	$0, $-2
@@ -474,11 +474,11 @@
 	0x0018 00024 (main.go:6)	LEAQ	16(SP), BP // BP指向新的地址
 	0x001d 00029 (main.go:6)	FUNCDATA	$0, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
 	0x001d 00029 (main.go:6)	FUNCDATA	$1, gclocals·33cdeccccebe80329f1fdbee7f5874cb(SB)
-	0x001d 00029 (main.go:8)	LEAQ	go.string.&quot;abcc&quot;(SB), AX // 获取 RODATA 段中的字符串地址
+	0x001d 00029 (main.go:8)	LEAQ	go.string.&#34;abcc&#34;(SB), AX // 获取 RODATA 段中的字符串地址
 	0x0024 00036 (main.go:8)	MOVQ	AX, (SP) // 将获取到的地址放在栈顶，作为第一个参数
 	0x0028 00040 (main.go:8)	MOVQ	$4, 8(SP) // 字符串长度作为第二个参数
 	0x0031 00049 (main.go:8)	PCDATA	$1, $0
-	0x0031 00049 (main.go:8)	CALL	&quot;&quot;.stringParam(SB) // 调用 stringParam 函数
+	0x0031 00049 (main.go:8)	CALL	&#34;&#34;.stringParam(SB) // 调用 stringParam 函数
 	0x0036 00054 (main.go:9)	MOVQ	16(SP), BP
 	0x003b 00059 (main.go:9)	ADDQ	$24, SP
 	0x003f 00063 (main.go:9)	NOP
@@ -738,7 +738,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

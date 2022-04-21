@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -270,7 +270,7 @@ maven super pom 文件位置
 D:\apache-maven-3.0.4\lib 下的 maven-model-builder-3.0.4.jar 中的 org/apache/maven/model/pom-4.0.0.xml</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -285,20 +285,20 @@ D:\apache-maven-3.0.4\lib 下的 maven-model-builder-3.0.4.jar 中的 org/apache
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">··· 省略其他
-  <span class="nt">&lt;repositories&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-      <span class="nt">&lt;id&gt;</span>central<span class="nt">&lt;/id&gt;</span>
-      <span class="nt">&lt;name&gt;</span>Central Repository<span class="nt">&lt;/name&gt;</span>
-      <span class="nt">&lt;url&gt;</span>https://repo.maven.apache.org/maven2<span class="nt">&lt;/url&gt;</span>
-      <span class="nt">&lt;layout&gt;</span>default<span class="nt">&lt;/layout&gt;</span>
-      <span class="nt">&lt;snapshots&gt;</span>
-        <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
-      <span class="nt">&lt;/snapshots&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
-  <span class="nt">&lt;/repositories&gt;</span>
-···
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">··· 省略其他
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;repositories&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;repository&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;id&gt;</span>central<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name&gt;</span>Central Repository<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;url&gt;</span>https://repo.maven.apache.org/maven2<span class="nt">&lt;/url&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;layout&gt;</span>default<span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;snapshots&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/snapshots&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/repository&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/repositories&gt;</span>
+</span></span><span class="line"><span class="cl">···
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>这个时候我们就明白了，我们在 settings 文件配置一个 mirror 的 mirrorOf 为 central 的镜像就会替代 ‘中央仓库’ 的原因了。</p>
 <h3 id="maven-镜像"><a href="#maven-镜像" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Maven 镜像</h3>
@@ -312,7 +312,7 @@ D:\apache-maven-3.0.4\lib 下的 maven-model-builder-3.0.4.jar 中的 org/apache
 <strong>注意:当远程仓库被镜像匹配到的，则在获取 jar 包将从镜像仓库获取，而不是我们配置的 repository 仓库, repository 将失去作用</strong></p>
 <h4 id="mirrorof-标签"><a href="#mirrorof-标签" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>mirrorOf 标签</h4>
 <p>mirrorOf 标签里面放置的是 repository 配置的 id,为了满足一些复杂的需求，Maven还支持更高级的镜像配置：</p>
-<pre><code>external:* = 不在本地仓库的文件才从该镜像获取
+<pre tabindex="0"><code>external:* = 不在本地仓库的文件才从该镜像获取
 repo,repo1 = 远程仓库 repo 和 repo1 从该镜像获取
 *,!repo1 =  所有远程仓库都从该镜像获取，除 repo1 远程仓库以外
 * = 所用远程仓库都从该镜像获取
@@ -320,7 +320,7 @@ repo,repo1 = 远程仓库 repo 和 repo1 从该镜像获取
 <p>私服是一种特殊的远程Maven仓库，它是架设在局域网内的仓库服务，私服一般被配置为互联网远程仓库的镜像，供局域网内的Maven用户使用。
 当Maven需要下载构件的时候，先向私服请求，如果私服上不存在该构件，则从外部的远程仓库下载，同时缓存在私服之上，然后为Maven下载请求提供下载服务，另外，对于自定义或第三方的jar可以从本地上传到私服，供局域网内其他maven用户使用。
 优点主要有：</p>
-<pre><code>1. 节省外网宽带
+<pre tabindex="0"><code>1. 节省外网宽带
 2. 加速Maven构建
 3. 部署第三方构件：可以将公司项目的 jar 发布到私服上，方便项目与项目之间的调用
 4. 提高稳定性、增强控制：原因是外网不稳定
@@ -337,7 +337,7 @@ repo,repo1 = 远程仓库 repo 和 repo1 从该镜像获取
 <h3 id="本地仓库优先级"><a href="#本地仓库优先级" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>本地仓库优先级</h3>
 <p><img src="/Maven%E4%BB%93%E5%BA%93%E7%90%86%E8%A7%A3%E5%92%8C%E4%BC%98%E5%85%88%E7%BA%A7/example.png" alt="example"></p>
 <p>Maven 本地仓库拥有该包，而远程、镜像、中央、私服都不包含该包。我们来看下 Maven 是怎么获取的</p>
-<pre><code>.......
+<pre tabindex="0"><code>.......
 
 // 使用本地仓库，优先级(priority)为 10
 [DEBUG] Using local repository at E:\OperSource
@@ -369,7 +369,7 @@ Process finished with exit code 0
 settings.xml 文件</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -424,65 +424,65 @@ settings.xml 文件</p>
 </span><span class="lnt">53
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml">······
-
-<span class="nt">&lt;mirrors&gt;</span> 
-
-  <span class="nt">&lt;mirror&gt;</span> 
-    <span class="nt">&lt;id&gt;</span>localhost<span class="nt">&lt;/id&gt;</span>  
-    <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
-    <span class="nt">&lt;mirrorOf&gt;</span>foo<span class="nt">&lt;/mirrorOf&gt;</span>   <span class="c">&lt;!--拦截 pom 文件配置的 repository--&gt;</span>
-    <span class="nt">&lt;url&gt;</span>http://localhost:8081/repository/maven-public/<span class="nt">&lt;/url&gt;</span> 
-  <span class="nt">&lt;/mirror&gt;</span>  
-  
-  <span class="nt">&lt;mirror&gt;</span> 
-    <span class="nt">&lt;id&gt;</span>localhost2<span class="nt">&lt;/id&gt;</span>  
-    <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
-    <span class="nt">&lt;mirrorOf&gt;</span>foo2<span class="nt">&lt;/mirrorOf&gt;</span>   <span class="c">&lt;!--配置一个拦截 foo2 的远程仓库的镜像--&gt;</span>
-    <span class="nt">&lt;url&gt;</span>http://localhost:8081/repository/maven-snapshots/<span class="nt">&lt;/url&gt;</span> 
-  <span class="nt">&lt;/mirror&gt;</span>  
-  
-  <span class="nt">&lt;mirror&gt;</span> 
-    <span class="nt">&lt;id&gt;</span>alimaven<span class="nt">&lt;/id&gt;</span>  
-    <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="c">&lt;!--覆盖 Maven 默认的配置的中央仓库--&gt;</span>
-    <span class="nt">&lt;name&gt;</span>aliyun maven<span class="nt">&lt;/name&gt;</span>  
-    <span class="nt">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span> 
-  <span class="nt">&lt;/mirror&gt;</span> 
- 
-<span class="nt">&lt;/mirrors&gt;</span>
-
-<span class="c">&lt;!--配置私服--&gt;</span>
-<span class="nt">&lt;profiles&gt;</span> 
-  <span class="nt">&lt;profile&gt;</span> 
-    <span class="nt">&lt;id&gt;</span>nexus<span class="nt">&lt;/id&gt;</span>  
-    <span class="nt">&lt;repositories&gt;</span> 
-      <span class="nt">&lt;repository&gt;</span> 
-        <span class="nt">&lt;id&gt;</span>public<span class="nt">&lt;/id&gt;</span>  
-        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
-        <span class="nt">&lt;url&gt;</span>http://172.16.xxx.xxx:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span> 
-      <span class="nt">&lt;/repository&gt;</span> 
-    <span class="nt">&lt;/repositories&gt;</span>  
-    <span class="nt">&lt;pluginRepositories&gt;</span> 
-      <span class="nt">&lt;pluginRepository&gt;</span> 
-        <span class="nt">&lt;id&gt;</span>public<span class="nt">&lt;/id&gt;</span>  
-        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
-        <span class="nt">&lt;url&gt;</span>http://172.16.xxx.xxx:8081/nexus/content/groups/public<span class="nt">&lt;/url&gt;</span> 
-      <span class="nt">&lt;/pluginRepository&gt;</span> 
-    <span class="nt">&lt;/pluginRepositories&gt;</span> 
-  <span class="nt">&lt;/profile&gt;</span> 
-<span class="nt">&lt;/profiles&gt;</span>
-
-<span class="nt">&lt;activeProfiles&gt;</span>
-    <span class="nt">&lt;activeProfile&gt;</span>nexus<span class="nt">&lt;/activeProfile&gt;</span>
-<span class="nt">&lt;/activeProfiles&gt;</span>
-
-······
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">······
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;mirrors&gt;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;mirror&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>localhost<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mirrorOf&gt;</span>foo<span class="nt">&lt;/mirrorOf&gt;</span>   <span class="c">&lt;!--拦截 pom 文件配置的 repository--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url&gt;</span>http://localhost:8081/repository/maven-public/<span class="nt">&lt;/url&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/mirror&gt;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;mirror&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>localhost2<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mirrorOf&gt;</span>foo2<span class="nt">&lt;/mirrorOf&gt;</span>   <span class="c">&lt;!--配置一个拦截 foo2 的远程仓库的镜像--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url&gt;</span>http://localhost:8081/repository/maven-snapshots/<span class="nt">&lt;/url&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/mirror&gt;</span>  
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;mirror&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>alimaven<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span>  <span class="c">&lt;!--覆盖 Maven 默认的配置的中央仓库--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>aliyun maven<span class="nt">&lt;/name&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/mirror&gt;</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/mirrors&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置私服--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;profiles&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;profile&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>nexus<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;repositories&gt;</span> 
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;repository&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;id&gt;</span>public<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;url&gt;</span>http://172.16.xxx.xxx:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span> 
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/repository&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/repositories&gt;</span>  
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;pluginRepositories&gt;</span> 
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;pluginRepository&gt;</span> 
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;id&gt;</span>public<span class="nt">&lt;/id&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>  
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;url&gt;</span>http://172.16.xxx.xxx:8081/nexus/content/groups/public<span class="nt">&lt;/url&gt;</span> 
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/pluginRepository&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/pluginRepositories&gt;</span> 
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/profile&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/profiles&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;activeProfiles&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;activeProfile&gt;</span>nexus<span class="nt">&lt;/activeProfile&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/activeProfiles&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">······
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>pom.xml 文件</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -511,37 +511,37 @@ settings.xml 文件</p>
 </span><span class="lnt">27
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependencies&gt;</span>
-
-    <span class="c">&lt;!--xxx-cif-api 存在 172.16.xxx.xxx 仓库--&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>com.xxx.cif<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>xxx-cif-api<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-    <span class="c">&lt;!--Chapter1 存在 localhost 仓库--&gt;</span>
-    <span class="nt">&lt;dependency&gt;</span>
-        <span class="nt">&lt;groupId&gt;</span>com.cjf<span class="nt">&lt;/groupId&gt;</span>
-        <span class="nt">&lt;artifactId&gt;</span>Chapter1<span class="nt">&lt;/artifactId&gt;</span>
-        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
-    <span class="nt">&lt;/dependency&gt;</span>
-
-<span class="nt">&lt;/dependencies&gt;</span>
-
-
-
-<span class="c">&lt;!--配置远程仓库--&gt;</span>
-<span class="nt">&lt;repositories&gt;</span>
-    <span class="nt">&lt;repository&gt;</span>
-        <span class="nt">&lt;id&gt;</span>foo<span class="nt">&lt;/id&gt;</span>
-        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>
-        <span class="nt">&lt;url&gt;</span>http://dev.xxx.wiki:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
-    <span class="nt">&lt;/repository&gt;</span>
-<span class="nt">&lt;/repositories&gt;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--xxx-cif-api 存在 172.16.xxx.xxx 仓库--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>com.xxx.cif<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>xxx-cif-api<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--Chapter1 存在 localhost 仓库--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;dependency&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;groupId&gt;</span>com.cjf<span class="nt">&lt;/groupId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;artifactId&gt;</span>Chapter1<span class="nt">&lt;/artifactId&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;version&gt;</span>0.0.1-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/dependency&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/dependencies&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置远程仓库--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;repositories&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;repository&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;id&gt;</span>foo<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>Public Repositories<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;url&gt;</span>http://dev.xxx.wiki:8081/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/repository&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/repositories&gt;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>以下是 Maven 拉取包的日志</p>
-<pre><code>······· 省略部分日志信息
+<pre tabindex="0"><code>······· 省略部分日志信息
 
 [DEBUG] Using local repository at E:\OperSource
 [DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for E:\OperSource
@@ -662,18 +662,18 @@ Downloaded: http://localhost:8081/repository/maven-public/com/cjf/Chapter1/0.0.1
 </blockquote>
 <h3 id="maven-metadataxml-文件"><a href="#maven-metadataxml-文件" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>maven-metadata.xml 文件</h3>
 <p>Maven Repository Metadata 可用于表示：</p>
-<pre><code>1. 一个没有版本的工件：它提供有关该工件的可用版本的信息
+<pre tabindex="0"><code>1. 一个没有版本的工件：它提供有关该工件的可用版本的信息
 2. 快照伪像：它提供有关快照的精确信息
 3. 包含Maven插件工件的组：它提供了有关此组中可用插件的信息。
 </code></pre><p>元数据文件名是：</p>
-<pre><code>远程存储库中的 maven-metadata.xml，
+<pre tabindex="0"><code>远程存储库中的 maven-metadata.xml，
 maven-metadata- &lt;repo-id&gt;.xml在本地存储库中，用于具有repo-id标识符的存储库中的元标记。
 </code></pre><p>以上是 Maven 官网对该文件的解释。</p>
 <h3 id="作用"><a href="#作用" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>作用</h3>
 <p>问题：有时候我们更新最新包的时候，会发现最新的包被拉取下来的，但是项目使用的包还是旧的包。所以我们要分析下是什么原因导致的。</p>
 <p>首先我们先大概的了解下 maven-metadata.xml 文件。</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
-&lt;metadata modelVersion=&quot;1.1.0&quot;&gt;
+<pre tabindex="0"><code>&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+&lt;metadata modelVersion=&#34;1.1.0&#34;&gt;
   &lt;groupId&gt;com.cjf&lt;/groupId&gt;
   &lt;artifactId&gt;Chapter1&lt;/artifactId&gt;
   &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
@@ -700,7 +700,7 @@ maven-metadata- &lt;repo-id&gt;.xml在本地存储库中，用于具有repo-id�
 </code></pre><p>其中 lastUpdated 是最中要的一个属性，Maven 更新工程的 jar包时，会比较 lastUpdated 时间戳值，哪个值更大，就以哪个文件为准。</p>
 <p>接下来我们看下 Maven 为我们生成那些文件</p>
 <p>我们可以看到 maven-metadata.xml 一共有三个</p>
-<pre><code>1. maven-metadata-local.xml 本地的元数据, Maven install 的时候就会生成。
+<pre tabindex="0"><code>1. maven-metadata-local.xml 本地的元数据, Maven install 的时候就会生成。
 2. maven-metadata-snapshots.xml Maven deploy 时会生成
 3. maven-metadata-localhost.xml 远程仓库获取的时候生成 (repository 的 id = localhost)
 </code></pre><p>以上的文件其实都是 Maven 的过渡文件而已</p>
@@ -710,7 +710,7 @@ maven-metadata- &lt;repo-id&gt;.xml在本地存储库中，用于具有repo-id�
 </ol>
 <p>所以有时候 maven 库上的 jar 包已经更新，而我们总是拉取不到 maven 的包原因就是本地的 maven-metadata-local 的 lastUpdated 比较大。</p>
 <p>我们验证下 Maven deploy 例子</p>
-<pre><code>[INFO] --- maven-deploy-plugin:2.8.2:deploy (default-deploy) @ Chapter1 ---
+<pre tabindex="0"><code>[INFO] --- maven-deploy-plugin:2.8.2:deploy (default-deploy) @ Chapter1 ---
 // 先从远程下载快照 maven-metadata.xml
 Downloading: http://localhost:8081/repository/maven-snapshots/com/cjf/Chapter1/0.0.1-SNAPSHOT/maven-metadata.xml
 Downloaded: http://localhost:8081/repository/maven-snapshots/com/cjf/Chapter1/0.0.1-SNAPSHOT/maven-metadata.xml (768 B at 3.3 KB/sec)
@@ -930,7 +930,7 @@ Uploaded: http://localhost:8081/repository/maven-snapshots/com/cjf/Chapter1/mave
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

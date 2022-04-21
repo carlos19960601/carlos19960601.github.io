@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -56,7 +56,7 @@
         "@context": "https://schema.org",
         "@type": "WebSite",
         "datePublished": "2020-11-27T22:17:43+08:00",
-        "dateModified": "2021-11-19T16:14:00+08:00",
+        "dateModified": "2022-04-21T22:52:26+08:00",
         "url": "http://zengqiang96.github.io/",
         "description": "MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。",
         "image": "http://zengqiang96.github.io/icons/apple-touch-icon.png",
@@ -232,7 +232,7 @@
                     <p><code>NamesrvStartup</code>启动入口</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -252,25 +252,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">main0</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="c1">// 创建NamesrvController
-</span><span class="c1"></span>        <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">createNamesrvController</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
-        <span class="c1">// 启动NamesrvController
-</span><span class="c1"></span>        <span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">tip</span> <span class="o">=</span> <span class="s">&#34;The Name Server boot success. serializeType=&#34;</span> <span class="o">+</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">getSerializeTypeConfigInThisServer</span><span class="o">();</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">tip</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s%n&#34;</span><span class="o">,</span> <span class="n">tip</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">main0</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 创建NamesrvController
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">createNamesrvController</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 启动NamesrvController
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">tip</span> <span class="o">=</span> <span class="s">&#34;The Name Server boot success. serializeType=&#34;</span> <span class="o">+</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">getSerializeTypeConfigInThisServer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">tip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s%n&#34;</span><span class="o">,</span> <span class="n">tip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>……
                 </summary>
@@ -327,7 +327,7 @@
 <p>首先看一下<code>RemotingClient</code>中的定义</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -344,22 +344,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RemotingClient</span> <span class="kd">extends</span> <span class="n">RemotingService</span> <span class="o">{</span>
-
-    <span class="n">RemotingCommand</span> <span class="nf">invokeSync</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span>
-        <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span>
-        <span class="n">RemotingSendRequestException</span><span class="o">,</span> <span class="n">RemotingTimeoutException</span><span class="o">;</span>
-
-    <span class="kt">void</span> <span class="nf">invokeAsync</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">,</span>
-        <span class="kd">final</span> <span class="n">InvokeCallback</span> <span class="n">invokeCallback</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span>
-        <span class="n">RemotingTooMuchRequestException</span><span class="o">,</span> <span class="n">RemotingTimeoutException</span><span class="o">,</span> <span class="n">RemotingSendRequestException</span><span class="o">;</span>
-
-    <span class="kt">void</span> <span class="nf">invokeOneway</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">)</span>
-        <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span> <span class="n">RemotingTooMuchRequestException</span><span class="o">,</span>
-        <span class="n">RemotingTimeoutException</span><span class="o">,</span> <span class="n">RemotingSendRequestException</span><span class="o">;</span>
-
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RemotingClient</span> <span class="kd">extends</span> <span class="n">RemotingService</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">RemotingCommand</span> <span class="nf">invokeSync</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RemotingSendRequestException</span><span class="o">,</span> <span class="n">RemotingTimeoutException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">invokeAsync</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">final</span> <span class="n">InvokeCallback</span> <span class="n">invokeCallback</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RemotingTooMuchRequestException</span><span class="o">,</span> <span class="n">RemotingTimeoutException</span><span class="o">,</span> <span class="n">RemotingSendRequestException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">invokeOneway</span><span class="o">(</span><span class="kd">final</span> <span class="n">String</span> <span class="n">addr</span><span class="o">,</span> <span class="kd">final</span> <span class="n">RemotingCommand</span> <span class="n">request</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="n">timeoutMillis</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">RemotingConnectException</span><span class="o">,</span> <span class="n">RemotingTooMuchRequestException</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">RemotingTimeoutException</span><span class="o">,</span> <span class="n">RemotingSendRequestException</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div>……
                 </summary>
@@ -463,7 +463,7 @@
     
     
         
-        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;14757</span>
+        <span class="post-meta-item wordcount"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon post-meta-icon"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>&nbsp;14756</span>
     
     
         
@@ -479,7 +479,7 @@
 <p>按照前面分析生产者的流程，首先看看消费者怎么使用吧</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -510,36 +510,36 @@
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Consumer</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">MQClientException</span> <span class="o">{</span>
-
-        <span class="c1">// 使用consumer group初始化DefaultMQPushConsumer
-</span><span class="c1"></span>        <span class="n">DefaultMQPushConsumer</span> <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMQPushConsumer</span><span class="o">(</span><span class="s">&#34;please_rename_unique_group_name&#34;</span><span class="o">);</span>
-
-        <span class="c1">// 指定namesrv
-</span><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span><span class="s">&#34;localhost:9876&#34;</span><span class="o">);</span>
-
-        <span class="c1">// 订阅topic
-</span><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">&#34;TopicTest&#34;</span><span class="o">,</span> <span class="s">&#34;*&#34;</span><span class="o">);</span>
-        <span class="c1">// 注册消费消息的回调
-</span><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">registerMessageListener</span><span class="o">(</span><span class="k">new</span> <span class="n">MessageListenerConcurrently</span><span class="o">()</span> <span class="o">{</span>
-
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="n">ConsumeConcurrentlyStatus</span> <span class="nf">consumeMessage</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MessageExt</span><span class="o">&gt;</span> <span class="n">msgs</span><span class="o">,</span>
-                                                            <span class="n">ConsumeConcurrentlyContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s Receive New Messages: %s %n&#34;</span><span class="o">,</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="n">msgs</span><span class="o">);</span>
-                <span class="k">return</span> <span class="n">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-
-        <span class="c1">// 启动consumer
-</span><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;Consumer Started.%n&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Consumer</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span><span class="o">,</span> <span class="n">MQClientException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 使用consumer group初始化DefaultMQPushConsumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">DefaultMQPushConsumer</span> <span class="n">consumer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultMQPushConsumer</span><span class="o">(</span><span class="s">&#34;please_rename_unique_group_name&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指定namesrv
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">setNamesrvAddr</span><span class="o">(</span><span class="s">&#34;localhost:9876&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 订阅topic
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">subscribe</span><span class="o">(</span><span class="s">&#34;TopicTest&#34;</span><span class="o">,</span> <span class="s">&#34;*&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 注册消费消息的回调
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">registerMessageListener</span><span class="o">(</span><span class="k">new</span> <span class="n">MessageListenerConcurrently</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="n">ConsumeConcurrentlyStatus</span> <span class="nf">consumeMessage</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">MessageExt</span><span class="o">&gt;</span> <span class="n">msgs</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                                                            <span class="n">ConsumeConcurrentlyContext</span> <span class="n">context</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s Receive New Messages: %s %n&#34;</span><span class="o">,</span> <span class="n">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">getName</span><span class="o">(),</span> <span class="n">msgs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">ConsumeConcurrentlyStatus</span><span class="o">.</span><span class="na">CONSUME_SUCCESS</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 启动consumer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">consumer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;Consumer Started.%n&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>很简单，初始化DefaultMQPushConsumer，订阅topic，注册消息消费Listener就完成了</p>
 <p>这里初始化的是DefaultMQPushConsumer，那么自然我们会想到会有DefaultMQPullConsumer</p>……
@@ -630,7 +630,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

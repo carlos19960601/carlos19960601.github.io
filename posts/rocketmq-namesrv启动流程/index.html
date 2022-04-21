@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -255,7 +255,7 @@
                 <p><code>NamesrvStartup</code>启动入口</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -275,30 +275,30 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">main0</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="c1">// 创建NamesrvController
-</span><span class="c1"></span>        <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">createNamesrvController</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
-        <span class="c1">// 启动NamesrvController
-</span><span class="c1"></span>        <span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
-        <span class="n">String</span> <span class="n">tip</span> <span class="o">=</span> <span class="s">&#34;The Name Server boot success. serializeType=&#34;</span> <span class="o">+</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">getSerializeTypeConfigInThisServer</span><span class="o">();</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">tip</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s%n&#34;</span><span class="o">,</span> <span class="n">tip</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">main0</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 创建NamesrvController
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="n">createNamesrvController</span><span class="o">(</span><span class="n">args</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 启动NamesrvController
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">tip</span> <span class="o">=</span> <span class="s">&#34;The Name Server boot success. serializeType=&#34;</span> <span class="o">+</span> <span class="n">RemotingCommand</span><span class="o">.</span><span class="na">getSerializeTypeConfigInThisServer</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">tip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;%s%n&#34;</span><span class="o">,</span> <span class="n">tip</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>创建<code>NamesrvController</code></p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -372,105 +372,105 @@
 </span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">createNamesrvController</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">JoranException</span> <span class="o">{</span>
-
-    <span class="c1">// 根据命令行参数，使用commons-cli命令行工具包解析生成CommandLine对象
-</span><span class="c1"></span>    <span class="c1">// 在parseCmdLine中，如果命令行中有-h选项，执行打印帮助文档的逻辑，然后退出，不再继续
-</span><span class="c1"></span>    <span class="n">Options</span> <span class="n">options</span> <span class="o">=</span> <span class="n">ServerUtil</span><span class="o">.</span><span class="na">buildCommandlineOptions</span><span class="o">(</span><span class="k">new</span> <span class="n">Options</span><span class="o">());</span>
-    <span class="n">commandLine</span> <span class="o">=</span> <span class="n">ServerUtil</span><span class="o">.</span><span class="na">parseCmdLine</span><span class="o">(</span><span class="s">&#34;mqnamesrv&#34;</span><span class="o">,</span> <span class="n">args</span><span class="o">,</span> <span class="n">buildCommandlineOptions</span><span class="o">(</span><span class="n">options</span><span class="o">),</span> <span class="k">new</span> <span class="n">PosixParser</span><span class="o">());</span>
-    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">commandLine</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 初始化了2个配置 NamesrvConfig，NettyServerConfig，其中NettyServerConfig监听9876是硬编码的
-</span><span class="c1"></span>    <span class="c1">// 然后通过命令行参数 -c 指定一个配置文件，然后将配置文件中的内容解析成NamesrvConfig，NettyServerConfig的配置
-</span><span class="c1"></span>    <span class="c1">// 设置NamesrvConfig，NettyServerConfig的逻辑是看类中的set方法，如果set方法后的名字和配置文件中的key匹配，就会设置对应的值
-</span><span class="c1"></span>    <span class="kd">final</span> <span class="n">NamesrvConfig</span> <span class="n">namesrvConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamesrvConfig</span><span class="o">();</span>
-    <span class="kd">final</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NettyServerConfig</span><span class="o">();</span>
-    <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">setListenPort</span><span class="o">(</span><span class="n">9876</span><span class="o">);</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">commandLine</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">&#39;c&#39;</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">file</span> <span class="o">=</span> <span class="n">commandLine</span><span class="o">.</span><span class="na">getOptionValue</span><span class="o">(</span><span class="sc">&#39;c&#39;</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
-            <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
-            <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
-            <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-            <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
-
-            <span class="n">namesrvConfig</span><span class="o">.</span><span class="na">setConfigStorePath</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
-
-            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;load config properties file OK, %s%n&#34;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
-            <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="c1">//如果指定了 -p 选项，会在控制台打印配置信息，然后退出，不再继续执行
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">commandLine</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">&#39;p&#39;</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">InternalLogger</span> <span class="n">console</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggerName</span><span class="o">.</span><span class="na">NAMESRV_CONSOLE_NAME</span><span class="o">);</span>
-        <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">console</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-        <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">console</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">//将启动命令行的参数配置设置到NamesrvConfig中
-</span><span class="c1"></span>    <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">ServerUtil</span><span class="o">.</span><span class="na">commandLine2Properties</span><span class="o">(</span><span class="n">commandLine</span><span class="o">),</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-
-    <span class="c1">// 检查必须设置RocketMQHome
-</span><span class="c1"></span>    <span class="c1">// 在NamesrvConfig中，可以看到使用系统属性rocketmq.home.dir，环境变量ROCKETMQ_HOME和前面的-c指定的配置文件设置RocketMQHome
-</span><span class="c1"></span>    <span class="c1">// 在mqnamesrv启动脚本中会自定探测RockerMQ并export ROCKETMQ_HOME
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">namesrvConfig</span><span class="o">.</span><span class="na">getRocketmqHome</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;Please set the %s variable in your environment to match the location of the RocketMQ installation%n&#34;</span><span class="o">,</span> <span class="n">MixAll</span><span class="o">.</span><span class="na">ROCKETMQ_HOME_ENV</span><span class="o">);</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">2</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 加载logback.xml
-</span><span class="c1"></span>    <span class="n">LoggerContext</span> <span class="n">lc</span> <span class="o">=</span> <span class="o">(</span><span class="n">LoggerContext</span><span class="o">)</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getILoggerFactory</span><span class="o">();</span>
-    <span class="n">JoranConfigurator</span> <span class="n">configurator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JoranConfigurator</span><span class="o">();</span>
-    <span class="n">configurator</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">lc</span><span class="o">);</span>
-    <span class="n">lc</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
-    <span class="n">configurator</span><span class="o">.</span><span class="na">doConfigure</span><span class="o">(</span><span class="n">namesrvConfig</span><span class="o">.</span><span class="na">getRocketmqHome</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;/conf/logback_namesrv.xml&#34;</span><span class="o">);</span>
-
-    <span class="n">log</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggerName</span><span class="o">.</span><span class="na">NAMESRV_LOGGER_NAME</span><span class="o">);</span>
-
-    <span class="c1">// 使用logback打印NamesrvConfig，NettyServerConfig配置信息
-</span><span class="c1"></span>    <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">log</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-    <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">log</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
-
-    <span class="kd">final</span> <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamesrvController</span><span class="o">(</span><span class="n">namesrvConfig</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
-
-    <span class="c1">// 最后还把-c指定的文件的配置在保存到Configruation中
-</span><span class="c1"></span>    <span class="n">controller</span><span class="o">.</span><span class="na">getConfiguration</span><span class="o">().</span><span class="na">registerConfig</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span>
-
-    <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">static</span> <span class="n">NamesrvController</span> <span class="nf">createNamesrvController</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">JoranException</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 根据命令行参数，使用commons-cli命令行工具包解析生成CommandLine对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在parseCmdLine中，如果命令行中有-h选项，执行打印帮助文档的逻辑，然后退出，不再继续
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Options</span> <span class="n">options</span> <span class="o">=</span> <span class="n">ServerUtil</span><span class="o">.</span><span class="na">buildCommandlineOptions</span><span class="o">(</span><span class="k">new</span> <span class="n">Options</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">commandLine</span> <span class="o">=</span> <span class="n">ServerUtil</span><span class="o">.</span><span class="na">parseCmdLine</span><span class="o">(</span><span class="s">&#34;mqnamesrv&#34;</span><span class="o">,</span> <span class="n">args</span><span class="o">,</span> <span class="n">buildCommandlineOptions</span><span class="o">(</span><span class="n">options</span><span class="o">),</span> <span class="k">new</span> <span class="n">PosixParser</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">commandLine</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化了2个配置 NamesrvConfig，NettyServerConfig，其中NettyServerConfig监听9876是硬编码的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 然后通过命令行参数 -c 指定一个配置文件，然后将配置文件中的内容解析成NamesrvConfig，NettyServerConfig的配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 设置NamesrvConfig，NettyServerConfig的逻辑是看类中的set方法，如果set方法后的名字和配置文件中的key匹配，就会设置对应的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">final</span> <span class="n">NamesrvConfig</span> <span class="n">namesrvConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamesrvConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NettyServerConfig</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">setListenPort</span><span class="o">(</span><span class="n">9876</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">commandLine</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">&#39;c&#39;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">String</span> <span class="n">file</span> <span class="o">=</span> <span class="n">commandLine</span><span class="o">.</span><span class="na">getOptionValue</span><span class="o">(</span><span class="sc">&#39;c&#39;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">file</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedInputStream</span><span class="o">(</span><span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="n">file</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="n">properties</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="n">properties</span><span class="o">.</span><span class="na">load</span><span class="o">(</span><span class="n">in</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">namesrvConfig</span><span class="o">.</span><span class="na">setConfigStorePath</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;load config properties file OK, %s%n&#34;</span><span class="o">,</span> <span class="n">file</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">in</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//如果指定了 -p 选项，会在控制台打印配置信息，然后退出，不再继续执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">commandLine</span><span class="o">.</span><span class="na">hasOption</span><span class="o">(</span><span class="sc">&#39;p&#39;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InternalLogger</span> <span class="n">console</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggerName</span><span class="o">.</span><span class="na">NAMESRV_CONSOLE_NAME</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">console</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">console</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">//将启动命令行的参数配置设置到NamesrvConfig中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">ServerUtil</span><span class="o">.</span><span class="na">commandLine2Properties</span><span class="o">(</span><span class="n">commandLine</span><span class="o">),</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 检查必须设置RocketMQHome
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在NamesrvConfig中，可以看到使用系统属性rocketmq.home.dir，环境变量ROCKETMQ_HOME和前面的-c指定的配置文件设置RocketMQHome
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 在mqnamesrv启动脚本中会自定探测RockerMQ并export ROCKETMQ_HOME
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">namesrvConfig</span><span class="o">.</span><span class="na">getRocketmqHome</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">&#34;Please set the %s variable in your environment to match the location of the RocketMQ installation%n&#34;</span><span class="o">,</span> <span class="n">MixAll</span><span class="o">.</span><span class="na">ROCKETMQ_HOME_ENV</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">System</span><span class="o">.</span><span class="na">exit</span><span class="o">(-</span><span class="n">2</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 加载logback.xml
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">LoggerContext</span> <span class="n">lc</span> <span class="o">=</span> <span class="o">(</span><span class="n">LoggerContext</span><span class="o">)</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getILoggerFactory</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">JoranConfigurator</span> <span class="n">configurator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">JoranConfigurator</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">configurator</span><span class="o">.</span><span class="na">setContext</span><span class="o">(</span><span class="n">lc</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lc</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="n">configurator</span><span class="o">.</span><span class="na">doConfigure</span><span class="o">(</span><span class="n">namesrvConfig</span><span class="o">.</span><span class="na">getRocketmqHome</span><span class="o">()</span> <span class="o">+</span> <span class="s">&#34;/conf/logback_namesrv.xml&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">log</span> <span class="o">=</span> <span class="n">InternalLoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">LoggerName</span><span class="o">.</span><span class="na">NAMESRV_LOGGER_NAME</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 使用logback打印NamesrvConfig，NettyServerConfig配置信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">log</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MixAll</span><span class="o">.</span><span class="na">printObjectProperties</span><span class="o">(</span><span class="n">log</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">NamesrvController</span> <span class="n">controller</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NamesrvController</span><span class="o">(</span><span class="n">namesrvConfig</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 最后还把-c指定的文件的配置在保存到Configruation中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">controller</span><span class="o">.</span><span class="na">getConfiguration</span><span class="o">().</span><span class="na">registerConfig</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">controller</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>可以看到<code>NamesrvStartup</code>只是一个启动类，主要逻辑都在处理命令行和配置，主要功能都是在<code>NamesrvController</code>中，而且我们可以看到，在处理处理配置的时候，真的是对配置文件进行反复鞭尸呀</p>
 <p>首先通过-c指定配置文件，使用MixAll.properties2Object将配置设置到NamesrvConfig，NettyServerConfig</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-<span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">properties</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>然后通过命令行参数设置到NamesrvConfig</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">ServerUtil</span><span class="o">.</span><span class="na">commandLine2Properties</span><span class="o">(</span><span class="n">commandLine</span><span class="o">),</span> <span class="n">namesrvConfig</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">MixAll</span><span class="o">.</span><span class="na">properties2Object</span><span class="o">(</span><span class="n">ServerUtil</span><span class="o">.</span><span class="na">commandLine2Properties</span><span class="o">(</span><span class="n">commandLine</span><span class="o">),</span> <span class="n">namesrvConfig</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>然后初始化NamesrvController，NamesrvController中会初始化一个Configuration类，Configuration类中又会把NamesrvConfig，NettyServerConfig都merge到allConfigs中</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -485,24 +485,24 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">NamesrvController</span><span class="o">(</span><span class="n">NamesrvConfig</span> <span class="n">namesrvConfig</span><span class="o">,</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span> <span class="o">=</span> <span class="n">namesrvConfig</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">kvConfigManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVConfigManager</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">routeInfoManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RouteInfoManager</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">brokerHousekeepingService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BrokerHousekeepingService</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-    <span class="c1">// 初始化Configuration
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">(</span>
-        <span class="n">log</span><span class="o">,</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span>
-    <span class="o">);</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">configuration</span><span class="o">.</span><span class="na">setStorePathFromConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span><span class="o">,</span> <span class="s">&#34;configStorePath&#34;</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">NamesrvController</span><span class="o">(</span><span class="n">NamesrvConfig</span> <span class="n">namesrvConfig</span><span class="o">,</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span> <span class="o">=</span> <span class="n">namesrvConfig</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">kvConfigManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVConfigManager</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">routeInfoManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RouteInfoManager</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">brokerHousekeepingService</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BrokerHousekeepingService</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化Configuration
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Configuration</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span>
+</span></span><span class="line"><span class="cl">    <span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">configuration</span><span class="o">.</span><span class="na">setStorePathFromConfig</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">namesrvConfig</span><span class="o">,</span> <span class="s">&#34;configStorePath&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -514,21 +514,21 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">Configuration</span><span class="o">(</span><span class="n">InternalLogger</span> <span class="n">log</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">configObjects</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">log</span> <span class="o">=</span> <span class="n">log</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">configObjects</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">configObjects</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span><span class="o">;</span>
-    <span class="o">}</span>
-    <span class="c1">// 将NamesrvConfig，NettyServerConfig注册
-</span><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">configObject</span> <span class="o">:</span> <span class="n">configObjects</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">registerConfig</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">Configuration</span><span class="o">(</span><span class="n">InternalLogger</span> <span class="n">log</span><span class="o">,</span> <span class="n">Object</span><span class="o">...</span> <span class="n">configObjects</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">log</span> <span class="o">=</span> <span class="n">log</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">configObjects</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">configObjects</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 将NamesrvConfig，NettyServerConfig注册
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="o">(</span><span class="n">Object</span> <span class="n">configObject</span> <span class="o">:</span> <span class="n">configObjects</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">registerConfig</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -549,65 +549,65 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="n">Configuration</span> <span class="nf">registerConfig</span><span class="o">(</span><span class="n">Object</span> <span class="n">configObject</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">lockInterruptibly</span><span class="o">();</span>
-
-        <span class="k">try</span> <span class="o">{</span>
-
-            <span class="n">Properties</span> <span class="n">registerProps</span> <span class="o">=</span> <span class="n">MixAll</span><span class="o">.</span><span class="na">object2Properties</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
-						<span class="c1">// 将NamesrvConfig，NettyServerConfig合并到allConfigs
-</span><span class="c1"></span>            <span class="n">merge</span><span class="o">(</span><span class="n">registerProps</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">allConfigs</span><span class="o">);</span>
-
-            <span class="n">configObjectList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-            <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;registerConfig lock error&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="n">Configuration</span> <span class="nf">registerConfig</span><span class="o">(</span><span class="n">Object</span> <span class="n">configObject</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">lockInterruptibly</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">Properties</span> <span class="n">registerProps</span> <span class="o">=</span> <span class="n">MixAll</span><span class="o">.</span><span class="na">object2Properties</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">						<span class="c1">// 将NamesrvConfig，NettyServerConfig合并到allConfigs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">merge</span><span class="o">(</span><span class="n">registerProps</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">allConfigs</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">configObjectList</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">configObject</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">readWriteLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;registerConfig lock error&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>最后还要把-c指定的配置文件和allConfigs进行合并</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 最后还把-c指定的文件的配置在保存到Configruation中
-</span><span class="c1"></span><span class="n">controller</span><span class="o">.</span><span class="na">getConfiguration</span><span class="o">().</span><span class="na">registerConfig</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 最后还把-c指定的文件的配置在保存到Configruation中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">controller</span><span class="o">.</span><span class="na">getConfiguration</span><span class="o">().</span><span class="na">registerConfig</span><span class="o">(</span><span class="n">properties</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>可以看到-c指定的配置文件读取进来后被拆分为NamesrvConfig，NettyServerConfig，然后又和Configuration中的allConfigs合并，最后还要再合并一次，你说这个-c指定的配置文件惨不惨</p>
 <p><code>NamesrvController</code>初始化完成后，就调用start(controller)，才真正的开始</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 启动NamesrvController
-</span><span class="c1"></span><span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 启动NamesrvController
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">start</span><span class="o">(</span><span class="n">controller</span><span class="o">);</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>在<code>start(controller)</code>方法中最关键的就是下面2个方法</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">controller</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
-<span class="n">controller</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">controller</span><span class="o">.</span><span class="na">initialize</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="n">controller</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><code>NamesrvController</code>初始化</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -650,53 +650,53 @@
 </span><span class="lnt">41
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
-    
-    <span class="c1">// 从NamesrvConfig#KvConfigPath指定的文件中反序列化数据到KVConfigManager#configTable中
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">kvConfigManager</span><span class="o">.</span><span class="na">load</span><span class="o">();</span>
-    <span class="c1">// 启动网络通信的Netty服务
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NettyRemotingServer</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">brokerHousekeepingService</span><span class="o">);</span>
-
-    <span class="c1">// 初始化一下负责处理Netty网络交互数据的线程池，
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">remotingExecutor</span> <span class="o">=</span>
-        <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerWorkerThreads</span><span class="o">(),</span> <span class="k">new</span> <span class="n">ThreadFactoryImpl</span><span class="o">(</span><span class="s">&#34;RemotingExecutorThread_&#34;</span><span class="o">));</span>
-
-    <span class="c1">// 注册一个默认负责处理Netty网络交互数据的DefaultRequestProcessor，这个Processor会使用remotingExecutor执行
-</span><span class="c1"></span>    <span class="c1">// *划重点，后面这里会再次提到*
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">registerProcessor</span><span class="o">();</span>
-
-    <span class="c1">// 每10s扫描一下失效的Broker
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">scheduledExecutorService</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">NamesrvController</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">routeInfoManager</span><span class="o">.</span><span class="na">scanNotActiveBroker</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">},</span> <span class="n">5</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
-
-    <span class="c1">// 每10min打印一下前面被反复蹂躏的配置
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">scheduledExecutorService</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">NamesrvController</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">kvConfigManager</span><span class="o">.</span><span class="na">printAllPeriodically</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">},</span> <span class="n">1</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
-
-
-    <span class="c1">// 设置TLS，这块不太了解，所以省略了，以后用空了再研究一下TLS吧
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">TlsSystemConfig</span><span class="o">.</span><span class="na">tlsMode</span> <span class="o">!=</span> <span class="n">TlsMode</span><span class="o">.</span><span class="na">DISABLED</span><span class="o">)</span> <span class="o">{</span>
-       <span class="o">...</span>
-    <span class="o">}</span>
-
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">initialize</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">// 从NamesrvConfig#KvConfigPath指定的文件中反序列化数据到KVConfigManager#configTable中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">kvConfigManager</span><span class="o">.</span><span class="na">load</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 启动网络通信的Netty服务
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NettyRemotingServer</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">brokerHousekeepingService</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化一下负责处理Netty网络交互数据的线程池，
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">remotingExecutor</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerWorkerThreads</span><span class="o">(),</span> <span class="k">new</span> <span class="n">ThreadFactoryImpl</span><span class="o">(</span><span class="s">&#34;RemotingExecutorThread_&#34;</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 注册一个默认负责处理Netty网络交互数据的DefaultRequestProcessor，这个Processor会使用remotingExecutor执行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// *划重点，后面这里会再次提到*
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">registerProcessor</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 每10s扫描一下失效的Broker
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">scheduledExecutorService</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">NamesrvController</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">routeInfoManager</span><span class="o">.</span><span class="na">scanNotActiveBroker</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">},</span> <span class="n">5</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">SECONDS</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 每10min打印一下前面被反复蹂躏的配置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">scheduledExecutorService</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">Runnable</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">NamesrvController</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">kvConfigManager</span><span class="o">.</span><span class="na">printAllPeriodically</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">},</span> <span class="n">1</span><span class="o">,</span> <span class="n">10</span><span class="o">,</span> <span class="n">TimeUnit</span><span class="o">.</span><span class="na">MINUTES</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 设置TLS，这块不太了解，所以省略了，以后用空了再研究一下TLS吧
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">TlsSystemConfig</span><span class="o">.</span><span class="na">tlsMode</span> <span class="o">!=</span> <span class="n">TlsMode</span><span class="o">.</span><span class="na">DISABLED</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">       <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>启动<code>NamesrvController</code></p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -705,20 +705,20 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>可以看到逻辑还算比较清晰，关键功能在KVConfigManager，RouteInfoManager和NettyRemotingServer实现</p>
 <p>我们先来看看NettyRemotingServer</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -756,48 +756,48 @@
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="nf">NettyRemotingServer</span><span class="o">(</span><span class="kd">final</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span><span class="o">,</span>
-    <span class="kd">final</span> <span class="n">ChannelEventListener</span> <span class="n">channelEventListener</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 初始化2个Semaphore，一个是one-way请求的并发数，一个是asynchronous请求的并发数，可以简单理解成对2种请求做了限流，至于什么是one-way请求，什么是asynchronous请求，分析到了再说吧
-</span><span class="c1"></span>    <span class="kd">super</span><span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerOnewaySemaphoreValue</span><span class="o">(),</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerAsyncSemaphoreValue</span><span class="o">());</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">channelEventListener</span> <span class="o">=</span> <span class="n">channelEventListener</span><span class="o">;</span>
-
-    <span class="kt">int</span> <span class="n">publicThreadNums</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerCallbackExecutorThreads</span><span class="o">();</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">publicThreadNums</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">publicThreadNums</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>
-    <span class="o">}</span>
-		
-  	 <span class="c1">// 初始化一个公用的线程池，什么情况下用这个公用的线程池？看后面的分析
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">publicExecutor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">publicThreadNums</span><span class="o">,</span> <span class="k">new</span> <span class="n">ThreadFactory</span><span class="o">()</span> <span class="o">{</span>
-        <span class="kd">private</span> <span class="n">AtomicInteger</span> <span class="n">threadIndex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="n">Thread</span> <span class="nf">newThread</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="s">&#34;NettyServerPublicExecutor_&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">threadIndex</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">());</span>
-        <span class="o">}</span>
-    <span class="o">});</span>
-
-    <span class="c1">// 下面这个就是判断系统是否支持epoll来初始化相应的EventLoopGroup，如果不是很了解Netty的同学可以先去学学Netty
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">useEpoll</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EpollEventLoopGroup</span><span class="o">();</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EpollEventLoopGroup</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
-
-        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
-    <span class="o">}</span>
-		<span class="c1">// 这个也是TLS相关的忽略分析
-</span><span class="c1"></span>    <span class="n">loadSslContext</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="nf">NettyRemotingServer</span><span class="o">(</span><span class="kd">final</span> <span class="n">NettyServerConfig</span> <span class="n">nettyServerConfig</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">final</span> <span class="n">ChannelEventListener</span> <span class="n">channelEventListener</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化2个Semaphore，一个是one-way请求的并发数，一个是asynchronous请求的并发数，可以简单理解成对2种请求做了限流，至于什么是one-way请求，什么是asynchronous请求，分析到了再说吧
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">super</span><span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerOnewaySemaphoreValue</span><span class="o">(),</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerAsyncSemaphoreValue</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">channelEventListener</span> <span class="o">=</span> <span class="n">channelEventListener</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">publicThreadNums</span> <span class="o">=</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerCallbackExecutorThreads</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">publicThreadNums</span> <span class="o">&lt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">publicThreadNums</span> <span class="o">=</span> <span class="n">4</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		
+</span></span><span class="line"><span class="cl">  	 <span class="c1">// 初始化一个公用的线程池，什么情况下用这个公用的线程池？看后面的分析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">publicExecutor</span> <span class="o">=</span> <span class="n">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">publicThreadNums</span><span class="o">,</span> <span class="k">new</span> <span class="n">ThreadFactory</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">private</span> <span class="n">AtomicInteger</span> <span class="n">threadIndex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="n">Thread</span> <span class="nf">newThread</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="s">&#34;NettyServerPublicExecutor_&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">threadIndex</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 下面这个就是判断系统是否支持epoll来初始化相应的EventLoopGroup，如果不是很了解Netty的同学可以先去学学Netty
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="n">useEpoll</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EpollEventLoopGroup</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">EpollEventLoopGroup</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 这个也是TLS相关的忽略分析
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">loadSslContext</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>这里可以看一下怎么判断系统是否支持epoll的</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -819,32 +819,32 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">isLinuxPlatform</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-<span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">isWindowsPlatform</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-
-<span class="kd">static</span> <span class="o">{</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">OS_NAME</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">OS_NAME</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;linux&#34;</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">isLinuxPlatform</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">OS_NAME</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">OS_NAME</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;windows&#34;</span><span class="o">))</span> <span class="o">{</span>
-        <span class="n">isWindowsPlatform</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="o">-----</span>
-
-<span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">useEpoll</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">isLinuxPlatform</span><span class="o">()</span>
-        <span class="o">&amp;&amp;</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">isUseEpollNativeSelector</span><span class="o">()</span>
-        <span class="o">&amp;&amp;</span> <span class="n">Epoll</span><span class="o">.</span><span class="na">isAvailable</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">isLinuxPlatform</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="n">isWindowsPlatform</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">static</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">OS_NAME</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">OS_NAME</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;linux&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">isLinuxPlatform</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">OS_NAME</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">OS_NAME</span><span class="o">.</span><span class="na">toLowerCase</span><span class="o">().</span><span class="na">contains</span><span class="o">(</span><span class="s">&#34;windows&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">isWindowsPlatform</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">-----</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">useEpoll</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">RemotingUtil</span><span class="o">.</span><span class="na">isLinuxPlatform</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&amp;&amp;</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">isUseEpollNativeSelector</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&amp;&amp;</span> <span class="n">Epoll</span><span class="o">.</span><span class="na">isAvailable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>还记得在<code>NamesrvController</code>初始化时注册一个默认负责处理Netty网络交互数据的DefaultRequestProcessor，DefaultRequestProcessor使用了一个专用的remotingExecutor线程池，我们也可以注册其他的Processor，如果我们注册Processor时没有指定线程池就会使用公共的线程池publicExecutor</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -855,21 +855,21 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerProcessor</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">NettyRequestProcessor</span> <span class="n">processor</span><span class="o">,</span> <span class="n">ExecutorService</span> <span class="n">executor</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">ExecutorService</span> <span class="n">executorThis</span> <span class="o">=</span> <span class="n">executor</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">executor</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">executorThis</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">publicExecutor</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">NettyRequestProcessor</span><span class="o">,</span> <span class="n">ExecutorService</span><span class="o">&gt;</span> <span class="n">pair</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">NettyRequestProcessor</span><span class="o">,</span> <span class="n">ExecutorService</span><span class="o">&gt;(</span><span class="n">processor</span><span class="o">,</span> <span class="n">executorThis</span><span class="o">);</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">processorTable</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span> <span class="n">pair</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerProcessor</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">NettyRequestProcessor</span> <span class="n">processor</span><span class="o">,</span> <span class="n">ExecutorService</span> <span class="n">executor</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ExecutorService</span> <span class="n">executorThis</span> <span class="o">=</span> <span class="n">executor</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">==</span> <span class="n">executor</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">executorThis</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">publicExecutor</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Pair</span><span class="o">&lt;</span><span class="n">NettyRequestProcessor</span><span class="o">,</span> <span class="n">ExecutorService</span><span class="o">&gt;</span> <span class="n">pair</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Pair</span><span class="o">&lt;</span><span class="n">NettyRequestProcessor</span><span class="o">,</span> <span class="n">ExecutorService</span><span class="o">&gt;(</span><span class="n">processor</span><span class="o">,</span> <span class="n">executorThis</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">processorTable</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span> <span class="n">pair</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>上面只是将Netty的EventLoopGroup进行了初始化，却没有真正的启动Netty，真正的启动还得调用remotingServer.start();</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -878,19 +878,19 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-		<span class="c1">// fileWatchService和TLS有关，大概就是会监听TLS相关文件的改变，也不仔细分析了
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="o">.</span><span class="na">remotingServer</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// fileWatchService和TLS有关，大概就是会监听TLS相关文件的改变，也不仔细分析了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">fileWatchService</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>接下来看看NettyRemotingServer的start()方法干了啥</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -964,79 +964,79 @@
 </span><span class="lnt">72
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
-    <span class="c1">// 初始化一个线程池，用于执行共享的Handler
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">defaultEventExecutorGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultEventExecutorGroup</span><span class="o">(</span>
-        <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerWorkerThreads</span><span class="o">(),</span>
-        <span class="k">new</span> <span class="n">ThreadFactory</span><span class="o">()</span> <span class="o">{</span>
-
-            <span class="kd">private</span> <span class="n">AtomicInteger</span> <span class="n">threadIndex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="n">Thread</span> <span class="nf">newThread</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="s">&#34;NettyServerCodecThread_&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">threadIndex</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">());</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-		<span class="c1">// 初始化一些共享的Handler，HandshakeHandler，NettyEncoder，NettyConnectManageHandler，NettyServerHandler
-</span><span class="c1"></span>    <span class="n">prepareSharableHandlers</span><span class="o">();</span>
-		<span class="c1">// 后面就是一些Netty的设置，具体看Netty
-</span><span class="c1"></span>    <span class="n">ServerBootstrap</span> <span class="n">childHandler</span> <span class="o">=</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="n">useEpoll</span><span class="o">()</span> <span class="o">?</span> <span class="n">EpollServerSocketChannel</span><span class="o">.</span><span class="na">class</span> <span class="o">:</span> <span class="n">NioServerSocketChannel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_BACKLOG</span><span class="o">,</span> <span class="n">1024</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_REUSEADDR</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_KEEPALIVE</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">TCP_NODELAY</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_SNDBUF</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerSocketSndBufSize</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_RCVBUF</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerSocketRcvBufSize</span><span class="o">())</span>
-            <span class="o">.</span><span class="na">localAddress</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span><span class="o">.</span><span class="na">getListenPort</span><span class="o">()))</span>
-      			<span class="c1">// 我们只需要关心这里设置了哪些handler
-</span><span class="c1"></span>            <span class="o">.</span><span class="na">childHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">ChannelInitializer</span><span class="o">&lt;</span><span class="n">SocketChannel</span><span class="o">&gt;()</span> <span class="o">{</span>
-                <span class="nd">@Override</span>
-                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initChannel</span><span class="o">(</span><span class="n">SocketChannel</span> <span class="n">ch</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-                    <span class="n">ch</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">defaultEventExecutorGroup</span><span class="o">,</span> <span class="n">HANDSHAKE_HANDLER_NAME</span><span class="o">,</span> <span class="n">handshakeHandler</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">defaultEventExecutorGroup</span><span class="o">,</span>
-                            <span class="n">encoder</span><span class="o">,</span>
-                            <span class="k">new</span> <span class="n">NettyDecoder</span><span class="o">(),</span>
-                            <span class="k">new</span> <span class="n">IdleStateHandler</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> 			<span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerChannelMaxIdleTimeSeconds</span><span class="o">()),</span>
-                            <span class="n">connectionManageHandler</span><span class="o">,</span>
-                            <span class="n">serverHandler</span>
-                        <span class="o">);</span>
-                <span class="o">}</span>
-            <span class="o">});</span>
-
-    <span class="k">if</span> <span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">isServerPooledByteBufAllocatorEnable</span><span class="o">())</span> <span class="o">{</span>
-        <span class="n">childHandler</span><span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">ALLOCATOR</span><span class="o">,</span> <span class="n">PooledByteBufAllocator</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="n">ChannelFuture</span> <span class="n">sync</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span><span class="o">.</span><span class="na">bind</span><span class="o">().</span><span class="na">sync</span><span class="o">();</span>
-        <span class="n">InetSocketAddress</span> <span class="n">addr</span> <span class="o">=</span> <span class="o">(</span><span class="n">InetSocketAddress</span><span class="o">)</span> <span class="n">sync</span><span class="o">.</span><span class="na">channel</span><span class="o">().</span><span class="na">localAddress</span><span class="o">();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">port</span> <span class="o">=</span> <span class="n">addr</span><span class="o">.</span><span class="na">getPort</span><span class="o">();</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;this.serverBootstrap.bind().sync() InterruptedException&#34;</span><span class="o">,</span> <span class="n">e1</span><span class="o">);</span>
-    <span class="o">}</span>
-		<span class="c1">// 这里有一个channelEventListener，在NamesrvController中channelEventListener就是BrokerHousekeepingService，BrokerHousekeepingService负责在broker断开连接的时候，移除RouteInfoManager中的路由信息
-</span><span class="c1"></span>    <span class="c1">// NettyEventExecutor会维护一个NettyEvent的队列，NettyConnectManageHandler会向NettyEvent的队列中添加Event，然后由channelEventListener进行消费
-</span><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">channelEventListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">nettyEventExecutor</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
-		<span class="c1">// 定时扫描responseTable，执行超时请求的callback
-</span><span class="c1"></span>    <span class="c1">// 这里有2个疑问，是谁向responseTable中put数据？为什么这里只执行超时请求的callback，正常结束的请求在哪处理的？
-</span><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">timer</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">TimerTask</span><span class="o">()</span> <span class="o">{</span>
-
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="n">NettyRemotingServer</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">scanResponseTable</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;scanResponseTable exception&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">},</span> <span class="n">1000</span> <span class="o">*</span> <span class="n">3</span><span class="o">,</span> <span class="n">1000</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">start</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 初始化一个线程池，用于执行共享的Handler
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">defaultEventExecutorGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DefaultEventExecutorGroup</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerWorkerThreads</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="k">new</span> <span class="n">ThreadFactory</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">private</span> <span class="n">AtomicInteger</span> <span class="n">threadIndex</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AtomicInteger</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">public</span> <span class="n">Thread</span> <span class="nf">newThread</span><span class="o">(</span><span class="n">Runnable</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="k">new</span> <span class="n">Thread</span><span class="o">(</span><span class="n">r</span><span class="o">,</span> <span class="s">&#34;NettyServerCodecThread_&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">threadIndex</span><span class="o">.</span><span class="na">incrementAndGet</span><span class="o">());</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">});</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 初始化一些共享的Handler，HandshakeHandler，NettyEncoder，NettyConnectManageHandler，NettyServerHandler
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">prepareSharableHandlers</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 后面就是一些Netty的设置，具体看Netty
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">ServerBootstrap</span> <span class="n">childHandler</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupBoss</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">eventLoopGroupSelector</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">channel</span><span class="o">(</span><span class="n">useEpoll</span><span class="o">()</span> <span class="o">?</span> <span class="n">EpollServerSocketChannel</span><span class="o">.</span><span class="na">class</span> <span class="o">:</span> <span class="n">NioServerSocketChannel</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_BACKLOG</span><span class="o">,</span> <span class="n">1024</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_REUSEADDR</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">option</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_KEEPALIVE</span><span class="o">,</span> <span class="kc">false</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">TCP_NODELAY</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_SNDBUF</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerSocketSndBufSize</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">SO_RCVBUF</span><span class="o">,</span> <span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerSocketRcvBufSize</span><span class="o">())</span>
+</span></span><span class="line"><span class="cl">            <span class="o">.</span><span class="na">localAddress</span><span class="o">(</span><span class="k">new</span> <span class="n">InetSocketAddress</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">nettyServerConfig</span><span class="o">.</span><span class="na">getListenPort</span><span class="o">()))</span>
+</span></span><span class="line"><span class="cl">      			<span class="c1">// 我们只需要关心这里设置了哪些handler
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="o">.</span><span class="na">childHandler</span><span class="o">(</span><span class="k">new</span> <span class="n">ChannelInitializer</span><span class="o">&lt;</span><span class="n">SocketChannel</span><span class="o">&gt;()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">initChannel</span><span class="o">(</span><span class="n">SocketChannel</span> <span class="n">ch</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ch</span><span class="o">.</span><span class="na">pipeline</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">defaultEventExecutorGroup</span><span class="o">,</span> <span class="n">HANDSHAKE_HANDLER_NAME</span><span class="o">,</span> <span class="n">handshakeHandler</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">defaultEventExecutorGroup</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">encoder</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">new</span> <span class="n">NettyDecoder</span><span class="o">(),</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">new</span> <span class="n">IdleStateHandler</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> 			<span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">getServerChannelMaxIdleTimeSeconds</span><span class="o">()),</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">connectionManageHandler</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">serverHandler</span>
+</span></span><span class="line"><span class="cl">                        <span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="o">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">(</span><span class="n">nettyServerConfig</span><span class="o">.</span><span class="na">isServerPooledByteBufAllocatorEnable</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">childHandler</span><span class="o">.</span><span class="na">childOption</span><span class="o">(</span><span class="n">ChannelOption</span><span class="o">.</span><span class="na">ALLOCATOR</span><span class="o">,</span> <span class="n">PooledByteBufAllocator</span><span class="o">.</span><span class="na">DEFAULT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ChannelFuture</span> <span class="n">sync</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">serverBootstrap</span><span class="o">.</span><span class="na">bind</span><span class="o">().</span><span class="na">sync</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">InetSocketAddress</span> <span class="n">addr</span> <span class="o">=</span> <span class="o">(</span><span class="n">InetSocketAddress</span><span class="o">)</span> <span class="n">sync</span><span class="o">.</span><span class="na">channel</span><span class="o">().</span><span class="na">localAddress</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">port</span> <span class="o">=</span> <span class="n">addr</span><span class="o">.</span><span class="na">getPort</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InterruptedException</span> <span class="n">e1</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">throw</span> <span class="k">new</span> <span class="n">RuntimeException</span><span class="o">(</span><span class="s">&#34;this.serverBootstrap.bind().sync() InterruptedException&#34;</span><span class="o">,</span> <span class="n">e1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 这里有一个channelEventListener，在NamesrvController中channelEventListener就是BrokerHousekeepingService，BrokerHousekeepingService负责在broker断开连接的时候，移除RouteInfoManager中的路由信息
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// NettyEventExecutor会维护一个NettyEvent的队列，NettyConnectManageHandler会向NettyEvent的队列中添加Event，然后由channelEventListener进行消费
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">channelEventListener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">nettyEventExecutor</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">		<span class="c1">// 定时扫描responseTable，执行超时请求的callback
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">// 这里有2个疑问，是谁向responseTable中put数据？为什么这里只执行超时请求的callback，正常结束的请求在哪处理的？
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="o">.</span><span class="na">timer</span><span class="o">.</span><span class="na">scheduleAtFixedRate</span><span class="o">(</span><span class="k">new</span> <span class="n">TimerTask</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nd">@Override</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">try</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">NettyRemotingServer</span><span class="o">.</span><span class="na">this</span><span class="o">.</span><span class="na">scanResponseTable</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Throwable</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">log</span><span class="o">.</span><span class="na">error</span><span class="o">(</span><span class="s">&#34;scanResponseTable exception&#34;</span><span class="o">,</span> <span class="n">e</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">},</span> <span class="n">1000</span> <span class="o">*</span> <span class="n">3</span><span class="o">,</span> <span class="n">1000</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>到这里RocketMQ Namesrv的启动流程就结束了，下一篇在来分析具体怎么处理请求数据的吧</p>
             </div>
@@ -1267,7 +1267,7 @@
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     

@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
     <meta charset="UTF-8" />
 
-    <meta name="generator" content="Hugo 0.85.0" /><meta name="theme-color" content="#fff" />
+    <meta name="generator" content="Hugo 0.96.0" /><meta name="theme-color" content="#fff" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
@@ -18,7 +18,7 @@
 
     
     
-        <script src="/js/meme.min.8cbe976441b5181abfd3093c9beee209b19cdbb1fa77c48d225a83ba81fa3fb1.js"></script>
+        <script src="/js/meme.min.45a777da25d0b1805991f984be4e9ae5e17f3ea94097882dff058256fa34eb17.js"></script>
 
     
 
@@ -385,96 +385,96 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 <p>创建deployment</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">create</span> <span class="nx">deployment</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span> <span class="o">--</span><span class="nx">image</span><span class="p">=</span><span class="nx">nginx</span>
-
-<span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span><span class="o">/</span><span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span> <span class="nx">created</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">create</span> <span class="nx">deployment</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span> <span class="o">--</span><span class="nx">image</span><span class="p">=</span><span class="nx">nginx</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span><span class="o">/</span><span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span> <span class="nx">created</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>获取deployment列表</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">deploy</span>
-
-<span class="nx">NAME</span>           <span class="nx">READY</span>   <span class="nx">UP</span><span class="o">-</span><span class="nx">TO</span><span class="o">-</span><span class="nx">DATE</span>   <span class="nx">AVAILABLE</span>   <span class="nx">AGE</span>
-<span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="mi">1</span>            <span class="mi">1</span>           <span class="mi">51</span><span class="nx">s</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">NAME</span>           <span class="nx">READY</span>   <span class="nx">UP</span><span class="o">-</span><span class="nx">TO</span><span class="o">-</span><span class="nx">DATE</span>   <span class="nx">AVAILABLE</span>   <span class="nx">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="mi">1</span>            <span class="mi">1</span>           <span class="mi">51</span><span class="nx">s</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>获取replicaset列表</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">replicaset</span>
-
-<span class="nx">NAME</span>                     <span class="nx">DESIRED</span>   <span class="nx">CURRENT</span>   <span class="nx">READY</span>   <span class="nx">AGE</span>
-<span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">8588</span><span class="nx">f9dfb</span>   <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">1</span>       <span class="mi">2</span><span class="nx">m39s</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">replicaset</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">NAME</span>                     <span class="nx">DESIRED</span>   <span class="nx">CURRENT</span>   <span class="nx">READY</span>   <span class="nx">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">8588</span><span class="nx">f9dfb</span>   <span class="mi">1</span>         <span class="mi">1</span>         <span class="mi">1</span>       <span class="mi">2</span><span class="nx">m39s</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>获取pod列表</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">pod</span>
-
-<span class="nx">NAME</span>                           <span class="nx">READY</span>   <span class="nx">STATUS</span>    <span class="nx">RESTARTS</span>   <span class="nx">AGE</span>
-<span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">8588</span><span class="nx">f9dfb</span><span class="o">-</span><span class="nx">gpxhv</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="nx">Running</span>   <span class="mi">0</span>          <span class="mi">3</span><span class="nx">m2s</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">pod</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">NAME</span>                           <span class="nx">READY</span>   <span class="nx">STATUS</span>    <span class="nx">RESTARTS</span>   <span class="nx">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">8588</span><span class="nx">f9dfb</span><span class="o">-</span><span class="nx">gpxhv</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span>     <span class="nx">Running</span>   <span class="mi">0</span>          <span class="mi">3</span><span class="nx">m2s</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><img src="/k8s%E6%95%99%E7%A8%8B%E5%AD%A6%E4%B9%A0/Untitled15.png" alt=""></p>
 <p>编辑deployment</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">edit</span>  <span class="nx">deploy</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">edit</span>  <span class="nx">deploy</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>删除deployment</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">delete</span> <span class="nx">deployment</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
-
-<span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span> <span class="s">&#34;nginx-deploy&#34;</span> <span class="nx">deleted</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">delete</span> <span class="nx">deployment</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span> <span class="s">&#34;nginx-deploy&#34;</span> <span class="nx">deleted</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>使用文件</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -499,38 +499,38 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
-  <span class="nx">labels</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">matchLabels</span><span class="p">:</span>
-      <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
-  <span class="nx">template</span><span class="p">:</span>
-    <span class="nx">metadata</span><span class="p">:</span>
-      <span class="nx">labels</span><span class="p">:</span>
-        <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
-    <span class="nx">spec</span><span class="p">:</span>
-      <span class="nx">containers</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">nginx</span>
-        <span class="nx">image</span><span class="p">:</span> <span class="nx">nginx</span><span class="p">:</span><span class="mf">1.16</span>
-        <span class="nx">ports</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">80</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">matchLabels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">template</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">app</span><span class="p">:</span> <span class="nx">nginx</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">containers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">nginx</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">image</span><span class="p">:</span> <span class="nx">nginx</span><span class="p">:</span><span class="mf">1.16</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">80</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">delete</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">delete</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">nginx</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h1 id="部署实例"><a href="#部署实例" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>部署实例</h1>
 <p>整体看一下需要部署那些组件</p>
@@ -539,7 +539,7 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 <p>创建secret</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -551,50 +551,50 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">secret</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Secret</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-<span class="kd">type</span><span class="p">:</span> <span class="nx">Opaque</span>
-<span class="nx">data</span><span class="p">:</span>
-  <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span><span class="p">:</span> <span class="nx">dXNlcm5hbWU</span><span class="p">=</span>
-  <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span><span class="p">:</span> <span class="nx">cGFzc3dvcmQ</span><span class="p">=</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">secret</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Secret</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl"><span class="kd">type</span><span class="p">:</span> <span class="nx">Opaque</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span><span class="p">:</span> <span class="nx">dXNlcm5hbWU</span><span class="p">=</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span><span class="p">:</span> <span class="nx">cGFzc3dvcmQ</span><span class="p">=</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">secret</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">secret</span><span class="o">/</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span> <span class="nx">created</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">secret</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">secret</span><span class="o">/</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span> <span class="nx">created</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span>  <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">secret</span>
-
-<span class="nx">NAME</span>                  <span class="nx">TYPE</span>                                  <span class="nx">DATA</span>   <span class="nx">AGE</span>
-<span class="k">default</span><span class="o">-</span><span class="nx">token</span><span class="o">-</span><span class="mi">4</span><span class="nx">x7cl</span>   <span class="nx">kubernetes</span><span class="p">.</span><span class="nx">io</span><span class="o">/</span><span class="nx">service</span><span class="o">-</span><span class="nx">account</span><span class="o">-</span><span class="nx">token</span>   <span class="mi">3</span>      <span class="mi">97</span><span class="nx">d</span>
-<span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>        <span class="nx">Opaque</span>                                <span class="mi">2</span>      <span class="mi">29</span><span class="nx">s</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span>  <span class="nx">kubectl</span> <span class="nx">get</span> <span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">NAME</span>                  <span class="nx">TYPE</span>                                  <span class="nx">DATA</span>   <span class="nx">AGE</span>
+</span></span><span class="line"><span class="cl"><span class="k">default</span><span class="o">-</span><span class="nx">token</span><span class="o">-</span><span class="mi">4</span><span class="nx">x7cl</span>   <span class="nx">kubernetes</span><span class="p">.</span><span class="nx">io</span><span class="o">/</span><span class="nx">service</span><span class="o">-</span><span class="nx">account</span><span class="o">-</span><span class="nx">token</span>   <span class="mi">3</span>      <span class="mi">97</span><span class="nx">d</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>        <span class="nx">Opaque</span>                                <span class="mi">2</span>      <span class="mi">29</span><span class="nx">s</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>创建mongo deployment</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -630,54 +630,54 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">34
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">deploy</span>
-  <span class="nx">labels</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">matchLabels</span><span class="p">:</span>
-      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-  <span class="nx">template</span><span class="p">:</span>
-    <span class="nx">metadata</span><span class="p">:</span>
-      <span class="nx">labels</span><span class="p">:</span>
-        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-    <span class="nx">spec</span><span class="p">:</span>
-      <span class="nx">containers</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span>
-        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span>
-        <span class="nx">ports</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">27017</span>
-        <span class="nx">env</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_USERNAME</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_PASSWORD</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">matchLabels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">template</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">containers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">env</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_USERNAME</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_PASSWORD</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>创建mongo service</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -692,37 +692,37 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span>  <span class="nx">mongo</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-  <span class="nx">ports</span><span class="p">:</span>
-  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
-    <span class="nx">port</span><span class="p">:</span> <span class="mi">27017</span>
-    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">27017</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span>  <span class="nx">mongo</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">port</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">service</span><span class="o">/</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span> <span class="nx">created</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">service</span><span class="o">/</span><span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span> <span class="nx">created</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>当然也可以将mongo-deployment.yaml和mongo-service.yaml放到1个文件中</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -770,59 +770,59 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">46
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">deploy</span>
-  <span class="nx">labels</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">matchLabels</span><span class="p">:</span>
-      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-  <span class="nx">template</span><span class="p">:</span>
-    <span class="nx">metadata</span><span class="p">:</span>
-      <span class="nx">labels</span><span class="p">:</span>
-        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-    <span class="nx">spec</span><span class="p">:</span>
-      <span class="nx">containers</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span>
-        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span>
-        <span class="nx">ports</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">27017</span>
-        <span class="nx">env</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_USERNAME</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_PASSWORD</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
-<span class="o">---</span>
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
-  <span class="nx">ports</span><span class="p">:</span>
-  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
-    <span class="nx">port</span><span class="p">:</span> <span class="mi">27017</span>
-    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">27017</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">matchLabels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">template</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">containers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">env</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_USERNAME</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">MONGO_INITDB_ROOT_PASSWORD</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
+</span></span><span class="line"><span class="cl"><span class="o">---</span>
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongodb</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">port</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">27017</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p><strong>部署mongo-express</strong></p>
 <p>创建mongo-configmap</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -833,21 +833,21 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go">
-<span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">configmap</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">ConfigMap</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">configmap</span>
-<span class="nx">data</span><span class="p">:</span>
-  <span class="nx">database_url</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">configmap</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">ConfigMap</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">configmap</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">database_url</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>创建mongo-express-deployment</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -888,60 +888,60 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span>
-  <span class="nx">labels</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">matchLabels</span><span class="p">:</span>
-      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-  <span class="nx">template</span><span class="p">:</span>
-    <span class="nx">metadata</span><span class="p">:</span>
-      <span class="nx">labels</span><span class="p">:</span>
-        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-    <span class="nx">spec</span><span class="p">:</span>
-      <span class="nx">containers</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-        <span class="nx">ports</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">8081</span>
-        <span class="nx">env</span><span class="p">:</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_ADMINUSERNAME</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_ADMINPASSWORD</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">secretKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
-        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_SERVER</span>
-          <span class="nx">valueFrom</span><span class="p">:</span>
-            <span class="nx">configMapKeyRef</span><span class="p">:</span>
-              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">configmap</span>
-              <span class="nx">key</span><span class="p">:</span> <span class="nx">database_url</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">apps</span><span class="o">/</span><span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Deployment</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">replicas</span><span class="p">:</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">matchLabels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">template</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">labels</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">containers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">image</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">containerPort</span><span class="p">:</span> <span class="mi">8081</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">env</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_ADMINUSERNAME</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">username</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_ADMINPASSWORD</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">secretKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">secret</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">root</span><span class="o">-</span><span class="nx">password</span>
+</span></span><span class="line"><span class="cl">        <span class="o">-</span> <span class="nx">name</span><span class="p">:</span> <span class="nx">ME_CONFIG_MONGODB_SERVER</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">valueFrom</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">configMapKeyRef</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">name</span><span class="p">:</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">configmap</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">key</span><span class="p">:</span> <span class="nx">database_url</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
-<span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span><span class="o">/</span><span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span> <span class="nx">created</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deployment</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl"><span class="nx">deployment</span><span class="p">.</span><span class="nx">apps</span><span class="o">/</span><span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span> <span class="nx">created</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -954,25 +954,25 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">logs</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">78</span><span class="nx">fcf796b8</span><span class="o">-</span><span class="nx">s5b9l</span>
-
-<span class="nx">Waiting</span> <span class="k">for</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span><span class="p">:</span><span class="mf">27017.</span><span class="p">..</span>
-<span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-<span class="o">------------------------</span>
-
-<span class="nx">Mongo</span> <span class="nx">Express</span> <span class="nx">server</span> <span class="nx">listening</span> <span class="nx">at</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//0.0.0.0:8081
-</span><span class="c1"></span><span class="nx">Server</span> <span class="nx">is</span> <span class="nx">open</span> <span class="nx">to</span> <span class="nx">allow</span> <span class="nx">connections</span> <span class="nx">from</span> <span class="nf">anyone</span> <span class="p">(</span><span class="mf">0.0.0.0</span><span class="p">)</span>
-<span class="nx">basicAuth</span> <span class="nx">credentials</span> <span class="nx">are</span> <span class="s">&#34;admin:pass&#34;</span><span class="p">,</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">recommended</span> <span class="nx">you</span> <span class="nx">change</span> <span class="nx">this</span> <span class="nx">in</span> <span class="nx">your</span> <span class="nx">config</span><span class="p">.</span><span class="nx">js</span><span class="p">!</span>
-<span class="nx">Database</span> <span class="nx">connected</span>
-<span class="nx">Admin</span> <span class="nx">Database</span> <span class="nx">connected</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">logs</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">deploy</span><span class="o">-</span><span class="mi">78</span><span class="nx">fcf796b8</span><span class="o">-</span><span class="nx">s5b9l</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Waiting</span> <span class="k">for</span> <span class="nx">mongodb</span><span class="o">-</span><span class="nx">service</span><span class="p">:</span><span class="mf">27017.</span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Welcome</span> <span class="nx">to</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl"><span class="o">------------------------</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">Mongo</span> <span class="nx">Express</span> <span class="nx">server</span> <span class="nx">listening</span> <span class="nx">at</span> <span class="nx">http</span><span class="p">:</span><span class="c1">//0.0.0.0:8081
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">Server</span> <span class="nx">is</span> <span class="nx">open</span> <span class="nx">to</span> <span class="nx">allow</span> <span class="nx">connections</span> <span class="nx">from</span> <span class="nf">anyone</span> <span class="p">(</span><span class="mf">0.0.0.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">basicAuth</span> <span class="nx">credentials</span> <span class="nx">are</span> <span class="s">&#34;admin:pass&#34;</span><span class="p">,</span> <span class="nx">it</span> <span class="nx">is</span> <span class="nx">recommended</span> <span class="nx">you</span> <span class="nx">change</span> <span class="nx">this</span> <span class="nx">in</span> <span class="nx">your</span> <span class="nx">config</span><span class="p">.</span><span class="nx">js</span><span class="p">!</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Database</span> <span class="nx">connected</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Admin</span> <span class="nx">Database</span> <span class="nx">connected</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>创建mongo-express service</p>
 <p>为了能从浏览器访问到 mongo-express，需要让mongo-express service变成External Service</p>
 <p><img src="/k8s%E6%95%99%E7%A8%8B%E5%AD%A6%E4%B9%A0/Untitled17.png" alt=""></p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -989,34 +989,34 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">selector</span><span class="p">:</span>
-    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
-  <span class="kd">type</span><span class="p">:</span> <span class="nx">LoadBalancer</span>
-  <span class="nx">ports</span><span class="p">:</span>
-  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
-    <span class="nx">port</span><span class="p">:</span> <span class="mi">8081</span>
-    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">8081</span>
-    <span class="nx">nodePort</span><span class="p">:</span> <span class="mi">30000</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">selector</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">app</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">type</span><span class="p">:</span> <span class="nx">LoadBalancer</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ports</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="nx">protocol</span><span class="p">:</span> <span class="nx">TCP</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">port</span><span class="p">:</span> <span class="mi">8081</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">targetPort</span><span class="p">:</span> <span class="mi">8081</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">nodePort</span><span class="p">:</span> <span class="mi">30000</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span>  <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">service</span><span class="o">/</span><span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span> <span class="nx">created</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span>  <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">service</span><span class="o">/</span><span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span> <span class="nx">created</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h1 id="namespace"><a href="#namespace" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Namespace</h1>
 <p>namespace的使用场景</p>
@@ -1024,26 +1024,26 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 <p>修改默认的namepsace</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">kubectl</span> <span class="nx">config</span> <span class="nx">set</span><span class="o">-</span><span class="nx">context</span> <span class="o">--</span><span class="nx">current</span> <span class="o">--</span><span class="nx">namespace</span><span class="p">=&lt;</span><span class="nx">namespace</span><span class="p">&gt;</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">kubectl</span> <span class="nx">config</span> <span class="nx">set</span><span class="o">-</span><span class="nx">context</span> <span class="o">--</span><span class="nx">current</span> <span class="o">--</span><span class="nx">namespace</span><span class="p">=&lt;</span><span class="nx">namespace</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><h1 id="ingress"><a href="#ingress" class="anchor-link"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon anchor-icon"><path d="M326.612 185.391c59.747 59.809 58.927 155.698.36 214.59-.11.12-.24.25-.36.37l-67.2 67.2c-59.27 59.27-155.699 59.262-214.96 0-59.27-59.26-59.27-155.7 0-214.96l37.106-37.106c9.84-9.84 26.786-3.3 27.294 10.606.648 17.722 3.826 35.527 9.69 52.721 1.986 5.822.567 12.262-3.783 16.612l-13.087 13.087c-28.026 28.026-28.905 73.66-1.155 101.96 28.024 28.579 74.086 28.749 102.325.51l67.2-67.19c28.191-28.191 28.073-73.757 0-101.83-3.701-3.694-7.429-6.564-10.341-8.569a16.037 16.037 0 0 1-6.947-12.606c-.396-10.567 3.348-21.456 11.698-29.806l21.054-21.055c5.521-5.521 14.182-6.199 20.584-1.731a152.482 152.482 0 0 1 20.522 17.197zM467.547 44.449c-59.261-59.262-155.69-59.27-214.96 0l-67.2 67.2c-.12.12-.25.25-.36.37-58.566 58.892-59.387 154.781.36 214.59a152.454 152.454 0 0 0 20.521 17.196c6.402 4.468 15.064 3.789 20.584-1.731l21.054-21.055c8.35-8.35 12.094-19.239 11.698-29.806a16.037 16.037 0 0 0-6.947-12.606c-2.912-2.005-6.64-4.875-10.341-8.569-28.073-28.073-28.191-73.639 0-101.83l67.2-67.19c28.239-28.239 74.3-28.069 102.325.51 27.75 28.3 26.872 73.934-1.155 101.96l-13.087 13.087c-4.35 4.35-5.769 10.79-3.783 16.612 5.864 17.194 9.042 34.999 9.69 52.721.509 13.906 17.454 20.446 27.294 10.606l37.106-37.106c59.271-59.259 59.271-155.699.001-214.959z"/></svg></a>Ingress</h1>
 <p>安装Ingress-controller</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.45.0/deploy/static/provider/baremetal/deploy.yaml
-</span></code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">kubectl</span> <span class="nx">apply</span> <span class="o">-</span><span class="nx">f</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.45.0/deploy/static/provider/baremetal/deploy.yaml
+</span></span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>部署ingress</p>
 <div class="highlight"><div class="chroma">
 <div class="table-container"><table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -1064,26 +1064,26 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-go" data-lang="go"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">ingress</span><span class="p">.</span><span class="nx">yaml</span>
-
-<span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">networking</span><span class="p">.</span><span class="nx">k8s</span><span class="p">.</span><span class="nx">io</span><span class="o">/</span><span class="nx">v1</span>
-<span class="nx">kind</span><span class="p">:</span> <span class="nx">Ingress</span>
-<span class="nx">metadata</span><span class="p">:</span>
-  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">ingress</span>
-  <span class="nx">namespace</span><span class="p">:</span> <span class="nx">genunities</span>
-<span class="nx">spec</span><span class="p">:</span>
-  <span class="nx">rules</span><span class="p">:</span>
-  <span class="o">-</span> <span class="nx">host</span><span class="p">:</span> <span class="nx">mongoexpress</span><span class="p">.</span><span class="nx">com</span>
-    <span class="nx">http</span><span class="p">:</span>
-      <span class="nx">paths</span><span class="p">:</span>
-      <span class="o">-</span> <span class="nx">pathType</span><span class="p">:</span> <span class="nx">Prefix</span>
-        <span class="nx">path</span><span class="p">:</span> <span class="s">&#34;/&#34;</span>
-        <span class="nx">backend</span><span class="p">:</span>
-          <span class="nx">service</span><span class="p">:</span>
-            <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span>
-            <span class="nx">port</span><span class="p">:</span>
-              <span class="nx">number</span><span class="p">:</span> <span class="mi">8081</span>
-</code></pre></td></tr></table></div>
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">cat</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">ingress</span><span class="p">.</span><span class="nx">yaml</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">apiVersion</span><span class="p">:</span> <span class="nx">networking</span><span class="p">.</span><span class="nx">k8s</span><span class="p">.</span><span class="nx">io</span><span class="o">/</span><span class="nx">v1</span>
+</span></span><span class="line"><span class="cl"><span class="nx">kind</span><span class="p">:</span> <span class="nx">Ingress</span>
+</span></span><span class="line"><span class="cl"><span class="nx">metadata</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">ingress</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">namespace</span><span class="p">:</span> <span class="nx">genunities</span>
+</span></span><span class="line"><span class="cl"><span class="nx">spec</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">rules</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="o">-</span> <span class="nx">host</span><span class="p">:</span> <span class="nx">mongoexpress</span><span class="p">.</span><span class="nx">com</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">http</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">paths</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="o">-</span> <span class="nx">pathType</span><span class="p">:</span> <span class="nx">Prefix</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">path</span><span class="p">:</span> <span class="s">&#34;/&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">backend</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">service</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">name</span><span class="p">:</span> <span class="nx">mongo</span><span class="o">-</span><span class="nx">express</span><span class="o">-</span><span class="nx">service</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">port</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">number</span><span class="p">:</span> <span class="mi">8081</span>
+</span></span></code></pre></td></tr></table></div>
 </div>
 </div><p>然后就能通过浏览器访问了</p>
 <p><img src="/k8s%E6%95%99%E7%A8%8B%E5%AD%A6%E4%B9%A0/Untitled19.png" alt=""></p>
@@ -1291,7 +1291,7 @@ Kubernetes Components Node&amp;Pod  Node:  物理机或虚拟机   Pod:  k8s最�
             
     <footer id="footer" class="footer">
         <div class="footer-inner">
-            <div class="site-info">©&nbsp;2020–2021&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
+            <div class="site-info">©&nbsp;2020–2022&nbsp;<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon footer-icon"><path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg>&nbsp;无颜</div><div class="powered-by">Powered by <a href="https://github.com/gohugoio/hugo" target="_blank" rel="noopener">Hugo</a> | Theme is <a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener">MemE</a></div><div class="site-copyright"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a></div>
 
             
     
