@@ -300,6 +300,15 @@ sudo apt-get update
 sudo apt-get -o Acquire::http::proxy="http://proxy-server:port/" update
 ```
 
+### sudo使用http_proxy失败
+
+```
+# The following should be in `/etc/sudoers`. To edit `/etc/suoders` use the command `sudo visudo` in a terminal.
+# *Do NOT attempt to modify the file directly*
+Defaults  env_reset
+Defaults	mail_badpass
+Defaults	env_keep+="http_proxy ftp_proxy all_proxy https_proxy no_proxy" # Add this line
+```
 
 ### Ubuntu安装k8s
 
@@ -397,6 +406,8 @@ sudo systemctl restart containerd
 
 注意 When using kubeadm, manually configure the cgroup driver for kubelet.
 
+> 按照上述文档中的描述进行操作，在最后执行kubeadm init的时候会报错，解决方案是删除 /etc/containerd/config.toml，这样就不会报错了。可以`containerd config default > /etc/containerd/config.toml`,然后修改配置文件中的`SystemdCgroup = true`
+
 3.  使用kubeadm安装k8s
 
 **安装kubuadm**
@@ -461,7 +472,7 @@ A minimal example of configuring the field explicitly:
 # kubeadm-config.yaml
 kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta3
-kubernetesVersion: v1.21.0
+kubernetesVersion: v1.23.0
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
@@ -484,3 +495,67 @@ kubeadm init --config kubeadm-config.yaml --control-plane-endpoint 192.168.0.112
 can not mix '--config' with arguments [control-plane-endpoint]
 ```
 
+参考 https://www.frakkingsweet.com/specify-control-plane-endpoint-in-kubeadm-init-file
+
+需要在kubeadm-config.yaml中添加
+
+```
+# kubeadm-config.yaml
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta3
+kubernetesVersion: v1.23.0
+controlPlaneEndpoint: 192.168.0.112
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+```
+
+
+执行`kubeadm init --config kubeadm-config.yaml`还是报错，删除 `rm /etc/containerd/config.toml`   就可以了
+
+```
+rm /etc/containerd/config.toml
+systemctl restart containerd
+```
+
+由于`kubeadm init`需要从外网下载镜像，而且镜像仓库一般都是被屏蔽了的，所以我们需要通过其他方式提前 下载好需要的 镜像
+
+```
+$ kubuadm config images list
+k8s.gcr.io/kube-apiserver:v1.23.6
+k8s.gcr.io/kube-controller-manager:v1.23.6
+k8s.gcr.io/kube-scheduler:v1.23.6
+k8s.gcr.io/kube-proxy:v1.23.6
+k8s.gcr.io/pause:3.6
+k8s.gcr.io/etcd:3.5.1-0
+k8s.gcr.io/coredns/coredns:v1.8.6
+```
+
+所以我们需要 提前下载好这些镜像
+
+由于我们使用的是containerd，所以我 这里是用nerdctl
+
+当运行`nerdctl pull k8s.gcr.io/kube-apiserver:v1.23.6`会提示错误
+
+```
+FATA[0000] rootless containerd not running? (hint: use containerd-rootless-setuptool.sh install to start rootless containerd): stat /run/user/1000/containerd-rootless: no such file or directory
+```
+
+这个我没有具体查找为什么会出现这个错误，但是只要加上`sudo`执行就没问题
+
+```
+sudo nerdctl pull k8s.gcr.io/kube-apiserver:v1.23.6
+```
+
+但是由于` k8s.gcr.io`被墙了，所以也是不能下载到镜像的
+
+所以也是需要走代理才行，但是使用了sudo的命令会使http_proxy环境变量失效，nerdctl命令也支持设置proxy的参数，所以需要参考[sudo使用http_proxy失败](#sudo使用http_proxy失败)
+
+```
+export  https_proxy=proxt-server:port
+
+sudo nerdctl pull k8s.gcr.io/kube-apiserver:v1.23.6
+```
+
+这样就可以了
