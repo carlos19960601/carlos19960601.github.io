@@ -1,6 +1,6 @@
 ---
 title: "Linux常用工具使用"
-date: 2021-01-23T15:18:31+08:00
+date: 2022-04-21T15:18:31+08:00
 draft: false
 original: true
 categories: 
@@ -229,3 +229,258 @@ sudo apt-get -o Acquire::http::proxy="http://127.0.0.1:8086" update
 - 鼠标双击阈值：defaults write -g com.apple.mouse.doubleClickThreshold 0.75
 - 鼠标加速度：defaults write -g com.apple.mouse.scaling 5
 - 滚动速度：defaults write -g com.apple.scrollwheel.scaling 0.75
+
+### 制作U盘启动盘
+
+1. 查看U盘设备号，本例使用了8G的U盘，
+
+```
+Disk /dev/sdc: 7.5 GiB, 8054112256 bytes, 15730688 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x40993ab6
+```
+
+2. 准备好一个iso文件，使用dd命令将这个iso写入u盘
+
+```
+sudo dd if=./ubuntu-20.04.4-live-server-arm64.iso of=/dev/sdc
+```
+
+
+### Ubuntu 开启 ssh-server
+
+参考 https://ubuntu.com/server/docs/service-openssh
+
+```
+sudo apt install openssh-server
+```
+
+执行后查看ssh是否已经运行
+
+```
+sudo systemctl status sshd
+```
+
+### sudo curl 的时候 http_proxy 不生效
+
+```
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+```
+
+在国内直接执行上述命令是会报错的，google被屏蔽了，但是尽管使用了
+
+```
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+```
+
+还是不能执行成功，原因是sudo执行的时候会clean所有的环境变量，所以是看不到http_proxy的
+
+所以只能使用curl命令自带的proxy
+
+```
+sudo curl --socks5 proxy-server:port  -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+```
+
+### apt-get通过proxy进行
+
+```
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+sudo apt-get update
+```
+
+你会发现有些package还是不能更新，但是通过proxy能直接访问对应的package地址
+
+这时可以使用
+
+```
+sudo apt-get -o Acquire::http::proxy="http://proxy-server:port/" update
+```
+
+
+### Ubuntu安装k8s
+
+#### 安装Container Runtime
+
+参考 https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+
+这里选择安装containerd
+
+1. 安装和配置前置条件(仅适用于linux)
+
+```
+cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+# Setup required sysctl params, these persist across reboots.
+cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.ipv4.ip_forward                 = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+EOF
+
+# Apply sysctl params without reboot
+sudo sysctl --system
+```
+
+2. 安装containerd
+
+说明：The containerd.io packages in DEB and RPM formats are distributed by Docker (not by the containerd project). 所以需要[参考Docker的文档](https://docs.docker.com/engine/install/ubuntu/)安装containerd
+
+**Set up the repository**
+
+1. Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+
+```
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+```
+
+2. Add Docker’s official GPG key:
+
+```
+$  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+```
+
+3. Use the following command to set up the stable repository. To add the nightly or test repository, add the word nightly or test (or both) after the word stable in the commands below. Learn about nightly and test channels.
+
+```
+$ echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+```
+
+**Install Docker Engine**
+
+1. Update the apt package index, and install the latest version of Docker Engine and containerd, or go to the next step to install a specific version:
+
+```
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+由于我们不安装Docker，所以就到此为止。
+
+完成后你可以看到一个有效的配置文件 linux: /etc/containerd/config.toml
+
+For containerd, the CRI socket is /run/containerd/containerd.sock by default.
+
+**Configuring the systemd cgroup driver**
+
+To use the systemd cgroup driver in /etc/containerd/config.toml with runc, set
+
+```
+[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+  ...
+  [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+    SystemdCgroup = true
+```
+
+If you apply this change, make sure to restart containerd:
+
+```
+sudo systemctl restart containerd
+```
+
+注意 When using kubeadm, manually configure the cgroup driver for kubelet.
+
+3.  使用kubeadm安装k8s
+
+**安装kubuadm**
+
+在  https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/ 中有一些安装之前的要求
+
+**Letting iptables see bridged traffic**
+
+Make sure that the `br_netfilter` module is loaded. This can be done by running `lsmod | grep br_netfilter`. To load it explicitly call sudo modprobe br_netfilter.
+
+As a requirement for your Linux Node's iptables to correctly see bridged traffic, you should ensure net.bridge.bridge-nf-call-iptables is set to 1 in your sysctl config, e.g.
+
+```
+cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+br_netfilter
+EOF
+
+cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+EOF
+sudo sysctl --system
+```
+
+**Installing kubeadm, kubelet and kubectl**
+
+
+1. Update the apt package index and install packages needed to use the Kubernetes apt repository:
+
+```
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl
+```
+
+2. Download the Google Cloud public signing key:
+
+```
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+```
+
+3. Add the Kubernetes apt repository:
+
+```
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+4. Update apt package index, install kubelet, kubeadm and kubectl, and pin their version:
+
+```
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
+```
+
+**Configuring the kubelet cgroup driver**
+
+kubeadm allows you to pass a KubeletConfiguration structure during kubeadm init. This KubeletConfiguration can include the cgroupDriver field which controls the cgroup driver of the kubelet.
+
+A minimal example of configuring the field explicitly:
+
+```
+# kubeadm-config.yaml
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta3
+kubernetesVersion: v1.21.0
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+```
+
+kubeadm init --config kubeadm-config.yaml
+
+**使用kubeadm创建cluster**
+
+参考 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
+```
+kubeadm init --config kubeadm-config.yaml --control-plane-endpoint 192.168.0.112
+```
+
+运行会报错
+
+```
+can not mix '--config' with arguments [control-plane-endpoint]
+```
+
