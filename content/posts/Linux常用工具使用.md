@@ -312,6 +312,44 @@ Defaults	env_keep+="http_proxy ftp_proxy all_proxy https_proxy no_proxy" # Add t
 
 ### Ubuntu安装k8s
 
+#### 前置准备
+
+**disable swap**
+
+临时关闭swap
+
+```
+swapoff -a     
+```
+
+永久关闭
+
+1. Comment the correct mounting point
+
+```
+$ vim /etc/fstab
+
+#UUID=xxxx  none  swap  sw  0  0
+```
+
+在Ubuntu 20中reboot后swap任然会mount上
+
+
+2. the swap is controlled by systemctl. To find the responsible, use systemctl --type swap.
+
+```
+systemctl --type swap
+
+UNIT           LOAD   ACTIVE SUB                DESCRIPTION                                                                                                                                                                     
+dev-sdb2.swap loaded active active /dev/sdb2 
+```
+
+3. Disable by masking it with sysctl:
+
+```
+ systemctl mask dev-sdb2.swap
+```
+
 #### 安装Container Runtime
 
 参考 https://kubernetes.io/docs/setup/production-environment/container-runtimes/
