@@ -4,9 +4,9 @@ date: 2021-04-24T23:36:36+08:00
 draft: false
 original: true
 categories: 
-  - k8s
+  - kubernetes
 tags: 
-  - k8s
+  - kubernetes
 ---
 
 视频教程： [https://www.youtube.com/watch?v=X48VuDVv0do](https://www.youtube.com/watch?v=X48VuDVv0do)
