@@ -310,6 +310,19 @@ Defaults	mail_badpass
 Defaults	env_keep+="http_proxy ftp_proxy all_proxy https_proxy no_proxy" # Add this line
 ```
 
+### Ubuntu设置root密码
+
+```
+$ sudo passwd root
+```
+
+切换到root
+
+```
+su -
+```
+
+
 ### Ubuntu安装k8s
 
 #### 前置准备
@@ -348,6 +361,12 @@ dev-sdb2.swap loaded active active /dev/sdb2
 
 ```
  systemctl mask dev-sdb2.swap
+```
+
+**关闭firewall**
+
+```
+$systemctl disable ufw.service
 ```
 
 #### 安装Container Runtime
@@ -416,7 +435,7 @@ $ echo \
 
 ```
 $ sudo apt-get update
-$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+$ sudo apt-get install containerd.io
 ```
 
 由于我们不安装Docker，所以就到此为止。
@@ -510,7 +529,7 @@ A minimal example of configuring the field explicitly:
 # kubeadm-config.yaml
 kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta3
-kubernetesVersion: v1.23.0
+kubernetesVersion: v1.23.6
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
@@ -596,4 +615,107 @@ export  https_proxy=proxt-server:port
 sudo nerdctl pull k8s.gcr.io/kube-apiserver:v1.23.6
 ```
 
-这样就可以了
+最后执行`kubeadm init --config kubeadm-config.yaml`
+
+```
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.0.112:6443 --token 3iv8b3.z87w3ezyl2uj0pbr \
+  --discovery-token-ca-cert-hash sha256:456751003ac134a1f505fa343b8f74dbbafa81055eee951e17c43284e5aab848
+```
+
+看到这样的结果就算成功了
+
+**安装CNI**
+
+参考 https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart
+
+1. Install the Tigera Calico operator and custom resource definitions.
+
+```
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+```
+
+2. Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the installation reference.
+
+```
+kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+```
+
+这里的 custom-resources.yaml 需要自定义。我的配置是
+
+```
+# This section includes base Calico installation configuration.
+# For more information, see: https://projectcalico.docs.tigera.io/v3.22/reference/installation/api#operator.tigera.io/v1.Installation
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  # Configures Calico networking.
+  calicoNetwork:
+    # Note: The ipPools section cannot be modified post-install.
+    ipPools:
+    - blockSize: 26
+      cidr: 10.244.0.0/16
+      encapsulation: VXLANCrossSubnet
+      natOutgoing: Enabled
+      nodeSelector: all()
+    nodeAddressAutodetectionV4:
+      interface: wlo.*        
+---
+
+# This section configures the Calico API server.
+# For more information, see: https://projectcalico.docs.tigera.io/v3.22/reference/installation/api#operator.tigera.io/v1.APIServer
+apiVersion: operator.tigera.io/v1
+kind: APIServer 
+metadata: 
+  name: default 
+spec: {}
+```
+
+**我在安装过程中遇到的坑**
+
+1. 因为我使用了代理服务器，下载的是k8s.gcr.io仓库的镜像，`kubeadmin init`命令的时候会启动api-server的static pod并且回调用api-server的健康检查接口，这个时候curl api-server的健康检查接口的时候可能回走到代理服务器，导致api-server启动失败，进而 `kubeadmin init`失败
+
+2. kubernetes官网给的 kubeadmn-config.yaml不完整。可以使用命令`kubeadm config print init-defaults --component-configs KubeletConfiguration`和`kubeadm config print init-defaults --component-configs InitConfiguration`打印出完整的配置来。然后根据自己的需求来修改。下面是我的kubbeadm-config.yaml文件。
+
+```
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 192.168.0.112  # 
+  bindPort: 6443
+nodeRegistration:
+  criSocket: /run/containerd/containerd.sock # 默认用的 docker，所以需要改成containerd
+  imagePullPolicy: IfNotPresent
+  taints: null
+---
+kind: ClusterConfiguration
+apiVersion: kubeadm.k8s.io/v1beta3
+kubernetesVersion: v1.23.6
+networking:
+  podSubnet: 10.244.0.0/16
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd # 需要改成 systemd 和 容器运行时一致，我使用的containerd，containerd的 cgroupDriver配置成systemd的
+```
+
+主要修改的地方时`cgroupDriver: systemd`，`criSocket`和`advertiseAddress`
