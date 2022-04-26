@@ -6,7 +6,8 @@ original: true
 categories: 
   - Golang
 tags: 
-  - Golang基础
+  - Golang
+  - 源码
 ---
 
 根据[6.3 计时器](https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/)中的描述，Golang Timer的设计经历了如下阶段：

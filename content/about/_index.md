@@ -6,7 +6,7 @@ draft: false
 
 ```go
 me := Person {
-  Name:             "无颜",
+  Name:             "Carlos",
   Birth:            833592000,
   GraduatedFrom:    "北京交通大学",
   Email:            "zengqiang96@gmail.com",

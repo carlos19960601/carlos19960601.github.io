@@ -4,9 +4,10 @@ date: 2021-01-17T14:32:18+08:00
 draft: false
 original: true
 categories: 
-  - k8s
+  - Kubernetes
 tags: 
-  - k8s
+  - Kubeadm
+  - Kubernetes
 ---
 
 
