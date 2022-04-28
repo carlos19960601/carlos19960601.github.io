@@ -1146,11 +1146,11 @@ primary:
   persistence:
     ## @param primary.persistence.enabled Enable persistence on MySQL primary replicas using a `PersistentVolumeClaim`. If false, use emptyDir
     ##
-    enabled: true
+    enabled: false
     ## @param primary.persistence.existingClaim Name of an existing `PersistentVolumeClaim` for MySQL primary replicas
     ## NOTE: When it's set the rest of persistence parameters are ignored
     ##
-    existingClaim: "mysql-primary-pvc-local"
+    existingClaim: ""
     size: 10Gi
 
 secondary:
