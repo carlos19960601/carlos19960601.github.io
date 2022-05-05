@@ -1,7 +1,7 @@
 ---
 title: "Helm Install Ingress Nginx"
 date: 2022-05-04T17:19:35+08:00
-draft: true
+draft: false
 original: true
 categories: 
   - Kubernetes

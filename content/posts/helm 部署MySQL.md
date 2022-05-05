@@ -1,7 +1,7 @@
 ---
 title: "Helm 部署MySQL"
 date: 2022-04-28T21:13:43+08:00
-draft: true
+draft: false
 original: true
 categories:
   - Kubernetes
