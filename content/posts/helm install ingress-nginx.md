@@ -119,7 +119,9 @@ NAME                                       READY   STATUS    RESTARTS   AGE   IP
 ingress-nginx-controller-7dcb8777f-x8z76   1/1     Running   0          37m   10.244.103.130   carlos-k8s-master   <none>           <none>
 ```
 
+**遇到的问题**
 
+之前在安装MySQL的时候没有遇到 pull image 失败的情况，在安装ingress-nginx的时候需要gcr的镜像，所以需要配置一下containerd，下载镜像的时候可以走代理
 ```
 $ cat <<EOF >/etc/systemd/system/containerd.service.d/http-proxy.conf    
 [Service]    
