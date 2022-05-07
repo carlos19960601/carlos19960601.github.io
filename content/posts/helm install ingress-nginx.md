@@ -24,16 +24,10 @@ $ helm show values ingress-nginx/ingress-nginx > values.yaml
 
 ```yaml
 controller:
-  ## Use host ports 80 and 443
-  ## Disabled by default
-  hostPort:
-    # -- Enable 'hostPort' or not
-    enabled: true # 设置使用主机网络
-    ports:
-      # -- 'hostPort' http port
-      http: 80
-      # -- 'hostPort' https port
-      https: 443
+  # -- Required for use with CNI based kubernetes installations (such as ones set up by kubeadm),
+  # since CNI and hostport don't mix yet. Can be deprecated once https://github.com/kubernetes/kubernetes/issues/23920
+  # is merged
+  hostNetwork: true # 设置使用主机网络
 
   ## This section refers to the creation of the IngressClass resource
   ## IngressClass resources are supported since k8s >= 1.18 and required since k8s >= 1.19
@@ -59,7 +53,7 @@ kubectl create namespace ingress-nginx
 
 
 ```
-helm install ingress-nginx ingress-nginx -n ingress-nginx
+$ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 
 NAME: ingress-nginx
 LAST DEPLOYED: Thu May  5 22:38:34 2022
