@@ -1,7 +1,7 @@
 ---
 title: "Helm Install Gitea"
 date: 2022-05-08T10:06:35+08:00
-draft: true
+draft: false
 original: true
 categories: 
   - Kubernetes
