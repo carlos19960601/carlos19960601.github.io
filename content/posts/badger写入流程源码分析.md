@@ -1,7 +1,7 @@
 ---
-title: "Badger源码分析"
+title: "Badger写入流程源码分析"
 date: 2022-11-28T10:56:34+08:00
-draft: true
+draft: false
 original: true
 categories: 
   - 存储
@@ -44,6 +44,8 @@ if err != nil {
   log.Fatal(err)
 }
 ```
+
+<!--more-->
 
 Update逻辑
 
@@ -374,7 +376,9 @@ func (db *DB) writeRequests(reqs []*request) error {
 }
 ```
 
-首先是写入vlog
+首先是写入vlog,写vlog的细节：
+1. 同一个request的Entries,都会写入到同一个logFile中，即使logFile已经超过配置的logFile文件大小
+2. 写完每个request的Entries后，都会调用`toDisk`写入磁盘
 
 ```go
 func (vlog *valueLog) write(reqs []*request) error {
@@ -402,11 +406,16 @@ func (vlog *valueLog) write(reqs []*request) error {
         return err
       }
     }
+
+    // 保证同一个事务要写入的entry都在一个vlog文件中
+    if err := toDisk(); err != nil {
+      return err
+    }
   }
+
+  return toDisk()
 }
 
-// write方法，当endOffset没有达到len(curlf.Data)时，不会进行刷盘，靠mmap机制进行刷盘
-// 当endOffset达到len(curlf.Data)时，会调用Truncate方法，进行刷盘
 write := func(buf *bytes.Buffer) error {
   if buf.Len() == 0 {
     return nil
@@ -490,3 +499,106 @@ func (h header) Encode(out []byte) int {
 Entry在logFile中的结构
 
 ![](/Badger源码分析/EntryInLogFile.png)
+
+写完valueLog后，然后就是写入LSM，
+
+将数据写入到memTable中，memTable会在满了的时候写入`flushChan`,等待flush协程刷到磁盘中,同时创建新的memTable以待写入
+
+```go
+for _, b := range reqs {
+  if len(b.Entries) == 0 {
+    continue
+  }
+  count += len(b.Entries)
+  var err error
+  for err = db.ensureRoomForWrite(); err == errNoRoom; err = db.ensureRoomForWrite() {
+    time.Sleep(10 * time.Millisecond)
+  }
+
+  if err := db.writeToLSM(b); err != nil {
+    done(err)
+    return y.Wrapf(err, "writeRequests")
+  }
+}
+```
+```go
+func (db *DB) ensureRoomForWrite() error {
+  if !db.mt.isFull() {
+    return nil
+  }
+
+  select {
+  case db.flushChan <- flushTask{mt: db.mt}:
+    db.imm = append(db.imm, db.mt)
+    db.mt, err = db.newMemTable()
+    if err != nil {
+      return y.Wrapf(err, "cannot create new mem table")
+    }
+    return nil
+  default:
+    return errNoRoom
+  }
+}
+```
+
+memTable由于使用的是内存，为了提高内存使用率，写入memTable的数据Entry的value并不是真正的value数据，而是`valuePointer`
+
+```go
+func (db *DB) writeToLSM(b *request) error {
+  for i, entry := range b.Entries {
+    err := db.mt.Put(entry.Key, y.ValueStruct{
+      Value:     b.Ptrs[i].Encode(),
+      Meta:      entry.meta &^ bitValuePointer,
+      UserMeta:  entry.UserMeta,
+      ExpiresAt: entry.ExpiresAt,
+    })
+    if err != nil {
+      return y.Wrapf(err, "写入memTable")
+    }
+  }
+
+  if db.opt.SyncWrites {
+    return db.mt.SyncWAL()
+  }
+  return nil
+}
+```
+
+写入memTable时候是先写WAL，然后再写入skiplist。
+
+```go
+func (mt *memTable) Put(key []byte, value y.ValueStruct) error {
+  entry := &Entry{
+    Key:       key,
+    Value:     value.Value,
+    UserMeta:  value.UserMeta,
+    meta:      value.Meta,
+    ExpiresAt: value.ExpiresAt,
+  }
+
+  if mt.wal != nil {
+    // wal中存储的是Entry.Value是ValuePointer
+    if err := mt.wal.writeEntry(mt.buf, entry, mt.opt); err != nil {
+      return y.Wrapf(err, "不能将entry写入到WAL文件")
+    }
+  }
+
+  mt.sl.Put(key, value)
+  if ts := y.ParseTs(entry.Key); ts > mt.maxVersion {
+    mt.maxVersion = ts
+  }
+  return nil
+}
+```
+
+WAL和valueLog存储的都是相同的Entry结构，不同的是WAL中Entry的Value是`valuePointer`，而valueLog中Entry的Value是真实的value数据。
+
+![](/Badger源码分析/valuePointer.png)
+
+结合上面的结论，`newTransaction`会阻塞一段时间，这段时间就是顺序写valueLog，顺序写wal和内存写skiplist的时间。
+
+到目前为止表面上的写入流程就结束了，其中有2点没有详细分析，就是txnMark和readMark的后台处理流程和skiplist的写入流程。
+
+WaterMark的后台处理流程比较简单，主要是用了小顶堆，使用for循环不断处理txnMark和readMark的begin和done事件，通过doneUntil标识done事件的进度。代码就不贴了。
+
+skiplist是一个独立的数据节后，内部逻辑也很复杂，有空单独写一篇来分析badger中的skiplist
