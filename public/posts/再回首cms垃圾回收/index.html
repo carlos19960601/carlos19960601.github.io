@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>再回首CMS垃圾回收 | PaperMod</title>
+<meta name="keywords" content="GC">
+<meta name="description" content="前言
+之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。
+自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。
+首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)
+
+">
+<meta name="author" content="">
+<link rel="canonical" href="//localhost:1313/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
+<link rel="icon" href="//localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="//localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="//localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="//localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="//localhost:1313/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="//localhost:1313/" accesskey="h" title="PaperMod (Alt + H)">PaperMod</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      再回首CMS垃圾回收
+    </h1>
+    <div class="post-meta"><span title='2020-11-27 21:50:29 +0800 CST'>November 27, 2020</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h3 id="前言">前言<a hidden class="anchor" aria-hidden="true" href="#前言">#</a></h3>
+<p>之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。</p>
+<p>自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。</p>
+<p>首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)</p>
+<p><img loading="lazy" src="/%e5%86%8d%e5%9b%9e%e9%a6%96CMS%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6/CMS%e6%b5%81%e7%a8%8b.png" alt="CMS流程"  />
+</p>
+<h3 id="如何进行标记">如何进行标记？<a hidden class="anchor" aria-hidden="true" href="#如何进行标记">#</a></h3>
+<p>最近在看Golang的GC算法实现，里面用到了三色标记法，但是在我的知识库中对三色标记法有这个概念，是的，我只知道这个概念，不知道三色标记法是怎么一个流程，也不知道三色标记法在GC中怎么与运行的。于是就开始了我的探险之旅。</p>
+<p>在搜索了一下三色标记法（具体可以看一下文末参考文档中<a href="https://www.jianshu.com/p/12544c0ad5c1">三色标记法与读写屏障</a>了解详情）后，发现现代追踪式（可达性分析）的垃圾回收器几乎都借鉴了三色标记的算法思想，CMS垃圾收集器也不例外。</p>
+<h3 id="gc-root有哪些">GC Root有哪些？<a hidden class="anchor" aria-hidden="true" href="#gc-root有哪些">#</a></h3>
+<p>我们知道怎么进行标记了，但最初标记的时候需要一些根据才行啊，这些根据就是我们收的GC Root。GC Root有哪些？网上有很多的答案，我的理解就是</p>
+<ul>
+<li>当前活跃调用栈中的指向对象的引用</li>
+<li>一些不会发生改变的数据所指向的引用</li>
+</ul>
+<p>这里我使用的是引用，而不是对象，因为R大是这样说的（具体的问题见参考文档<a href="https://www.zhihu.com/question/53613423/answer/135743258">java的gc为什么要分代？</a>）</p>
+<blockquote>
+<p>所谓“GC roots”，或者说tracing GC的“根集合”，就是<strong>一组必须活跃的引用</strong>。
+例如说，这些引用可能包括：</p>
+<ul>
+<li>所有Java线程当前活跃的栈帧里指向GC堆里的对象的引用；换句话说，当前所有正在被调用的方法的引用类型的参数/局部变量/临时值。</li>
+<li>VM的一些静态数据结构里指向GC堆里的对象的引用，例如说HotSpot VM里的Universe里有很多这样的引用。</li>
+<li>JNI handles，包括global handles和local handles</li>
+<li>（看情况）所有当前被加载的Java类</li>
+<li>（看情况）Java类的引用类型静态变量</li>
+<li>（看情况）Java类的运行时常量池里的引用类型常量（String或Class类型）</li>
+<li>（看情况）String常量池（StringTable）里的引用</li>
+</ul>
+<p>注意，是一组必须活跃的<strong>引用</strong>，不是对象。</p>
+</blockquote>
+<p>现在知道了GC Root，但是我们都知道有分代的概念，新生代的gc和老年的代的gc回收的区域是不一样，那么这里的GC Root是不是应该不一样呢？肯定是不一样的。</p>
+<p>首先看一下<strong>新生代的GC</strong></p>
+<p>新生代的区域一般都比较小，而且对象的存活率都比较低，所以按照前面说的GC Root在新生代的区域扫描就行了。但是会有一个问题？老年代存在引用新生代对象的可能啊？如果只扫描新生代的区域，会漏掉被老年代引用的对象，这些对象就会被清除掉，这是不允许的。</p>
+<p>如果这样的话，那是不是扫描一下老年代的对象，看是否引用新生代的对象是不是就ok了？嗯这么做肯定是ok的，但是老年代一般很大，而且存活的对象很多，会导致扫描占用很长的时间。那这个问题如何解？JVM是如何避免Minor GC时扫描全堆的？</p>
+<p>经过统计信息显示，老年代持有新生代对象引用的情况不足1%，根据这一特性JVM引入了卡表（card table）来实现这一目的。如下图所示：</p>
+<p><img loading="lazy" src="/%e5%86%8d%e5%9b%9e%e9%a6%96CMS%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6/CardTable.png" alt="CardTable"  />
+</p>
+<p><strong>卡表</strong>的具体策略是将老年代的空间分成大小为512B的若干张卡（card）。卡表本身是单字节数组，数组中的每个元素对应着一张卡，当发生老年代引用新生代时，虚拟机将该卡对应的卡表元素设置为适当的值。如上图所示，卡表3被标记为脏（卡表还有另外的作用，标识并发标记阶段哪些块被修改过），之后Minor GC时通过扫描卡表就可以很快的识别哪些卡中存在老年代指向新生代的引用。这样虚拟机通过空间换时间的方式，避免了全堆扫描。</p>
+<p>所以新年代GC的GC Root包含2部分</p>
+<ul>
+<li>新生代中满足GC Root定义的对象</li>
+<li>卡表中老年代引用新生代的对象</li>
+</ul>
+<p><strong>老年代的GC</strong></p>
+<p>前面我们说了新生代的gc，我们以同样的思路来看看老年代的gc，老年代的GC Root如何来标记呢？只扫描老年代可以吗？当然是不行的，因为新生代中也可能存在老年代对象的引用，好在新生代并不大，所以老年代GC的时候还需要扫描一遍新生代。</p>
+<p><img loading="lazy" src="/%e5%86%8d%e5%9b%9e%e9%a6%96CMS%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6/%e6%96%b0%e7%94%9f%e4%bb%a3GC%e7%9a%84Root.png" alt="新生代GC的Root"  />
+</p>
+<p>所以老年代GC的GC Root包含2部分</p>
+<ul>
+<li>老生代中满足GC Root定义的对象，如图节点1；</li>
+<li>标记年轻代中活着的对象引用到的老年代的对象（指的是年轻代中还存活的引用类型对象，引用指向老年代中的对象）如图节点2、3；</li>
+</ul>
+<h3 id="并发标记的好坏">并发标记的好坏?<a hidden class="anchor" aria-hidden="true" href="#并发标记的好坏">#</a></h3>
+<p>标记作为垃圾回收的第一步，现在知道如何进行标记，接下来就是遍历这些对象，将所有未标记的对象清理就完成GC了。</p>
+<p>然而事实上并没有这么简单，如果标记的时候是STW的，那就是这么简单，但是如果标记过程都STW会造成暂停时间过长，给人的感觉就是系统一卡一卡的。</p>
+<p>于是就把标记的过程改成并发的进行，也就是CMS中并发标记的过程，然而这就是一切复杂问题的源头。虽然并发标记提升了标记的效率，但是因此却引发了一系列的问题。</p>
+<p>因为并发标记时，gc线程和用户线程是并行的，所以在这个过程中会出现下面的情况(需要了解<a href="https://www.jianshu.com/p/12544c0ad5c1">三色标记法与读写屏障</a>)：</p>
+<ul>
+<li>新生代晋升到老年代</li>
+<li>黑色对象取消对灰色对象的引用(浮动垃圾)</li>
+<li>黑色对象新增对白色对象的引用(漏标)</li>
+</ul>
+<p>其实在<a href="https://www.jianshu.com/p/12544c0ad5c1">三色标记法与读写屏障</a>文中已经给出了解决方法&ndash;添加读写屏障</p>
+<ul>
+<li>写屏障 + SATB</li>
+<li>写屏障 + 增量更新</li>
+<li>读屏障（Load Barrier）</li>
+</ul>
+<p>在CMS并发标记阶段，使用 写屏障 + 增量更新 的方法，将上面出现的情况标记为dirty，这样最后再遍历处理一下Dirty集合中的对象就ok了</p>
+<p><img loading="lazy" src="%e5%86%8d%e5%9b%9e%e9%a6%96CMS%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6/%e6%a0%87%e8%ae%b0%e4%b8%badirty.png" alt="标记为dirty"  />
+</p>
+<h3 id="重新标记阶段为什么还要扫描新生代">重新标记阶段为什么还要扫描新生代？<a hidden class="anchor" aria-hidden="true" href="#重新标记阶段为什么还要扫描新生代">#</a></h3>
+<p>因为存在<strong>跨代引用</strong>，但是前面说过这种情况，通过读写屏障的方式标记这些为dirty，只需要扫描老年代和dirty集合就行了啊？哎，看来我还是太年轻，如果只扫描老年代和dirty集合会漏掉一部分，会是哪部分呢？老年代和dirty集合还没有覆盖完吗？</p>
+<p>是的，老年代和dirty集合的确没有覆盖完。我们来分析一下。老年代中经过初始标记和并发标记后，只有黑色对象和白色对象了，黑色的就是要留下的，白色的就是要被清除的。黑色对象是怎么来的？根据GC Root找到的，所以只要并发标记过程中，GC Root不发生变化，黑色对象就没有问题(不会漏标)，如果在并发标记过程中GC Root发生了变化呢？</p>
+<p>当并发标记过程中GC Root增加了，并且这个GC Root还引用了老年代中的对象，此时如果只扫描老年代和dirty集合就会漏标。因此重新标记阶段仍然需要扫描新生代。</p>
+<h3 id="预处理阶段都干了啥">预处理阶段都干了啥？<a hidden class="anchor" aria-hidden="true" href="#预处理阶段都干了啥">#</a></h3>
+<p>预处理阶段其实有2部分：</p>
+<ul>
+<li>预清理阶段</li>
+<li>可终止的预处理</li>
+</ul>
+<p>这个阶段的目的都是为了减轻后面的重新标记的压力，提前做一点重新标记阶段的工作。一般CMS的GC耗时80%都在remark阶段，所以预处理阶段也是为了减少remark阶段的STW时间。</p>
+<p>重新标记阶段需要做以下工作：</p>
+<ol>
+<li>遍历新生代对象，重新标记</li>
+<li>根据GC Roots，重新标记</li>
+<li>遍历老年代的Dirty Card，重新标记（这里的Dirty Card大部分已经在clean阶段处理过）</li>
+</ol>
+<p>遍历新生代对象时，可能很多对象已经是不可达了，但是还是需要扫描。遍历Dirty Card做处理。</p>
+<p>这2部分其实就是预处理阶段帮助重新标记减轻压力的地方</p>
+<ul>
+<li>预清理阶段和可终止的预处理都会扫描Dirty Card做处理</li>
+<li>可终止的预处理，尽量进行一次ygc，让不可达的对象被回收掉，remark阶段遍历新生代的对象成本小一点</li>
+</ul>
+<p>具体这个阶段的详情见参考文档<a href="https://www.jianshu.com/p/2a1b2f17d3e4">图解CMS垃圾回收机制，你值得拥有</a></p>
+<p>参考文档</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/12544c0ad5c1">三色标记法与读写屏障</a></li>
+<li><a href="https://www.jianshu.com/p/2a1b2f17d3e4">图解CMS垃圾回收机制，你值得拥有</a></li>
+<li><a href="https://www.zhihu.com/question/53613423/answer/135743258">java的gc为什么要分代？</a></li>
+</ul>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="//localhost:1313/tags/gc/">GC</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2024 <a href="//localhost:1313/">PaperMod</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

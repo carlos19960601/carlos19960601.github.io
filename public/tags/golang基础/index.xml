@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Golang基础 on PaperMod</title>
+    <link>//localhost:1313/tags/golang%E5%9F%BA%E7%A1%80/</link>
+    <description>Recent content in Golang基础 on PaperMod</description>
+    <generator>Hugo -- 0.127.0</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 27 Jul 2021 23:45:51 +0800</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/golang%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于Golang GC问题的思考</title>
+      <link>//localhost:1313/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</link>
+      <pubDate>Tue, 27 Jul 2021 23:45:51 +0800</pubDate>
+      <guid>//localhost:1313/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</guid>
+      <description>&lt;p&gt;由于GC复杂，我也没有仔细研究过GC的源码，所以只能站在巨人的肩上学习，如果想了解GC的具体实现请移步文末的参考资料。本文只是记录我在阅读完大佬文章中自己的一些问题与思考，可能有一些不对的地方。欢迎大家一起讨论。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
