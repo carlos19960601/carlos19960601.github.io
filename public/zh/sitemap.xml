@@ -4,9 +4,29 @@
   <url>
     <loc>//localhost:1313/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="homeinfoparams"
+                href="//localhost:1313/homeinfoparams/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="//localhost:1313/"
+                />
   </url><url>
     <loc>//localhost:1313/categories/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="homeinfoparams"
+                href="//localhost:1313/homeinfoparams/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="//localhost:1313/categories/"
+                />
   </url><url>
     <loc>//localhost:1313/tags/mysql/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
@@ -22,6 +42,16 @@
   </url><url>
     <loc>//localhost:1313/tags/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="homeinfoparams"
+                href="//localhost:1313/homeinfoparams/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="//localhost:1313/tags/"
+                />
   </url><url>
     <loc>//localhost:1313/tags/%E7%B4%A2%E5%BC%95/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>

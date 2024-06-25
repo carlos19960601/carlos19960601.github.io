@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="zh" dir="auto">
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>关于Golang GC问题的思考 | PaperMod</title>
+<title>关于Golang GC问题的思考 | Carlos的废话集</title>
 <meta name="keywords" content="Golang基础">
 <meta name="description" content="由于GC复杂，我也没有仔细研究过GC的源码，所以只能站在巨人的肩上学习，如果想了解GC的具体实现请移步文末的参考资料。本文只是记录我在阅读完大佬文章中自己的一些问题与思考，可能有一些不对的地方。欢迎大家一起讨论。">
 <meta name="author" content="">
@@ -18,7 +18,7 @@
 <link rel="mask-icon" href="//localhost:1313/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="//localhost:1313/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">
+<link rel="alternate" hreflang="zh" href="//localhost:1313/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/">
 <noscript>
     <style>
         #theme-toggle,
@@ -73,7 +73,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="PaperMod (Alt + H)">PaperMod</a>
+            <a href="//localhost:1313/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -98,6 +98,11 @@
             </div>
         </div>
         <ul id="menu">
+            <li>
+                <a href="//localhost:1313/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -109,7 +114,7 @@
     <h1 class="post-title entry-hint-parent">
       关于Golang GC问题的思考
     </h1>
-    <div class="post-meta"><span title='2021-07-27 23:45:51 +0800 CST'>July 27, 2021</span>
+    <div class="post-meta"><span title='2021-07-27 23:45:51 +0800 CST'>七月 27, 2021</span>
 
 </div>
   </header> 
@@ -135,7 +140,7 @@
 <p>如果是扫描中的栈，Groutine是暂停的，也就是栈上的对象不会发生变化，就不再讨论</p>
 <p>如果是还没有扫描的栈，因为栈在最开始的时候都被标记成灰色，不管栈上的对象引用怎么变化，最后都会扫描栈，所以也不会有啥问题</p>
 <p>如果是扫描过的栈，如果发生栈上的对象引用的变化，由于已经扫描过了，不会再扫描，所以就会有问题。但事实上却没有问题，为什么？</p>
-<p>在参考资料<a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&amp;mid=2247486752&amp;idx=1&amp;sn=2eafb908903e408b85bb9d8a10deb100&amp;chksm=cf3e1de5f84994f3388a0526f9a8b508c28acaee6d887eadd29de77cfee24bb01404a007d57c&amp;scene=178&amp;cur_album_id=1749948750287978500#rd">golang 混合写屏障原理深入剖析，这篇文章给你梳理的明明白白！！！</a>中说明这个问题的原因</p>
+<p>在参考资料<a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&mid=2247486752&idx=1&sn=2eafb908903e408b85bb9d8a10deb100&chksm=cf3e1de5f84994f3388a0526f9a8b508c28acaee6d887eadd29de77cfee24bb01404a007d57c&scene=178&cur_album_id=1749948750287978500#rd">golang 混合写屏障原理深入剖析，这篇文章给你梳理的明明白白！！！</a>中说明这个问题的原因</p>
 <p><img loading="lazy" src="/%e5%85%b3%e4%ba%8eGolangGC%e9%97%ae%e9%a2%98%e7%9a%84%e6%80%9d%e8%80%83/Untitled%202.png" alt=""  />
 </p>
 <p>问题在图片中描述得比较清楚了，栈上的A想要指向堆中的C，有多种方式</p>
@@ -245,10 +250,10 @@
 <p><a href="https://www.luozhiyun.com/archives/475">Go语言GC实现原理及源码分析 - luozhiyun`s Blog</a></p>
 <p><a href="https://go.googlesource.com/proposal/+/master/design/17503-eliminate-rescan.md">Proposal: Eliminate STW stack re-scanning</a></p>
 <p><a href="https://mp.weixin.qq.com/s/GYYLLlVWMoI-ls8IgrzndA">golang 垃圾回收 （一）概述篇</a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&amp;mid=2247486744&amp;idx=1&amp;sn=fdd53010c7751029943b8eaeaefeb8da&amp;chksm=cf3e1dddf84994cba288591b179dd0ca231dcb48756046b8e39b307c26f4a3ead8ea87f3f197&amp;scene=178&amp;cur_album_id=1749948750287978500#rd">golang 垃圾回收（二）屏障技术</a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&amp;mid=2247486746&amp;idx=1&amp;sn=3b08ffd0e0bc01c112623c42e784b940&amp;chksm=cf3e1ddff84994c9f14222547a6b7080a9e35a1efa9bcb90df2363f9c2426072b624cfe84ea7&amp;scene=178&amp;cur_album_id=1749948750287978500#rd">golang 垃圾回收（三）插入写屏障</a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&amp;mid=2247486749&amp;idx=1&amp;sn=dd11d207c5c585c969b9556c17d4df15&amp;chksm=cf3e1dd8f84994ce09e610d8c1d1e97861fda59c01a26cb9abca3206e5425d0b30e9b3bb0ce8&amp;scene=178&amp;cur_album_id=1749948750287978500#rd">golang 垃圾回收 - 删除写屏障</a></p>
-<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&amp;mid=2247486752&amp;idx=1&amp;sn=2eafb908903e408b85bb9d8a10deb100&amp;chksm=cf3e1de5f84994f3388a0526f9a8b508c28acaee6d887eadd29de77cfee24bb01404a007d57c&amp;scene=178&amp;cur_album_id=1749948750287978500#rd">golang 混合写屏障原理深入剖析，这篇文章给你梳理的明明白白！！！</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&mid=2247486744&idx=1&sn=fdd53010c7751029943b8eaeaefeb8da&chksm=cf3e1dddf84994cba288591b179dd0ca231dcb48756046b8e39b307c26f4a3ead8ea87f3f197&scene=178&cur_album_id=1749948750287978500#rd">golang 垃圾回收（二）屏障技术</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&mid=2247486746&idx=1&sn=3b08ffd0e0bc01c112623c42e784b940&chksm=cf3e1ddff84994c9f14222547a6b7080a9e35a1efa9bcb90df2363f9c2426072b624cfe84ea7&scene=178&cur_album_id=1749948750287978500#rd">golang 垃圾回收（三）插入写屏障</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&mid=2247486749&idx=1&sn=dd11d207c5c585c969b9556c17d4df15&chksm=cf3e1dd8f84994ce09e610d8c1d1e97861fda59c01a26cb9abca3206e5425d0b30e9b3bb0ce8&scene=178&cur_album_id=1749948750287978500#rd">golang 垃圾回收 - 删除写屏障</a></p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTU3OTgxOA==&mid=2247486752&idx=1&sn=2eafb908903e408b85bb9d8a10deb100&chksm=cf3e1de5f84994f3388a0526f9a8b508c28acaee6d887eadd29de77cfee24bb01404a007d57c&scene=178&cur_album_id=1749948750287978500#rd">golang 混合写屏障原理深入剖析，这篇文章给你梳理的明明白白！！！</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/74853110">Golang垃圾回收 屏障技术</a></p>
 
   </div>
@@ -262,7 +267,7 @@
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="//localhost:1313/">PaperMod</a></span> · 
+        <span>&copy; 2024 <a href="//localhost:1313/">Carlos的废话集</a></span> · 
 
     <span>
         Powered by

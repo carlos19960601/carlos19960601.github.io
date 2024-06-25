@@ -1,5 +1,21 @@
 # If your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
-title: PaperMod
+title: Carlos的废话集
 paginate: 10
 theme: [PaperMod]
+defaultContentLanguage: zh
+mainsections: ["posts"]
+
+languages:
+  zh:
+    languageName: "Chinese"
+    menu:
+      main:
+        - name: 标签
+          url: tags/
+          weight: 5
+params:
+  homeInfoParams:
+    Title: "Carlos的废话集"
+    Content: >
+      👋 欢迎来到Carlos的废话集!

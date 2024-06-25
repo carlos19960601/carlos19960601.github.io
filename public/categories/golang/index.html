@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
+<html lang="zh" dir="auto">
 
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="noindex, nofollow">
-<title>Golang | PaperMod</title>
+<title>Golang | Carlos的废话集</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -19,7 +19,7 @@
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
 <link rel="alternate" type="application/rss+xml" href="//localhost:1313/categories/golang/index.xml">
-<link rel="alternate" hreflang="en" href="//localhost:1313/categories/golang/">
+<link rel="alternate" hreflang="zh" href="//localhost:1313/categories/golang/">
 <noscript>
     <style>
         #theme-toggle,
@@ -74,7 +74,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="//localhost:1313/" accesskey="h" title="PaperMod (Alt + H)">PaperMod</a>
+            <a href="//localhost:1313/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -99,6 +99,11 @@
             </div>
         </div>
         <ul id="menu">
+            <li>
+                <a href="//localhost:1313/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -118,7 +123,7 @@
     <p>由于GC复杂，我也没有仔细研究过GC的源码，所以只能站在巨人的肩上学习，如果想了解GC的具体实现请移步文末的参考资料。本文只是记录我在阅读完大佬文章中自己的一些问题与思考，可能有一些不对的地方。欢迎大家一起讨论。
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2021-07-27 23:45:51 +0800 CST'>July 27, 2021</span></footer>
+  <footer class="entry-footer"><span title='2021-07-27 23:45:51 +0800 CST'>七月 27, 2021</span></footer>
   <a class="entry-link" aria-label="post link to 关于Golang GC问题的思考" href="//localhost:1313/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/"></a>
 </article>
 
@@ -132,13 +137,13 @@
 Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2021-04-22 22:50:29 +0800 CST'>April 22, 2021</span></footer>
+  <footer class="entry-footer"><span title='2021-04-22 22:50:29 +0800 CST'>四月 22, 2021</span></footer>
   <a class="entry-link" aria-label="post link to Timer源码阅读" href="//localhost:1313/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="//localhost:1313/">PaperMod</a></span> · 
+        <span>&copy; 2024 <a href="//localhost:1313/">Carlos的废话集</a></span> · 
 
     <span>
         Powered by
