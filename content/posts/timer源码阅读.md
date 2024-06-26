@@ -3,8 +3,6 @@ title: "Timer源码阅读"
 date: 2021-04-22T22:50:29+08:00
 draft: false
 original: true
-categories: 
-  - Golang
 tags: 
   - Golang
 ---

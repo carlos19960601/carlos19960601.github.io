@@ -2,10 +2,8 @@
 title: "再回首CMS垃圾回收"
 date: 2020-11-27T21:50:29+08:00
 draft: false
-categories: 
-  - "Java"
 tags: 
-  - "GC"
+  - "Java"
 ---
 
 

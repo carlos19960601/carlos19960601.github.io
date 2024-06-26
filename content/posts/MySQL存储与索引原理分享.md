@@ -3,11 +3,8 @@ title: "MySQL存储与索引原理分享"
 date: 2021-07-30T00:45:17+08:00
 draft: false 
 original: true
-categories: 
-  - MySQL
 tags: 
   - MySQL
-  - 索引
 ---
 
 很早之前做的一次分享，下面是PPT内容

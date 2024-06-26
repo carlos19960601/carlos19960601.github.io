@@ -3,19 +3,49 @@
 title: Carlos的废话集
 paginate: 10
 theme: [PaperMod]
-defaultContentLanguage: zh
 mainsections: ["posts"]
+defaultContentLanguage: zh
+baseURL: "https://carlos19960601.github.io/"
+enableEmoji: true
+
+
+minify:
+  disableXML: true
+
 
 languages:
   zh:
     languageName: "Chinese"
     menu:
       main:
-        - name: 标签
-          url: tags/
+        - name: 归档
+          url: /archives
           weight: 5
+        - name: 搜索
+          url: /search
+        - name: 标签
+          url: /tags
+          weight: 5
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
 params:
+  ShowShareButtons: true
+  ShowReadingTime: true
+  displayFullLangName: true
+  ShowPageNums: true
+  ShowToc: true
+  ShowCodeCopyButtons: true
+  ShowPostNavLinks: true
+  DateFormat: "2006-01-02"
   homeInfoParams:
     Title: "Carlos的废话集"
     Content: >
       👋 欢迎来到Carlos的废话集!
+  socialIcons:
+    - name: github
+      url: "https://github.com/carlos19960601/"

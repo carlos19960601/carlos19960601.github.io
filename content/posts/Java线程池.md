@@ -3,10 +3,8 @@ title: "Java线程池"
 date: 2020-12-16T12:55:05+08:00
 draft: false
 original: true
-categories: 
-  - Java
 tags: 
-  - 线程池
+  - Java
 ---
 
 #### 线程池是什么？

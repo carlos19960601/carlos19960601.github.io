@@ -3,8 +3,6 @@ title: "Timer源码阅读分享"
 date: 2021-07-10T01:09:15+08:00
 draft: false
 original: true
-categories: 
-  - 技术分享
 tags: 
   - Golang
 ---

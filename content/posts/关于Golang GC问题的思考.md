@@ -3,10 +3,8 @@ title: "关于Golang GC问题的思考"
 date: 2021-07-27T23:45:51+08:00
 draft: false
 original: true
-categories: 
-  - Golang
 tags: 
-  - Golang基础
+  - Golang
 ---
 
 由于GC复杂，我也没有仔细研究过GC的源码，所以只能站在巨人的肩上学习，如果想了解GC的具体实现请移步文末的参考资料。本文只是记录我在阅读完大佬文章中自己的一些问题与思考，可能有一些不对的地方。欢迎大家一起讨论。
