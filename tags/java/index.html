@@ -5,21 +5,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>线程池 | Carlos的废话集</title>
+<title>Java | Carlos的废话集</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+<link rel="canonical" href="https://carlos19960601.github.io/tags/java/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="mask-icon" href="/safari-pinned-tab.svg">
+<link rel="icon" href="https://carlos19960601.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://carlos19960601.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://carlos19960601.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://carlos19960601.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://carlos19960601.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/index.xml">
-<link rel="alternate" hreflang="zh" href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+<link rel="alternate" type="application/rss+xml" href="https://carlos19960601.github.io/tags/java/index.xml">
+<link rel="alternate" hreflang="zh" href="https://carlos19960601.github.io/tags/java/">
 <noscript>
     <style>
         #theme-toggle,
@@ -59,13 +59,13 @@
 </noscript>
   
 
-<meta property="og:title" content="线程池" />
+<meta property="og:title" content="Java" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" />
+<meta property="og:url" content="https://carlos19960601.github.io/tags/java/" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="线程池"/>
+<meta name="twitter:title" content="Java"/>
 <meta name="twitter:description" content=""/>
 
 </head>
@@ -85,7 +85,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
+            <a href="https://carlos19960601.github.io/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -111,8 +111,18 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="/tags/" title="标签">
+                <a href="https://carlos19960601.github.io/archives" title="归档">
+                    <span>归档</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://carlos19960601.github.io/tags" title="标签">
                     <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://carlos19960601.github.io/search" title="搜索">
+                    <span>搜索</span>
                 </a>
             </li>
         </ul>
@@ -121,7 +131,7 @@
 <main class="main"> 
 <header class="page-header">
   <h1>
-    线程池
+    Java
   </h1>
 </header>
 
@@ -134,13 +144,28 @@
     <p>线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。
 ...</p>
   </div>
-  <footer class="entry-footer"><span title='2020-12-16 12:55:05 +0800 +0800'>十二月 16, 2020</span></footer>
-  <a class="entry-link" aria-label="post link to Java线程池" href="/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+  <footer class="entry-footer"><span title='2020-12-16 12:55:05 +0800 +0800'>2020-12-16</span>&nbsp;·&nbsp;13 分钟</footer>
+  <a class="entry-link" aria-label="post link to Java线程池" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">再回首CMS垃圾回收
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>前言 之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。
+自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。
+首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-11-27 21:50:29 +0800 +0800'>2020-11-27</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to 再回首CMS垃圾回收" href="https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"></a>
 </article>
     </main>
     
 <footer class="footer">
-        <span>&copy; 2024 <a href="/">Carlos的废话集</a></span> · 
+        <span>&copy; 2024 <a href="https://carlos19960601.github.io/">Carlos的废话集</a></span> · 
 
     <span>
         Powered by

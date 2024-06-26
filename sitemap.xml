@@ -2,64 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/</loc>
+    <loc>https://carlos19960601.github.io/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
   </url><url>
-    <loc>/categories/</loc>
+    <loc>https://carlos19960601.github.io/tags/mysql/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
   </url><url>
-    <loc>/tags/mysql/</loc>
+    <loc>https://carlos19960601.github.io/posts/mysql%E5%AD%98%E5%82%A8%E4%B8%8E%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
   </url><url>
-    <loc>/categories/mysql/</loc>
+    <loc>https://carlos19960601.github.io/posts/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
   </url><url>
-    <loc>/posts/mysql%E5%AD%98%E5%82%A8%E4%B8%8E%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB/</loc>
+    <loc>https://carlos19960601.github.io/tags/</loc>
     <lastmod>2021-07-30T00:45:17+08:00</lastmod>
   </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2021-07-30T00:45:17+08:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2021-07-30T00:45:17+08:00</lastmod>
-  </url><url>
-    <loc>/tags/%E7%B4%A2%E5%BC%95/</loc>
-    <lastmod>2021-07-30T00:45:17+08:00</lastmod>
-  </url><url>
-    <loc>/categories/golang/</loc>
+    <loc>https://carlos19960601.github.io/tags/golang/</loc>
     <lastmod>2021-07-27T23:45:51+08:00</lastmod>
   </url><url>
-    <loc>/tags/golang%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://carlos19960601.github.io/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</loc>
     <lastmod>2021-07-27T23:45:51+08:00</lastmod>
   </url><url>
-    <loc>/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2021-07-27T23:45:51+08:00</lastmod>
-  </url><url>
-    <loc>/tags/golang/</loc>
+    <loc>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</loc>
     <lastmod>2021-07-10T01:09:15+08:00</lastmod>
   </url><url>
-    <loc>/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2021-07-10T01:09:15+08:00</lastmod>
-  </url><url>
-    <loc>/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/</loc>
-    <lastmod>2021-07-10T01:09:15+08:00</lastmod>
-  </url><url>
-    <loc>/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</loc>
+    <loc>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</loc>
     <lastmod>2021-04-22T22:50:29+08:00</lastmod>
   </url><url>
-    <loc>/categories/java/</loc>
+    <loc>https://carlos19960601.github.io/tags/java/</loc>
     <lastmod>2020-12-16T12:55:05+08:00</lastmod>
   </url><url>
-    <loc>/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <loc>https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
     <lastmod>2020-12-16T12:55:05+08:00</lastmod>
   </url><url>
-    <loc>/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
-    <lastmod>2020-12-16T12:55:05+08:00</lastmod>
-  </url><url>
-    <loc>/tags/gc/</loc>
+    <loc>https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</loc>
     <lastmod>2020-11-27T21:50:29+08:00</lastmod>
   </url><url>
-    <loc>/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</loc>
-    <lastmod>2020-11-27T21:50:29+08:00</lastmod>
+    <loc>https://carlos19960601.github.io/categories/</loc>
+  </url><url>
+    <loc>https://carlos19960601.github.io/archives/</loc>
+  </url><url>
+    <loc>https://carlos19960601.github.io/search/</loc>
   </url>
 </urlset>
