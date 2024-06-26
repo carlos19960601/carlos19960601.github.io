@@ -1,32 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Java on Carlos的废话集</title>
-    <link>//localhost:1313/categories/java/</link>
+    <link>https://carlos19960601.github.io/categories/java/</link>
     <description>Recent content in Java on Carlos的废话集</description>
-    <generator>Hugo -- 0.127.0</generator>
+    <generator>Hugo</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 16 Dec 2020 12:55:05 +0800</lastBuildDate>
-    <atom:link href="//localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://carlos19960601.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java线程池</title>
-      <link>//localhost:1313/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <link>https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
       <pubDate>Wed, 16 Dec 2020 12:55:05 +0800</pubDate>
-      <guid>//localhost:1313/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
-      <description>&lt;h4 id=&#34;线程池是什么&#34;&gt;线程池是什么？&lt;/h4&gt;
-&lt;p&gt;线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。&lt;/p&gt;</description>
+      <guid>https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <description>&lt;h4 id=&#34;线程池是什么&#34;&gt;线程池是什么？&lt;/h4&gt;&#xA;&lt;p&gt;线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。&lt;/p&gt;</description>
     </item>
     <item>
       <title>再回首CMS垃圾回收</title>
-      <link>//localhost:1313/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</link>
+      <link>https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</link>
       <pubDate>Fri, 27 Nov 2020 21:50:29 +0800</pubDate>
-      <guid>//localhost:1313/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</guid>
-      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;
-&lt;p&gt;之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。&lt;/p&gt;
-&lt;p&gt;自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。&lt;/p&gt;
-&lt;p&gt;首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;//localhost:1313/%e5%86%8d%e5%9b%9e%e9%a6%96CMS%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6/CMS%e6%b5%81%e7%a8%8b.png&#34; alt=&#34;CMS流程&#34;  /&gt;
-&lt;/p&gt;</description>
+      <guid>https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</guid>
+      <description>&lt;h3 id=&#34;前言&#34;&gt;前言&lt;/h3&gt;&#xA;&lt;p&gt;之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。&lt;/p&gt;&#xA;&lt;p&gt;自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。&lt;/p&gt;&#xA;&lt;p&gt;首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)&lt;/p&gt;&#xA;&lt;p&gt;&lt;img alt=&#34;CMS流程&#34; src=&#34;https://carlos19960601.github.io/%E5%86%8D%E5%9B%9E%E9%A6%96CMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/CMS%E6%B5%81%E7%A8%8B.png&#34;&gt;&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
