@@ -6,8 +6,19 @@
     <description>Recent content in Posts on Carlos的废话集</description>
     <generator>Hugo -- 0.128.0</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 30 Jul 2021 00:45:17 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Jun 2024 17:39:28 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>atomic.Value存储interface的问题</title>
+      <link>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 26 Jun 2024 17:39:28 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>先看这段代码
+import ( &amp;#34;io&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;sync/atomic&amp;#34; ) func main() { var v atomic.Value var err error err = &amp;amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } 运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
+原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
+怎么解决？包装一层就能运行了。
+type tValue[T any] struct { value T } func main() { var v atomic.Value var err error err = &amp;amp;http.ProtocolError{} v.Store(tValue[error]{err}) err = io.EOF v.Store(tValue[error]{err}) } </description>
+    </item>
     <item>
       <title>MySQL存储与索引原理分享</title>
       <link>https://carlos19960601.github.io/posts/mysql%E5%AD%98%E5%82%A8%E4%B8%8E%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB/</link>
