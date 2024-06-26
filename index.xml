@@ -6,8 +6,16 @@
     <description>Recent content on Carlos的废话集</description>
     <generator>Hugo -- 0.128.0</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 26 Jun 2024 17:39:28 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 26 Jun 2024 22:54:31 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>缓存驱逐策略</title>
+      <link>https://carlos19960601.github.io/posts/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/</link>
+      <pubDate>Wed, 26 Jun 2024 22:54:31 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/</guid>
+      <description> Least Recently Used(LRU): 删除最旧的数据。基本假设是最近访问的数据可能很快会再次被需要。 Most Recently Used(MRU): 与LRU相反，删除最新的数据。常用于流处理或批处理平台，这些平台一旦使用数据就不太可能再次需要。 Least Frequently Used(LFU): 删除使用最少的数据。虽然它是一种比 LRU 更准确的方法，但它需要一种机制来记录数据访问的频率，这增加了复杂性。它通常与 LRU 等策略配合使用，以降低缓存过时数据的风险。 Time-To-Live (TTL)：数据在预设的时间段有效。常用在会话数据中。 Two-tiered caching两层缓存提供了一种更复杂的方法。可以在速度和成本之间取得平衡。在此设计中，数据被分为快速、昂贵的层（用于流行数据）和较慢、经济的层（用于较少访问的数据）。 上述五种策略是最流行的缓存方法。还有其他一些策略：
+先进先出（FIFO）：最旧的数据首先被删除。 随机替换（RR）：随机选择要删除的数据。 自适应替换缓存 (ARC)：使用自调整算法跟踪新近度和频率来确定首先删除哪些数据。 </description>
+    </item>
     <item>
       <title>atomic.Value存储interface的问题</title>
       <link>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</link>
