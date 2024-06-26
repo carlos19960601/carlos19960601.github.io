@@ -26,6 +26,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GH_PAGE_ACTION_TOKEN }}
-          EXTERNAL_REPOSITORY: carlos19960601/carlos19960601.github.io
           publish_dir: ./public
           commit_message: ${{ github.event.head_commit.message }}
