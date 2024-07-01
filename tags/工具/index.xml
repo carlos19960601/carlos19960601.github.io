@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>工具 on Carlos的废话集</title>
+    <link>https://carlos19960601.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+    <description>Recent content in 工具 on Carlos的废话集</description>
+    <generator>Hugo -- 0.128.0</generator>
+    <language>zh</language>
+    <lastBuildDate>Mon, 01 Jul 2024 16:52:23 +0800</lastBuildDate>
+    <atom:link href="https://carlos19960601.github.io/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工具推荐【持续更新】</title>
+      <link>https://carlos19960601.github.io/posts/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</link>
+      <pubDate>Mon, 01 Jul 2024 16:52:23 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</guid>
+      <description> happyhues: 网站颜色搭配神器 </description>
+    </item>
+  </channel>
+</rss>

@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Carlos的废话集</description>
     <generator>Hugo -- 0.128.0</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 26 Jun 2024 17:39:28 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jul 2024 16:53:15 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开源项目</title>
+      <link>https://carlos19960601.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://carlos19960601.github.io/tags/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>工具</title>
+      <link>https://carlos19960601.github.io/tags/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://carlos19960601.github.io/tags/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>知识点</title>
+      <link>https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Golang</title>
       <link>https://carlos19960601.github.io/tags/golang/</link>
