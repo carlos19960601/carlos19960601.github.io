@@ -3,7 +3,7 @@ title: "再回首CMS垃圾回收"
 date: 2020-11-27T21:50:29+08:00
 draft: false
 tags: 
-  - "Java"
+  - Java
 ---
 
 
@@ -17,7 +17,6 @@ tags:
 
 ![CMS流程](/再回首CMS垃圾回收/CMS流程.png)
 
-<!--more-->
 
 ### 如何进行标记？
 
