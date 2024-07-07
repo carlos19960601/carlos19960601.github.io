@@ -2,7 +2,7 @@
 <html lang="zh" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.128.0"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.128.2"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -144,6 +144,33 @@
     </nav>
 </header>
 <main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Timer源码阅读
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
+Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2021-04-22 22:50:29 +0800 +0800'>2021-04-22</span>&nbsp;·&nbsp;18 分钟</footer>
+  <a class="entry-link" aria-label="post link to Timer源码阅读" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">Java线程池
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2020-12-16 12:55:05 +0800 +0800'>2020-12-16</span>&nbsp;·&nbsp;13 分钟</footer>
+  <a class="entry-link" aria-label="post link to Java线程池" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
+</article>
 
 <article class="post-entry"> 
   <header class="entry-header">

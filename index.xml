@@ -4,10 +4,41 @@
     <title>Carlos的废话集</title>
     <link>https://carlos19960601.github.io/</link>
     <description>Recent content on Carlos的废话集</description>
-    <generator>Hugo -- 0.128.0</generator>
+    <generator>Hugo -- 0.128.2</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 01 Jul 2024 17:11:40 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 07 Jul 2024 09:01:39 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Socks5协议</title>
+      <link>https://carlos19960601.github.io/posts/socks5%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Sun, 07 Jul 2024 09:01:39 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/socks5%E5%8D%8F%E8%AE%AE/</guid>
+      <description>具体协议过程参考理解socks5协议的工作过程和协议细节。这篇文章主要是通过代码去理解socks5协议。
+实验条件介绍 命令行设置proxy
+export https_proxy=socks5://127.0.0.1:7891 http_proxy=socks5://127.0.0.1:7891 之后通过curl发起http请求。
+curl www.baidu.com 这时候，curl这个命令就会走socks协议，并封装socks协议数据发送给socks5://127.0.0.1:7891。
+协商阶段 根据参考资料，握手阶段-协商阶段发送的数据格式如下：
++----+----------+----------+ |VER | NMETHODS | METHODS | +----+----------+----------+ | 1 | 1 | 1 to 255 | +----+----------+----------+ #上方的数字表示字节数，下面的表格同理，不再赘述 VER: 协议版本，socks5为0x05
+NMETHODS: 支持认证的方法数量
+METHODS: 对应NMETHODS，NMETHODS的值为多少，METHODS就有多少个字节。RFC预定义了一些值的含义，内容如下:
+X’00’ NO AUTHENTICATION REQUIRED X’01’ GSSAPI X’02’ USERNAME/PASSWORD X’03’ to X’7F’ IANA ASSIGNED X’80’ to X’FE’ RESERVED FOR PRIVATE METHODS X’FF’ NO ACCEPTABLE METHODS 那么socks服务端接受到请求时，需要解析内容，选中一个METHOD返回给客户端，格式如下:
++----+--------+ |VER | METHOD | +----+--------+ | 1 | 1 | +----+--------+ func ServerHandshake(rw net.</description>
+    </item>
+    <item>
+      <title>新机必备软件</title>
+      <link>https://carlos19960601.github.io/posts/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</link>
+      <pubDate>Sat, 06 Jul 2024 08:42:02 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/</guid>
+      <description>开发工具 科学上网
+Clash.Verge
+Apple M芯片：Clash.Verge_1.7.2_aarch64.dmg
+Intel芯片：Clash.Verge_1.7.2_x64.dmg
+ClashX
+ClashX.dmg Homebrew
+/bin/bash -c &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&amp;#34; brew install git go hugo git-lfs rust bruno sequel-ace brew install --cask warp orbstack flutter losslesscut vscode
+Android Studio
+Dash 设计 Billfish AceMovi Video Editor Amadine Sip Pixelmator Pro 其他 Telegram DaisyDisk Permute 3 IINA brew install --cask iina Google Chrome </description>
+    </item>
     <item>
       <title>怎么写Makefile</title>
       <link>https://carlos19960601.github.io/posts/%E6%80%8E%E4%B9%88%E5%86%99makefile/</link>
