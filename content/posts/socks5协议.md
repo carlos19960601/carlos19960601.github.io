@@ -271,6 +271,7 @@ switch command {
 		if localAddr == nil {
 			err = ErrAddressNotSupported
 		} else {
+			// 返回响应
 			_, err = rw.Write(bytes.Join([][]byte{{5, 0, 0}, localAddr}, []byte{}))
 		}
   ...
@@ -314,3 +315,4 @@ socks5服务器收到请求后，解析内容。如果是UDP请求，服务器�
 
 * [理解socks5协议的工作过程和协议细节](https://wiyi.org/socks5-protocol-in-deep.html#25-%E5%8D%8F%E8%AE%AE%E7%BB%86%E8%8A%82)
 * [SOCKS Protocol Version 5](https://datatracker.ietf.org/doc/html/rfc1928)
+* [socks4.protocol](https://www.openssh.com/txt/socks4.protocol)
