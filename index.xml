@@ -9,11 +9,11 @@
     <lastBuildDate>Sun, 07 Jul 2024 09:01:39 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Socks5协议</title>
-      <link>https://carlos19960601.github.io/posts/socks5%E5%8D%8F%E8%AE%AE/</link>
+      <title>各种你懂的协议</title>
+      <link>https://carlos19960601.github.io/posts/%E5%90%84%E7%A7%8D%E4%BD%A0%E6%87%82%E7%9A%84%E5%8D%8F%E8%AE%AE/</link>
       <pubDate>Sun, 07 Jul 2024 09:01:39 +0800</pubDate>
-      <guid>https://carlos19960601.github.io/posts/socks5%E5%8D%8F%E8%AE%AE/</guid>
-      <description>具体协议过程参考理解socks5协议的工作过程和协议细节。这篇文章主要是通过代码去理解socks5协议。
+      <guid>https://carlos19960601.github.io/posts/%E5%90%84%E7%A7%8D%E4%BD%A0%E6%87%82%E7%9A%84%E5%8D%8F%E8%AE%AE/</guid>
+      <description>Socks5协议 具体协议过程参考理解socks5协议的工作过程和协议细节。这篇文章主要是通过代码去理解socks5协议。
 实验条件介绍 命令行设置proxy
 export https_proxy=socks5://127.0.0.1:7891 http_proxy=socks5://127.0.0.1:7891 之后通过curl发起http请求。
 curl www.baidu.com 这时候，curl这个命令就会走socks协议，并封装socks协议数据发送给socks5://127.0.0.1:7891。
