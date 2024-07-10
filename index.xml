@@ -6,8 +6,22 @@
     <description>Recent content on Carlos的废话集</description>
     <generator>Hugo -- 0.128.2</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 07 Jul 2024 09:01:39 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 22:53:36 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>线性代数</title>
+      <link>https://carlos19960601.github.io/posts/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+      <pubDate>Mon, 08 Jul 2024 22:53:36 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</guid>
+      <description>最近在看 3Blue1Brown的Essence of linear algebra。预习一下大学知识。
+线性变换 线性变换矩阵可以看作是变换之后坐标系的 i, j单位向量
+矩阵乘法 矩阵乘法可以是看作是从右到左进行多次变化。
+同样的3维就是对3维空间进行变换。
+行列式 行列式表示将面积缩放的大小
+点积 在大学课堂上，老师说点积是向量长度和另外一个向量上在该向量方向上投影的积。但是一直不明白为什么。
+其实可以把其中一个向量看成一种变换。从二维到一维的转换。
+参考资料 Essence of linear algebra </description>
+    </item>
     <item>
       <title>各种你懂的协议</title>
       <link>https://carlos19960601.github.io/posts/%E5%90%84%E7%A7%8D%E4%BD%A0%E6%87%82%E7%9A%84%E5%8D%8F%E8%AE%AE/</link>
