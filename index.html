@@ -169,6 +169,20 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Docker使用问题记录
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>安装Docker 参考Install using the apt repository
+# Add Docker&#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a&#43;r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \ &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release &amp;&amp; echo &#34;$VERSION_CODENAME&#34;) stable&#34; | \ sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null sudo apt-get update 其中在这步中，即使设置了Proxy
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127....</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-13 07:02:21 +0800 +0800'>2024-07-13</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to Docker使用问题记录" href="https://carlos19960601.github.io/posts/docker%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">线性代数
     </h2>
   </header>
@@ -307,19 +321,6 @@ type tValue[T any] struct { value T } func main() { var v atomic.Value var err e
   </div>
   <footer class="entry-footer"><span title='2021-07-30 00:45:17 +0800 +0800'>2021-07-30</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to MySQL存储与索引原理分享" href="https://carlos19960601.github.io/posts/mysql%E5%AD%98%E5%82%A8%E4%B8%8E%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%88%86%E4%BA%AB/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">关于Golang GC问题的思考
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>由于GC复杂，我也没有仔细研究过GC的源码，所以只能站在巨人的肩上学习，如果想了解GC的具体实现请移步文末的参考资料。本文只是记录我在阅读完大佬文章中自己的一些问题与思考，可能有一些不对的地方。欢迎大家一起讨论。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-07-27 23:45:51 +0800 +0800'>2021-07-27</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to 关于Golang GC问题的思考" href="https://carlos19960601.github.io/posts/%E5%85%B3%E4%BA%8Egolang-gc%E9%97%AE%E9%A2%98%E7%9A%84%E6%80%9D%E8%80%83/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">

@@ -6,8 +6,17 @@
     <description>Recent content in Posts on Carlos的废话集</description>
     <generator>Hugo -- 0.128.2</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 08 Jul 2024 22:53:36 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2024 07:02:21 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker使用问题记录</title>
+      <link>https://carlos19960601.github.io/posts/docker%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sat, 13 Jul 2024 07:02:21 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/docker%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/</guid>
+      <description>安装Docker 参考Install using the apt repository
+# Add Docker&amp;#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a+r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \ &amp;#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release &amp;amp;&amp;amp; echo &amp;#34;$VERSION_CODENAME&amp;#34;) stable&amp;#34; | \ sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null sudo apt-get update 其中在这步中，即使设置了Proxy
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.</description>
+    </item>
     <item>
       <title>线性代数</title>
       <link>https://carlos19960601.github.io/posts/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
