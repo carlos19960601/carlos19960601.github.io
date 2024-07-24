@@ -152,6 +152,28 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">pipx使用
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>pipx是什么？ 可以参加pipx的介绍。
+作为一个python小白，看了几遍，搜索了多篇博客了解pipx是什么，仍然不懂是个啥。
+我在这仅说明一下我自己的理解。pipx相当于一个安装工具。python有自己的安装包的工具pip。那么pip和pipx有什么区别呢？
+如果直接pip安装包会安装在python目录下的site-packages下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的site-package。其实python提供了解决方案–虚拟环境。pipx只是基于这个概念，让使用者更好的使用。
+注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等
+简单使用 安装pipx
+brew install pipx pipx ensurepath 安装jupyter
+可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。
+pipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。
+在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
+pipx inject numpy </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-24 16:43:50 +0800 +0800'>2024-07-24</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to pipx使用" href="https://carlos19960601.github.io/posts/pipx%E4%BD%BF%E7%94%A8/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">正则表达式
     </h2>
   </header>
@@ -291,22 +313,6 @@ darwin-amd64: GOARCH=amd64 GOOS=darwin $(GOBUILD) -o $(BINDIR)/$(NAME)-$@ 条件
   </div>
   <footer class="entry-footer"><span title='2024-06-26 22:54:31 +0800 +0800'>2024-06-26</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 缓存驱逐策略" href="https://carlos19960601.github.io/posts/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">atomic.Value存储interface的问题
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>先看这段代码
-import ( &#34;io&#34; &#34;net/http&#34; &#34;sync/atomic&#34; ) func main() { var v atomic.Value var err error err = &amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } 运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
-原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
-怎么解决？包装一层就能运行了。
-type tValue[T any] struct { value T } func main() { var v atomic.Value var err error err = &amp;http.ProtocolError{} v.Store(tValue[error]{err}) err = io.EOF v.Store(tValue[error]{err}) } </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-06-26 17:39:28 +0800 +0800'>2024-06-26</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to atomic.Value存储interface的问题" href="https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
