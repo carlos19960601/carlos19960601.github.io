@@ -4,10 +4,29 @@
     <title>Carlos的废话集</title>
     <link>https://carlos19960601.github.io/</link>
     <description>Recent content on Carlos的废话集</description>
-    <generator>Hugo -- 0.129.0</generator>
+    <generator>Hugo -- 0.133.0</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 24 Jul 2024 16:43:50 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 20 Aug 2024 10:04:54 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>开源项目学习推荐</title>
+      <link>https://carlos19960601.github.io/posts/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90/</link>
+      <pubDate>Tue, 20 Aug 2024 10:04:54 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90/</guid>
+      <description>桌面客户端 tauri tauri前端框架支持Next.js, Vite等，后端使用rust。
+clash-verge-rev: 基于Mihomo内核的翻墙客户端GUI Electron Electron前端推荐 Vite等，后端使用node。
+everyone-can-use-english: 英语学习软件 移动客户端 Flutter pilipala: 第三方bilibili客户端 Web前端 eidos: 类似notion的软件 jsoncrack.com: json可视化展示 c-shopping: 基于Next.js的全栈购物网站 后端 Golang mihomo: 翻墙软件，ClashMeta Rust xh: 类似于curl的命令行请求工具 数据分析与机器学习 handson-ml3: Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow (3rd edition) 100-Days-Of-ML-Code </description>
+    </item>
+    <item>
+      <title>学习rust</title>
+      <link>https://carlos19960601.github.io/posts/%E5%AD%A6%E4%B9%A0rust/</link>
+      <pubDate>Thu, 25 Jul 2024 10:56:02 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E5%AD%A6%E4%B9%A0rust/</guid>
+      <description>生命周期 rust自动推断变量的生命周期
+fn longest(x: &amp;amp;str, y: &amp;amp;str) -&amp;gt; &amp;amp;str { if x.len() &amp;gt; y.len() { x } else { y } } 但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。
+生命周期标注并不会改变任何引用的实际作用域
+参考资料 通过例子学 Rust Rust 程序设计语言 Rust语言圣经( </description>
+    </item>
     <item>
       <title>pipx使用</title>
       <link>https://carlos19960601.github.io/posts/pipx%E4%BD%BF%E7%94%A8/</link>
