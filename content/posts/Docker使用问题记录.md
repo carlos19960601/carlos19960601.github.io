@@ -8,7 +8,7 @@ draft: false
 
 参考[Install using the apt repository](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
-```
+```shell
 # Add Docker's official GPG key:
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -27,7 +27,7 @@ sudo apt-get update
 
 其中在这步中，即使设置了Proxy
 
-```
+```shell
 export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
 ```
 
@@ -35,7 +35,7 @@ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_pr
 
 当然也可以使用
 
-```
+```shell
 sudo curl -x http://127.0.0.1:7890 -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 ```
 
