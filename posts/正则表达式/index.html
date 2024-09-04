@@ -7,10 +7,69 @@
 <meta name="robots" content="index, follow">
 <title>正则表达式 | Carlos的废话集</title>
 <meta name="keywords" content="">
-<meta name="description" content="元字符 正则表达式主要依赖于元字符。
+<meta name="description" content="元字符
+正则表达式主要依赖于元字符。
 元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：
-元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配&gt;=0个重复的在*号之前的字符。 &#43; 匹配&gt;=1个重复的&#43;号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:
-简写 描述 . 除换行符外的所有字符 \w 匹配所有字母数字，等同于 [a-zA-Z0-9_] \W 匹配所有非字母数字，即符号，等同于： [^\w] \d 匹配数字： [0-9] \D 匹配非数字： [^\d] \s 匹配所有空格字符，等同于： [\t\n\f\r\p{Z}] \S 匹配所有非空格字符： [^\s] \f 匹配一个换页符 \n 匹配一个换行符 \r 匹配一个回车符 \t 匹配一个制表符 \v 匹配一个垂直制表符 \p 匹配 CR/LF（等同于 \r\n），用来匹配 DOS 行终止符 零宽度断言（前后预查） 先行断言和后发断言（合称 lookaround）都属于非捕获组（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。">
+
+  
+      
+          元字符
+          描述
+      
+  
+  
+      
+          .
+          句号匹配任意单个字符除了换行符。
+      
+      
+          [ ]
+          字符种类。匹配方括号内的任意字符。
+      
+      
+          [^ ]
+          否定的字符种类。匹配除了方括号里的任意字符
+      
+      
+          *
+          匹配&gt;=0个重复的在*号之前的字符。
+      
+      
+          &#43;
+          匹配&gt;=1个重复的&#43;号前的字符。
+      
+      
+          ?
+          标记?之前的字符为可选.
+      
+      
+          {n,m}
+          匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).
+      
+      
+          (xyz)
+          字符集，匹配与 xyz 完全相等的字符串.
+      
+      
+          |
+          或运算符，匹配符号前或后的字符.
+      
+      
+          \
+          转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ |
+      
+      
+          ^
+          从开始行开始匹配.
+      
+      
+          $
+          从末端开始匹配.
+      
+  
+
+简写字符集
+正则表达式提供一些常用的字符集简写。如下:">
 <meta name="author" content="">
 <link rel="canonical" href="https://carlos19960601.github.io/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
@@ -58,14 +117,70 @@
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:title" content="正则表达式" />
+<meta property="og:description" content="元字符
+正则表达式主要依赖于元字符。
+元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：
+
+  
+      
+          元字符
+          描述
+      
+  
+  
+      
+          .
+          句号匹配任意单个字符除了换行符。
+      
+      
+          [ ]
+          字符种类。匹配方括号内的任意字符。
+      
+      
+          [^ ]
+          否定的字符种类。匹配除了方括号里的任意字符
+      
+      
+          *
+          匹配&gt;=0个重复的在*号之前的字符。
+      
+      
+          &#43;
+          匹配&gt;=1个重复的&#43;号前的字符。
+      
+      
+          ?
+          标记?之前的字符为可选.
+      
+      
+          {n,m}
+          匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).
+      
+      
+          (xyz)
+          字符集，匹配与 xyz 完全相等的字符串.
+      
+      
+          |
+          或运算符，匹配符号前或后的字符.
+      
+      
+          \
+          转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ |
+      
+      
+          ^
+          从开始行开始匹配.
+      
+      
+          $
+          从末端开始匹配.
+      
   
 
-<meta property="og:title" content="正则表达式" />
-<meta property="og:description" content="元字符 正则表达式主要依赖于元字符。
-元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：
-元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配&gt;=0个重复的在*号之前的字符。 &#43; 匹配&gt;=1个重复的&#43;号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:
-简写 描述 . 除换行符外的所有字符 \w 匹配所有字母数字，等同于 [a-zA-Z0-9_] \W 匹配所有非字母数字，即符号，等同于： [^\w] \d 匹配数字： [0-9] \D 匹配非数字： [^\d] \s 匹配所有空格字符，等同于： [\t\n\f\r\p{Z}] \S 匹配所有非空格字符： [^\s] \f 匹配一个换页符 \n 匹配一个换行符 \r 匹配一个回车符 \t 匹配一个制表符 \v 匹配一个垂直制表符 \p 匹配 CR/LF（等同于 \r\n），用来匹配 DOS 行终止符 零宽度断言（前后预查） 先行断言和后发断言（合称 lookaround）都属于非捕获组（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。" />
+简写字符集
+正则表达式提供一些常用的字符集简写。如下:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://carlos19960601.github.io/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-07-18T14:47:42+08:00" />
@@ -73,10 +188,69 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="正则表达式"/>
-<meta name="twitter:description" content="元字符 正则表达式主要依赖于元字符。
+<meta name="twitter:description" content="元字符
+正则表达式主要依赖于元字符。
 元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：
-元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配&gt;=0个重复的在*号之前的字符。 &#43; 匹配&gt;=1个重复的&#43;号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:
-简写 描述 . 除换行符外的所有字符 \w 匹配所有字母数字，等同于 [a-zA-Z0-9_] \W 匹配所有非字母数字，即符号，等同于： [^\w] \d 匹配数字： [0-9] \D 匹配非数字： [^\d] \s 匹配所有空格字符，等同于： [\t\n\f\r\p{Z}] \S 匹配所有非空格字符： [^\s] \f 匹配一个换页符 \n 匹配一个换行符 \r 匹配一个回车符 \t 匹配一个制表符 \v 匹配一个垂直制表符 \p 匹配 CR/LF（等同于 \r\n），用来匹配 DOS 行终止符 零宽度断言（前后预查） 先行断言和后发断言（合称 lookaround）都属于非捕获组（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。"/>
+
+  
+      
+          元字符
+          描述
+      
+  
+  
+      
+          .
+          句号匹配任意单个字符除了换行符。
+      
+      
+          [ ]
+          字符种类。匹配方括号内的任意字符。
+      
+      
+          [^ ]
+          否定的字符种类。匹配除了方括号里的任意字符
+      
+      
+          *
+          匹配&gt;=0个重复的在*号之前的字符。
+      
+      
+          &#43;
+          匹配&gt;=1个重复的&#43;号前的字符。
+      
+      
+          ?
+          标记?之前的字符为可选.
+      
+      
+          {n,m}
+          匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).
+      
+      
+          (xyz)
+          字符集，匹配与 xyz 完全相等的字符串.
+      
+      
+          |
+          或运算符，匹配符号前或后的字符.
+      
+      
+          \
+          转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ |
+      
+      
+          ^
+          从开始行开始匹配.
+      
+      
+          $
+          从末端开始匹配.
+      
+  
+
+简写字符集
+正则表达式提供一些常用的字符集简写。如下:"/>
 
 
 <script type="application/ld+json">
@@ -105,7 +279,7 @@
   "@type": "BlogPosting",
   "headline": "正则表达式",
   "name": "正则表达式",
-  "description": "元字符 正则表达式主要依赖于元字符。\n元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：\n元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配\u0026gt;=0个重复的在*号之前的字符。 + 匹配\u0026gt;=1个重复的+号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n \u0026lt;= num \u0026lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \\ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * + ? ^ $ \\ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:\n简写 描述 . 除换行符外的所有字符 \\w 匹配所有字母数字，等同于 [a-zA-Z0-9_] \\W 匹配所有非字母数字，即符号，等同于： [^\\w] \\d 匹配数字： [0-9] \\D 匹配非数字： [^\\d] \\s 匹配所有空格字符，等同于： [\\t\\n\\f\\r\\p{Z}] \\S 匹配所有非空格字符： [^\\s] \\f 匹配一个换页符 \\n 匹配一个换行符 \\r 匹配一个回车符 \\t 匹配一个制表符 \\v 匹配一个垂直制表符 \\p 匹配 CR/LF（等同于 \\r\\n），用来匹配 DOS 行终止符 零宽度断言（前后预查） 先行断言和后发断言（合称 lookaround）都属于非捕获组（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。",
+  "description": "元字符 正则表达式主要依赖于元字符。\n元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：\n元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配\u0026gt;=0个重复的在*号之前的字符。 + 匹配\u0026gt;=1个重复的+号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n \u0026lt;= num \u0026lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \\ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * + ? ^ $ \\ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:\n",
   "keywords": [
     
   ],
@@ -226,181 +400,181 @@
 <p>正则表达式主要依赖于元字符。</p>
 <p>元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">元字符</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td>句号匹配任意单个字符除了换行符。</td>
-</tr>
-<tr>
-<td style="text-align:center">[ ]</td>
-<td>字符种类。匹配方括号内的任意字符。</td>
-</tr>
-<tr>
-<td style="text-align:center">[^ ]</td>
-<td>否定的字符种类。匹配除了方括号里的任意字符</td>
-</tr>
-<tr>
-<td style="text-align:center">*</td>
-<td>匹配&gt;=0个重复的在*号之前的字符。</td>
-</tr>
-<tr>
-<td style="text-align:center">+</td>
-<td>匹配&gt;=1个重复的+号前的字符。</td>
-</tr>
-<tr>
-<td style="text-align:center">?</td>
-<td>标记?之前的字符为可选.</td>
-</tr>
-<tr>
-<td style="text-align:center">{n,m}</td>
-<td>匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).</td>
-</tr>
-<tr>
-<td style="text-align:center">(xyz)</td>
-<td>字符集，匹配与 xyz 完全相等的字符串.</td>
-</tr>
-<tr>
-<td style="text-align:center">|</td>
-<td>或运算符，匹配符号前或后的字符.</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td>转义字符,用于匹配一些保留的字符 <!-- raw HTML omitted -->[ ] ( ) { } . * + ? ^ $ \ |<!-- raw HTML omitted --></td>
-</tr>
-<tr>
-<td style="text-align:center">^</td>
-<td>从开始行开始匹配.</td>
-</tr>
-<tr>
-<td style="text-align:center">$</td>
-<td>从末端开始匹配.</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">元字符</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">.</td>
+          <td style="text-align: left">句号匹配任意单个字符除了换行符。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">[ ]</td>
+          <td style="text-align: left">字符种类。匹配方括号内的任意字符。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">[^ ]</td>
+          <td style="text-align: left">否定的字符种类。匹配除了方括号里的任意字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">*</td>
+          <td style="text-align: left">匹配&gt;=0个重复的在*号之前的字符。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">+</td>
+          <td style="text-align: left">匹配&gt;=1个重复的+号前的字符。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">?</td>
+          <td style="text-align: left">标记?之前的字符为可选.</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">{n,m}</td>
+          <td style="text-align: left">匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m).</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">(xyz)</td>
+          <td style="text-align: left">字符集，匹配与 xyz 完全相等的字符串.</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">|</td>
+          <td style="text-align: left">或运算符，匹配符号前或后的字符.</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\</td>
+          <td style="text-align: left">转义字符,用于匹配一些保留的字符 <!-- raw HTML omitted -->[ ] ( ) { } . * + ? ^ $ \ |<!-- raw HTML omitted --></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">^</td>
+          <td style="text-align: left">从开始行开始匹配.</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">$</td>
+          <td style="text-align: left">从末端开始匹配.</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="简写字符集">简写字符集<a hidden class="anchor" aria-hidden="true" href="#简写字符集">#</a></h1>
 <p>正则表达式提供一些常用的字符集简写。如下:</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">简写</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">.</td>
-<td>除换行符外的所有字符</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td>匹配所有字母数字，等同于 <code>[a-zA-Z0-9_]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\W</td>
-<td>匹配所有非字母数字，即符号，等同于： <code>[^\w]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\d</td>
-<td>匹配数字： <code>[0-9]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\D</td>
-<td>匹配非数字： <code>[^\d]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\s</td>
-<td>匹配所有空格字符，等同于： <code>[\t\n\f\r\p{Z}]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\S</td>
-<td>匹配所有非空格字符： <code>[^\s]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">\f</td>
-<td>匹配一个换页符</td>
-</tr>
-<tr>
-<td style="text-align:center">\n</td>
-<td>匹配一个换行符</td>
-</tr>
-<tr>
-<td style="text-align:center">\r</td>
-<td>匹配一个回车符</td>
-</tr>
-<tr>
-<td style="text-align:center">\t</td>
-<td>匹配一个制表符</td>
-</tr>
-<tr>
-<td style="text-align:center">\v</td>
-<td>匹配一个垂直制表符</td>
-</tr>
-<tr>
-<td style="text-align:center">\p</td>
-<td>匹配 CR/LF（等同于 <code>\r\n</code>），用来匹配 DOS 行终止符</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">简写</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">.</td>
+          <td style="text-align: left">除换行符外的所有字符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\w</td>
+          <td style="text-align: left">匹配所有字母数字，等同于 <code>[a-zA-Z0-9_]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\W</td>
+          <td style="text-align: left">匹配所有非字母数字，即符号，等同于： <code>[^\w]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\d</td>
+          <td style="text-align: left">匹配数字： <code>[0-9]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\D</td>
+          <td style="text-align: left">匹配非数字： <code>[^\d]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\s</td>
+          <td style="text-align: left">匹配所有空格字符，等同于： <code>[\t\n\f\r\p{Z}]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\S</td>
+          <td style="text-align: left">匹配所有非空格字符： <code>[^\s]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\f</td>
+          <td style="text-align: left">匹配一个换页符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\n</td>
+          <td style="text-align: left">匹配一个换行符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\r</td>
+          <td style="text-align: left">匹配一个回车符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\t</td>
+          <td style="text-align: left">匹配一个制表符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\v</td>
+          <td style="text-align: left">匹配一个垂直制表符</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">\p</td>
+          <td style="text-align: left">匹配 CR/LF（等同于 <code>\r\n</code>），用来匹配 DOS 行终止符</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="零宽度断言前后预查">零宽度断言（前后预查）<a hidden class="anchor" aria-hidden="true" href="#零宽度断言前后预查">#</a></h1>
 <p>先行断言和后发断言（合称 lookaround）都属于<strong>非捕获组</strong>（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。</p>
 <p>例如，我们希望从下面的输入字符串 <code>$4.44</code> 和 <code>$10.88</code> 中获得所有以 <code>$</code> 字符开头的数字，我们将使用以下的正则表达式 <code>(?&lt;=\$)[0-9\.]*</code>。意思是：获取所有包含 <code>.</code> 并且前面是 <code>$</code> 的数字。</p>
 <p>零宽度断言如下：</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">符号</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">?=</td>
-<td>正先行断言-存在</td>
-</tr>
-<tr>
-<td style="text-align:center">?!</td>
-<td>负先行断言-排除</td>
-</tr>
-<tr>
-<td style="text-align:center">?&lt;=</td>
-<td>正后发断言-存在</td>
-</tr>
-<tr>
-<td style="text-align:center">?&lt;!</td>
-<td>负后发断言-排除</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">符号</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">?=</td>
+          <td style="text-align: left">正先行断言-存在</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">?!</td>
+          <td style="text-align: left">负先行断言-排除</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">?&lt;=</td>
+          <td style="text-align: left">正后发断言-存在</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">?&lt;!</td>
+          <td style="text-align: left">负后发断言-排除</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="标志">标志<a hidden class="anchor" aria-hidden="true" href="#标志">#</a></h1>
 <p>标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。
 这些标志可以任意的组合使用，它也是整个正则表达式的一部分。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:center">标志</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">i</td>
-<td>忽略大小写。</td>
-</tr>
-<tr>
-<td style="text-align:center">g</td>
-<td>全局搜索。</td>
-</tr>
-<tr>
-<td style="text-align:center">m</td>
-<td>多行修饰符：锚点元字符 <code>^</code> <code>$</code> 工作范围在每行的起始。</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: center">标志</th>
+          <th style="text-align: left">描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: center">i</td>
+          <td style="text-align: left">忽略大小写。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">g</td>
+          <td style="text-align: left">全局搜索。</td>
+      </tr>
+      <tr>
+          <td style="text-align: center">m</td>
+          <td style="text-align: left">多行修饰符：锚点元字符 <code>^</code> <code>$</code> 工作范围在每行的起始。</td>
+      </tr>
+  </tbody>
 </table>
 <h1 id="贪婪匹配与惰性匹配-greedy-vs-lazy-matching">贪婪匹配与惰性匹配 (Greedy vs lazy matching)<a hidden class="anchor" aria-hidden="true" href="#贪婪匹配与惰性匹配-greedy-vs-lazy-matching">#</a></h1>
 <p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的子串。我们可以使用 ? 将贪婪匹配模式转化为惰性匹配模式。%</p>

@@ -4,7 +4,7 @@
     <title>Golang on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/tags/golang/</link>
     <description>Recent content in Golang on Carlos的废话集</description>
-    <generator>Hugo -- 0.133.1</generator>
+    <generator>Hugo -- 0.134.0</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 26 Jun 2024 17:39:28 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
@@ -13,11 +13,23 @@
       <link>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Wed, 26 Jun 2024 17:39:28 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-      <description>先看这段代码
-import ( &amp;#34;io&amp;#34; &amp;#34;net/http&amp;#34; &amp;#34;sync/atomic&amp;#34; ) func main() { var v atomic.Value var err error err = &amp;amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } 运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
-原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
-怎么解决？包装一层就能运行了。
-type tValue[T any] struct { value T } func main() { var v atomic.Value var err error err = &amp;amp;http.ProtocolError{} v.Store(tValue[error]{err}) err = io.EOF v.Store(tValue[error]{err}) } </description>
+      <description>&lt;p&gt;先看这段代码&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;net/http&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sync/atomic&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;atomic&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ProtocolError&lt;/span&gt;{}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pr</description>
     </item>
     <item>
       <title>关于Golang GC问题的思考</title>
@@ -31,7 +43,27 @@ type tValue[T any] struct { value T } func main() { var v atomic.Value var err e
       <link>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</link>
       <pubDate>Sat, 10 Jul 2021 01:09:15 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</guid>
-      <description>这是在小团队里面的一次分享，以下是PPT内容</description>
+      <description>&lt;p&gt;这是在小团队里面的一次分享，以下是PPT内容&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/01.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/02.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/03.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/04.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/05.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/06.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/07.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/08.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/10.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/11.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;</description>
     </item>
     <item>
       <title>Timer源码阅读</title>

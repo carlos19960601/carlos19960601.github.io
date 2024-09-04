@@ -2,7 +2,7 @@
 <html lang="zh" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.133.1"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.134.0"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -58,10 +58,7 @@
         }
 
     </style>
-</noscript>
-  
-
-<meta property="og:title" content="Carlos的废话集" />
+</noscript><meta property="og:title" content="Carlos的废话集" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://carlos19960601.github.io/" />
@@ -176,7 +173,7 @@
     <p>桌面客户端 tauri tauri前端框架支持Next.js, Vite等，后端使用rust。
 clash-verge-rev: 基于Mihomo内核的翻墙客户端GUI Electron Electron前端推荐 Vite等，后端使用node。
 everyone-can-use-english: 英语学习软件 mihomo-party: Mihomo GUI 个人观点：tauri是webview&#43;rust的实现，性能和打包的体积比较小，但是rust门槛高，tauri的生态可能比不上node。Electron是Chrome内核和NodeJs，入门门槛低，而且node的生态比较好。再不在乎包体积和性能的情况下，还是推荐Electron。
-移动客户端 Flutter pilipala: 第三方bilibili客户端 Cashew: An app created to help users manage a budget and purchases flutter_cloud_music: 还原网易云 Taskez: A Productivity Mobile Application UI kit built with Flutter Web前端 React eidos: 类似notion的软件 jsoncrack.com: json可视化展示 c-shopping: 基于Next.js的全栈购物网站 plane: Open Source JIRA, Linear, Monday, and Asana Alternative. Plane helps you track your issues, epics, and product roadmaps in the simplest way possible....</p>
+移动客户端 Flutter pilipala: 第三方bilibili客户端 Cashew: An app created to help users manage a budget and purchases flutter_cloud_music: 还原网易云 Taskez: A Productivity Mobile Application UI kit built with Flutter Web前端 React eidos: 类似notion的软件 jsoncrack.com: json可视化展示 c-shopping: 基于Next.js的全栈购物网站 plane: Open Source JIRA, Linear, Monday, and Asana Alternative. Plane helps you track your issues, epics, and product roadmaps in the simplest way possible. 后端 Golang mihomo: 翻墙软件，ClashMeta asynq: 基于Redis实现的分布式任务 galene: The Galène videoconference server badger: KV存储引擎 Rust xh: 类似于curl的命令行请求工具 数据分析与机器学习 handson-ml3: Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow (3rd edition) 100-Days-Of-ML-Code </p>
   </div>
   <footer class="entry-footer"><span title='2024-08-20 10:04:54 +0800 +0800'>2024-08-20</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 开源项目学习推荐" href="https://carlos19960601.github.io/posts/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90/"></a>
@@ -189,9 +186,7 @@ everyone-can-use-english: 英语学习软件 mihomo-party: Mihomo GUI 个人观�
   </header>
   <div class="entry-content">
     <p>生命周期 rust自动推断变量的生命周期
-fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str { if x.len() &gt; y.len() { x } else { y } } 但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。
-生命周期标注并不会改变任何引用的实际作用域
-参考资料 通过例子学 Rust Rust 程序设计语言 Rust语言圣经( </p>
+fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str { if x.len() &gt; y.len() { x } else { y } } ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-25 10:56:02 +0800 +0800'>2024-07-25</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 学习rust" href="https://carlos19960601.github.io/posts/%E5%AD%A6%E4%B9%A0rust/"></a>
@@ -228,7 +223,7 @@ pipx inject numpy </p>
     <p>元字符 正则表达式主要依赖于元字符。
 元字符不代表他们本身的字面意思，他们都有特殊的含义。一些元字符写在方括号中的时候有一些特殊的意思。以下是一些元字符的介绍：
 元字符 描述 . 句号匹配任意单个字符除了换行符。 [ ] 字符种类。匹配方括号内的任意字符。 [^ ] 否定的字符种类。匹配除了方括号里的任意字符 * 匹配&gt;=0个重复的在*号之前的字符。 &#43; 匹配&gt;=1个重复的&#43;号前的字符。 ? 标记?之前的字符为可选. {n,m} 匹配num个大括号之前的字符或字符集 (n &lt;= num &lt;= m). (xyz) 字符集，匹配与 xyz 完全相等的字符串. | 或运算符，匹配符号前或后的字符. \ 转义字符,用于匹配一些保留的字符 [ ] ( ) { } . * &#43; ? ^ $ \ | ^ 从开始行开始匹配. $ 从末端开始匹配. 简写字符集 正则表达式提供一些常用的字符集简写。如下:
-简写 描述 . 除换行符外的所有字符 \w 匹配所有字母数字，等同于 [a-zA-Z0-9_] \W 匹配所有非字母数字，即符号，等同于： [^\w] \d 匹配数字： [0-9] \D 匹配非数字： [^\d] \s 匹配所有空格字符，等同于： [\t\n\f\r\p{Z}] \S 匹配所有非空格字符： [^\s] \f 匹配一个换页符 \n 匹配一个换行符 \r 匹配一个回车符 \t 匹配一个制表符 \v 匹配一个垂直制表符 \p 匹配 CR/LF（等同于 \r\n），用来匹配 DOS 行终止符 零宽度断言（前后预查） 先行断言和后发断言（合称 lookaround）都属于非捕获组（用于匹配模式，但不包括在匹配列表中）。当我们需要一个模式的前面或后面有另一个特定的模式时，就可以使用它们。...</p>
+...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-18 14:47:42 +0800 +0800'>2024-07-18</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 正则表达式" href="https://carlos19960601.github.io/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"></a>
@@ -241,8 +236,7 @@ pipx inject numpy </p>
   </header>
   <div class="entry-content">
     <p>安装Docker 参考Install using the apt repository
-# Add Docker&#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a&#43;r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \ &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release &amp;&amp; echo &#34;$VERSION_CODENAME&#34;) stable&#34; | \ sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null sudo apt-get update 其中在这步中，即使设置了Proxy
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127....</p>
+# Add Docker&#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a&#43;r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \ &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release &amp;&amp; echo &#34;$VERSION_CODENAME&#34;) stable&#34; | \ sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null sudo apt-get update ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-13 07:02:21 +0800 +0800'>2024-07-13</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to Docker使用问题记录" href="https://carlos19960601.github.io/posts/docker%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"></a>
@@ -278,11 +272,7 @@ export https_proxy=http://127.0.0.1:7890 http_proxy=http://127....</p>
 export https_proxy=socks5://127.0.0.1:7891 http_proxy=socks5://127.0.0.1:7891 之后通过curl发起http请求。
 curl www.baidu.com 这时候，curl这个命令就会走socks协议，并封装socks协议数据发送给socks5://127.0.0.1:7891。
 协商阶段 根据参考资料，握手阶段-协商阶段发送的数据格式如下：
-&#43;----&#43;----------&#43;----------&#43; |VER | NMETHODS | METHODS | &#43;----&#43;----------&#43;----------&#43; | 1 | 1 | 1 to 255 | &#43;----&#43;----------&#43;----------&#43; #上方的数字表示字节数，下面的表格同理，不再赘述 VER: 协议版本，socks5为0x05
-NMETHODS: 支持认证的方法数量
-METHODS: 对应NMETHODS，NMETHODS的值为多少，METHODS就有多少个字节。RFC预定义了一些值的含义，内容如下:
-X’00’ NO AUTHENTICATION REQUIRED X’01’ GSSAPI X’02’ USERNAME/PASSWORD X’03’ to X’7F’ IANA ASSIGNED X’80’ to X’FE’ RESERVED FOR PRIVATE METHODS X’FF’ NO ACCEPTABLE METHODS 那么socks服务端接受到请求时，需要解析内容，选中一个METHOD返回给客户端，格式如下:
-&#43;----&#43;--------&#43; |VER | METHOD | &#43;----&#43;--------&#43; | 1 | 1 | &#43;----&#43;--------&#43; func ServerHandshake(rw net....</p>
+&#43;----&#43;----------&#43;----------&#43; |VER | NMETHODS | METHODS | &#43;----&#43;----------&#43;----------&#43; | 1 | 1 | 1 to 255 | &#43;----&#43;----------&#43;----------&#43; #上方的数字表示字节数，下面的表格同理，不再赘述 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-07 09:01:39 +0800 +0800'>2024-07-07</span>&nbsp;·&nbsp;4 分钟</footer>
   <a class="entry-link" aria-label="post link to 各种你懂的协议" href="https://carlos19960601.github.io/posts/%E5%90%84%E7%A7%8D%E4%BD%A0%E6%87%82%E7%9A%84%E5%8D%8F%E8%AE%AE/"></a>
@@ -302,9 +292,7 @@ ClashX
 ClashX.dmg ClashX Pro
 ClashX Pro Homebrew
 /bin/bash -c &#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&#34; 通过Homebrew安装的
-brew install git go hugo git-lfs rust bruno sequel-ace node pnpm brew install --cask warp orbstack flutter losslesscut obsidian google-chrome vscode
-Android Studio
-Dash 设计 Billfish AceMovi Video Editor Amadine Sip Pixelmator Pro 其他 Telegram DaisyDisk Permute 3 IINA brew install --cask iina Google Chrome </p>
+brew install git go hugo git-lfs rust bruno sequel-ace node pnpm brew install --cask warp orbstack flutter losslesscut obsidian google-chrome ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-06 08:42:02 +0800 +0800'>2024-07-06</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 新机必备软件" href="https://carlos19960601.github.io/posts/%E6%96%B0%E6%9C%BA%E5%BF%85%E5%A4%87%E8%BD%AF%E4%BB%B6/"></a>
@@ -318,8 +306,7 @@ Dash 设计 Billfish AceMovi Video Editor Amadine Sip Pixelmator Pro 其他 Tele
   <div class="entry-content">
     <p>基本语法 targets: prerequisites command command command 变量 声明变量
 NAME=ClashV BINDIR=bin 使用$()来引用变量
-PLATFORM_LIST = \ darwin-amd64 \ darwin-amd64-compatible \ all-arch: $(PLATFORM_LIST) 自动变量 $@: 表示target
-darwin-amd64: GOARCH=amd64 GOOS=darwin $(GOBUILD) -o $(BINDIR)/$(NAME)-$@ 条件判断 ifeq ($(BRANCH),Alpha) VERSION=alpha-$(shell git rev-parse --short HEAD) else ifeq ($(BRANCH),Beta) VERSION=beta-$(shell git rev-parse --short HEAD) else ifeq ($(BRANCH),) VERSION=$(shell git describe --tags) else VERSION=$(shell git rev-parse --short HEAD) endif 函数 shell BRANCH=$(shell git branch --show-current) 相关链接 Makefile Tutorial </p>
+PLATFORM_LIST = \ darwin-amd64 \ darwin-amd64-compatible \ all-arch: $(PLATFORM_LIST) ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-07-01 17:11:40 +0800 +0800'>2024-07-01</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 怎么写Makefile" href="https://carlos19960601.github.io/posts/%E6%80%8E%E4%B9%88%E5%86%99makefile/"></a>
