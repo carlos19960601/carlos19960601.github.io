@@ -149,14 +149,30 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">React笔记
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Twitter/X 博主@_georgemoller的分享 主要记录Twitter博主@_georgemoller分享的React技巧。对于我这种React小白很使用。于是搬运过来，并附上个人的一些理解。如有问题请邮箱本人，欢迎各位指正。
+Solve re-render issues with composition 个人理解：功能单一，利用组合模式减少耦合，带来不必要的重新渲染
+Utility Types For Enhanced Reusablity 个人理解：Typescript Pick的使用
+Bad use case for useCallback useCallback 使用在复杂逻辑的组件，简单组件不会消耗造成性能问题时不必使用
+Intersection types to extends native props in a component ...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-08-28 14:43:33 +0800 +0800'>2024-08-28</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to React笔记" href="https://carlos19960601.github.io/posts/react%E7%AC%94%E8%AE%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">开源项目学习推荐
     </h2>
   </header>
   <div class="entry-content">
-    <p>桌面客户端 tauri tauri前端框架支持Next.js, Vite等，后端使用rust。
-clash-verge-rev: 基于Mihomo内核的翻墙客户端GUI Electron Electron前端推荐 Vite等，后端使用node。
-everyone-can-use-english: 英语学习软件 mihomo-party: Mihomo GUI 个人观点：tauri是webview&#43;rust的实现，性能和打包的体积比较小，但是rust门槛高，tauri的生态可能比不上node。Electron是Chrome内核和NodeJs，入门门槛低，而且node的生态比较好。再不在乎包体积和性能的情况下，还是推荐Electron。
-移动客户端 Flutter pilipala: 第三方bilibili客户端 Cashew: An app created to help users manage a budget and purchases flutter_cloud_music: 还原网易云 Taskez: A Productivity Mobile Application UI kit built with Flutter Web前端 React eidos: 类似notion的软件 jsoncrack.com: json可视化展示 c-shopping: 基于Next.js的全栈购物网站 plane: Open Source JIRA, Linear, Monday, and Asana Alternative. Plane helps you track your issues, epics, and product roadmaps in the simplest way possible. 后端 Golang mihomo: 翻墙软件，ClashMeta asynq: 基于Redis实现的分布式任务 galene: The Galène videoconference server badger: KV存储引擎 Rust xh: 类似于curl的命令行请求工具 数据分析与机器学习 handson-ml3: Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow (3rd edition) 100-Days-Of-ML-Code </p>
+    <p>桌面客户端 tauri tauri 后端使用rust。
+clash-verge-rev: 基于Mihomo内核的翻墙客户端GUI Electron Electron 后端使用node。
+everyone-can-use-english: 英语学习软件 mihomo-party: Mihomo GUI 个人观点：tauri是webview&#43;rust的实现，性能和打包的体积比较小，但是rust门槛高，tauri的生态可能比不上node。Electron是Chrome内核和NodeJS，入门门槛低，而且node的生态比较好。再不在乎包体积和性能的情况下，还是推荐Electron。
+移动客户端 Flutter pilipala: 第三方bilibili客户端 Cashew: An app created to help users manage a budget and purchases flutter_cloud_music: 还原网易云，flutter SDK版本较低，依赖包有些缺乏维护 Taskez: A Productivity Mobile Application UI kit built with Flutter Web前端 React eidos: 类似notion的软件 jsoncrack.com: json可视化展示 c-shopping: 基于Next.js的全栈购物网站 plane: Open Source JIRA, Linear, Monday, and Asana Alternative. Plane helps you track your issues, epics, and product roadmaps in the simplest way possible. 后端 Golang mihomo: 翻墙软件，ClashMeta asynq: 基于Redis实现的分布式任务 galene: The Galène videoconference server badger: KV存储引擎 Rust xh: 类似于curl的命令行请求工具 数据分析与机器学习 handson-ml3: Hands-on Machine Learning with Scikit-Learn, Keras and TensorFlow (3rd edition) 100-Days-Of-ML-Code </p>
   </div>
   <footer class="entry-footer"><span title='2024-08-20 10:04:54 +0800 +0800'>2024-08-20</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 开源项目学习推荐" href="https://carlos19960601.github.io/posts/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90/"></a>
@@ -293,18 +309,6 @@ PLATFORM_LIST = \ darwin-amd64 \ darwin-amd64-compatible \ all-arch: $(PLATFORM_
   </div>
   <footer class="entry-footer"><span title='2024-07-01 17:11:40 +0800 +0800'>2024-07-01</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 怎么写Makefile" href="https://carlos19960601.github.io/posts/%E6%80%8E%E4%B9%88%E5%86%99makefile/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">开源项目推荐【持续更新】
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p> react-rough-fiber: 渲染手绘风 SVG 的 React 渲染器，可以轻松把 SVG 转换成手绘风图片 </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-01 16:53:15 +0800 +0800'>2024-07-01</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to 开源项目推荐【持续更新】" href="https://carlos19960601.github.io/posts/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
