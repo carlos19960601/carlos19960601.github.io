@@ -23,6 +23,22 @@ func main() {
 	err = io.EOF
 	v.Store(err)
 }
+运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
+原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
+怎么解决？包装一层就能运行了。
+type tValue[T any] struct {
+	value T
+}
+
+func main() {
+	var v atomic.Value
+	var err error
+
+	err = &amp;http.ProtocolError{}
+	v.Store(tValue[error]{err})
+	err = io.EOF
+	v.Store(tValue[error]{err})
+}
 ">
 <meta name="author" content="">
 <link rel="canonical" href="https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/">
@@ -88,6 +104,22 @@ func main() {
 	err = io.EOF
 	v.Store(err)
 }
+运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
+原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
+怎么解决？包装一层就能运行了。
+type tValue[T any] struct {
+	value T
+}
+
+func main() {
+	var v atomic.Value
+	var err error
+
+	err = &amp;http.ProtocolError{}
+	v.Store(tValue[error]{err})
+	err = io.EOF
+	v.Store(tValue[error]{err})
+}
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/" /><meta property="article:section" content="posts" />
@@ -111,6 +143,22 @@ func main() {
 	v.Store(err)
 	err = io.EOF
 	v.Store(err)
+}
+运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
+原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
+怎么解决？包装一层就能运行了。
+type tValue[T any] struct {
+	value T
+}
+
+func main() {
+	var v atomic.Value
+	var err error
+
+	err = &amp;http.ProtocolError{}
+	v.Store(tValue[error]{err})
+	err = io.EOF
+	v.Store(tValue[error]{err})
 }
 "/>
 
@@ -141,7 +189,7 @@ func main() {
   "@type": "BlogPosting",
   "headline": "atomic.Value存储interface的问题",
   "name": "atomic.Value存储interface的问题",
-  "description": "先看这段代码\nimport ( \u0026#34;io\u0026#34; \u0026#34;net/http\u0026#34; \u0026#34;sync/atomic\u0026#34; ) func main() { var v atomic.Value var err error err = \u0026amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } ",
+  "description": "先看这段代码\nimport ( \u0026#34;io\u0026#34; \u0026#34;net/http\u0026#34; \u0026#34;sync/atomic\u0026#34; ) func main() { var v atomic.Value var err error err = \u0026amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } 运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。\n原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550\n怎么解决？包装一层就能运行了。\ntype tValue[T any] struct { value T } func main() { var v atomic.Value var err error err = \u0026amp;http.ProtocolError{} v.Store(tValue[error]{err}) err = io.EOF v.Store(tValue[error]{err}) } ",
   "keywords": [
     "Golang", "问题"
   ],

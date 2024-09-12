@@ -149,6 +149,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">怎么写Makefile
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>基本语法 targets: prerequisites command command command 变量 声明变量
+NAME=ClashV BINDIR=bin 使用$()来引用变量
+PLATFORM_LIST = \ darwin-amd64 \ darwin-amd64-compatible \ all-arch: $(PLATFORM_LIST) 自动变量 $@: 表示target
+darwin-amd64: GOARCH=amd64 GOOS=darwin $(GOBUILD) -o $(BINDIR)/$(NAME)-$@ 条件判断 ifeq ($(BRANCH),Alpha) VERSION=alpha-$(shell git rev-parse --short HEAD) else ifeq ($(BRANCH),Beta) VERSION=beta-$(shell git rev-parse --short HEAD) else ifeq ($(BRANCH),) VERSION=$(shell git describe --tags) else VERSION=$(shell git rev-parse --short HEAD) endif 函数 shell BRANCH=$(shell git branch --show-current) 相关链接 Makefile Tutorial </p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-01 17:11:40 +0800 +0800'>2024-07-01</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to 怎么写Makefile" href="https://carlos19960601.github.io/posts/%E6%80%8E%E4%B9%88%E5%86%99makefile/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">开源项目推荐【持续更新】
     </h2>
   </header>
@@ -191,7 +206,10 @@
   </header>
   <div class="entry-content">
     <p>先看这段代码
-import ( &#34;io&#34; &#34;net/http&#34; &#34;sync/atomic&#34; ) func main() { var v atomic.Value var err error err = &amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } ...</p>
+import ( &#34;io&#34; &#34;net/http&#34; &#34;sync/atomic&#34; ) func main() { var v atomic.Value var err error err = &amp;http.ProtocolError{} v.Store(err) err = io.EOF v.Store(err) } 运行后会报错 panic: sync/atomic: store of inconsistently typed value into Value。
+原因是atomic.Value.Store需要类型是一致的。在这里err类型发生了变化，虽然他们都是error接口类型。具体参考Issues#22550
+怎么解决？包装一层就能运行了。
+type tValue[T any] struct { value T } func main() { var v atomic.Value var err error err = &amp;http.ProtocolError{} v.Store(tValue[error]{err}) err = io.EOF v.Store(tValue[error]{err}) } </p>
   </div>
   <footer class="entry-footer"><span title='2024-06-26 17:39:28 +0800 +0800'>2024-06-26</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to atomic.Value存储interface的问题" href="https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/"></a>
@@ -230,7 +248,7 @@ import ( &#34;io&#34; &#34;net/http&#34; &#34;sync/atomic&#34; ) func main() { v
   </header>
   <div class="entry-content">
     <p>这是在小团队里面的一次分享，以下是PPT内容
-...</p>
+</p>
   </div>
   <footer class="entry-footer"><span title='2021-07-10 01:09:15 +0800 +0800'>2021-07-10</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to Timer源码阅读分享" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/"></a>
@@ -262,35 +280,12 @@ Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 
   <footer class="entry-footer"><span title='2020-12-16 12:55:05 +0800 +0800'>2020-12-16</span>&nbsp;·&nbsp;13 分钟</footer>
   <a class="entry-link" aria-label="post link to Java线程池" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">再回首CMS垃圾回收
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>前言 之前学习JVM垃圾回收时，主要是过了一遍垃圾收集算法，比如复制算法，标记-清除算法，标记-整理算法，在此基础上可以增加分代，每代采取不同的回收算法，以提高整体的分配和回收效率。然后过了一遍JVM中的垃圾收集器，比如Serial、Parallel Scavenge、Parallel New、CMS、G1等。
-自认为垃圾收集就是根据GC Root标记所有可达的对象，然后把所有没有标记的对象清除就ok了。是不是很简单。事实上垃圾收集也就是这么一回事，但是很多时候说起来简单，做起来却会出现很多问题。这篇文章就是记录我对CMS垃圾收集器的一些疑问并学习的过程。
-首先看一下CMS的整体流程(具体每个流程的详情就自行了解吧)
-如何进行标记？ 最近在看Golang的GC算法实现，里面用到了三色标记法，但是在我的知识库中对三色标记法有这个概念，是的，我只知道这个概念，不知道三色标记法是怎么一个流程，也不知道三色标记法在GC中怎么与运行的。于是就开始了我的探险之旅。
-在搜索了一下三色标记法（具体可以看一下文末参考文档中三色标记法与读写屏障了解详情）后，发现现代追踪式（可达性分析）的垃圾回收器几乎都借鉴了三色标记的算法思想，CMS垃圾收集器也不例外。
-GC Root有哪些？ 我们知道怎么进行标记了，但最初标记的时候需要一些根据才行啊，这些根据就是我们收的GC Root。GC Root有哪些？网上有很多的答案，我的理解就是
-当前活跃调用栈中的指向对象的引用 一些不会发生改变的数据所指向的引用 这里我使用的是引用，而不是对象，因为R大是这样说的（具体的问题见参考文档java的gc为什么要分代？）
-所谓“GC roots”，或者说tracing GC的“根集合”，就是一组必须活跃的引用。 例如说，这些引用可能包括：
-所有Java线程当前活跃的栈帧里指向GC堆里的对象的引用；换句话说，当前所有正在被调用的方法的引用类型的参数/局部变量/临时值。 VM的一些静态数据结构里指向GC堆里的对象的引用，例如说HotSpot VM里的Universe里有很多这样的引用。 JNI handles，包括global handles和local handles （看情况）所有当前被加载的Java类 （看情况）Java类的引用类型静态变量 （看情况）Java类的运行时常量池里的引用类型常量（String或Class类型） （看情况）String常量池（StringTable）里的引用 注意，是一组必须活跃的引用，不是对象。
-现在知道了GC Root，但是我们都知道有分代的概念，新生代的gc和老年的代的gc回收的区域是不一样，那么这里的GC Root是不是应该不一样呢？肯定是不一样的。
-首先看一下新生代的GC
-新生代的区域一般都比较小，而且对象的存活率都比较低，所以按照前面说的GC Root在新生代的区域扫描就行了。但是会有一个问题？老年代存在引用新生代对象的可能啊？如果只扫描新生代的区域，会漏掉被老年代引用的对象，这些对象就会被清除掉，这是不允许的。
-如果这样的话，那是不是扫描一下老年代的对象，看是否引用新生代的对象是不是就ok了？嗯这么做肯定是ok的，但是老年代一般很大，而且存活的对象很多，会导致扫描占用很长的时间。那这个问题如何解？JVM是如何避免Minor GC时扫描全堆的？
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2020-11-27 21:50:29 +0800 +0800'>2020-11-27</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to 再回首CMS垃圾回收" href="https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
     <a class="prev" href="https://carlos19960601.github.io/posts/">
-      «&nbsp;上一页&nbsp;1/2
+      «&nbsp;上一页&nbsp;1/3
+    </a>
+    <a class="next" href="https://carlos19960601.github.io/posts/page/3/">下一页&nbsp;3/3&nbsp;»
     </a>
   </nav>
 </footer>

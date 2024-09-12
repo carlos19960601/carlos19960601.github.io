@@ -16,6 +16,15 @@ fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
         y
     }
 }
+但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。
+
+生命周期标注并不会改变任何引用的实际作用域
+
+参考资料
+
+通过例子学 Rust
+Rust 程序设计语言
+Rust语言圣经(
 ">
 <meta name="author" content="">
 <link rel="canonical" href="https://carlos19960601.github.io/posts/%E5%AD%A6%E4%B9%A0rust/">
@@ -74,6 +83,15 @@ fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
         y
     }
 }
+但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。
+
+生命周期标注并不会改变任何引用的实际作用域
+
+参考资料
+
+通过例子学 Rust
+Rust 程序设计语言
+Rust语言圣经(
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://carlos19960601.github.io/posts/%E5%AD%A6%E4%B9%A0rust/" /><meta property="article:section" content="posts" />
@@ -91,6 +109,15 @@ fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
         y
     }
 }
+但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。
+
+生命周期标注并不会改变任何引用的实际作用域
+
+参考资料
+
+通过例子学 Rust
+Rust 程序设计语言
+Rust语言圣经(
 "/>
 
 
@@ -120,7 +147,7 @@ fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
   "@type": "BlogPosting",
   "headline": "学习rust",
   "name": "学习rust",
-  "description": "生命周期 rust自动推断变量的生命周期\nfn longest(x: \u0026amp;str, y: \u0026amp;str) -\u0026gt; \u0026amp;str { if x.len() \u0026gt; y.len() { x } else { y } } ",
+  "description": "生命周期 rust自动推断变量的生命周期\nfn longest(x: \u0026amp;str, y: \u0026amp;str) -\u0026gt; \u0026amp;str { if x.len() \u0026gt; y.len() { x } else { y } } 但是上面这段代码，rust无法推断出变量的生命周期。所以需要显示的标注生命周期。\n生命周期标注并不会改变任何引用的实际作用域\n参考资料 通过例子学 Rust Rust 程序设计语言 Rust语言圣经( ",
   "keywords": [
     
   ],
