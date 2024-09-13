@@ -5,6 +5,10 @@ draft: false
 ---
 
 
+### 官方教程
+
+* [Learn Next.js](https://nextjs.org/learn/dashboard-app)
+
 ### 服务端组件示例
 
 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
@@ -70,6 +74,3 @@ Ultimately, you should use what you feel more comfortable with as both approache
 > 如果项目较为复杂，还是只使用nextjs的前端能力，后端的事情还是单独部署
 >
 >   对于单纯使用nextjs的前端能力，如果需要初始化websockets，可以封装成hook 或者 在 lib 或 utils 目录下创建websockets客户端
-
-
-
