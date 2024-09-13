@@ -153,7 +153,7 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
+    <p>官方教程 Learn Next.js 服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
 import { db } from &#39;../../lib/db&#39;; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：
 // pages/posts/index.tsx import { useEffect, useState } from &#39;react&#39;; export async function getServerSideProps() { const response = await fetch(&#39;/api/posts&#39;); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( &lt;div&gt; {posts.map((post) =&gt; ( &lt;div key={post.id}&gt; &lt;h2&gt;{post.title}&lt;/h2&gt; &lt;p&gt;{post.content}&lt;/p&gt; &lt;/div&gt; ))} &lt;/div&gt; ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:
 ...</p>

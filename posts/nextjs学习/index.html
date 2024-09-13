@@ -7,7 +7,11 @@
 <meta name="robots" content="index, follow">
 <title>Nextjs学习 | Carlos的废话集</title>
 <meta name="keywords" content="">
-<meta name="description" content="服务端组件示例
+<meta name="description" content="官方教程
+
+Learn Next.js
+
+服务端组件示例
 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
 import { db } from &#39;../../lib/db&#39;;
 
@@ -91,7 +95,11 @@ No exact answer - but here is what I do:">
 
     </style>
 </noscript><meta property="og:title" content="Nextjs学习" />
-<meta property="og:description" content="服务端组件示例
+<meta property="og:description" content="官方教程
+
+Learn Next.js
+
+服务端组件示例
 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
 import { db } from &#39;../../lib/db&#39;;
 
@@ -134,7 +142,11 @@ No exact answer - but here is what I do:" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Nextjs学习"/>
-<meta name="twitter:description" content="服务端组件示例
+<meta name="twitter:description" content="官方教程
+
+Learn Next.js
+
+服务端组件示例
 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
 import { db } from &#39;../../lib/db&#39;;
 
@@ -198,12 +210,12 @@ No exact answer - but here is what I do:"/>
   "@type": "BlogPosting",
   "headline": "Nextjs学习",
   "name": "Nextjs学习",
-  "description": "服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：\nimport { db } from \u0026#39;../../lib/db\u0026#39;; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：\n// pages/posts/index.tsx import { useEffect, useState } from \u0026#39;react\u0026#39;; export async function getServerSideProps() { const response = await fetch(\u0026#39;/api/posts\u0026#39;); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( \u0026lt;div\u0026gt; {posts.map((post) =\u0026gt; ( \u0026lt;div key={post.id}\u0026gt; \u0026lt;h2\u0026gt;{post.title}\u0026lt;/h2\u0026gt; \u0026lt;p\u0026gt;{post.content}\u0026lt;/p\u0026gt; \u0026lt;/div\u0026gt; ))} \u0026lt;/div\u0026gt; ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:\n",
+  "description": "官方教程 Learn Next.js 服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：\nimport { db } from \u0026#39;../../lib/db\u0026#39;; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：\n// pages/posts/index.tsx import { useEffect, useState } from \u0026#39;react\u0026#39;; export async function getServerSideProps() { const response = await fetch(\u0026#39;/api/posts\u0026#39;); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( \u0026lt;div\u0026gt; {posts.map((post) =\u0026gt; ( \u0026lt;div key={post.id}\u0026gt; \u0026lt;h2\u0026gt;{post.title}\u0026lt;/h2\u0026gt; \u0026lt;p\u0026gt;{post.content}\u0026lt;/p\u0026gt; \u0026lt;/div\u0026gt; ))} \u0026lt;/div\u0026gt; ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:\n",
   "keywords": [
     
   ],
-  "articleBody": "服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：\nimport { db } from '../../lib/db'; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：\n// pages/posts/index.tsx import { useEffect, useState } from 'react'; export async function getServerSideProps() { const response = await fetch('/api/posts'); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( \u003cdiv\u003e {posts.map((post) =\u003e ( \u003cdiv key={post.id}\u003e \u003ch2\u003e{post.title}\u003c/h2\u003e \u003cp\u003e{post.content}\u003c/p\u003e \u003c/div\u003e ))} \u003c/div\u003e ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:\nFor pure mutations, I prefer Server Actions. For pulling data from the server-side as a result of user interactions, I use SWR. Ultimately, you should use what you feel more comfortable with as both approaches are valid.\n参考：\nhttps://makerkit.dev/how-to/next-supabase/api-routes-vs-server-actions https://stackoverflow.com/questions/77748391/nextjs-14-server-actions-vs-route-handlers 个人理解：nextjs 让前端有能力连接数据库，成为全干工程师。\n当在技术选型的时候，如果项目比较小，并且只是对数据库的CRUD等操作，使用nextjs + prisma就可以实现\n如果项目较为复杂，还是只使用nextjs的前端能力，后端的事情还是单独部署\n对于单纯使用nextjs的前端能力，如果需要初始化websockets，可以封装成hook 或者 在 lib 或 utils 目录下创建websockets客户端\n",
-  "wordCount" : "163",
+  "articleBody": "官方教程 Learn Next.js 服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：\nimport { db } from '../../lib/db'; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：\n// pages/posts/index.tsx import { useEffect, useState } from 'react'; export async function getServerSideProps() { const response = await fetch('/api/posts'); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( \u003cdiv\u003e {posts.map((post) =\u003e ( \u003cdiv key={post.id}\u003e \u003ch2\u003e{post.title}\u003c/h2\u003e \u003cp\u003e{post.content}\u003c/p\u003e \u003c/div\u003e ))} \u003c/div\u003e ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:\nFor pure mutations, I prefer Server Actions. For pulling data from the server-side as a result of user interactions, I use SWR. Ultimately, you should use what you feel more comfortable with as both approaches are valid.\n参考：\nhttps://makerkit.dev/how-to/next-supabase/api-routes-vs-server-actions https://stackoverflow.com/questions/77748391/nextjs-14-server-actions-vs-route-handlers 个人理解：nextjs 让前端有能力连接数据库，成为全干工程师。\n当在技术选型的时候，如果项目比较小，并且只是对数据库的CRUD等操作，使用nextjs + prisma就可以实现\n如果项目较为复杂，还是只使用nextjs的前端能力，后端的事情还是单独部署\n对于单纯使用nextjs的前端能力，如果需要初始化websockets，可以封装成hook 或者 在 lib 或 utils 目录下创建websockets客户端\n",
+  "wordCount" : "166",
   "inLanguage": "zh",
   "datePublished": "2024-09-12T09:27:24+08:00",
   "dateModified": "2024-09-12T09:27:24+08:00",
@@ -300,6 +312,8 @@ No exact answer - but here is what I do:"/>
 
         <div class="inner"><ul>
                 <li>
+                    <a href="#%e5%ae%98%e6%96%b9%e6%95%99%e7%a8%8b" aria-label="官方教程">官方教程</a></li>
+                <li>
                     <a href="#%e6%9c%8d%e5%8a%a1%e7%ab%af%e7%bb%84%e4%bb%b6%e7%a4%ba%e4%be%8b" aria-label="服务端组件示例">服务端组件示例</a></li>
                 <li>
                     <a href="#should-i-use-swr-or-server-actions" aria-label="Should I use SWR or Server Actions?">Should I use SWR or Server Actions?</a>
@@ -309,7 +323,11 @@ No exact answer - but here is what I do:"/>
     </details>
 </div>
 
-  <div class="post-content"><h3 id="服务端组件示例">服务端组件示例<a hidden class="anchor" aria-hidden="true" href="#服务端组件示例">#</a></h3>
+  <div class="post-content"><h3 id="官方教程">官方教程<a hidden class="anchor" aria-hidden="true" href="#官方教程">#</a></h3>
+<ul>
+<li><a href="https://nextjs.org/learn/dashboard-app">Learn Next.js</a></li>
+</ul>
+<h3 id="服务端组件示例">服务端组件示例<a hidden class="anchor" aria-hidden="true" href="#服务端组件示例">#</a></h3>
 <p>创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">db</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;../../lib/db&#39;</span>;
 </span></span><span style="display:flex;"><span>

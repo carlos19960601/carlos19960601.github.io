@@ -13,7 +13,11 @@
       <link>https://carlos19960601.github.io/posts/nextjs%E5%AD%A6%E4%B9%A0/</link>
       <pubDate>Thu, 12 Sep 2024 09:27:24 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/nextjs%E5%AD%A6%E4%B9%A0/</guid>
-      <description>&lt;h3 id=&#34;服务端组件示例&#34;&gt;服务端组件示例&lt;/h3&gt;
+      <description>&lt;h3 id=&#34;官方教程&#34;&gt;官方教程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://nextjs.org/learn/dashboard-app&#34;&gt;Learn Next.js&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务端组件示例&#34;&gt;服务端组件示例&lt;/h3&gt;
 &lt;p&gt;创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-ts&#34; data-lang=&#34;ts&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;db&lt;/span&gt; } &lt;span style=&#34;color:#66d9ef&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;../../lib/db&amp;#39;&lt;/span&gt;;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
@@ -630,6 +634,9 @@ pipx ensurepath
 &lt;li&gt;&lt;a href=&#34;https://www.happyhues.co/&#34;&gt;happyhues&lt;/a&gt;: 网站颜色搭配神器
 &lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/%e5%b7%a5%e5%85%b7%e6%8e%a8%e8%8d%90/happyhues.png&#34; alt=&#34;&#34;  /&gt;
 &lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://cobalt.tools/&#34;&gt;cobalt&lt;/a&gt;: 视频下载&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.indiehackers.site/&#34;&gt;indiehackers&lt;/a&gt;: 独立开发导航站&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://openalternative.co/&#34;&gt;openalternative&lt;/a&gt;: 查找平替软件&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>
     <item>
