@@ -1,7 +1,7 @@
 ---
-title = 'Git学习'
-date = 2024-09-23T15:23:57+08:00
-draft = true
+title: 'Git学习'
+date: 2024-09-23T15:23:57+08:00
+draft: false
 ---
 
 ### commit 消息提交规范
