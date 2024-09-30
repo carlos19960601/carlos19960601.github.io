@@ -4,7 +4,7 @@
     <title>Posts on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/posts/</link>
     <description>Recent content in Posts on Carlos的废话集</description>
-    <generator>Hugo -- 0.134.3</generator>
+    <generator>Hugo -- 0.135.0</generator>
     <language>zh</language>
     <lastBuildDate>Mon, 23 Sep 2024 15:23:57 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
@@ -253,7 +253,6 @@
 &lt;li&gt;学习 nextjs 的 Route Handlers 的使用&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/makeplane/plane&#34;&gt;plane&lt;/a&gt;: Open Source JIRA, Linear, Monday, and Asana Alternative. Plane helps you track your issues, epics, and product roadmaps in the simplest way possible.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/noodle-run/noodle&#34;&gt;noodle&lt;/a&gt;: Rethinking Student Productivity
 &lt;ul&gt;
 &lt;li&gt;学习在nextjs中使用trpc&lt;/li&gt;
@@ -342,7 +341,7 @@ pipx ensurepath
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pipx install notebook --python&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;python3.11 --force
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行后, jupyter就会被安装在 &lt;code&gt;~/.local/pipx/venvs/notebook/bin&lt;/code&gt;。可以看到在&lt;code&gt;pipx&lt;/code&gt;的&lt;code&gt;venvs&lt;/code&gt;目录下面。也就说&lt;code&gt;pipx&lt;/code&gt;安装的每个应用都会有自己的虚拟环境。&lt;/p&gt;
 &lt;p&gt;在写jupyter notebook的时候，我们可能需要&lt;code&gt;numpy&lt;/code&gt;，&lt;code&gt;panda&lt;/code&gt;等这些&lt;code&gt;python&lt;/code&gt;库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-shells&#34; data-lang=&#34;shells&#34;&gt;pipx inject numpy
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-shells&#34; data-lang=&#34;shells&#34;&gt;pipx inject notebook pandas numpy
 &lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     <item>

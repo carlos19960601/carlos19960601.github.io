@@ -24,7 +24,7 @@ pipx ensurepath
 pipx install notebook --python=python3.11 --force
 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。
 在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
-pipx inject numpy
+pipx inject notebook pandas numpy
 ">
 <meta name="author" content="">
 <link rel="canonical" href="https://carlos19960601.github.io/posts/pipx%E4%BD%BF%E7%94%A8/">
@@ -91,7 +91,7 @@ pipx ensurepath
 pipx install notebook --python=python3.11 --force
 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。
 在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
-pipx inject numpy
+pipx inject notebook pandas numpy
 " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://carlos19960601.github.io/posts/pipx%E4%BD%BF%E7%94%A8/" /><meta property="article:section" content="posts" />
@@ -117,7 +117,7 @@ pipx ensurepath
 pipx install notebook --python=python3.11 --force
 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。
 在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
-pipx inject numpy
+pipx inject notebook pandas numpy
 "/>
 
 
@@ -147,12 +147,12 @@ pipx inject numpy
   "@type": "BlogPosting",
   "headline": "pipx使用",
   "name": "pipx使用",
-  "description": "pipx是什么？ 可以参加pipx的介绍。\n作为一个python小白，看了几遍，搜索了多篇博客了解pipx是什么，仍然不懂是个啥。\n我在这仅说明一下我自己的理解。pipx相当于一个安装工具。python有自己的安装包的工具pip。那么pip和pipx有什么区别呢？\n如果直接pip安装包会安装在python目录下的site-packages下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的site-package。其实python提供了解决方案\u0026ndash;虚拟环境。pipx只是基于这个概念，让使用者更好的使用。\n注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等\n简单使用 安装pipx\nbrew install pipx pipx ensurepath 安装jupyter\n可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。\npipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。\n在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用\npipx inject numpy ",
+  "description": "pipx是什么？ 可以参加pipx的介绍。\n作为一个python小白，看了几遍，搜索了多篇博客了解pipx是什么，仍然不懂是个啥。\n我在这仅说明一下我自己的理解。pipx相当于一个安装工具。python有自己的安装包的工具pip。那么pip和pipx有什么区别呢？\n如果直接pip安装包会安装在python目录下的site-packages下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的site-package。其实python提供了解决方案\u0026ndash;虚拟环境。pipx只是基于这个概念，让使用者更好的使用。\n注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等\n简单使用 安装pipx\nbrew install pipx pipx ensurepath 安装jupyter\n可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。\npipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。\n在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用\npipx inject notebook pandas numpy ",
   "keywords": [
     
   ],
-  "articleBody": "pipx是什么？ 可以参加pipx的介绍。\n作为一个python小白，看了几遍，搜索了多篇博客了解pipx是什么，仍然不懂是个啥。\n我在这仅说明一下我自己的理解。pipx相当于一个安装工具。python有自己的安装包的工具pip。那么pip和pipx有什么区别呢？\n如果直接pip安装包会安装在python目录下的site-packages下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的site-package。其实python提供了解决方案–虚拟环境。pipx只是基于这个概念，让使用者更好的使用。\n注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等\n简单使用 安装pipx\nbrew install pipx pipx ensurepath 安装jupyter\n可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。\npipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。\n在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用\npipx inject numpy ",
-  "wordCount" : "32",
+  "articleBody": "pipx是什么？ 可以参加pipx的介绍。\n作为一个python小白，看了几遍，搜索了多篇博客了解pipx是什么，仍然不懂是个啥。\n我在这仅说明一下我自己的理解。pipx相当于一个安装工具。python有自己的安装包的工具pip。那么pip和pipx有什么区别呢？\n如果直接pip安装包会安装在python目录下的site-packages下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的site-package。其实python提供了解决方案–虚拟环境。pipx只是基于这个概念，让使用者更好的使用。\n注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等\n简单使用 安装pipx\nbrew install pipx pipx ensurepath 安装jupyter\n可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。\npipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。\n在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用\npipx inject notebook pandas numpy ",
+  "wordCount" : "34",
   "inLanguage": "zh",
   "datePublished": "2024-07-24T16:43:50+08:00",
   "dateModified": "2024-07-24T16:43:50+08:00",
@@ -275,7 +275,7 @@ pipx ensurepath
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>pipx install notebook --python<span style="color:#f92672">=</span>python3.11 --force
 </span></span></code></pre></div><p>执行后, jupyter就会被安装在 <code>~/.local/pipx/venvs/notebook/bin</code>。可以看到在<code>pipx</code>的<code>venvs</code>目录下面。也就说<code>pipx</code>安装的每个应用都会有自己的虚拟环境。</p>
 <p>在写jupyter notebook的时候，我们可能需要<code>numpy</code>，<code>panda</code>等这些<code>python</code>库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用</p>
-<pre tabindex="0"><code class="language-shells" data-lang="shells">pipx inject numpy
+<pre tabindex="0"><code class="language-shells" data-lang="shells">pipx inject notebook pandas numpy
 </code></pre>
 
   </div>
