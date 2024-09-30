@@ -38,5 +38,5 @@ pipx install notebook --python=python3.11 --force
 在写jupyter notebook的时候，我们可能需要`numpy`，`panda`等这些`python`库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
 
 ```shells
-pipx inject numpy
+pipx inject notebook pandas numpy
 ```
