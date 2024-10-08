@@ -268,7 +268,7 @@ brew install pipx pipx ensurepath 安装jupyter
 可以使用--python参数指定虚拟环境python版本。如果不指定，使用的是你电脑上安装的最新的python`版本。
 pipx install notebook --python=python3.11 --force 执行后, jupyter就会被安装在 ~/.local/pipx/venvs/notebook/bin。可以看到在pipx的venvs目录下面。也就说pipx安装的每个应用都会有自己的虚拟环境。
 在写jupyter notebook的时候，我们可能需要numpy，panda等这些python库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用
-pipx inject notebook pandas numpy </p>
+pipx inject notebook pandas numpy 问题记录 如果pipx inject的时候需要使用proxy。由于底层还是使用pip，所以需要通过PIP_*的环境变量传递proxy信息 export PIP_PROXY=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 </p>
   </div>
   <footer class="entry-footer"><span title='2024-07-24 16:43:50 +0800 +0800'>2024-07-24</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to pipx使用" href="https://carlos19960601.github.io/posts/pipx%E4%BD%BF%E7%94%A8/"></a>

@@ -342,7 +342,12 @@ pipx ensurepath
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;执行后, jupyter就会被安装在 &lt;code&gt;~/.local/pipx/venvs/notebook/bin&lt;/code&gt;。可以看到在&lt;code&gt;pipx&lt;/code&gt;的&lt;code&gt;venvs&lt;/code&gt;目录下面。也就说&lt;code&gt;pipx&lt;/code&gt;安装的每个应用都会有自己的虚拟环境。&lt;/p&gt;
 &lt;p&gt;在写jupyter notebook的时候，我们可能需要&lt;code&gt;numpy&lt;/code&gt;，&lt;code&gt;panda&lt;/code&gt;等这些&lt;code&gt;python&lt;/code&gt;库。所以我们需要将这些安装到notebook的虚拟环境中，才能使用&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-shells&#34; data-lang=&#34;shells&#34;&gt;pipx inject notebook pandas numpy
-&lt;/code&gt;&lt;/pre&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;&lt;h1 id=&#34;问题记录&#34;&gt;问题记录&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;如果pipx inject的时候需要使用proxy。由于底层还是使用pip，所以需要通过PIP_*的环境变量传递proxy信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;export PIP_PROXY&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://127.0.0.1:7890 https_proxy&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;http://127.0.0.1:7890
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>正则表达式</title>
