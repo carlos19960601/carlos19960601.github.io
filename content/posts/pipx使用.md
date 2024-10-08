@@ -40,3 +40,12 @@ pipx install notebook --python=python3.11 --force
 ```shells
 pipx inject notebook pandas numpy
 ```
+
+
+# 问题记录
+
+1. 如果pipx inject的时候需要使用proxy。由于底层还是使用pip，所以需要通过PIP_*的环境变量传递proxy信息
+
+```shell
+export PIP_PROXY=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890
+```
