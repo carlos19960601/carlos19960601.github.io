@@ -6,8 +6,26 @@
     <description>Recent content on Carlos的废话集</description>
     <generator>Hugo -- 0.135.0</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 23 Sep 2024 15:23:57 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Oct 2024 09:58:02 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>浏览器跨域</title>
+      <link>https://carlos19960601.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B7%A8%E5%9F%9F/</link>
+      <pubDate>Fri, 11 Oct 2024 09:58:02 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B7%A8%E5%9F%9F/</guid>
+      <description>&lt;h3 id=&#34;背景&#34;&gt;背景&lt;/h3&gt;
+&lt;p&gt;最近在写项目的时候，发现如果后端没有处理CORS的问题，前端使用Axios请求数据的时候，会直接报Axios Network Error。影响了开发。&lt;/p&gt;
+&lt;h3 id=&#34;解决&#34;&gt;解决&lt;/h3&gt;
+&lt;p&gt;一般情况下后端服务都会有CORS middleware。能够直接解决CORS的问题。但是如果每个服务都这样，我觉得麻烦。所以尝试使用Nginx来同样处理。&lt;/p&gt;
+&lt;p&gt;跨域相关的响应头&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Access-Control-Allow-Origin&lt;/strong&gt;: Used to set the source address that allows cross-domain requests (preflight requests and formal requests will be verified when cross-domain)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Access-Control-Allow-Headers&lt;/strong&gt;: Special header information fields allowed to be carried across domains (only verified in preflight requests)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Access-Control-Allow-Methods&lt;/strong&gt;: Cross-domain allowed request methods or HTTP verbs (only in preflight request verification)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Access-Control-Allow-Credentials&lt;/strong&gt;: Whether to allow the use of cookies across domains. If you want to use cookies across domains, you can add this request response header and set the value to true (setting it or not setting it will not affect the sending of the request, but will only affect whether cookies should be carried across domains. , but if set, both preflight requests and formal requests need to be set). However, it is not recommended to use it cross-domain (it has been used in the project, but it is unstable and cannot be carried by some browsers) unless necessary, because there are many alternatives.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果出现跨域，直接在前端请求会报错&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Git学习</title>
       <link>https://carlos19960601.github.io/posts/git%E5%AD%A6%E4%B9%A0/</link>

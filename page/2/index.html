@@ -144,6 +144,28 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">各种你懂的协议
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Socks5协议 具体协议过程参考理解socks5协议的工作过程和协议细节。这篇文章主要是通过代码去理解socks5协议。
+实验条件介绍 命令行设置proxy
+export https_proxy=socks5://127.0.0.1:7891 http_proxy=socks5://127.0.0.1:7891 之后通过curl发起http请求。
+curl www.baidu.com 这时候，curl这个命令就会走socks协议，并封装socks协议数据发送给socks5://127.0.0.1:7891。
+协商阶段 根据参考资料，握手阶段-协商阶段发送的数据格式如下：
+&#43;----&#43;----------&#43;----------&#43; |VER | NMETHODS | METHODS | &#43;----&#43;----------&#43;----------&#43; | 1 | 1 | 1 to 255 | &#43;----&#43;----------&#43;----------&#43; #上方的数字表示字节数，下面的表格同理，不再赘述 VER: 协议版本，socks5为0x05
+NMETHODS: 支持认证的方法数量
+METHODS: 对应NMETHODS，NMETHODS的值为多少，METHODS就有多少个字节。RFC预定义了一些值的含义，内容如下:
+X’00’ NO AUTHENTICATION REQUIRED X’01’ GSSAPI X’02’ USERNAME/PASSWORD X’03’ to X’7F’ IANA ASSIGNED X’80’ to X’FE’ RESERVED FOR PRIVATE METHODS X’FF’ NO ACCEPTABLE METHODS 那么socks服务端接受到请求时，需要解析内容，选中一个METHOD返回给客户端，格式如下:
+&#43;----&#43;--------&#43; |VER | METHOD | &#43;----&#43;--------&#43; | 1 | 1 | &#43;----&#43;--------&#43; func ServerHandshake(rw net.Conn, authenticator auth.Authenticator) (addr Addr, command Command, user string, err error) { ... if _, err = io.ReadFull(rw, buf[:2]); err != nil { return } nmethods := buf[1] if _, err = io.ReadFull(rw, buf[:nmethods]); err != nil { return } // 返回信息,需要认证 if authenticator != nil { // 版本和认证方法 if _, err = rw.Write([]byte{5, 2}); err != nil { return } } ... } 上面代码逻辑就是处理这个过程。代码中固定返回的是X’02’ USERNAME/PASSWORD这种认证方式。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-07-07 09:01:39 +0800 +0800'>2024-07-07</span>&nbsp;·&nbsp;4 分钟</footer>
+  <a class="entry-link" aria-label="post link to 各种你懂的协议" href="https://carlos19960601.github.io/posts/%E5%90%84%E7%A7%8D%E4%BD%A0%E6%87%82%E7%9A%84%E5%8D%8F%E8%AE%AE/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">新机必备软件
     </h2>
   </header>
@@ -269,20 +291,6 @@ type tValue[T any] struct { value T } func main() { var v atomic.Value var err e
   </div>
   <footer class="entry-footer"><span title='2021-07-10 01:09:15 +0800 +0800'>2021-07-10</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to Timer源码阅读分享" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Timer源码阅读
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
-Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-04-22 22:50:29 +0800 +0800'>2021-04-22</span>&nbsp;·&nbsp;18 分钟</footer>
-  <a class="entry-link" aria-label="post link to Timer源码阅读" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
