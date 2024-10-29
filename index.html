@@ -166,6 +166,26 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">Hands on Machine Learning With Scikit Learn, Keras, and TensorFlow 学习笔记
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Chapter 1: The Machine Learning Landscape 机器学习分类：
+是否监督
+监督学习(Supervised learning) 非监督学习(Unsupervised learning) 半监督学习(Semi-supervised learning) 自监督学习(Self-supervised learning) 强化学习(Reinforcement learning) 批量vs在线学习
+Batch learning Online learning Instance-Based Versus Model-Based Learning
+Instance-based learning Model-based learning and a typical machine learning workflow 机器学习的主要挑战
+训练数据量不足(Insufficient Quantity of Training Data) 非代表性训练数据(Nonrepresentative Training Data) 劣质数据(Poor-Quality Data) 不相关特征(Irrelevant Features) 过拟合(Overfitting the Training Data) 欠拟合(Underfitting the Training Data) Chapter 2: End-to-End Machine Learning Project 通过一个预测房价的实例介绍机器学习实践流程。
+前提是明确需求的情况下，现在手里有一份数据。怎么开始进行机器学习。
+首先了解数据，整体熟悉数据结构。 panda查看数据统计 matplotlib绘制图标 创建测试集 分层抽样 测试集不要在训练阶段使用 抽样要随机 结果要保持一致，不要多次创建测试集后，让模型学习了所有数据 看看数据分布 看看相关性(Correlations) 尝试组合特征 数据预处理 缺失值补齐 处理分类数据 特征缩放 选择和训练模型 尝试不同的模型 交叉验证不同模型的效果 微调模型 Grid Search Randomized Search 分析模型和错误 在测试集上评估模型 上线模型 Chapter 3: Classification 通过一个识别手写数字的实例介绍分类。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-10-29 14:35:16 +0800 +0800'>2024-10-29</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to Hands on Machine Learning With Scikit Learn, Keras, and TensorFlow 学习笔记" href="https://carlos19960601.github.io/posts/hands-on-machine-learning-with-scikit-learn-keras-and-tensorflow-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">浏览器跨域
     </h2>
   </header>
@@ -317,21 +337,6 @@ pipx inject notebook pandas numpy 问题记录 如果pipx inject的时候需要�
   </div>
   <footer class="entry-footer"><span title='2024-07-18 14:47:42 +0800 +0800'>2024-07-18</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 正则表达式" href="https://carlos19960601.github.io/posts/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Docker使用问题记录
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>安装Docker 参考Install using the apt repository
-# Add Docker&#39;s official GPG key: sudo apt-get update sudo apt-get install ca-certificates curl sudo install -m 0755 -d /etc/apt/keyrings sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc sudo chmod a&#43;r /etc/apt/keyrings/docker.asc # Add the repository to Apt sources: echo \ &#34;deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \ $(. /etc/os-release &amp;&amp; echo &#34;$VERSION_CODENAME&#34;) stable&#34; | \ sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null sudo apt-get update 其中在这步中，即使设置了Proxy
-export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890 好像并没有生效，我当时是直接下载gpg文件，然后手动copy到/etc/apt/keyrings/docker.asc
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-07-13 07:02:21 +0800 +0800'>2024-07-13</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to Docker使用问题记录" href="https://carlos19960601.github.io/posts/docker%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
