@@ -8,10 +8,8 @@ defaultContentLanguage: zh
 baseURL: "https://carlos19960601.github.io/"
 enableEmoji: true
 
-
 minify:
   disableXML: true
-
 
 languages:
   zh:
@@ -49,3 +47,4 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/carlos19960601/"
+  social: true
