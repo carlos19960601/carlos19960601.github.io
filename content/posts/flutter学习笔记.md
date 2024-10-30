@@ -16,6 +16,16 @@ Wrap(
 )
 ```
 
+### AppBar滑动时背景透明
+
+
+### 检测当前组件的滑动方向
+
+```dart
+final scrollableState = Scrollable.maybeOf(context);
+final AxisDirection? axisDirection = scrollableState?.axisDirection;
+```
+
 
 ### 参考资料
 
