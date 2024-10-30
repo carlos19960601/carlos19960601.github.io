@@ -6,8 +6,32 @@
     <description>Recent content in Posts on Carlos的废话集</description>
     <generator>Hugo -- 0.136.5</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 29 Oct 2024 14:35:16 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 30 Oct 2024 18:00:36 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vscode使用小技巧</title>
+      <link>https://carlos19960601.github.io/posts/vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Wed, 30 Oct 2024 18:00:36 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;h3 id=&#34;标记重要的代码点&#34;&gt;标记重要的代码点&lt;/h3&gt;
+&lt;p&gt;在阅读代码的时候，有一些关键代码(比如核心逻辑、代码入口等)需要经常找，所以我想要够标记一下，这样就能快速定位。&lt;/p&gt;
+&lt;p&gt;可以借助&lt;code&gt;TODO Tree&lt;/code&gt;插件标记todo一样。自定义一个&lt;code&gt;IMPORTANT&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;todo-tree.highlights.customHighlight&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;:&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;...&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;IMPORTANT&amp;#34;&lt;/span&gt;: {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;background&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#ff000080&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  }&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;使用的时候像这样就能够在&lt;code&gt;TODO tree&lt;/code&gt;里面看到了。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IMPORTANT: 本地流量入口
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;listener&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ReCreateHTTP&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;general&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Port&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;tunnel&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Tunnel&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;光标移动更加顺滑&#34;&gt;光标移动更加顺滑&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;editor.smoothScrolling&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#66d9ef&#34;&gt;true&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;editor.cursorBlinking&amp;#34;&lt;/span&gt;: &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;smooth&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+    </item>
     <item>
       <title>Hands on Machine Learning With Scikit Learn, Keras, and TensorFlow 学习笔记</title>
       <link>https://carlos19960601.github.io/posts/hands-on-machine-learning-with-scikit-learn-keras-and-tensorflow-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
