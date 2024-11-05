@@ -4,10 +4,46 @@
     <title>Carlos的废话集</title>
     <link>https://carlos19960601.github.io/</link>
     <description>Recent content on Carlos的废话集</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <generator>Hugo -- 0.137.0</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 30 Oct 2024 18:00:36 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Nov 2024 14:56:46 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTTP协议</title>
+      <link>https://carlos19960601.github.io/posts/http%E5%8D%8F%E8%AE%AE/</link>
+      <pubDate>Tue, 05 Nov 2024 14:56:46 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/http%E5%8D%8F%E8%AE%AE/</guid>
+      <description>&lt;h3 id=&#34;http协议&#34;&gt;HTTP协议&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;明文传输 -&amp;gt; 导致 内容会被篡改（中间人攻击）-&amp;gt; 解决方案：加密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;加密方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对称加密：加密和解密使用的同一个密钥&lt;/li&gt;
+&lt;li&gt;非对称加密: 公钥和私钥有个特别的单向性，虽然都可以用来加密解密，但公钥加密后只能用私钥解密，反过来，私钥加密后也只能用公钥解密。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;结合这2种加密方式就能完成密钥互换 -&amp;gt; 破解方式: 中间人模拟服务器行为 -&amp;gt; HTTPS&lt;/p&gt;
+&lt;p&gt;简单流程如下：首先服务端将公钥公布出去，那么客户端也就知道公钥了。接下来客户端创建一个秘钥，然后通过公钥加密并发送给服务端，服务端接收到密文以后通过私钥解密出正确的秘钥，这时候两端就都知道秘钥是什么了。&lt;/p&gt;
+&lt;h3 id=&#34;https协议&#34;&gt;HTTPS协议&lt;/h3&gt;
+&lt;p&gt;中间人模拟服务器行为主要原因是 中间人不被信任，那么HTTPS有&lt;strong&gt;CA 认证体系&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/http%e5%8d%8f%e8%ae%ae/CA%e7%ad%be%e5%8f%91%e8%af%81%e4%b9%a6.png&#34; alt=&#34;CA签发证书&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;CA 签发证书的过程，如上图左边部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⾸先 CA 会把持有者的公钥、⽤途、颁发者、有效时间等信息打成⼀个包，然后对这些信息进⾏ Hash 计算，得到⼀个 Hash 值；&lt;/li&gt;
+&lt;li&gt;然后 CA 会使⽤⾃⼰的私钥将该 Hash 值加密，⽣成 Certificate Signature，也就是 CA 对证书做了签名；&lt;/li&gt;
+&lt;li&gt;最后将 Certificate Signature 添加在⽂件证书上，形成数字证书；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;客户端校验服务端的数字证书的过程，如上图右边部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⾸先客户端会使⽤同样的 Hash 算法获取该证书的 Hash 值 H1；&lt;/li&gt;
+&lt;li&gt;通常浏览器和操作系统中集成了 CA 的公钥信息，浏览器收到证书后可以使⽤ CA 的公钥解密 Certificate&lt;/li&gt;
+&lt;li&gt;Signature 内容，得到⼀个 Hash 值 H2 ；&lt;/li&gt;
+&lt;li&gt;最后⽐较 H1 和 H2，如果值相同，则为可信赖的证书，否则则认为证书不可信。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HTTPS抓包：&lt;/p&gt;
+&lt;p&gt;抓包出来都是加密的数据，抓包工具模拟中间人，伪造证书，客户端会提示证书不被信任，如果客户端同意，请求就会被抓包工具拦截，转发给服务端。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Vscode使用小技巧</title>
       <link>https://carlos19960601.github.io/posts/vscode%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%8A%80%E5%B7%A7/</link>
@@ -140,14 +176,10 @@
       <pubDate>Wed, 09 Oct 2024 11:30:42 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/%E9%9D%A2%E8%AF%95/</guid>
       <description>&lt;h3 id=&#34;数据库&#34;&gt;数据库&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&#34;countcount1count0countidcountname之间的区别&#34;&gt;Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?&lt;/h4&gt;
 &lt;p&gt;Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。&lt;/p&gt;
 &lt;h3 id=&#34;系统设计&#34;&gt;系统设计&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;怎么避免单点故障(SPOF、Single Point of Failure)？&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&#34;怎么避免单点故障spofsingle-point-of-failure&#34;&gt;怎么避免单点故障(SPOF、Single Point of Failure)？&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备&lt;/li&gt;
 &lt;li&gt;Load Balancing(负载均衡)&lt;/li&gt;
@@ -157,9 +189,7 @@
 &lt;li&gt;Monitoring and Alerting&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;技术选型&#34;&gt;技术选型&lt;/h3&gt;
-&lt;ol&gt;
-&lt;li&gt;SQL vs NoSQL&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h4 id=&#34;sql-vs-nosql&#34;&gt;SQL vs NoSQL&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model )&lt;/li&gt;
 &lt;li&gt;扩展性: 垂直扩展 vs 水平扩展&lt;/li&gt;
@@ -169,17 +199,20 @@
 &lt;/ul&gt;
 &lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/%e9%9d%a2%e8%af%95/SQLvsNoSQL.png&#34; alt=&#34;SQL vs NoSQL&#34;  /&gt;
 &lt;/p&gt;
-&lt;h3 id=&#34;具体系统设计blog&#34;&gt;具体系统设计Blog&lt;/h3&gt;
+&lt;h4 id=&#34;具体系统设计blog&#34;&gt;具体系统设计Blog&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.algomaster.io/p/design-spotify-system-design-interview&#34;&gt;Design Spotify - System Design Interview&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.algomaster.io/p/design-a-scalable-notification-service&#34;&gt;Design a Scalable Notification Service - System Design Interview&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;参考资料&#34;&gt;参考资料&lt;/h3&gt;
+&lt;h4 id=&#34;参考资料&#34;&gt;参考资料&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://juejin.cn/post/7397410962847039525&#34;&gt;麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.algomaster.io/p/system-design-how-to-avoid-single-point-of-failures&#34;&gt;System Design: How to Avoid Single Point of Failures?&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://blog.algomaster.io/p/sql-vs-nosql-7-key-differences&#34;&gt;SQL vs NoSQL - 7 Key Differences You Must Know&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description>
+&lt;/ul&gt;
+&lt;h3 id=&#34;网络协议&#34;&gt;网络协议&lt;/h3&gt;
+&lt;h4 id=&#34;dns-完整查询过程&#34;&gt;DNS 完整查询过程?&lt;/h4&gt;
+&lt;p&gt;DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：&lt;/p&gt;</description>
     </item>
     <item>
       <title>Git学习</title>

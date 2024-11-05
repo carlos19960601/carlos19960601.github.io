@@ -8,14 +8,10 @@
 <title>面试 | Carlos的废话集</title>
 <meta name="keywords" content="">
 <meta name="description" content="数据库
-
 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?
-
 Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count&#43;&#43;。但是id和name会从底层获取数据进行判断是否为null才进行count&#43;&#43;。此外MySQL会借助占用页最小的索引进行遍历。
 系统设计
-
 怎么避免单点故障(SPOF、Single Point of Failure)？
-
 
 Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备
 Load Balancing(负载均衡)
@@ -25,9 +21,7 @@ Graceful Handling of Failures
 Monitoring and Alerting
 
 技术选型
-
 SQL vs NoSQL
-
 
 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model )
 扩展性: 垂直扩展 vs 水平扩展
@@ -47,7 +41,10 @@ Design a Scalable Notification Service - System Design Interview
 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了
 System Design: How to Avoid Single Point of Failures?
 SQL vs NoSQL - 7 Key Differences You Must Know
-">
+
+网络协议
+DNS 完整查询过程?
+DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：">
 <meta name="author" content="">
 <link rel="canonical" href="https://carlos19960601.github.io/posts/%E9%9D%A2%E8%AF%95/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
@@ -97,14 +94,10 @@ SQL vs NoSQL - 7 Key Differences You Must Know
     </style>
 </noscript><meta property="og:title" content="面试" />
 <meta property="og:description" content="数据库
-
 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?
-
 Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count&#43;&#43;。但是id和name会从底层获取数据进行判断是否为null才进行count&#43;&#43;。此外MySQL会借助占用页最小的索引进行遍历。
 系统设计
-
 怎么避免单点故障(SPOF、Single Point of Failure)？
-
 
 Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备
 Load Balancing(负载均衡)
@@ -114,9 +107,7 @@ Graceful Handling of Failures
 Monitoring and Alerting
 
 技术选型
-
 SQL vs NoSQL
-
 
 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model )
 扩展性: 垂直扩展 vs 水平扩展
@@ -136,7 +127,10 @@ Design a Scalable Notification Service - System Design Interview
 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了
 System Design: How to Avoid Single Point of Failures?
 SQL vs NoSQL - 7 Key Differences You Must Know
-" />
+
+网络协议
+DNS 完整查询过程?
+DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://carlos19960601.github.io/posts/%E9%9D%A2%E8%AF%95/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-10-09T11:30:42+08:00" />
@@ -145,14 +139,10 @@ SQL vs NoSQL - 7 Key Differences You Must Know
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="面试"/>
 <meta name="twitter:description" content="数据库
-
 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?
-
 Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count&#43;&#43;。但是id和name会从底层获取数据进行判断是否为null才进行count&#43;&#43;。此外MySQL会借助占用页最小的索引进行遍历。
 系统设计
-
 怎么避免单点故障(SPOF、Single Point of Failure)？
-
 
 Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备
 Load Balancing(负载均衡)
@@ -162,9 +152,7 @@ Graceful Handling of Failures
 Monitoring and Alerting
 
 技术选型
-
 SQL vs NoSQL
-
 
 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model )
 扩展性: 垂直扩展 vs 水平扩展
@@ -184,7 +172,10 @@ Design a Scalable Notification Service - System Design Interview
 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了
 System Design: How to Avoid Single Point of Failures?
 SQL vs NoSQL - 7 Key Differences You Must Know
-"/>
+
+网络协议
+DNS 完整查询过程?
+DNS 查询请求过程和域名缓存结合起来，完整查询过程👇："/>
 
 
 <script type="application/ld+json">
@@ -213,12 +204,12 @@ SQL vs NoSQL - 7 Key Differences You Must Know
   "@type": "BlogPosting",
   "headline": "面试",
   "name": "面试",
-  "description": "数据库 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别? Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。\n系统设计 怎么避免单点故障(SPOF、Single Point of Failure)？ Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备 Load Balancing(负载均衡) Data Replication(数据复制): 数据库、缓存的主从 Geographic Distributio(异地多活)：异地多集群的数据复制（同步或异步） Graceful Handling of Failures Monitoring and Alerting 技术选型 SQL vs NoSQL 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model ) 扩展性: 垂直扩展 vs 水平扩展 查询语言：SQL vs 无固定标准 事务：ACID vs BASE 性能：对Schema明确，查询模式固定的方式，SQL查询效率高 具体系统设计Blog Design Spotify - System Design Interview Design a Scalable Notification Service - System Design Interview 参考资料 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了 System Design: How to Avoid Single Point of Failures? SQL vs NoSQL - 7 Key Differences You Must Know ",
+  "description": "数据库 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别? Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。\n系统设计 怎么避免单点故障(SPOF、Single Point of Failure)？ Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备 Load Balancing(负载均衡) Data Replication(数据复制): 数据库、缓存的主从 Geographic Distributio(异地多活)：异地多集群的数据复制（同步或异步） Graceful Handling of Failures Monitoring and Alerting 技术选型 SQL vs NoSQL 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model ) 扩展性: 垂直扩展 vs 水平扩展 查询语言：SQL vs 无固定标准 事务：ACID vs BASE 性能：对Schema明确，查询模式固定的方式，SQL查询效率高 具体系统设计Blog Design Spotify - System Design Interview Design a Scalable Notification Service - System Design Interview 参考资料 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了 System Design: How to Avoid Single Point of Failures? SQL vs NoSQL - 7 Key Differences You Must Know 网络协议 DNS 完整查询过程? DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：\n",
   "keywords": [
     
   ],
-  "articleBody": "数据库 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别? Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。\n系统设计 怎么避免单点故障(SPOF、Single Point of Failure)？ Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备 Load Balancing(负载均衡) Data Replication(数据复制): 数据库、缓存的主从 Geographic Distributio(异地多活)：异地多集群的数据复制（同步或异步） Graceful Handling of Failures Monitoring and Alerting 技术选型 SQL vs NoSQL 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model ) 扩展性: 垂直扩展 vs 水平扩展 查询语言：SQL vs 无固定标准 事务：ACID vs BASE 性能：对Schema明确，查询模式固定的方式，SQL查询效率高 具体系统设计Blog Design Spotify - System Design Interview Design a Scalable Notification Service - System Design Interview 参考资料 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了 System Design: How to Avoid Single Point of Failures? SQL vs NoSQL - 7 Key Differences You Must Know ",
-  "wordCount" : "91",
+  "articleBody": "数据库 Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别? Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。\n系统设计 怎么避免单点故障(SPOF、Single Point of Failure)？ Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备 Load Balancing(负载均衡) Data Replication(数据复制): 数据库、缓存的主从 Geographic Distributio(异地多活)：异地多集群的数据复制（同步或异步） Graceful Handling of Failures Monitoring and Alerting 技术选型 SQL vs NoSQL 数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model ) 扩展性: 垂直扩展 vs 水平扩展 查询语言：SQL vs 无固定标准 事务：ACID vs BASE 性能：对Schema明确，查询模式固定的方式，SQL查询效率高 具体系统设计Blog Design Spotify - System Design Interview Design a Scalable Notification Service - System Design Interview 参考资料 麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了 System Design: How to Avoid Single Point of Failures? SQL vs NoSQL - 7 Key Differences You Must Know 网络协议 DNS 完整查询过程? DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：\n首先搜索 浏览器的 DNS 缓存 ，缓存中维护一张域名与 IP 地址的对应表 如果没有命中😢，则继续搜索 操作系统的 DNS 缓存 如果依然没有命中🤦‍♀️，则操作系统将域名发送至 本地域名服务器 ，本地域名服务器查询自己的 DNS 缓存，查找成功则返回结果（注意：主机和本地域名服务器之间的查询方式是 递归查询 ） 若本地域名服务器的 DNS 缓存没有命中🤦‍，则本地域名服务器向上级域名服务器进行查询，通过以下方式进行 迭代查询 （注意：本地域名服务器和其他域名服务器之间的查询方式是迭代查询，防止根域名服务器压力过大）： 首先本地域名服务器向根域名服务器发起请求，根域名服务器是最高层次的，它并不会直接指明这个域名对应的 IP 地址，而是返回顶级域名服务器的地址，也就是说给本地域名服务器指明一条道路，让他去这里寻找答案 本地域名服务器拿到这个顶级域名服务器的地址后，就向其发起请求，获取权限域名服务器的地址 本地域名服务器根据权限域名服务器的地址向其发起请求，最终得到该域名对应的 IP 地址 本地域名服务器 将得到的 IP 地址返回给操作系统，同时自己将 IP 地址 缓存 起来📝 操作系统 将 IP 地址返回给浏览器，同时自己也将 IP 地址 缓存 起来📝 至此， 浏览器 就得到了域名对应的 IP 地址，并将 IP 地址 缓存 起来📝 TCP建立连接(3次握手)流程 为什么需要3次？ 为了防止服务器端开启一些无用的连接增加服务器开销 防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。 TCP断开连接(4次挥手)流程 为什么客户端在TIME-WAIT阶段要等2MSL？ 为的是确认服务器端是否收到客户端发出的 ACK 确认报文\n参考资料 DNS 协议是什么？完整查询过程？为什么选择使用 UDP 协议发起 DNS 查询？ “三次握手，四次挥手”这么讲，保证你忘不了 ",
+  "wordCount" : "168",
   "inLanguage": "zh",
   "datePublished": "2024-10-09T11:30:42+08:00",
   "dateModified": "2024-10-09T11:30:42+08:00",
@@ -315,30 +306,55 @@ SQL vs NoSQL - 7 Key Differences You Must Know
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="数据库">数据库</a></li>
+                    <a href="#%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="数据库">数据库</a><ul>
+                        
                 <li>
-                    <a href="#%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1" aria-label="系统设计">系统设计</a></li>
+                    <a href="#countcount1count0countidcountname%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab" aria-label="Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?">Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?</a></li></ul>
+                </li>
                 <li>
-                    <a href="#%e6%8a%80%e6%9c%af%e9%80%89%e5%9e%8b" aria-label="技术选型">技术选型</a></li>
+                    <a href="#%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1" aria-label="系统设计">系统设计</a><ul>
+                        
+                <li>
+                    <a href="#%e6%80%8e%e4%b9%88%e9%81%bf%e5%85%8d%e5%8d%95%e7%82%b9%e6%95%85%e9%9a%9cspofsingle-point-of-failure" aria-label="怎么避免单点故障(SPOF、Single Point of Failure)？">怎么避免单点故障(SPOF、Single Point of Failure)？</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%e6%8a%80%e6%9c%af%e9%80%89%e5%9e%8b" aria-label="技术选型">技术选型</a><ul>
+                        
+                <li>
+                    <a href="#sql-vs-nosql" aria-label="SQL vs NoSQL">SQL vs NoSQL</a></li>
                 <li>
                     <a href="#%e5%85%b7%e4%bd%93%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1blog" aria-label="具体系统设计Blog">具体系统设计Blog</a></li>
                 <li>
-                    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料">参考资料</a>
+                    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料">参考资料</a></li></ul>
                 </li>
+                <li>
+                    <a href="#%e7%bd%91%e7%bb%9c%e5%8d%8f%e8%ae%ae" aria-label="网络协议">网络协议</a><ul>
+                        
+                <li>
+                    <a href="#dns-%e5%ae%8c%e6%95%b4%e6%9f%a5%e8%af%a2%e8%bf%87%e7%a8%8b" aria-label="DNS 完整查询过程?">DNS 完整查询过程?</a></li>
+                <li>
+                    <a href="#tcp%e5%bb%ba%e7%ab%8b%e8%bf%9e%e6%8e%a53%e6%ac%a1%e6%8f%a1%e6%89%8b%e6%b5%81%e7%a8%8b" aria-label="TCP建立连接(3次握手)流程">TCP建立连接(3次握手)流程</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%813%e6%ac%a1" aria-label="为什么需要3次？">为什么需要3次？</a></li>
+                <li>
+                    <a href="#tcp%e6%96%ad%e5%bc%80%e8%bf%9e%e6%8e%a54%e6%ac%a1%e6%8c%a5%e6%89%8b%e6%b5%81%e7%a8%8b" aria-label="TCP断开连接(4次挥手)流程">TCP断开连接(4次挥手)流程</a></li>
+                <li>
+                    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%ae%a2%e6%88%b7%e7%ab%af%e5%9c%a8time-wait%e9%98%b6%e6%ae%b5%e8%a6%81%e7%ad%892msl" aria-label="为什么客户端在TIME-WAIT阶段要等2MSL？">为什么客户端在TIME-WAIT阶段要等2MSL？</a></li>
+                <li>
+                    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99-1" aria-label="参考资料">参考资料</a>
+                </li>
+            </ul>
+            </li>
             </ul>
         </div>
     </details>
 </div>
 
   <div class="post-content"><h3 id="数据库">数据库<a hidden class="anchor" aria-hidden="true" href="#数据库">#</a></h3>
-<ol>
-<li>Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?</li>
-</ol>
+<h4 id="countcount1count0countidcountname之间的区别">Count(*)、Count(1)、Count(0)、Count(id)、Count(name)之间的区别?<a hidden class="anchor" aria-hidden="true" href="#countcount1count0countidcountname之间的区别">#</a></h4>
 <p>Count都会进行一次全表便利，Count(*)、Count(1)、Count(0)不会从底层获取数据，直接进行count++。但是id和name会从底层获取数据进行判断是否为null才进行count++。此外MySQL会借助占用页最小的索引进行遍历。</p>
 <h3 id="系统设计">系统设计<a hidden class="anchor" aria-hidden="true" href="#系统设计">#</a></h3>
-<ol>
-<li>怎么避免单点故障(SPOF、Single Point of Failure)？</li>
-</ol>
+<h4 id="怎么避免单点故障spofsingle-point-of-failure">怎么避免单点故障(SPOF、Single Point of Failure)？<a hidden class="anchor" aria-hidden="true" href="#怎么避免单点故障spofsingle-point-of-failure">#</a></h4>
 <ul>
 <li>Redundancy(冗余): Primary vs Standby，比如流量入口，load banlaner进行主备</li>
 <li>Load Balancing(负载均衡)</li>
@@ -348,9 +364,7 @@ SQL vs NoSQL - 7 Key Differences You Must Know
 <li>Monitoring and Alerting</li>
 </ul>
 <h3 id="技术选型">技术选型<a hidden class="anchor" aria-hidden="true" href="#技术选型">#</a></h3>
-<ol>
-<li>SQL vs NoSQL</li>
-</ol>
+<h4 id="sql-vs-nosql">SQL vs NoSQL<a hidden class="anchor" aria-hidden="true" href="#sql-vs-nosql">#</a></h4>
 <ul>
 <li>数据模型: schema vs schema-less(Key-Value Model, Document Model, Column-Family Model, Graph Model )</li>
 <li>扩展性: 垂直扩展 vs 水平扩展</li>
@@ -360,16 +374,54 @@ SQL vs NoSQL - 7 Key Differences You Must Know
 </ul>
 <p><img loading="lazy" src="/%e9%9d%a2%e8%af%95/SQLvsNoSQL.png" alt="SQL vs NoSQL"  />
 </p>
-<h3 id="具体系统设计blog">具体系统设计Blog<a hidden class="anchor" aria-hidden="true" href="#具体系统设计blog">#</a></h3>
+<h4 id="具体系统设计blog">具体系统设计Blog<a hidden class="anchor" aria-hidden="true" href="#具体系统设计blog">#</a></h4>
 <ul>
 <li><a href="https://blog.algomaster.io/p/design-spotify-system-design-interview">Design Spotify - System Design Interview</a></li>
 <li><a href="https://blog.algomaster.io/p/design-a-scalable-notification-service">Design a Scalable Notification Service - System Design Interview</a></li>
 </ul>
-<h3 id="参考资料">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h3>
+<h4 id="参考资料">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h4>
 <ul>
 <li><a href="https://juejin.cn/post/7397410962847039525">麻烦不要再问我count(*)、count(1)、count(id)、count(name)之间的区别了</a></li>
 <li><a href="https://blog.algomaster.io/p/system-design-how-to-avoid-single-point-of-failures">System Design: How to Avoid Single Point of Failures?</a></li>
 <li><a href="https://blog.algomaster.io/p/sql-vs-nosql-7-key-differences">SQL vs NoSQL - 7 Key Differences You Must Know</a></li>
+</ul>
+<h3 id="网络协议">网络协议<a hidden class="anchor" aria-hidden="true" href="#网络协议">#</a></h3>
+<h4 id="dns-完整查询过程">DNS 完整查询过程?<a hidden class="anchor" aria-hidden="true" href="#dns-完整查询过程">#</a></h4>
+<p>DNS 查询请求过程和域名缓存结合起来，完整查询过程👇：</p>
+<ol>
+<li>首先搜索 浏览器的 DNS 缓存 ，缓存中维护一张域名与 IP 地址的对应表</li>
+<li>如果没有命中😢，则继续搜索 操作系统的 DNS 缓存</li>
+<li>如果依然没有命中🤦‍♀️，则操作系统将域名发送至 本地域名服务器 ，本地域名服务器查询自己的 DNS 缓存，查找成功则返回结果（注意：主机和本地域名服务器之间的查询方式是 递归查询 ）</li>
+<li>若本地域名服务器的 DNS 缓存没有命中🤦‍，则本地域名服务器向上级域名服务器进行查询，通过以下方式进行 迭代查询 （注意：本地域名服务器和其他域名服务器之间的查询方式是迭代查询，防止根域名服务器压力过大）：
+<ol>
+<li>首先本地域名服务器向根域名服务器发起请求，根域名服务器是最高层次的，它并不会直接指明这个域名对应的 IP 地址，而是返回顶级域名服务器的地址，也就是说给本地域名服务器指明一条道路，让他去这里寻找答案</li>
+<li>本地域名服务器拿到这个顶级域名服务器的地址后，就向其发起请求，获取权限域名服务器的地址</li>
+<li>本地域名服务器根据权限域名服务器的地址向其发起请求，最终得到该域名对应的 IP 地址</li>
+</ol>
+</li>
+<li>本地域名服务器 将得到的 IP 地址返回给操作系统，同时自己将 IP 地址 缓存 起来📝</li>
+<li>操作系统 将 IP 地址返回给浏览器，同时自己也将 IP 地址 缓存 起来📝</li>
+<li>至此， 浏览器 就得到了域名对应的 IP 地址，并将 IP 地址 缓存 起来📝</li>
+</ol>
+<p><img loading="lazy" src="/%e9%9d%a2%e8%af%95/dns.png" alt="DNS查询过程"  />
+</p>
+<h4 id="tcp建立连接3次握手流程">TCP建立连接(3次握手)流程<a hidden class="anchor" aria-hidden="true" href="#tcp建立连接3次握手流程">#</a></h4>
+<p><img loading="lazy" src="/%e9%9d%a2%e8%af%95/3%e6%ac%a1%e6%8f%a1%e6%89%8b.png" alt="3次握手"  />
+</p>
+<h4 id="为什么需要3次">为什么需要3次？<a hidden class="anchor" aria-hidden="true" href="#为什么需要3次">#</a></h4>
+<ul>
+<li>为了防止服务器端开启一些无用的连接增加服务器开销</li>
+<li>防止已失效的连接请求报文段突然又传送到了服务端，因而产生错误。</li>
+</ul>
+<h4 id="tcp断开连接4次挥手流程">TCP断开连接(4次挥手)流程<a hidden class="anchor" aria-hidden="true" href="#tcp断开连接4次挥手流程">#</a></h4>
+<p><img loading="lazy" src="/%e9%9d%a2%e8%af%95/4%e6%ac%a1%e6%8c%a5%e6%89%8b.png" alt="4次挥手"  />
+</p>
+<h4 id="为什么客户端在time-wait阶段要等2msl">为什么客户端在TIME-WAIT阶段要等2MSL？<a hidden class="anchor" aria-hidden="true" href="#为什么客户端在time-wait阶段要等2msl">#</a></h4>
+<p>为的是确认服务器端是否收到客户端发出的 ACK 确认报文</p>
+<h4 id="参考资料-1">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料-1">#</a></h4>
+<ul>
+<li><a href="https://github.com/sisterAn/blog/issues/108">DNS 协议是什么？完整查询过程？为什么选择使用 UDP 协议发起 DNS 查询？</a></li>
+<li><a href="https://www.cnblogs.com/three-fighter/p/14802786.html">“三次握手，四次挥手”这么讲，保证你忘不了</a></li>
 </ul>
 
 
