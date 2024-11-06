@@ -170,3 +170,99 @@ draft: false
     非常适合处理用户输入、搜索框自动完成等场景，确保在用户停止操作一段时间后才执行相关操作，避免不必要的计算和网络请求。
     
     例如，在在线文档的自动保存功能中，可以使用防抖来避免频繁保存，而是在用户停止编辑一段时间后进行保存操作。
+
+## 从别人中的笔记学习
+
+### React常用的设计模式
+
+#### 组合模式
+
+首先看一段代码，`Tabs`和`TabItem`是父子关系。
+
+* `Tabs` 负责展示和控制对应的 `TabItem` 。绑定切换 `tab` 回调方法 `onChange`。当 `tab` 切换的时候，执行回调。
+* `TabItem` 负责展示对应的 `tab` 项，向 `Tabs` 传递 `props` 相关信息。
+
+```tsx
+<Tabs onChange={ (type)=> console.log(type)  } >
+    <TabItem name="react"  label="react" >React</TabItem>
+    <TabItem name="vue" label="vue" >Vue</TabItem>
+    <TabItem name="angular" label="angular"  >Angular</TabItem>
+</Tabs>
+```
+
+**隐式混入 props** 
+
+```tsx
+function Item (props){
+    console.log(props) 
+    return <div> 名称： {props.name} </div>
+}
+
+function Groups (props){
+    const newChilren = React.cloneElement(props.children, { author:'alien' })
+    return  newChilren
+}
+```
+
+通过`React.cloneElement`，向子组件中混入父组件的props。
+
+**控制渲染**
+
+```tsx
+function Item (props){
+    return <div> 名称： {props.name} </div>
+}
+/* Groups 组件 */
+function Groups (props){
+    const newChildren = []
+    React.Children.forEach(props.children,(item)=>{
+        const { type ,props } = item || {}
+        if(isValidElement(item) && type === Item && props.isShow  ){
+            newChildren.push(item)
+        }
+    })
+    return  newChildren
+}
+```
+
+通过遍历children，根据父组件的逻辑来控制子组件的渲染。
+
+**内外层通信**
+
+```tsx
+function Item (props){
+    return <div>
+        名称：{props.name}
+        <button onClick={()=> props.callback('let us learn React!')} >点击</button>
+    </div>
+}
+
+function Groups (props){
+    const handleCallback = (val) =>  console.log(' children 内容：',val )
+    return <div>
+        {React.cloneElement( props.children , { callback:handleCallback } )}
+    </div>
+}
+```
+
+向内层组件传递回调函数 callback ，内层通过调用 callback 来实现两层组合模式的通信关系。
+
+#### render props模式
+
+render props 模式和组合模式类似。区别不同的是，用函数的形式代替 children。函数的参数，由容器组件提供，这样的好处，将容器组件的状态，提升到当前外层组件中，这个是一个巧妙之处，也是和组合模式相比最大的区别。
+
+```tsx
+export default function App (){
+    const aProps = {
+        name:'《React进阶实践指南》'
+    }
+    return <Container>
+        {(cProps) => <Children {...cProps} { ...aProps }  />}
+    </Container>
+}
+```
+
+
+
+参考资料: 
+* [「React 进阶」 学好这些 React 设计模式，能让你的 React 项目飞起来](https://juejin.cn/post/7007214462813863950)
