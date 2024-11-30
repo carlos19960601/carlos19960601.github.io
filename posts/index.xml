@@ -4,10 +4,83 @@
     <title>Posts on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/posts/</link>
     <description>Recent content in Posts on Carlos的废话集</description>
-    <generator>Hugo -- 0.139.2</generator>
+    <generator>Hugo -- 0.139.3</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Nov 2024 14:56:46 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2024 22:08:35 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Css学习笔记</title>
+      <link>https://carlos19960601.github.io/posts/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sat, 30 Nov 2024 22:08:35 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</guid>
+      <description>&lt;h3 id=&#34;tailwindcss&#34;&gt;tailwindcss&lt;/h3&gt;
+&lt;h4 id=&#34;arbitrary-values&#34;&gt;Arbitrary values&lt;/h4&gt;
+&lt;p&gt;在使用tailwind的时候，如果遇到没有预定值的样式，就可以使用arbitrary values。&lt;/p&gt;
+&lt;p&gt;比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bg-[#ff8906]&lt;/code&gt; 就可以设置背景色为橙色。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;w-[300px]&lt;/code&gt; 就可以设置宽度为300px。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;还有一些，就是没有定义类型的，最常见的就是svg的属性。&lt;code&gt;stroke-dasharray&lt;/code&gt;在tailwind中就没有定义类型，所以就可以使用arbitrary values。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;[stroke-dasharray:450,0]&lt;/code&gt;: 设置stroke-dasharray为450,0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;styling-based-on-parent-statehttpstailwindcsscomdocshover-focus-and-other-statesstyling-based-on-parent-state&#34;&gt;&lt;a href=&#34;https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state&#34;&gt;styling-based-on-parent-state&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;这种是在子元素依赖于父元素hover等状态时使用的。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;#&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;group block max-w-xs mx-auto rounded-lg p-6 bg-white ring-1 ring-slate-900/5 shadow-lg space-y-3 hover:bg-sky-500 hover:ring-sky-500&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;flex items-center space-x-3&amp;#34;&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;svg&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;h-6 w-6 stroke-sky-500 group-hover:stroke-white&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;fill&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;viewBox&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0 0 24 24&amp;#34;&lt;/span&gt;&amp;gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- ... --&amp;gt;&lt;/span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;svg&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;h3&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text-slate-900 group-hover:text-white text-sm font-semibold&amp;#34;&lt;/span&gt;&amp;gt;New project&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;h3&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;div&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;class&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;text-slate-500 group-hover:text-white text-sm&amp;#34;&lt;/span&gt;&amp;gt;Create a new project from a variety of starting templates.&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;p&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;a&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;设置&lt;code&gt;group&lt;/code&gt;，然后在子元素上使用&lt;code&gt;group-hover&lt;/code&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;stroke-dasharray属性httpscss-trickscomalmanacpropertiessstroke-dasharray&#34;&gt;&lt;a href=&#34;https://css-tricks.com/almanac/properties/s/stroke-dasharray/&#34;&gt;stroke-dasharray属性&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;首先这个是给svg使用的属性。控制stroke的dash长度和间隔长度。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;stroke-dasharray: 2; 表示dash的长度为2，间隔长度为2。&lt;/li&gt;
+&lt;li&gt;stroke-dasharray: 2 4; 表示dash的长度为2，间隔长度为4。&lt;/li&gt;
+&lt;li&gt;stroke-dasharray: 5 10 15; 表示dash的长度为5，间隔长度为10，dash的长度为15，间隔长度为5。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>杂七杂八</title>
+      <link>https://carlos19960601.github.io/posts/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</link>
+      <pubDate>Thu, 14 Nov 2024 16:35:43 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/%E6%9D%82%E4%B8%83%E6%9D%82%E5%85%AB/</guid>
+      <description>&lt;h3 id=&#34;npx-怎么用pnpm替代&#34;&gt;npx 怎么用pnpm替代&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Running executables inside your downloaded dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;npx jest&lt;/code&gt; -&amp;gt; &lt;code&gt;pnpm exec jest&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Running executable commands in packages you want to download transiently&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;npx create-react-app my-app&lt;/code&gt; -&amp;gt; &lt;code&gt;pnpm dlx create-react-app my-app&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;pnpm&#34;&gt;pnpm&lt;/h3&gt;
+&lt;p&gt;全局的公共依赖包&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pnpm install react -w
+
+pnpm install rollup -wD
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;给某个package单独安装指定依赖&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pnpm add axios --filter @qftjs/monorepo1
+&lt;/code&gt;&lt;/pre&gt;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pnpm build --filter @qftjs/monorepo1
+
+pnpm build --filter &amp;#34;./packages/**&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;模块之间的相互依赖&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;pnpm install @qftjs/monorepo2 -r --filter @qftjs/monorepo1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;参考资料&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://stackoverflow.com/questions/75413361/can-i-use-npx-with-pnpm&#34;&gt;Can I use npx with pnpm?&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;五险一金&#34;&gt;五险一金&lt;/h3&gt;
+&lt;p&gt;养老保险：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;个人: 8% 单位: 16%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;typescripe-别名&#34;&gt;typescripe 别名&lt;/h3&gt;
+&lt;p&gt;開發環境下，我們使用 nodemon，而 nodemon 又是使用 ts-node，所以我們的目標便是讓 ts-node 套件可以解析路徑別名&lt;/p&gt;</description>
+    </item>
     <item>
       <title>HTTP协议</title>
       <link>https://carlos19960601.github.io/posts/http%E5%8D%8F%E8%AE%AE/</link>
