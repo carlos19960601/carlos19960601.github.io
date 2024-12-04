@@ -516,6 +516,12 @@ pnpm build --filter &amp;#34;./packages/**&amp;#34;
 &lt;li&gt;&lt;a href=&#34;https://github.com/AIYO77/flutter_cloud_music&#34;&gt;flutter_cloud_music&lt;/a&gt;: 还原网易云，flutter SDK版本较低，依赖包有些缺乏维护&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/Davies-K/Taskez&#34;&gt;Taskez&lt;/a&gt;: A Productivity Mobile Application UI kit built with Flutter&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;https://github.com/abuanwar072/E-commerce-Complete-Flutter-UI&#34;&gt;E-commerce-Complete-Flutter-UI&lt;/a&gt;: 学习skleton&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/chen08209/FlClash&#34;&gt;Flclash&lt;/a&gt;: 基于ClashMeta的客户端。
+&lt;ul&gt;
+&lt;li&gt;cgo&lt;/li&gt;
+&lt;li&gt;ffi&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;web前端&#34;&gt;Web前端&lt;/h1&gt;
 &lt;h2 id=&#34;react&#34;&gt;React&lt;/h2&gt;
@@ -536,6 +542,11 @@ pnpm build --filter &amp;#34;./packages/**&amp;#34;
 &lt;li&gt;&lt;a href=&#34;https://github.com/noodle-run/noodle&#34;&gt;noodle&lt;/a&gt;: Rethinking Student Productivity
 &lt;ul&gt;
 &lt;li&gt;学习在nextjs中使用trpc&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/steven-tey/novel&#34;&gt;novel&lt;/a&gt;: 基于Tiptap实现的编辑器
+&lt;ul&gt;
+&lt;li&gt;tiptap插件编写&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
