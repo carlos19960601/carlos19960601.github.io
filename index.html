@@ -166,6 +166,27 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">关于React的rerender
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>作为一个React初学者，在写React程序的时候经常遇到rerender的问题。由于写的都比较简单，也没有关注rerender带来的问题。但是遇到问题了又到处Google找问题，还是比较浪费时间的。所以这次下定决心学习一下React的Rerender的机制。
+当Component第一次出现在屏幕上，我们称之为mounting。React会初始化Component的state, 运行hooks，添加element到dom中。
+当React检测到Component不再需要时，我们称之为unmounting。React会执行clean-up，销毁组件及其相关的state，最后从dom中移除element。
+rerender是在已经存在的Component的基础上，一些state发生了变化，导致Component重新渲染。相比于mounting会更加轻量。
+每次rerender都始于state的改变。你可以把React App想象成1棵树。state变化的那个节点会导致这个节点下面的所有分支节点都重新渲染。
+你可能听说过props改变了也会导致Component rerender。但这是个误解，出现这个根本原因还是因为state发生了变化。来看下面这个例子
+const App = () =&gt; { // local variable won&#39;t work let isOpen = false; return ( &lt;div className=&#34;layout&#34;&gt; {/* nothing will happen */} &lt;Button onClick={() =&gt; (isOpen = true)}&gt; Open dialog &lt;/Button&gt; {/* will never show up */} {isOpen ? ( &lt;ModalDialog onClose={() =&gt; (isOpen = false)} /&gt; ) : null} &lt;/div&gt; ); }; 当点击Button的时候，isOpen会被改变，但是ModalDialog并没有重新渲染。local variable不会被React追踪，所以ModalDialog不会重新渲染。
+再看看下面的代码。isOpen的值发生改变，会导致整个App都会重新渲染。VerySlowComponent、BunchOfStuff、OtherStuffAlsoComplicated这些组件并不依赖isOpen，但是都进行了rerender。
+const App = () =&gt; { // our state is declared here const [isOpen, setIsOpen] = useState(false); return ( &lt;div className=&#34;layout&#34;&gt; {/* state is used here */} &lt;Button onClick={() =&gt; setIsOpen(true)}&gt; Open dialog &lt;/Button&gt; {/* state is used here */} {isOpen ? ( &lt;ModalDialog onClose={() =&gt; setIsOpen(false)} /&gt; ) : null} &lt;VerySlowComponent /&gt; &lt;BunchOfStuff /&gt; &lt;OtherStuffAlsoComplicated /&gt; &lt;/div&gt; ); }; 一种方式是React.memo进行包装。React.memo会对props进行浅比较，如果props没有改变，就不会重新渲染。
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-04 16:06:31 +0800 +0800'>2024-12-04</span>&nbsp;·&nbsp;3 分钟</footer>
+  <a class="entry-link" aria-label="post link to 关于React的rerender" href="https://carlos19960601.github.io/posts/%E5%85%B3%E4%BA%8Ereact%E7%9A%84rerender/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">Css学习笔记
     </h2>
   </header>
@@ -323,26 +344,6 @@ import { db } from &#39;../../lib/db&#39;; export async function GET(request: Re
   </div>
   <footer class="entry-footer"><span title='2024-09-12 09:27:24 +0800 +0800'>2024-09-12</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to Nextjs学习" href="https://carlos19960601.github.io/posts/nextjs%E5%AD%A6%E4%B9%A0/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">React笔记
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Twitter/X 博主@_georgemoller的分享 主要记录Twitter博主@_georgemoller分享的React技巧。对于我这种React小白很使用。于是搬运过来，并附上个人的一些理解。如有问题请邮箱本人，欢迎各位指正。
-Solve re-render issues with composition 个人理解：功能单一，利用组合模式减少耦合，带来不必要的重新渲染
-Utility Types For Enhanced Reusablity 个人理解：Typescript Pick的使用
-Bad use case for useCallback useCallback 使用在复杂逻辑的组件，简单组件不会消耗造成性能问题时不必使用
-Intersection types to extends native props in a component Don’t listen for ref changes with useEffect 本人曾经这么干过
-useEffect vs useLayoutEffect 个人理解：useLayoutEffect在DOM更新后，浏览器绘制前执行。useEffect在DOM更新后，浏览器绘制后执行。
-Separation of Concerns in React React中的关注点分离 这是一个重要的软件设计原则，在React开发中也同样适用。它指的是将代码按照不同的功能或责任进行划分和组织，使每个部分专注于特定的任务。在React中，这通常体现为:
-将UI和逻辑分离 将状态管理与渲染逻辑分离 将可复用的逻辑抽离成自定义Hook 将大型组件拆分成更小的、功能单一的组件 遵循这一原则可以提高代码的可维护性、可读性和可重用性。
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-08-28 14:43:33 +0800 +0800'>2024-08-28</span>&nbsp;·&nbsp;2 分钟</footer>
-  <a class="entry-link" aria-label="post link to React笔记" href="https://carlos19960601.github.io/posts/react%E7%AC%94%E8%AE%B0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
