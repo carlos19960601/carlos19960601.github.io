@@ -171,6 +171,20 @@ draft: false
     
     例如，在在线文档的自动保存功能中，可以使用防抖来避免频繁保存，而是在用户停止编辑一段时间后进行保存操作。
 
+### 使用 ElementRef 类型定义ref的类型
+
+记住`HTMLDivElement`是比较困难的
+
+```jsx
+const ref = useRef<HTMLDivElement>(null);
+```
+
+可以尝试
+
+```jsx
+const ref = useRef<ElementRef<"div">>(null);
+```
+
 ## 从别人中的笔记学习
 
 ### React常用的设计模式
