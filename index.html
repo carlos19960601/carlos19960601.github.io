@@ -166,7 +166,23 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">关于React的rerender
+    <h2 class="entry-hint-parent">React Rerender-Children as Props模式
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>现在需要创建一个Block组件，需要根据scroll value来控制其显示的位置。
+const MainScrollableArea = () =&gt; { const [position, setPosition] = useState(300); const onScroll = (e) =&gt; { // calculate position based on the scrolled value const calculated = getPosition(e.target.scrollTop); // save it to state setPosition(calculated); }; return ( &lt;div className=&#34;scrollable-block&#34; onScroll={onScroll}&gt; {/* pass position value to the new movable component */} &lt;MovingBlock position={position} /&gt; &lt;VerySlowComponent /&gt; &lt;BunchOfStuff /&gt; &lt;OtherStuffAlsoComplicated /&gt; &lt;/div&gt; ); 根据 React Rerender-Move State Down模式我们了解到这会导致整个MainScrollableArea都会重新渲染。
+于是我们可以将不依赖于position的组件提取出来。
+const ScrollableWithMovingBlock = ({children}) =&gt; { const [position, setPosition] = useState(300); const onScroll = (e) =&gt; { const calculated = getPosition(e.target.scrollTop); setPosition(calculated); }; return ( &lt;div className=&#34;scrollable-block&#34; onScroll={onScroll}&gt; &lt;MovingBlock position={position} /&gt; {/* slow bunch of stuff used to be here, but not anymore */} {children} &lt;/div&gt; ); }; const App = () =&gt; { return ( &lt;ScrollableWithMovingBlock&gt; &lt;VerySlowComponent /&gt; &lt;BunchOfStuff /&gt; &lt;OtherStuffAlsoComplicated /&gt; &lt;/ScrollableWithMovingBlock&gt; ); }; 这样VerySlowComponent、BunchOfStuff、OtherStuffAlsoComplicated这些组件就不会重新渲染了。有人可能会疑惑，为什么这样就不会重新渲染了呢？VerySlowComponent、BunchOfStuff、OtherStuffAlsoComplicated这些组件仍然在ScrollableWithMovingBlock中，position发生改变了，为啥它们不会重新渲染呢？
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-14 11:45:00 +0800 +0800'>2024-12-14</span>&nbsp;·&nbsp;1 分钟</footer>
+  <a class="entry-link" aria-label="post link to React Rerender-Children as Props模式" href="https://carlos19960601.github.io/posts/react-rerender-children-as-props%E6%A8%A1%E5%BC%8F/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">React Rerender-Move State Down模式
     </h2>
   </header>
   <div class="entry-content">
@@ -182,7 +198,7 @@ const App = () =&gt; { // our state is declared here const [isOpen, setIsOpen] =
 ...</p>
   </div>
   <footer class="entry-footer"><span title='2024-12-04 16:06:31 +0800 +0800'>2024-12-04</span>&nbsp;·&nbsp;3 分钟</footer>
-  <a class="entry-link" aria-label="post link to 关于React的rerender" href="https://carlos19960601.github.io/posts/%E5%85%B3%E4%BA%8Ereact%E7%9A%84rerender/"></a>
+  <a class="entry-link" aria-label="post link to React Rerender-Move State Down模式" href="https://carlos19960601.github.io/posts/react-rerender-move-state-down%E6%A8%A1%E5%BC%8F/"></a>
 </article>
 
 <article class="post-entry"> 
@@ -330,24 +346,9 @@ Access-Control-Allow-Origin: Used to set the source address that allows cross-do
   <footer class="entry-footer"><span title='2024-09-23 15:23:57 +0800 +0800'>2024-09-23</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to Git学习" href="https://carlos19960601.github.io/posts/git%E5%AD%A6%E4%B9%A0/"></a>
 </article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Nextjs学习
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>官方教程 Learn Next.js 服务端组件示例 创建一个名为 app/api/posts/route.ts 的文件，用于定义路由处理程序：
-import { db } from &#39;../../lib/db&#39;; export async function GET(request: Request) { const posts = await db.post.findMany(); return new Response(JSON.stringify(posts), { status: 200 }); } 在页面组件中使用 fetch 和 getServerSideProps 获取数据并展示：
-// pages/posts/index.tsx import { useEffect, useState } from &#39;react&#39;; export async function getServerSideProps() { const response = await fetch(&#39;/api/posts&#39;); const data = await response.json(); return { props: { posts: data, }, }; } export default function PostsPage({ posts }: { posts: any[] }) { return ( &lt;div&gt; {posts.map((post) =&gt; ( &lt;div key={post.id}&gt; &lt;h2&gt;{post.title}&lt;/h2&gt; &lt;p&gt;{post.content}&lt;/p&gt; &lt;/div&gt; ))} &lt;/div&gt; ); } Should I use SWR or Server Actions? No exact answer - but here is what I do:
-...</p>
-  </div>
-  <footer class="entry-footer"><span title='2024-09-12 09:27:24 +0800 +0800'>2024-09-12</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to Nextjs学习" href="https://carlos19960601.github.io/posts/nextjs%E5%AD%A6%E4%B9%A0/"></a>
-</article>
 <footer class="page-footer">
   <nav class="pagination">
-    <a class="next" href="https://carlos19960601.github.io/page/2/">下一页&nbsp;2/3&nbsp;»
+    <a class="next" href="https://carlos19960601.github.io/page/2/">下一页&nbsp;2/4&nbsp;»
     </a>
   </nav>
 </footer>
