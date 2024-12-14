@@ -1,8 +1,10 @@
-+++
-title = '关于React的rerender'
-date = 2024-12-04T16:06:31+08:00
-draft = false
-+++
+---
+title: 'React Rerender-Move State Down模式'
+date: 2024-12-04T16:06:31+08:00
+draft: false
+tags: 
+  - React
+---
 
 作为一个React初学者，在写React程序的时候经常遇到rerender的问题。由于写的都比较简单，也没有关注rerender带来的问题。但是遇到问题了又到处Google找问题，还是比较浪费时间的。所以这次下定决心学习一下React的Rerender的机制。
 
