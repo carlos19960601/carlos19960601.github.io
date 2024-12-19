@@ -4,10 +4,42 @@
     <title>React on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/tags/react/</link>
     <description>Recent content in React on Carlos的废话集</description>
-    <generator>Hugo -- 0.139.4</generator>
+    <generator>Hugo -- 0.140.0</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 14 Dec 2024 11:45:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 18 Dec 2024 17:56:13 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Rerender Context</title>
+      <link>https://carlos19960601.github.io/posts/react-rerender-context/</link>
+      <pubDate>Wed, 18 Dec 2024 17:56:13 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/posts/react-rerender-context/</guid>
+      <description>&lt;h3 id=&#34;context的作用&#34;&gt;Context的作用&lt;/h3&gt;
+&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/%e5%85%b3%e4%ba%8eReact%e7%9a%84rerender/react-context.png&#34; alt=&#34;&#34;  /&gt;
+&lt;/p&gt;
+&lt;p&gt;Context可以让我们在组件树中传递数据，而不需要通过props一层层传递。&lt;/p&gt;
+&lt;p&gt;但是有一些需要注意的点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Context consumers will re-render when the value on the Provider changes.&lt;/li&gt;
+&lt;li&gt;All of them will re-render, even if they don&amp;rsquo;t use the part of the value that actually changed.&lt;/li&gt;
+&lt;li&gt;Those re-renders can&amp;rsquo;t be prevented with memoization (easily).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;context的value改变&#34;&gt;Context的value改变&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NavigationController&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ({ &lt;span style=&#34;color:#a6e22e&#34;&gt;children&lt;/span&gt; }) =&amp;gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; [&lt;span style=&#34;color:#a6e22e&#34;&gt;isNavExpanded&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;setIsNavExpanded&lt;/span&gt;] &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;useState&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;toggle&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; () =&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;setIsNavExpanded&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;isNavExpanded&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; { &lt;span style=&#34;color:#a6e22e&#34;&gt;isNavExpanded&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;toggle&lt;/span&gt; };
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;Context.Provider&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;{&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt;}&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        {&lt;span style=&#34;color:#a6e22e&#34;&gt;children&lt;/span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;Context.Provider&lt;/span&gt;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  ); 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;useNavigation&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; () =&amp;gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;useContext&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;Context&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;每次value改变的时候， 使用&lt;code&gt;useNavigation&lt;/code&gt;的组件都会重新渲染。这很正常，但是如果是因为其他原因，导致value改变呢？比如&lt;/p&gt;</description>
+    </item>
     <item>
       <title>React Rerender-Children as Props模式</title>
       <link>https://carlos19960601.github.io/posts/react-rerender-children-as-props%E6%A8%A1%E5%BC%8F/</link>

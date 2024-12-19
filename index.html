@@ -2,7 +2,7 @@
 <html lang="zh" dir="auto">
 
 <head>
-	<meta name="generator" content="Hugo 0.139.4"><meta charset="utf-8">
+	<meta name="generator" content="Hugo 0.140.0"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
@@ -166,6 +166,21 @@
 
 <article class="post-entry"> 
   <header class="entry-header">
+    <h2 class="entry-hint-parent">React Rerender Context
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Context的作用 Context可以让我们在组件树中传递数据，而不需要通过props一层层传递。
+但是有一些需要注意的点。
+Context consumers will re-render when the value on the Provider changes. All of them will re-render, even if they don’t use the part of the value that actually changed. Those re-renders can’t be prevented with memoization (easily). Context的value改变 const NavigationController = ({ children }) =&gt; { const [isNavExpanded, setIsNavExpanded] = useState(); const toggle = () =&gt; setIsNavExpanded(!isNavExpanded); const value = { isNavExpanded, toggle }; return ( &lt;Context.Provider value={value}&gt; {children} &lt;/Context.Provider&gt; ); }; const useNavigation = () =&gt; useContext(Context); 每次value改变的时候， 使用useNavigation的组件都会重新渲染。这很正常，但是如果是因为其他原因，导致value改变呢？比如
+...</p>
+  </div>
+  <footer class="entry-footer"><span title='2024-12-18 17:56:13 +0800 +0800'>2024-12-18</span>&nbsp;·&nbsp;4 分钟</footer>
+  <a class="entry-link" aria-label="post link to React Rerender Context" href="https://carlos19960601.github.io/posts/react-rerender-context/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
     <h2 class="entry-hint-parent">React Rerender-Children as Props模式
     </h2>
   </header>
@@ -322,29 +337,6 @@ Access-Control-Allow-Origin: Used to set the source address that allows cross-do
   </div>
   <footer class="entry-footer"><span title='2024-10-09 11:30:42 +0800 +0800'>2024-10-09</span>&nbsp;·&nbsp;1 分钟</footer>
   <a class="entry-link" aria-label="post link to 面试" href="https://carlos19960601.github.io/posts/%E9%9D%A2%E8%AF%95/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">Git学习
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>commit 消息提交规范 feat: 新功能（feature）
-用于提交新功能。 例如：feat: 增加用户注册功能 fix: 修复 bug
-用于提交 bug 修复。 例如：fix: 修复登录页面崩溃的问题 docs: 文档变更
-用于提交仅文档相关的修改。 例如：docs: 更新README文件 style: 代码风格变动（不影响代码逻辑）
-用于提交仅格式化、标点符号、空白等不影响代码运行的变更。 例如：style: 删除多余的空行 refactor: 代码重构（既不是新增功能也不是修复bug的代码更改）
-用于提交代码重构。 例如：refactor: 重构用户验证逻辑 perf: 性能优化
-用于提交提升性能的代码修改。 例如：perf: 优化图片加载速度 test: 添加或修改测试
-用于提交测试相关的内容。 例如：test: 增加用户模块的单元测试 chore: 杂项（构建过程或辅助工具的变动）
-用于提交构建过程、辅助工具等相关的内容修改。 例如：chore: 更新依赖库 build: 构建系统或外部依赖项的变更
-用于提交影响构建系统的更改。 例如：build: 升级webpack到版本5 ci: 持续集成配置的变更
-用于提交CI配置文件和脚本的修改。 例如：ci: 修改GitHub Actions配置文件 revert: 回滚
-用于提交回滚之前的提交。 例如：revert: 回滚feat: 增加用户注册功能 </p>
-  </div>
-  <footer class="entry-footer"><span title='2024-09-23 15:23:57 +0800 +0800'>2024-09-23</span>&nbsp;·&nbsp;1 分钟</footer>
-  <a class="entry-link" aria-label="post link to Git学习" href="https://carlos19960601.github.io/posts/git%E5%AD%A6%E4%B9%A0/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
