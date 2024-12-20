@@ -1,8 +1,10 @@
-+++
-title = 'Css学习笔记'
-date = 2024-11-30T22:08:35+08:00
-draft = false
-+++
+---
+title: 'Css学习笔记'
+date: 2024-11-30T22:08:35+08:00
+draft: false
+categories:
+  - Css
+---
 
 
 ### tailwindcss

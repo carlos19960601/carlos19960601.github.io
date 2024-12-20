@@ -2,6 +2,8 @@
 title: 'React笔记'
 date: 2024-08-28T14:43:33+08:00
 draft: false
+categories:
+  - React
 ---
 
 ## Twitter/X 博主[@_georgemoller](https://x.com/_georgemoller)的分享

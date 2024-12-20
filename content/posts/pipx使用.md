@@ -2,6 +2,8 @@
 title: 'pipx使用'
 date: 2024-07-24T16:43:50+08:00
 draft: false
+cartegories:
+  - 工具
 ---
 
 # pipx是什么？

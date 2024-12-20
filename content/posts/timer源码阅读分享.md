@@ -5,6 +5,8 @@ draft: false
 original: true
 tags: 
   - Golang
+categories:
+  - Golang
 ---
 
 这是在小团队里面的一次分享，以下是PPT内容

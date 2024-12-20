@@ -1,7 +1,9 @@
 ---
 title: 'Flutter学习笔记'
 date: 2024-10-22T15:49:55+08:00
-draft: true
+draft: false
+categories:
+  - Flutter
 ---
 
 ### Row和Column在组件之间添加间距

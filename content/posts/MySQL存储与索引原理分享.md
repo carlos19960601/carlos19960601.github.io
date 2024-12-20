@@ -5,6 +5,8 @@ draft: false
 original: true
 tags: 
   - MySQL
+cartegories:
+  - MySQL
 ---
 
 很早之前做的一次分享，下面是PPT内容

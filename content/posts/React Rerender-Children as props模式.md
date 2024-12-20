@@ -4,6 +4,8 @@ date: 2024-12-14T11:45:00+08:00
 draft: false
 tags: 
   - React
+categories:
+  - React
 ---
 
 现在需要创建一个Block组件，需要根据scroll value来控制其显示的位置。

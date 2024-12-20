@@ -2,6 +2,8 @@
 title: 'Nextjs学习'
 date: 2024-09-12T09:27:24+08:00
 draft: false
+categories:
+  - 前端
 ---
 
 

@@ -2,49 +2,17 @@
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
 title: Carlos的废话集
 paginate: 10
-theme: [PaperMod]
-mainsections: ["posts"]
-defaultContentLanguage: zh
+theme: ["yinyang"]
 baseURL: "https://carlos19960601.github.io/"
-enableEmoji: true
-
-minify:
-  disableXML: true
-
-languages:
-  zh:
-    languageName: "Chinese"
-    menu:
-      main:
-        - name: 归档
-          url: /archives
-          weight: 5
-        - name: 搜索
-          url: /search
-        - name: 标签
-          url: /tags
-          weight: 5
-
-outputs:
-  home:
-    - HTML
-    - RSS
-    - JSON
+DefaultContentLanguage: "cn"
 
 params:
-  ShowShareButtons: true
-  ShowReadingTime: true
-  displayFullLangName: true
-  ShowPageNums: true
-  ShowToc: true
-  ShowCodeCopyButtons: true
-  ShowPostNavLinks: true
-  DateFormat: "2006-01-02"
-  homeInfoParams:
-    Title: "Carlos的废话集"
-    Content: >
-      👋 欢迎来到Carlos的废话集!
-  socialIcons:
-    - name: github
-      url: "https://github.com/carlos19960601/"
-  social: true
+  author: 
+    name: "carlos19960601"
+    homepage: "https://carlos19960601.github.io/"
+  headTitle: "Carlos的废话集"
+  description: "Log something useless, but interesting." 
+  mainSections: ["posts"]
+  socials:
+    - name: "Github"
+      link: "https://github.com/carlos19960601"

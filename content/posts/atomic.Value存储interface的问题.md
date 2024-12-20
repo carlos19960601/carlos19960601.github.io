@@ -5,6 +5,8 @@ draft: false
 tags: 
   - Golang
   - 问题
+categories:
+  - Golang
 ---
 
 先看这段代码
