@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/tags/golang/</link>
     <description>Recent content in Golang on Carlos的废话集</description>
-    <generator>Hugo -- 0.140.0</generator>
-    <language>zh</language>
+    <generator>Hugo</generator>
+    <language>cn</language>
     <lastBuildDate>Wed, 26 Jun 2024 17:39:28 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,39 +13,7 @@
       <link>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</link>
       <pubDate>Wed, 26 Jun 2024 17:39:28 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/atomic.value%E5%AD%98%E5%82%A8interface%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
-      <description>&lt;p&gt;先看这段代码&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;net/http&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sync/atomic&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;atomic&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ProtocolError&lt;/span&gt;{}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;EOF&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行后会报错 &lt;code&gt;panic: sync/atomic: store of inconsistently typed value into Value&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;原因是&lt;code&gt;atomic.Value.Store&lt;/code&gt;需要类型是一致的。在这里&lt;code&gt;err&lt;/code&gt;类型发生了变化，虽然他们都是&lt;code&gt;error&lt;/code&gt;接口类型。具体参考&lt;a href=&#34;https://github.com/golang/go/issues/22550&#34;&gt;Issues#22550&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;怎么解决？包装一层就能运行了。&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;any&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;atomic&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ProtocolError&lt;/span&gt;{}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;]{&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;})
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;EOF&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;]{&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;})
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>&lt;p&gt;先看这段代码&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; (&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;io&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;net/http&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;sync/atomic&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;atomic&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ProtocolError&lt;/span&gt;{}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;EOF&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;运行后会报错 &lt;code&gt;panic: sync/atomic: store of inconsistently typed value into Value&lt;/code&gt;。&lt;/p&gt;&#xA;&lt;p&gt;原因是&lt;code&gt;atomic.Value.Store&lt;/code&gt;需要类型是一致的。在这里&lt;code&gt;err&lt;/code&gt;类型发生了变化，虽然他们都是&lt;code&gt;error&lt;/code&gt;接口类型。具体参考&lt;a href=&#34;https://github.com/golang/go/issues/22550&#34;&gt;Issues#22550&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;怎么解决？包装一层就能运行了。&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;any&lt;/span&gt;] &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;value&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;T&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;atomic&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Value&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;http&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;ProtocolError&lt;/span&gt;{}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;]{&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;})&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt; = &lt;span style=&#34;color:#a6e22e&#34;&gt;io&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;EOF&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;v&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Store&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;tValue&lt;/span&gt;[&lt;span style=&#34;color:#66d9ef&#34;&gt;error&lt;/span&gt;]{&lt;span style=&#34;color:#a6e22e&#34;&gt;err&lt;/span&gt;})&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     <item>
       <title>关于Golang GC问题的思考</title>
@@ -59,73 +27,14 @@
       <link>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</link>
       <pubDate>Sat, 10 Jul 2021 01:09:15 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/</guid>
-      <description>&lt;p&gt;这是在小团队里面的一次分享，以下是PPT内容&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/01.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/02.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/03.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/04.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/05.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/06.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/07.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/08.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/10.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/11.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/12.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/13.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/14.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/15.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/16.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/17.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/18.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/19.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/20.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/21.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/22.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/23.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/24.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%e5%88%86%e4%ba%ab/25.png&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;</description>
+      <description>&lt;p&gt;这是在小团队里面的一次分享，以下是PPT内容&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/01.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/02.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/03.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/04.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/05.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/06.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/07.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/08.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/10.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/11.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/12.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/13.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/14.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/15.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/16.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/17.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/18.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/19.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/20.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/21.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/22.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/23.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/24.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/25.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Timer源码阅读</title>
       <link>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</link>
       <pubDate>Thu, 22 Apr 2021 22:50:29 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/</guid>
-      <description>&lt;p&gt;根据&lt;a href=&#34;https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/&#34;&gt;6.3 计时器&lt;/a&gt;中的描述，Golang Timer的设计经历了如下阶段：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；&lt;/li&gt;
-&lt;li&gt;Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；&lt;/li&gt;
-&lt;li&gt;Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发；&lt;/li&gt;
-&lt;/ol&gt;
-&lt;ul&gt;
-&lt;li&gt;Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题&lt;/li&gt;
-&lt;li&gt;Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO  为什么会发生P和M的绑定和解绑)&lt;/li&gt;
-&lt;li&gt;Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;我使用的是Go 1.16的版本进行分析&lt;/p&gt;</description>
+      <description>&lt;p&gt;根据&lt;a href=&#34;https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/&#34;&gt;6.3 计时器&lt;/a&gt;中的描述，Golang Timer的设计经历了如下阶段：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；&lt;/li&gt;&#xA;&lt;li&gt;Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；&lt;/li&gt;&#xA;&lt;li&gt;Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发；&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题&lt;/li&gt;&#xA;&lt;li&gt;Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO  为什么会发生P和M的绑定和解绑)&lt;/li&gt;&#xA;&lt;li&gt;Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;我使用的是Go 1.16的版本进行分析&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

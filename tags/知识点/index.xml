@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>知识点 on Carlos的废话集</title>
     <link>https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
     <description>Recent content in 知识点 on Carlos的废话集</description>
-    <generator>Hugo -- 0.140.0</generator>
-    <language>zh</language>
+    <generator>Hugo</generator>
+    <language>cn</language>
     <lastBuildDate>Wed, 26 Jun 2024 22:54:31 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -13,21 +13,7 @@
       <link>https://carlos19960601.github.io/posts/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/</link>
       <pubDate>Wed, 26 Jun 2024 22:54:31 +0800</pubDate>
       <guid>https://carlos19960601.github.io/posts/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/</guid>
-      <description>&lt;p&gt;&lt;img loading=&#34;lazy&#34; src=&#34;https://carlos19960601.github.io/%e7%bc%93%e5%ad%98%e9%a9%b1%e9%80%90%e7%ad%96%e7%95%a5/Cache%20Eviction%20Strtegies.gif&#34; alt=&#34;&#34;  /&gt;
-&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Least Recently Used(LRU)&lt;/strong&gt;: 删除最旧的数据。基本假设是最近访问的数据可能很快会再次被需要。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Most Recently Used(MRU)&lt;/strong&gt;: 与&lt;strong&gt;LRU&lt;/strong&gt;相反，删除最新的数据。常用于流处理或批处理平台，这些平台一旦使用数据就不太可能再次需要。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Least Frequently Used(LFU)&lt;/strong&gt;: 删除使用最少的数据。虽然它是一种比 &lt;strong&gt;LRU&lt;/strong&gt; 更准确的方法，但它需要一种机制来记录数据访问的频率，这增加了复杂性。它通常与 &lt;strong&gt;LRU&lt;/strong&gt; 等策略配合使用，以降低缓存过时数据的风险。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Time-To-Live (TTL)&lt;/strong&gt;：数据在预设的时间段有效。常用在会话数据中。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Two-tiered caching&lt;/strong&gt;两层缓存提供了一种更复杂的方法。可以在速度和成本之间取得平衡。在此设计中，数据被分为快速、昂贵的层（用于流行数据）和较慢、经济的层（用于较少访问的数据）。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;上述五种策略是最流行的缓存方法。还有其他一些策略：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;先进先出（FIFO&lt;/strong&gt;）：最旧的数据首先被删除。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;随机替换（RR）&lt;/strong&gt;：随机选择要删除的数据。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;自适应替换缓存 (ARC)&lt;/strong&gt;：使用自调整算法跟踪新近度和频率来确定首先删除哪些数据。&lt;/li&gt;
-&lt;/ul&gt;</description>
+      <description>&lt;p&gt;&lt;img src=&#34;https://carlos19960601.github.io/%E7%BC%93%E5%AD%98%E9%A9%B1%E9%80%90%E7%AD%96%E7%95%A5/Cache%20Eviction%20Strtegies.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Least Recently Used(LRU)&lt;/strong&gt;: 删除最旧的数据。基本假设是最近访问的数据可能很快会再次被需要。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Most Recently Used(MRU)&lt;/strong&gt;: 与&lt;strong&gt;LRU&lt;/strong&gt;相反，删除最新的数据。常用于流处理或批处理平台，这些平台一旦使用数据就不太可能再次需要。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Least Frequently Used(LFU)&lt;/strong&gt;: 删除使用最少的数据。虽然它是一种比 &lt;strong&gt;LRU&lt;/strong&gt; 更准确的方法，但它需要一种机制来记录数据访问的频率，这增加了复杂性。它通常与 &lt;strong&gt;LRU&lt;/strong&gt; 等策略配合使用，以降低缓存过时数据的风险。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Time-To-Live (TTL)&lt;/strong&gt;：数据在预设的时间段有效。常用在会话数据中。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Two-tiered caching&lt;/strong&gt;两层缓存提供了一种更复杂的方法。可以在速度和成本之间取得平衡。在此设计中，数据被分为快速、昂贵的层（用于流行数据）和较慢、经济的层（用于较少访问的数据）。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;上述五种策略是最流行的缓存方法。还有其他一些策略：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;先进先出（FIFO&lt;/strong&gt;）：最旧的数据首先被删除。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;随机替换（RR）&lt;/strong&gt;：随机选择要删除的数据。&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;自适应替换缓存 (ARC)&lt;/strong&gt;：使用自调整算法跟踪新近度和频率来确定首先删除哪些数据。&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
     </item>
   </channel>
 </rss>

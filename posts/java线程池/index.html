@@ -1,283 +1,122 @@
 <!DOCTYPE html>
-<html lang="zh" dir="auto">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.140.0">
 
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Java线程池 | Carlos的废话集</title>
-<meta name="keywords" content="Java">
-<meta name="description" content="线程池是什么？
-线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。">
-<meta name="author" content="">
-<link rel="canonical" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://carlos19960601.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://carlos19960601.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://carlos19960601.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://carlos19960601.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://carlos19960601.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" />
+  <link rel="canonical" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><link rel="alternate" type="application/atom+xml" href="https://carlos19960601.github.io/index.xml" title="Carlos的废话集">
 
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript><meta property="og:title" content="Java线程池" />
-<meta property="og:description" content="线程池是什么？
-线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-12-16T12:55:05+08:00" />
-<meta property="article:modified_time" content="2020-12-16T12:55:05+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Java线程池"/>
-<meta name="twitter:description" content="线程池是什么？
-线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。"/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://carlos19960601.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Java线程池",
-      "item": "https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Java线程池",
-  "name": "Java线程池",
-  "description": "线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。\n",
-  "keywords": [
-    "Java"
-  ],
-  "articleBody": "线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。\n线程池的作用 在面向对象的编程过程中，创建对象和销毁对象是非常消耗时间和资源的。因此想要最小化这种消耗的一种思想就是『池化资源』。线程池就是这样的一种思想。我们通过重用线程池中的资源来减少创建和销毁线程所需要耗费的时间和资源。\n线程池的一个作用是创建和销毁线程的次数，每个工作线程可以多次使用；另一个作用是可根据系统情况调整执行的线程数量，防止消耗过多内存。另外，通过线程池，能有效的控制线程的最大并发数，提高系统资源利用率，同时避免过多的资源竞争，避免堵塞。\n线程池的优点总结如下几个方面：\n线程复用 控制最大并发数 管理线程 线程池的组成 一般的线程池主要分为以下4个组成部分：\n线程池管理器：用于创建并管理线程池 工作线程：线程池中的线程 任务接口：每个任务必须实现的接口，用于工作线程调度其运行 任务队列：用于存放待处理的任务，提供一种缓冲机制 线程池的常见应用场景 许多服务器应用常常需要处理大量而短小的请求（例如，Web 服务器，数据库服务器等等），通常它们收到的请求数量很大，一个简单的模型是，当服务器收到来自远程的请求时，为每一个请求开启一个线程，在请求完毕之后再对线程进行销毁。这样处理带来的问题是，创建和销毁线程所消耗的时间往往比任务本身所需消耗的资源要大得多。那么应该怎么办呢？\n线程池为线程生命周期开销问题和资源不足问题提供了解决方案。我们可以通过线程池做到线程复用，不需要频繁的创建和销毁线程，让线程池中的线程一直存在于线程池中，然后线程从任务队列中取得任务来执行。而且这样做的另一个好处有，通过适当地调整线程池中的线程数目，也就是当请求的数目超过某个阈值时，就强制其它任何新到的请求一直等待，直到获得一个线程来处理为止，从而可以防止资源不足。\nJava线程池的简介 Java中提供了实现线程池的框架Executor，并且提供了许多种类的线程池，接下来的文章中将会做详细介绍。\nJava线程池框架 Java中的线程池是通过Executor框架实现的，该框架中用到了Executor，Executors，ExecutorService，ThreadPoolExecutor ，Callable和Future、FutureTask这几个类。\nExecutor：所有线程池的接口，只有一个方法 Executors：Executor 的工厂类，提供了创建各种不同线程池的方法，返回的线程池都实现了ExecutorService 接口 ThreadPoolExecutor：线程池的具体实现类，一般所有的线程池都是基于这个类实现的 其中ThreadPoolExecutor的构造方法如下：\npublic ThreadPoolExecutor(int corePoolSize, int maximumPoolSize, long keepAliveTime, TimeUnit unit, BlockingQueue\u003cRunnable\u003e workQueue) { this(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, Executors.defaultThreadFactory(), defaultHandler); } 其中：\ncorePoolSize：线程池的核心线程数 maximumPoolSize：线程池中允许的最大线程数 keepAliveTime：空闲线程结束的超时时间 unit：是一个枚举，它表示的是 keepAliveTime 的单位 workQueue：工作队列，用于任务的存放 Java线程池的工作过程 Java线程池的工作过程如下：\n线程池刚创建时，里面没有一个线程。任务队列是作为参数传进来的。不过，就算队列里面有任务，线程池也不会马上执行它们。 当调用 execute() 方法添加一个任务时，线程池会做如下判断： 如果正在运行的线程数量小于 corePoolSize，那么马上创建线程运行这个任务； 如果正在运行的线程数量大于或等于 corePoolSize，那么将这个任务放入队列； 如果这时候队列满了，而且正在运行的线程数量小于 maximumPoolSize，那么还是要创建非核心线程立刻运行这个任务； 如果队列满了，而且正在运行的线程数量大于或等于 maximumPoolSize，那么线程池会抛出异常RejectExecutionException。 当一个线程完成任务时，它会从队列中取下一个任务来执行。 当一个线程无事可做，超过一定的时间（keepAliveTime）时，线程池会判断，如果当前运行的线程数大于 corePoolSize，那么这个线程就被停掉。所以线程池的所有任务完成后，它最终会收缩到 corePoolSize 的大小。 常见的Java线程池 生成线程池使用的是Executors的工厂方法，以下是常见的 Java 线程池：\nSingleThreadExecutor SingleThreadExecutor是单个线程的线程池，即线程池中每次只有一个线程在运行，单线程串行执行任务。如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行。\npublic static ExecutorService newSingleThreadExecutor() { return new FinalizableDelegatedExecutorService (new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue\u003cRunnable\u003e())); } FixedThreadPool FixedThreadPool是固定数量的线程池，只有核心线程，每提交一个任务就是一个线程，直到达到线程池的最大数量，然后后面进入等待队列，直到前面的任务完成才继续执行。线程池的大小一旦达到最大值就会保持不变，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程。\npublic static ExecutorService newFixedThreadPool(int nThreads) { return new ThreadPoolExecutor(nThreads, nThreads, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue\u003cRunnable\u003e()); } CachedThreadPool CachedThreadPool是可缓存线程池。如果线程池的大小超过了处理任务所需要的线程，那么就会回收部分空闲（60秒不执行任务）的线程，当任务数增加时，此线程池又可以智能的添加新线程来处理任务。此线程池不会对线程池大小做限制，线程池大小完全依赖于操作系统（或者说JVM）能够创建的最大线程大小。其中，SynchronousQueue是一个是缓冲区为1的阻塞队列。\npublic static ExecutorService newCachedThreadPool() { return new ThreadPoolExecutor(0, Integer.MAX_VALUE, 60L, TimeUnit.SECONDS, new SynchronousQueue\u003cRunnable\u003e()); } ScheduledThreadPool ScheduledThreadPool是核心线程池固定，大小无限制的线程池，支持定时和周期性的执行线程。创建一个周期性执行任务的线程池。如果闲置,非核心线程池会在DEFAULT_KEEPALIVEMILLIS时间内回收。\npublic ScheduledThreadPoolExecutor(int corePoolSize) { super(corePoolSize, Integer.MAX_VALUE, 0, NANOSECONDS, new DelayedWorkQueue()); } Java 线程池的创建和使用 我们可以通过Executors的工厂方法来创建一个线程池。但是我们该如何让线程池执行任务呢？\n线程池最常用的提交任务的方法有两种：\nexecute： ExecutorService.execute(Runnable runable)； submit： FutureTask task = ExecutorService.submit(Runnable runnable); FutureTask\u003cT\u003e task = ExecutorService.submit(Runnable runnable,T Result); FutureTask\u003cT\u003e task = ExecutorService.submit(Callable\u003cT\u003e callable); 可以看出submit开启的是有返回结果的任务，会返回一个FutureTask对象，这样就能通过get()方法得到结果。submit最终调用的也是execute(Runnable runable)，submit只是将Callable对象或Runnable封装成一个FutureTask对象，因为FutureTask是个Runnable，所以可以在execute中执行。\n下面的示例代码演示了如何创建一个线程池，并且使用它管理线程：\npublic class MyThread extends Thread { @Override public void run() { System.out.println(Thread.currentThread().getName() + \" is running.\"); } } public class TestSingleThreadExecutor { public static void main(String[] args) { //创建一个可重用固定线程数的线程池 ExecutorService pool = Executors.newFixedThreadPool(2); //创建实现了Runnable接口对象 Thread tt1 = new MyThread(); Thread tt2 = new MyThread(); Thread tt3 = new MyThread(); Thread tt4 = new MyThread(); Thread tt5 = new MyThread(); //将线程放入池中并执行 pool.execute(tt1); pool.execute(tt2); pool.execute(tt3); pool.execute(tt4); pool.execute(tt5); //关闭 pool.shutdown(); } } 运行结果：\npool-1-thread-1 is running. pool-1-thread-2 is running. pool-1-thread-1 is running. pool-1-thread-2 is running. pool-1-thread-1 is running. Java线程池原理 这篇文章会分别从这三个方面，结合具体的代码实现来剖析 Java 线程池的原理以及它的具体实现。\n线程复用 我们知道线程池的一个作用是创建和销毁线程的次数，每个工作线程可以多次使用。这个功能就是线程复用。想要了解 Java 线程池是如何进行线程复用的，我们首先需要了解线程的生命周期。\n线程生命周期 下图描述了线程完整的生命周期：\n在一个线程完整的生命周期中，它可能经历五种状态：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、终止（Zombie）。\n在 Java中，Thread 通过new来新建一个线程，这个过程是是初始化一些线程信息，如线程名、id、线程所属group等，可以认为只是个普通的对象。调用Thread的start()后Java虚拟机会为其创建方法调用栈和程序计数器，同时将hasBeenStarted为true，之后如果再次调用start()方法就会有异常。\n处于这个状态中的线程并没有开始运行，只是表示该线程可以运行了。至于该线程何时开始运行，取决于 JVM 里线程调度器的调度。当线程获取CPU后，run()方法会被调用。不要自己去调用Thread的run()方法。之后根据CPU的调度，线程就会在就绪—运行—阻塞间切换，直到run()方法结束或其他方式停止线程，进入终止状态。\n因此，如果要实现线程的复用，我们必须要保证线程池中的线程保持存活状态（就绪、运行、阻塞）。接下来，我们就来看看ThreadPoolExecutor是如何实现线程复用的。\nWorker 类 ThreadPoolExecutor主要是通过一个类来控制线程复用的：Worker 类。\n我们来看一下简化后的 Worker 类代码：\nprivate final class Worker implements Runnable { final Thread thread; Runnable firstTask; Worker(Runnable firstTask) { this.firstTask = firstTask; this.thread = getThreadFactory().newThread(this); } public void run() { runWorker(this); } final void runWorker(Worker w) { Runnable task = w.firstTask; w.firstTask = null; while (task != null || (task = getTask()) != null){ task.run(); } } …… } 从代码中，我们可以看到 Worker 实现了 Runnable 接口，并且它还有一个 Thread成员变量 thread，这个 thread 就是要开启运行的线程。我们看到 Worker 的构造方法中传递了一个 Runnable 参数，同时它把自己作为参数传入 newThread()，这样的话，当 Thread 的start()方法得到调用时，执行的其实是 Worker 的run()方法，即runWorker()方法。\nrunWorker()方法之中有一个 while 循环，使用 getTask()来获取任务，并执行。接下来，我们将会看到getTask()是如何获取到 Runnable 对象的。\ngetTask() 我们来看一下简化后的getTask()代码：\nprivate Runnable getTask() { if(一些特殊情况) { return null; } Runnable r = workQueue.take(); return r; } 我们可以看到任务是从 workQueue中获取的，这个 workQueue 就是我们初始化 ThreadPoolExecutor 时存放任务的 BlockingQueue队列，这个队列里的存放的都是将要执行的 Runnable任务。因为 BlockingQueue 是个阻塞队列，BlockingQueue.take()返回的是空，则进入等待状态直到 BlockingQueue 有新的对象被加入时唤醒阻塞的线程。所以一般情况下，Thread的run()方法不会结束，而是不断执行workQueue里的Runnable任务，这就达到了线程复用的目的了。\n控制最大并发数 我们现在已经知道了 Java 线程池是如何做到线程复用的了，但是Runnable 是什么时候被放入 workQueue 队列中的呢，Worker里的Thread的又是什么时候调用start()开启新线程来执行Worker的run()方法的呢？从上面的分析中我们可以看出Worker里的runWorker()执行任务时是一个接一个，串行进行的，那并发是怎么体现的呢？它又是如何做到控制最大并发数的呢？\nexecute() 通过查看 execute()就能解答上述的一些问题，同样是简化后的代码：\npublic void execute(Runnable command) { if (command == null) throw new NullPointerException(); int c = ctl.get(); // 当前线程数 \u003c corePoolSize if (workerCountOf(c) \u003c corePoolSize) { // 直接启动新的线程。 if (addWorker(command, true)) return; c = ctl.get(); } // 活动线程数 \u003e= corePoolSize // runState为RUNNING \u0026\u0026 队列未满 if (isRunning(c) \u0026\u0026 workQueue.offer(command)) { int recheck = ctl.get(); // 再次检验是否为RUNNING状态 // 非RUNNING状态 则从workQueue中移除任务并拒绝 if (!isRunning(recheck) \u0026\u0026 remove(command)) reject(command); // 采用线程池指定的策略拒绝任务 // 两种情况： // 1.非RUNNING状态拒绝新的任务 // 2.队列满了启动新的线程失败（workCount \u003e maximumPoolSize） } else if (!addWorker(command, false)) reject(command); } addWorker() 我们再来看一下addWorker()的简化代码：\nprivate boolean addWorker(Runnable firstTask, boolean core) { int wc = workerCountOf(c); if (wc \u003e= (core ? corePoolSize : maximumPoolSize)) { return false; } w = new Worker(firstTask); final Thread t = w.thread; t.start(); } 根据上面的代码，线程池工作过程中是如何添加任务的就很清晰了：\n如果正在运行的线程数量小于 corePoolSize，那么马上创建线程运行这个任务； 如果正在运行的线程数量大于或等于 corePoolSize，那么将这个任务放入队列； 如果这时候队列满了，而且正在运行的线程数量小于 maximumPoolSize，那么还是要创建非核心线程立刻运行这个任务； 如果队列满了，而且正在运行的线程数量大于或等于 maximumPoolSize，那么线程池会抛出异常RejectExecutionException 如果通过addWorker()成功创建新的线程，则通过start()开启新线程，同时将firstTask作为这个Worker里的run()中执行的第一个任务。虽然每个Worker的任务是串行处理，但如果创建了多个Worker，因为共用一个workQueue，所以就会并行处理了。所以可以根据corePoolSize和maximumPoolSize来控制最大并发数。\n过程如下图所示：\n管理线程 上边的文章已经讲了，通过线程池可以很好的管理线程的复用，控制并发数，以及销毁等过程，而线程的管理过程已经穿插在其中了，也很好理解。\n在 ThreadPoolExecutor 有个AtomicInteger变量 ctl，这一个变量保存了两个内容：\n所有线程的数量 每个线程所处的状态 其中低29位存线程数，高3位存runState，通过位运算来得到不同的值。\nprivate final AtomicInteger ctl = new AtomicInteger(ctlOf(RUNNING, 0)); //得到线程的状态 private static int runStateOf(int c) { return c \u0026 ~CAPACITY; } //得到Worker的的数量 private static int workerCountOf(int c) { return c \u0026 CAPACITY; } // 判断线程是否在运行 private static boolean isRunning(int c) { return c \u003c SHUTDOWN; } 这里主要通过shutdown和shutdownNow()来分析线程池的关闭过程。首先线程池有五种状态来控制任务添加与执行。主要介绍以下三种：\nRUNNING状态：线程池正常运行，可以接受新的任务并处理队列中的任务； SHUTDOWN状态：不再接受新的任务，但是会执行队列中的任务； STOP状态：不再接受新任务，不处理队列中的任务 shutdown()这个方法会将runState置为SHUTDOWN，会终止所有空闲的线程，而仍在工作的线程不受影响，所以队列中的任务人会被执行；shutdownNow()方法将runState置为STOP。和shutdown()方法的区别是，这个方法会终止所有的线程，所以队列中的任务也不会被执行了。\nJava线程池框架源码分析 前面的文章中已经给出了Java线程池框架中几个重要类的关系图:\n现在我们基于这张图来逐步分析。\nExecutor public interface Executor { void execute(Runnable command); } 这个接口表示向线程池中提交一个任务。\nExecutorService public interface ExecutorService extends Executor { void shutdown(); List shutdownNow(); boolean isShutdown(); boolean isTerminated(); boolean awaitTermination(long timeout, TimeUnit unit) throws InterruptedException; Future submit(Callable task); Future submit(Runnable task, T result); Future\u003c?\u003e submit(Runnable task); List",
-  "wordCount" : "2761",
-  "inLanguage": "zh",
-  "datePublished": "2020-12-16T12:55:05+08:00",
-  "dateModified": "2020-12-16T12:55:05+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Carlos的废话集",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://carlos19960601.github.io/favicon.ico"
-    }
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/carlos19960601.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Java线程池",
+      "headline" : "Java线程池",
+      "description" : "线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2020",
+      "datePublished": "2020-12-16 12:55:05 \u002b0800 \u002b0800",
+      "dateModified" : "2020-12-16 12:55:05 \u002b0800 \u002b0800",
+      "url" : "https:\/\/carlos19960601.github.io\/posts\/java%E7%BA%BF%E7%A8%8B%E6%B1%A0\/",
+      "keywords" : [ "Java", ]
   }
-}
 </script>
+<title>Java线程池</title>
+  <meta property="og:title" content="Java线程池" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。
+" />
+  <meta name="description" content="线程池是什么？ 线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Carlos的废话集">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
 </head>
 
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
 
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://carlos19960601.github.io/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://carlos19960601.github.io/archives" title="归档">
-                    <span>归档</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://carlos19960601.github.io/tags" title="标签">
-                    <span>标签</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://carlos19960601.github.io/search" title="搜索">
-                    <span>搜索</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Carlos的废话集</a
+    >
+  </div>
+  <div class="header-subtitle">Log something useless, but interesting.</div>
 </header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title entry-hint-parent">
-      Java线程池
-    </h1>
-    <div class="post-meta"><span title='2020-12-16 12:55:05 +0800 +0800'>2020-12-16</span>&nbsp;·&nbsp;13 分钟
-
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="https://github.com/carlos19960601" target="_blank">Github</a>
+  </div>
+  
 </div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
 
-        <div class="inner"><ul><ul>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e6%98%af%e4%bb%80%e4%b9%88" aria-label="线程池是什么？">线程池是什么？</a></li>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e4%bd%9c%e7%94%a8" aria-label="线程池的作用">线程池的作用</a></li>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e7%bb%84%e6%88%90" aria-label="线程池的组成">线程池的组成</a></li>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e5%b8%b8%e8%a7%81%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="线程池的常见应用场景">线程池的常见应用场景</a></li>
-                <li>
-                    <a href="#java%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e7%ae%80%e4%bb%8b" aria-label="Java线程池的简介">Java线程池的简介</a></li>
-                <li>
-                    <a href="#java%e7%ba%bf%e7%a8%8b%e6%b1%a0%e6%a1%86%e6%9e%b6" aria-label="Java线程池框架">Java线程池框架</a></li>
-                <li>
-                    <a href="#java%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e5%b7%a5%e4%bd%9c%e8%bf%87%e7%a8%8b" aria-label="Java线程池的工作过程">Java线程池的工作过程</a></li>
-                <li>
-                    <a href="#%e5%b8%b8%e8%a7%81%e7%9a%84java%e7%ba%bf%e7%a8%8b%e6%b1%a0" aria-label="常见的Java线程池">常见的Java线程池</a><ul>
-                        
-                <li>
-                    <a href="#singlethreadexecutor" aria-label="SingleThreadExecutor">SingleThreadExecutor</a></li>
-                <li>
-                    <a href="#fixedthreadpool" aria-label="FixedThreadPool">FixedThreadPool</a></li></ul>
-                </li>
-                <li>
-                    <a href="#cachedthreadpool" aria-label="CachedThreadPool">CachedThreadPool</a></li>
-                <li>
-                    <a href="#scheduledthreadpool" aria-label="ScheduledThreadPool">ScheduledThreadPool</a></li>
-                <li>
-                    <a href="#java-%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e5%88%9b%e5%bb%ba%e5%92%8c%e4%bd%bf%e7%94%a8" aria-label="Java 线程池的创建和使用">Java 线程池的创建和使用</a></li></ul>
-                    
-                <li>
-                    <a href="#java%e7%ba%bf%e7%a8%8b%e6%b1%a0%e5%8e%9f%e7%90%86" aria-label="Java线程池原理">Java线程池原理</a><ul>
-                        
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e5%a4%8d%e7%94%a8" aria-label="线程复用">线程复用</a></li>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" aria-label="线程生命周期">线程生命周期</a></li>
-                <li>
-                    <a href="#worker-%e7%b1%bb" aria-label="Worker 类">Worker 类</a></li>
-                <li>
-                    <a href="#gettask" aria-label="getTask()">getTask()</a></li>
-                <li>
-                    <a href="#%e6%8e%a7%e5%88%b6%e6%9c%80%e5%a4%a7%e5%b9%b6%e5%8f%91%e6%95%b0" aria-label="控制最大并发数">控制最大并发数</a></li>
-                <li>
-                    <a href="#execute" aria-label="execute()">execute()</a></li>
-                <li>
-                    <a href="#addworker" aria-label="addWorker()">addWorker()</a></li>
-                <li>
-                    <a href="#%e7%ae%a1%e7%90%86%e7%ba%bf%e7%a8%8b" aria-label="管理线程">管理线程</a></li></ul>
-                </li>
-                <li>
-                    <a href="#java%e7%ba%bf%e7%a8%8b%e6%b1%a0%e6%a1%86%e6%9e%b6%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90" aria-label="Java线程池框架源码分析">Java线程池框架源码分析</a><ul>
-                        
-                <li>
-                    <a href="#executor" aria-label="Executor">Executor</a></li>
-                <li>
-                    <a href="#executorservice" aria-label="ExecutorService">ExecutorService</a></li>
-                <li>
-                    <a href="#abstractexecutorservice" aria-label="AbstractExecutorService">AbstractExecutorService</a></li>
-                <li>
-                    <a href="#threadpoolexecutor" aria-label="ThreadPoolExecutor">ThreadPoolExecutor</a></li>
-                <li>
-                    <a href="#addworker-1" aria-label="addWorker()">addWorker()</a></li>
-                <li>
-                    <a href="#worker" aria-label="Worker">Worker</a></li>
-                <li>
-                    <a href="#linkedblockingqueue--%e9%98%bb%e5%a1%9e%e9%98%9f%e5%88%97" aria-label="LinkedBlockingQueue — 阻塞队列">LinkedBlockingQueue — 阻塞队列</a></li>
-                <li>
-                    <a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%9a%84%e5%9b%9e%e6%94%b6%e5%8f%8a%e7%bb%88%e6%ad%a2" aria-label="线程池的回收及终止">线程池的回收及终止</a></li>
-                <li>
-                    <a href="#%e5%bc%82%e5%b8%b8%e5%a4%84%e7%90%86" aria-label="异常处理">异常处理</a>
-                </li>
-            </ul>
-            </li>
-            </ul>
         </div>
-    </details>
-</div>
+        <header class="post-header">
+          <h1 class="post-title">Java线程池</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2020-12-16 12:55:05 &#43;0800">
+                16 Dec 2020
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-  <div class="post-content"><h4 id="线程池是什么">线程池是什么？<a hidden class="anchor" aria-hidden="true" href="#线程池是什么">#</a></h4>
+        <div class="post-content markdown-body">
+          
+          <h4 id="线程池是什么">线程池是什么？</h4>
 <p>线程池用于多线程处理中，它可以根据系统的情况，可以有效控制线程执行的数量，优化运行效果。线程池做的工作主要是控制运行的线程的数量，处理过程中将任务放入队列，然后在线程创建后启动这些任务，如果线程数量超过了最大数量超出数量的线程排队等候，等其它线程执行完毕，再从队列中取出任务来执行。</p>
-<h4 id="线程池的作用">线程池的作用<a hidden class="anchor" aria-hidden="true" href="#线程池的作用">#</a></h4>
+<h4 id="线程池的作用">线程池的作用</h4>
 <p>在面向对象的编程过程中，创建对象和销毁对象是非常消耗时间和资源的。因此想要最小化这种消耗的一种思想就是『池化资源』。线程池就是这样的一种思想。我们通过重用线程池中的资源来减少创建和销毁线程所需要耗费的时间和资源。</p>
 <p>线程池的一个作用是创建和销毁线程的次数，每个工作线程可以多次使用；另一个作用是可根据系统情况调整执行的线程数量，防止消耗过多内存。另外，通过线程池，能有效的控制线程的最大并发数，提高系统资源利用率，同时避免过多的资源竞争，避免堵塞。</p>
 <p>线程池的优点总结如下几个方面：</p>
@@ -286,7 +125,7 @@
 <li>控制最大并发数</li>
 <li>管理线程</li>
 </ul>
-<h4 id="线程池的组成">线程池的组成<a hidden class="anchor" aria-hidden="true" href="#线程池的组成">#</a></h4>
+<h4 id="线程池的组成">线程池的组成</h4>
 <p>一般的线程池主要分为以下4个组成部分：</p>
 <ol>
 <li>线程池管理器：用于创建并管理线程池</li>
@@ -294,15 +133,14 @@
 <li>任务接口：每个任务必须实现的接口，用于工作线程调度其运行</li>
 <li>任务队列：用于存放待处理的任务，提供一种缓冲机制</li>
 </ol>
-<h4 id="线程池的常见应用场景">线程池的常见应用场景<a hidden class="anchor" aria-hidden="true" href="#线程池的常见应用场景">#</a></h4>
+<h4 id="线程池的常见应用场景">线程池的常见应用场景</h4>
 <p>许多服务器应用常常需要处理大量而短小的请求（例如，Web 服务器，数据库服务器等等），通常它们收到的请求数量很大，一个简单的模型是，当服务器收到来自远程的请求时，为每一个请求开启一个线程，在请求完毕之后再对线程进行销毁。这样处理带来的问题是，创建和销毁线程所消耗的时间往往比任务本身所需消耗的资源要大得多。那么应该怎么办呢？</p>
 <p>线程池为线程生命周期开销问题和资源不足问题提供了解决方案。我们可以通过线程池做到线程复用，不需要频繁的创建和销毁线程，让线程池中的线程一直存在于线程池中，然后线程从任务队列中取得任务来执行。而且这样做的另一个好处有，通过适当地调整线程池中的线程数目，也就是当请求的数目超过某个阈值时，就强制其它任何新到的请求一直等待，直到获得一个线程来处理为止，从而可以防止资源不足。</p>
-<h4 id="java线程池的简介">Java线程池的简介<a hidden class="anchor" aria-hidden="true" href="#java线程池的简介">#</a></h4>
+<h4 id="java线程池的简介">Java线程池的简介</h4>
 <p>Java中提供了实现线程池的框架Executor，并且提供了许多种类的线程池，接下来的文章中将会做详细介绍。</p>
-<h4 id="java线程池框架">Java线程池框架<a hidden class="anchor" aria-hidden="true" href="#java线程池框架">#</a></h4>
+<h4 id="java线程池框架">Java线程池框架</h4>
 <p>Java中的线程池是通过Executor框架实现的，该框架中用到了Executor，Executors，ExecutorService，ThreadPoolExecutor ，Callable和Future、FutureTask这几个类。</p>
-<p><img loading="lazy" src="/Java%e7%ba%bf%e7%a8%8b%e6%b1%a0/p798.jpg" alt="Java线程池框架"  />
-</p>
+<p><img src="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/p798.jpg" alt="Java线程池框架"></p>
 <ul>
 <li>Executor：所有线程池的接口，只有一个方法</li>
 <li>Executors：Executor 的工厂类，提供了创建各种不同线程池的方法，返回的线程池都实现了ExecutorService 接口</li>
@@ -325,7 +163,7 @@
 <li>unit：是一个枚举，它表示的是 keepAliveTime 的单位</li>
 <li>workQueue：工作队列，用于任务的存放</li>
 </ul>
-<h4 id="java线程池的工作过程">Java线程池的工作过程<a hidden class="anchor" aria-hidden="true" href="#java线程池的工作过程">#</a></h4>
+<h4 id="java线程池的工作过程">Java线程池的工作过程</h4>
 <p>Java线程池的工作过程如下：</p>
 <ol>
 <li>线程池刚创建时，里面没有一个线程。任务队列是作为参数传进来的。不过，就算队列里面有任务，线程池也不会马上执行它们。</li>
@@ -340,9 +178,9 @@
 <li>当一个线程完成任务时，它会从队列中取下一个任务来执行。</li>
 <li>当一个线程无事可做，超过一定的时间（keepAliveTime）时，线程池会判断，如果当前运行的线程数大于 corePoolSize，那么这个线程就被停掉。所以线程池的所有任务完成后，它最终会收缩到 corePoolSize 的大小。</li>
 </ol>
-<h4 id="常见的java线程池">常见的Java线程池<a hidden class="anchor" aria-hidden="true" href="#常见的java线程池">#</a></h4>
+<h4 id="常见的java线程池">常见的Java线程池</h4>
 <p>生成线程池使用的是Executors的工厂方法，以下是常见的 Java 线程池：</p>
-<h5 id="singlethreadexecutor">SingleThreadExecutor<a hidden class="anchor" aria-hidden="true" href="#singlethreadexecutor">#</a></h5>
+<h5 id="singlethreadexecutor">SingleThreadExecutor</h5>
 <p>SingleThreadExecutor是单个线程的线程池，即线程池中每次只有一个线程在运行，单线程串行执行任务。如果这个唯一的线程因为异常结束，那么会有一个新的线程来替代它。此线程池保证所有任务的执行顺序按照任务的提交顺序执行。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExecutorService <span style="color:#a6e22e">newSingleThreadExecutor</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> FinalizableDelegatedExecutorService
@@ -350,27 +188,27 @@
 </span></span><span style="display:flex;"><span>                                0L, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>,
 </span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">new</span> LinkedBlockingQueue<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;</span>()));
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h5 id="fixedthreadpool">FixedThreadPool<a hidden class="anchor" aria-hidden="true" href="#fixedthreadpool">#</a></h5>
+</span></span></code></pre></div><h5 id="fixedthreadpool">FixedThreadPool</h5>
 <p>FixedThreadPool是固定数量的线程池，只有核心线程，每提交一个任务就是一个线程，直到达到线程池的最大数量，然后后面进入等待队列，直到前面的任务完成才继续执行。线程池的大小一旦达到最大值就会保持不变，如果某个线程因为执行异常而结束，那么线程池会补充一个新线程。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExecutorService <span style="color:#a6e22e">newFixedThreadPool</span>(<span style="color:#66d9ef">int</span> nThreads) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor(nThreads, nThreads,
 </span></span><span style="display:flex;"><span>                                  0L, TimeUnit.<span style="color:#a6e22e">MILLISECONDS</span>,
 </span></span><span style="display:flex;"><span>                                  <span style="color:#66d9ef">new</span> LinkedBlockingQueue<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;</span>());
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="cachedthreadpool">CachedThreadPool<a hidden class="anchor" aria-hidden="true" href="#cachedthreadpool">#</a></h4>
+</span></span></code></pre></div><h4 id="cachedthreadpool">CachedThreadPool</h4>
 <p>CachedThreadPool是可缓存线程池。如果线程池的大小超过了处理任务所需要的线程，那么就会回收部分空闲（60秒不执行任务）的线程，当任务数增加时，此线程池又可以智能的添加新线程来处理任务。此线程池不会对线程池大小做限制，线程池大小完全依赖于操作系统（或者说JVM）能够创建的最大线程大小。其中，SynchronousQueue是一个是缓冲区为1的阻塞队列。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> ExecutorService <span style="color:#a6e22e">newCachedThreadPool</span>() {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ThreadPoolExecutor(0, Integer.<span style="color:#a6e22e">MAX_VALUE</span>,
 </span></span><span style="display:flex;"><span>                                  60L, TimeUnit.<span style="color:#a6e22e">SECONDS</span>,
 </span></span><span style="display:flex;"><span>                                  <span style="color:#66d9ef">new</span> SynchronousQueue<span style="color:#f92672">&lt;</span>Runnable<span style="color:#f92672">&gt;</span>());
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="scheduledthreadpool">ScheduledThreadPool<a hidden class="anchor" aria-hidden="true" href="#scheduledthreadpool">#</a></h4>
+</span></span></code></pre></div><h4 id="scheduledthreadpool">ScheduledThreadPool</h4>
 <p>ScheduledThreadPool是核心线程池固定，大小无限制的线程池，支持定时和周期性的执行线程。创建一个周期性执行任务的线程池。如果闲置,非核心线程池会在DEFAULT_KEEPALIVEMILLIS时间内回收。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ScheduledThreadPoolExecutor</span>(<span style="color:#66d9ef">int</span> corePoolSize) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>(corePoolSize, Integer.<span style="color:#a6e22e">MAX_VALUE</span>, 0, NANOSECONDS,
 </span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">new</span> DelayedWorkQueue());
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="java-线程池的创建和使用">Java 线程池的创建和使用<a hidden class="anchor" aria-hidden="true" href="#java-线程池的创建和使用">#</a></h4>
+</span></span></code></pre></div><h4 id="java-线程池的创建和使用">Java 线程池的创建和使用</h4>
 <p>我们可以通过Executors的工厂方法来创建一个线程池。但是我们该如何让线程池执行任务呢？</p>
 <p>线程池最常用的提交任务的方法有两种：</p>
 <ul>
@@ -418,19 +256,18 @@ pool-1-thread-2 is running.
 pool-1-thread-1 is running.
 pool-1-thread-2 is running.
 pool-1-thread-1 is running.
-</code></pre><h3 id="java线程池原理">Java线程池原理<a hidden class="anchor" aria-hidden="true" href="#java线程池原理">#</a></h3>
+</code></pre><h3 id="java线程池原理">Java线程池原理</h3>
 <p>这篇文章会分别从这三个方面，结合具体的代码实现来剖析 Java 线程池的原理以及它的具体实现。</p>
-<h4 id="线程复用">线程复用<a hidden class="anchor" aria-hidden="true" href="#线程复用">#</a></h4>
+<h4 id="线程复用">线程复用</h4>
 <p>我们知道线程池的一个作用是创建和销毁线程的次数，每个工作线程可以多次使用。这个功能就是线程复用。想要了解 Java 线程池是如何进行线程复用的，我们首先需要了解线程的生命周期。</p>
-<h4 id="线程生命周期">线程生命周期<a hidden class="anchor" aria-hidden="true" href="#线程生命周期">#</a></h4>
+<h4 id="线程生命周期">线程生命周期</h4>
 <p>下图描述了线程完整的生命周期：</p>
-<p><img loading="lazy" src="/Java%e7%ba%bf%e7%a8%8b%e6%b1%a0/p799.jpg" alt="线程生命周期"  />
-</p>
+<p><img src="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/p799.jpg" alt="线程生命周期"></p>
 <p>在一个线程完整的生命周期中，它可能经历五种状态：新建（New）、就绪（Runnable）、运行（Running）、阻塞（Blocked）、终止（Zombie）。</p>
 <p>在 Java中，Thread 通过new来新建一个线程，这个过程是是初始化一些线程信息，如线程名、id、线程所属group等，可以认为只是个普通的对象。调用Thread的start()后Java虚拟机会为其创建方法调用栈和程序计数器，同时将hasBeenStarted为true，之后如果再次调用start()方法就会有异常。</p>
 <p>处于这个状态中的线程并没有开始运行，只是表示该线程可以运行了。至于该线程何时开始运行，取决于 JVM 里线程调度器的调度。当线程获取CPU后，run()方法会被调用。不要自己去调用Thread的run()方法。之后根据CPU的调度，线程就会在就绪—运行—阻塞间切换，直到run()方法结束或其他方式停止线程，进入终止状态。</p>
 <p>因此，如果要实现线程的复用，我们必须要保证线程池中的线程保持存活状态（就绪、运行、阻塞）。接下来，我们就来看看ThreadPoolExecutor是如何实现线程复用的。</p>
-<h4 id="worker-类">Worker 类<a hidden class="anchor" aria-hidden="true" href="#worker-类">#</a></h4>
+<h4 id="worker-类">Worker 类</h4>
 <p>ThreadPoolExecutor主要是通过一个类来控制线程复用的：Worker 类。</p>
 <p>我们来看一下简化后的 Worker 类代码：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span> <span style="color:#66d9ef">implements</span> Runnable {
@@ -459,7 +296,7 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>从代码中，我们可以看到 Worker 实现了 Runnable 接口，并且它还有一个 Thread成员变量 thread，这个 thread 就是要开启运行的线程。我们看到 Worker 的构造方法中传递了一个 Runnable 参数，同时它把自己作为参数传入 newThread()，这样的话，当 Thread 的start()方法得到调用时，执行的其实是 Worker 的run()方法，即runWorker()方法。</p>
 <p>runWorker()方法之中有一个 while 循环，使用 getTask()来获取任务，并执行。接下来，我们将会看到getTask()是如何获取到 Runnable 对象的。</p>
-<h4 id="gettask">getTask()<a hidden class="anchor" aria-hidden="true" href="#gettask">#</a></h4>
+<h4 id="gettask">getTask()</h4>
 <p>我们来看一下简化后的getTask()代码：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> Runnable <span style="color:#a6e22e">getTask</span>() {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(一些特殊情况) {
@@ -469,9 +306,9 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> r;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>我们可以看到任务是从 workQueue中获取的，这个 workQueue 就是我们初始化 ThreadPoolExecutor 时存放任务的 BlockingQueue队列，这个队列里的存放的都是将要执行的 Runnable任务。因为 BlockingQueue 是个阻塞队列，BlockingQueue.take()返回的是空，则进入等待状态直到 BlockingQueue 有新的对象被加入时唤醒阻塞的线程。所以一般情况下，Thread的run()方法不会结束，而是不断执行workQueue里的Runnable任务，这就达到了线程复用的目的了。</p>
-<h4 id="控制最大并发数">控制最大并发数<a hidden class="anchor" aria-hidden="true" href="#控制最大并发数">#</a></h4>
+<h4 id="控制最大并发数">控制最大并发数</h4>
 <p>我们现在已经知道了 Java 线程池是如何做到线程复用的了，但是Runnable 是什么时候被放入 workQueue 队列中的呢，Worker里的Thread的又是什么时候调用start()开启新线程来执行Worker的run()方法的呢？从上面的分析中我们可以看出Worker里的runWorker()执行任务时是一个接一个，串行进行的，那并发是怎么体现的呢？它又是如何做到控制最大并发数的呢？</p>
-<h4 id="execute">execute()<a hidden class="anchor" aria-hidden="true" href="#execute">#</a></h4>
+<h4 id="execute">execute()</h4>
 <p>通过查看 execute()就能解答上述的一些问题，同样是简化后的代码：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">execute</span>(Runnable command) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (command <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NullPointerException();
@@ -498,7 +335,7 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>addWorker(command, <span style="color:#66d9ef">false</span>))
 </span></span><span style="display:flex;"><span>        reject(command);
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="addworker">addWorker()<a hidden class="anchor" aria-hidden="true" href="#addworker">#</a></h4>
+</span></span></code></pre></div><h4 id="addworker">addWorker()</h4>
 <p>我们再来看一下addWorker()的简化代码：</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">addWorker</span>(Runnable firstTask, <span style="color:#66d9ef">boolean</span> core) {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> wc <span style="color:#f92672">=</span> workerCountOf(c);
@@ -518,9 +355,8 @@ pool-1-thread-1 is running.
 </ul>
 <p>如果通过addWorker()成功创建新的线程，则通过start()开启新线程，同时将firstTask作为这个Worker里的run()中执行的第一个任务。虽然每个Worker的任务是串行处理，但如果创建了多个Worker，因为共用一个workQueue，所以就会并行处理了。所以可以根据corePoolSize和maximumPoolSize来控制最大并发数。</p>
 <p>过程如下图所示：</p>
-<p><img loading="lazy" src="/Java%e7%ba%bf%e7%a8%8b%e6%b1%a0/p797.jpg" alt="线程池执行过程"  />
-</p>
-<h4 id="管理线程">管理线程<a hidden class="anchor" aria-hidden="true" href="#管理线程">#</a></h4>
+<p><img src="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/p797.jpg" alt="线程池执行过程"></p>
+<h4 id="管理线程">管理线程</h4>
 <p>上边的文章已经讲了，通过线程池可以很好的管理线程的复用，控制并发数，以及销毁等过程，而线程的管理过程已经穿插在其中了，也很好理解。</p>
 <p>在 ThreadPoolExecutor 有个AtomicInteger变量 ctl，这一个变量保存了两个内容：</p>
 <ul>
@@ -545,17 +381,16 @@ pool-1-thread-1 is running.
 <li>STOP状态：不再接受新任务，不处理队列中的任务</li>
 </ul>
 <p>shutdown()这个方法会将runState置为SHUTDOWN，会终止所有空闲的线程，而仍在工作的线程不受影响，所以队列中的任务人会被执行；shutdownNow()方法将runState置为STOP。和shutdown()方法的区别是，这个方法会终止所有的线程，所以队列中的任务也不会被执行了。</p>
-<h3 id="java线程池框架源码分析">Java线程池框架源码分析<a hidden class="anchor" aria-hidden="true" href="#java线程池框架源码分析">#</a></h3>
+<h3 id="java线程池框架源码分析">Java线程池框架源码分析</h3>
 <p>前面的文章中已经给出了Java线程池框架中几个重要类的关系图:</p>
-<p><img loading="lazy" src="/Java%e7%ba%bf%e7%a8%8b%e6%b1%a0/p798.jpg" alt="Java线程池框架"  />
-</p>
+<p><img src="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/p798.jpg" alt="Java线程池框架"></p>
 <p>现在我们基于这张图来逐步分析。</p>
-<h4 id="executor">Executor<a hidden class="anchor" aria-hidden="true" href="#executor">#</a></h4>
+<h4 id="executor">Executor</h4>
 <pre tabindex="0"><code>public interface Executor {
     void execute(Runnable command);
 }
 </code></pre><p>这个接口表示向线程池中提交一个任务。</p>
-<h4 id="executorservice">ExecutorService<a hidden class="anchor" aria-hidden="true" href="#executorservice">#</a></h4>
+<h4 id="executorservice">ExecutorService</h4>
 <pre tabindex="0"><code>public interface ExecutorService extends Executor {
     void shutdown();
     List&lt;Runnable&gt; shutdownNow();
@@ -578,11 +413,11 @@ pool-1-thread-1 is running.
                     throws InterruptedException, ExecutionException, TimeoutException;
 }
 </code></pre><p>可以看到 ExecutorService 扩展了 Executor 接口，在 Executor 基础上提供了更多的提交任务的方式和管理线程池的一些方法。</p>
-<h4 id="abstractexecutorservice">AbstractExecutorService<a hidden class="anchor" aria-hidden="true" href="#abstractexecutorservice">#</a></h4>
+<h4 id="abstractexecutorservice">AbstractExecutorService</h4>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AbstractExecutorService</span> <span style="color:#66d9ef">implements</span> ExecutorService {
 </span></span><span style="display:flex;"><span> 
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="threadpoolexecutor">ThreadPoolExecutor<a hidden class="anchor" aria-hidden="true" href="#threadpoolexecutor">#</a></h4>
+</span></span></code></pre></div><h4 id="threadpoolexecutor">ThreadPoolExecutor</h4>
 <p>ThreadPoolExecutor 是线程池框架的关键类. 首先来看一下 ThreadPoolExecutor 中几个重要的属性.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ThreadPoolExecutor</span> <span style="color:#66d9ef">extends</span> AbstractExecutorService {
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">/**
@@ -717,9 +552,8 @@ pool-1-thread-1 is running.
 <p>当这个任务被添加到了阻塞队列前，池子处于 RUNNING 状态，但如果在添加到队列成功后，池子进入了 SHUTDOWN 状态或者其他状态，这时候是不应该再接收新的任务的，所以需要把这个任务从队列中移除，并且 reject</p>
 <p>同样，在没有添加到队列前，可能有一个有效线程，但添加完任务后，这个线程闲置超时或者因为异常被干掉了，这时候需要创建一个新的线程来执行任务</p>
 <p>为了更直观的理解一个任务的执行过程，可以参考下面这张图</p>
-<p><img loading="lazy" src="/Java%e7%ba%bf%e7%a8%8b%e6%b1%a0/p796.jpg" alt="任务的执行过程"  />
-</p>
-<h4 id="addworker-1">addWorker()<a hidden class="anchor" aria-hidden="true" href="#addworker-1">#</a></h4>
+<p><img src="/Java%E7%BA%BF%E7%A8%8B%E6%B1%A0/p796.jpg" alt="任务的执行过程"></p>
+<h4 id="addworker-1">addWorker()</h4>
 <p>前一步把 execute 的流程捋了一遍，里面多次出现了 addWorker() 方法，前文说到这是个创建线程的方法，来看看 addWorker 做了些什么，这个方法代码比较长，我们拆开来一点一点看.</p>
 <ul>
 <li>第一部分 — 判断各种基础异常</li>
@@ -808,7 +642,7 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> workerStarted;
 </span></span></code></pre></div><p>上面代码从逻辑层面来看不算难懂，到这里一个任务到达后，ThreadPoolExecutor 的处理就结束了，那么任务又是怎么被添加到阻塞队列中，线程是如何从队列中取出任务，上文中的 Worker 又是什么东西？</p>
 <p>一个一个来，先来看看 Worker 到底是什么.</p>
-<h4 id="worker">Worker<a hidden class="anchor" aria-hidden="true" href="#worker">#</a></h4>
+<h4 id="worker">Worker</h4>
 <p>Worker 是 ThreadPoolExecutor 的一个内部类，实现了 Runnable 接口，继承自 AbstractQueuedSynchronizer,这又是个什么鬼？？? 这个就是经常见到的 AQS 的全称,这个暂时还没有研究.~~~~</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Worker</span>
 </span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">extends</span> AbstractQueuedSynchronizer
@@ -946,7 +780,7 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>getTask() 方法逻辑也捋得差不多了，这里又出现了两个新的方法，workQueue.poll(keepAliveTime, TimeUnit.NANOSECONDS) 和 workQueue.take() ，这两个都是阻塞队列的方法，来看看它们又各自是怎么实现的</p>
-<h4 id="linkedblockingqueue--阻塞队列">LinkedBlockingQueue — 阻塞队列<a hidden class="anchor" aria-hidden="true" href="#linkedblockingqueue--阻塞队列">#</a></h4>
+<h4 id="linkedblockingqueue--阻塞队列">LinkedBlockingQueue — 阻塞队列</h4>
 <p>ThreadPoolExecutor 使用的是链表结构的阻塞队列，实现了 BlockingQueue 接口，而 BlockingQueue 则是继承自 Queue 接口，再上层就是 Collection 接口。</p>
 <p>因为本篇笔记主要是分析 ThreadPoolExecutor 的原理，所以不会详细介绍 LinkedBlockingQueue 中的其它代码，主要介绍这里所用的方法，首先来看一下上文所提到的 take()</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> E <span style="color:#a6e22e">take</span>() <span style="color:#66d9ef">throws</span> InterruptedException {
@@ -1002,7 +836,7 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>        signalNotFull(); <span style="color:#75715e">// 标记队列已满</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x; <span style="color:#75715e">// 返回任务</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h4 id="线程池的回收及终止">线程池的回收及终止<a hidden class="anchor" aria-hidden="true" href="#线程池的回收及终止">#</a></h4>
+</span></span></code></pre></div><h4 id="线程池的回收及终止">线程池的回收及终止</h4>
 <p>前一节分析了任务的执行流程及原理，也留下了一个问题，worker 是如何被回收的呢？线程池该如何管理呢？回到上一节的 runWorker() 方法中，还记得最后调用了一个方法</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>processWorkerExit(w, completedAbruptly);
 </span></span></code></pre></div><p>这个方法传入了两个参数，第一个是当前的 Woker ,第二个是标记异常退出的标识</p>
@@ -1118,7 +952,7 @@ pool-1-thread-1 is running.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * {@code super.terminated} within this method.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">terminated</span>() { }
-</span></span></code></pre></div><h4 id="异常处理">异常处理<a hidden class="anchor" aria-hidden="true" href="#异常处理">#</a></h4>
+</span></span></code></pre></div><h4 id="异常处理">异常处理</h4>
 <p>还记得前面讲到，出现各种异常情况，添加队列失败等等，只是笼统的说了一句扔掉，当然代码实现不可能是简单一句扔掉就完了。回到 execute() 方法中找到 reject() 任务，看看究竟是怎么处理的</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">reject</span>(Runnable command) {
 </span></span><span style="display:flex;"><span>    handler.<span style="color:#a6e22e">rejectedExecution</span>(command, <span style="color:#66d9ef">this</span>);
@@ -1162,214 +996,66 @@ pool-1-thread-1 is running.
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
+        </div>
 
-  </div>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/java/">
+                Java
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://carlos19960601.github.io/tags/java/">Java</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
-    <span class="title">« 上一页</span>
-    <br>
-    <span>Timer源码阅读</span>
-  </a>
-  <a class="next" href="https://carlos19960601.github.io/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
-    <span class="title">下一页 »</span>
-    <br>
-    <span>再回首CMS垃圾回收</span>
-  </a>
-</nav>
+          
 
-
-<ul class="share-buttons">
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on x"
-            href="https://x.com/intent/tweet/?text=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f&amp;hashtags=Java">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f&amp;title=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0&amp;summary=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0&amp;source=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f&title=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on whatsapp"
-            href="https://api.whatsapp.com/send?text=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0%20-%20https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on telegram"
-            href="https://telegram.me/share/url?text=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f">
-            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Java线程池 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=Java%e7%ba%bf%e7%a8%8b%e6%b1%a0&u=https%3a%2f%2fcarlos19960601.github.io%2fposts%2fjava%25E7%25BA%25BF%25E7%25A8%258B%25E6%25B1%25A0%2f">
-            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
-                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
-                <path
-                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
-            </svg>
-        </a>
-    </li>
-</ul>
-
-  </footer>
-</article>
-    </main>
+<div class="related-content">
+  <h3>Related Posts</h3>
+  <ul>
     
-<footer class="footer">
-        <span>&copy; 2024 <a href="https://carlos19960601.github.io/">Carlos的废话集</a></span> · 
+    <li><a href="/posts/%E5%86%8D%E5%9B%9E%E9%A6%96cms%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">再回首CMS垃圾回收</a></li>
+    
+  </ul>
+</div>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
 
 <script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
+  
+  
+    
+    
+  
 </script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
 
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
+  
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
 </body>
 
 </html>

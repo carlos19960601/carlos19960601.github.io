@@ -1,263 +1,122 @@
 <!DOCTYPE html>
-<html lang="zh" dir="auto">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.140.0">
 
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Timer源码阅读 | Carlos的废话集</title>
-<meta name="keywords" content="Golang">
-<meta name="description" content="根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" />
+  <link rel="canonical" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" /><link rel="alternate" type="application/atom+xml" href="https://carlos19960601.github.io/index.xml" title="Carlos的废话集">
 
-Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；
-Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；
-Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发；
-
-
-Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题
-Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO  为什么会发生P和M的绑定和解绑)
-Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发
-
-我使用的是Go 1.16的版本进行分析">
-<meta name="author" content="">
-<link rel="canonical" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.fc220c15db4aef0318bbf30adc45d33d4d7c88deff3238b23eb255afdc472ca6.css" integrity="sha256-/CIMFdtK7wMYu/MK3EXTPU18iN7/MjiyPrJVr9xHLKY=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://carlos19960601.github.io/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://carlos19960601.github.io/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://carlos19960601.github.io/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://carlos19960601.github.io/apple-touch-icon.png">
-<link rel="mask-icon" href="https://carlos19960601.github.io/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-track {
-                background: 0 0;
-            }
-
-            .list:not(.dark)::-webkit-scrollbar-thumb {
-                border-color: var(--theme);
-            }
-        }
-
-    </style>
-</noscript><meta property="og:title" content="Timer源码阅读" />
-<meta property="og:description" content="根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
-
-Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；
-Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；
-Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发；
-
-
-Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题
-Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO  为什么会发生P和M的绑定和解绑)
-Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发
-
-我使用的是Go 1.16的版本进行分析" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-22T22:50:29+08:00" />
-<meta property="article:modified_time" content="2021-04-22T22:50:29+08:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Timer源码阅读"/>
-<meta name="twitter:description" content="根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
-
-Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；
-Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；
-Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发；
-
-
-Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题
-Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO  为什么会发生P和M的绑定和解绑)
-Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发
-
-我使用的是Go 1.16的版本进行分析"/>
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "Posts",
-      "item": "https://carlos19960601.github.io/posts/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "Timer源码阅读",
-      "item": "https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Timer源码阅读",
-  "name": "Timer源码阅读",
-  "description": "根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：\nGo 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析\n",
-  "keywords": [
-    "Golang"
-  ],
-  "articleBody": "根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：\nGo 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析\ntimer包的使用 主要分为2类，一次性触发的timer和多次触发的ticker\nfunc TestTimer(t *testing.T) { timer := time.NewTimer(time.Second) // for tm := range timer.C { // t.Log(tm) // timer.Reset(time.Second) // } var ch chan int for { select { case tm := \u003c-timer.C: t.Log(tm) timer.Reset(time.Second) case \u003c-ch: } } } func TestAfter(t *testing.T) { var ch chan int select { case tm := \u003c-time.After(time.Second): t.Log(tm) case \u003c-ch: } } func TestAfterFunc(t *testing.T) { var ch chan int timer := time.AfterFunc(time.Second, func() { t.Log(\"我执行了\") ch \u003c- 0 }) defer timer.Stop() \u003c-ch } func TestTicker(t *testing.T) { ticker := time.NewTicker(time.Second) var ch chan int for { select { case tm := \u003c-ticker.C: t.Log(tm) case \u003c-ch: } } } func NewTicker(d Duration) *Ticker { if d \u003c= 0 { panic(errors.New(\"non-positive interval for NewTicker\")) } // Give the channel a 1-element time buffer. // If the client falls behind while reading, we drop ticks // on the floor until the client catches up. c := make(chan Time, 1) t := \u0026Ticker{ C: c, r: runtimeTimer{ when: when(d), period: int64(d), f: sendTime, arg: c, }, } startTimer(\u0026t.r) return t } func TestTick(t *testing.T) { for tm := range time.Tick(time.Second) { t.Log(tm) } } 需要注意的是，在for循环中使用的时候需要考虑是否会造成timer的泄漏；具体的示例分析可以参考 Go 内存泄露之痛，这篇把 Go timer.After 问题根因讲透了！\n数据结构 func NewTimer(d Duration) *Timer { c := make(chan Time, 1) t := \u0026Timer{ C: c, r: runtimeTimer{ when: when(d), f: sendTime, arg: c, }, } startTimer(\u0026t.r) return t } 可以看到NewTimer和NewTicker都会初始化runtimeTimer，差别在于Ticker会比Timer多了period参数。最后调用startTimer将timer添加到底层的最小四叉堆中\nruntimeTimer和runtime/time.go#timer结构是保持一致的\ntype timer struct { // If this timer is on a heap, which P's heap it is on. // puintptr rather than *p to match uintptr in the versions // of this struct defined in other packages. pp puintptr // 当前P的指针 // Timer wakes up at when, and then at when+period, ... (period \u003e 0 only) // each time calling f(arg, now) in the timer goroutine, so f must be // a well-behaved function and not block. // // when must be positive on an active timer. when int64 // 当前计时器被唤醒的时间 period int64 // 两次被唤醒的间隔 f func(interface{}, uintptr) // 每当计时器被唤醒时都会调用的函数 arg interface{} // 计时器被唤醒时调用 f 传入的参数 seq uintptr // What to set the when field to in timerModifiedXX status. nextwhen int64 // 计时器处于 timerModifiedXX 状态时，用于设置 when 字段； // The status field holds one of the values below. status uint32 // 计时器的状态 } 添加timer 前面的startTimer方法其实是runtime/time.go中的startTimer方法，通过//go:linkname关联起来的\n// 把 t 添加到 timer 堆 // startTimer adds t to the timer heap. //go:linkname startTimer time.startTimer func startTimer(t *timer) { if raceenabled { racerelease(unsafe.Pointer(t)) } addtimer(t) } 继续调用addtimer方法\n// addtimer adds a timer to the current P. // This should only be called with a newly created timer. // That avoids the risk of changing the when field of a timer in some P's heap, // which could cause the heap to become unsorted. func addtimer(t *timer) { // when must be positive. A negative value will cause runtimer to // overflow during its delta calculation and never expire other runtime // timers. Zero will cause checkTimers to fail to notice the timer. if t.when \u003c= 0 { throw(\"timer when must be positive\") } if t.period \u003c 0 { throw(\"timer period must be non-negative\") } if t.status != timerNoStatus { // 添加新的timer必须是timerNoStatus throw(\"addtimer called with initialized timer\") } t.status = timerWaiting when := t.when pp := getg().m.p.ptr() lock(\u0026pp.timersLock) cleantimers(pp) doaddtimer(pp, t) unlock(\u0026pp.timersLock) wakeNetPoller(when) } addtimer首先对参数进行了校验，timer的初始化status必须是timerNoStatus(计时器尚未设置状态)，然后将timer的status切换成timerWaiting(等待计时器启动)\n然后调用cleantimers(pp)处理P中timers堆顶上已经取消(timerDeleted)或者时间发生改变(timerModifiedEarlier/timerModifiedLater的timer)，对timers进行清理\n// 清理堆顶部的timer，与adjusttimers方法类似，只是adjusttimers会遍历搜索的timers // 注意cleantimers清理的是堆顶部的timer，只要顶部是timerDeleted，timerModifiedEarlier/timerModifiedLater的timer都会处理 // 处理完后会调整堆，再处理堆顶部的timer，所以不只是处理1个timer， // 当堆前面的timer是timerDeleted，timerModifiedEarlier/timerModifiedLater状态的时候都会进行处理 // adjusttimers不管是什么状态的timer，都会便利处理一遍 // cleantimers会出现下面2种状态的变化，也就是清除已经删除的，移动timer0 // timerDeleted -\u003e timerRemoving -\u003e timerRemoved // timerModifiedEarlier/timerModifiedLater -\u003e timerMoving -\u003e timerWaiting func cleantimers(pp *p) { gp := getg() for { if len(pp.timers) == 0 { return } // This loop can theoretically run for a while, and because // it is holding timersLock it cannot be preempted. // If someone is trying to preempt us, just return. // We can clean the timers later. if gp.preemptStop { return } t := pp.timers[0] // 堆顶，when最小，最早发生的timer if t.pp.ptr() != pp { throw(\"cleantimers: bad p\") } switch s := atomic.Load(\u0026t.status); s { case timerDeleted: // timerDeleted --\u003e timerRemoving --\u003e 从堆中删除timer --\u003e timerRemoved if !atomic.Cas(\u0026t.status, s, timerRemoving) { continue } dodeltimer0(pp) if !atomic.Cas(\u0026t.status, timerRemoving, timerRemoved) { badTimer() } atomic.Xadd(\u0026pp.deletedTimers, -1) case timerModifiedEarlier, timerModifiedLater: // TODO 如果modTimer将非timer0的when改成了比timer0更先触发的时候是怎么处理的 // timerMoving --\u003e 调整 timer 的时间 --\u003e timerWaiting // 此时 timer 被调整为更早或更晚，将原先的 timer 进行删除，再重新添加 if !atomic.Cas(\u0026t.status, s, timerMoving) { continue } // Now we can change the when field. t.when = t.nextwhen // Move t to the right position. // 删除原来的 dodeltimer0(pp) // 然后再重新添加 doaddtimer(pp, t) if s == timerModifiedEarlier { atomic.Xadd(\u0026pp.adjustTimers, -1) // 如果t0之前是timerModifiedEarlier，因为已经调整了t0，所以需要将adjustTimers减1 } if !atomic.Cas(\u0026t.status, timerMoving, timerWaiting) { badTimer() } default: // Head of timers does not need adjustment. return } } } cleantimers(pp *p)方法会循环处理堆顶部是timerDeleted，timerModifiedEarlier/timerModifiedLater的timer\n如果是timerDeleted，说明timer已经取消了，从timers堆中删除，重新调整timers堆 如果是timerModifiedEarlier/timerModifiedLater，说明timer的时间发生改变，修改timer的when字段，删除之前的timer，重新添加新的timer cleantimers(pp *p)方法只是对p中的timers堆做了一些清理调整的工作，真正添加是doaddtimer方法\n// doaddtimer adds t to the current P's heap. // The caller must have locked the timers for pp. func doaddtimer(pp *p, t *timer) { // Timers依赖network poller，确保netpoll经初始化了 // Timers rely on the network poller, so make sure the poller // has started. if netpollInited == 0 { netpollGenericInit() } if t.pp != 0 { // 创建timer时没有绑定p，如果p存在的话属于异常情况 throw(\"doaddtimer: P already set in timer\") } t.pp.set(pp) // timer绑定到当前P的堆上 i := len(pp.timers) pp.timers = append(pp.timers, t) siftupTimer(pp.timers, i) // 调整4叉堆 if t == pp.timers[0] { // 如果新加入的timer是当前p中最新触发的，将t.when保存到pp.timer0When atomic.Store64(\u0026pp.timer0When, uint64(t.when)) } atomic.Xadd(\u0026pp.numTimers, 1) } doaddtimer方法中判断了netpoll是否初始化了，如果没有对其进行初始化，这里我还没有理解timer和netpoll之间的关系，作为todo，后续再补充\n后面就是p的timer之间的绑定，添加到四叉堆，然后平衡四叉堆，这里就不细说了\ndoaddtimer方法返回后，回到addtimer方法会调用wakeNetPoller方法\n// wakeNetPoller wakes up the thread sleeping in the network poller if it isn't // going to wake up before the when argument; or it wakes an idle P to service // timers and the network poller if there isn't one already. func wakeNetPoller(when int64) { if atomic.Load64(\u0026sched.lastpoll) == 0 { // In findrunnable we ensure that when polling the pollUntil // field is either zero or the time to which the current // poll is expected to run. This can have a spurious wakeup // but should never miss a wakeup. pollerPollUntil := int64(atomic.Load64(\u0026sched.pollUntil)) if pollerPollUntil == 0 || pollerPollUntil \u003e when { // 网络轮询器poll \u003e timer的触发时间，立即唤醒netpoll netpollBreak() } } else { // There are no threads in the network poller, try to get // one there so it can handle new timers. if GOOS != \"plan9\" { // Temporary workaround - see issue #42303. wakep() } } } // netpollBreak interrupts a kevent. func netpollBreak() { if atomic.Cas(\u0026netpollWakeSig, 0, 1) { for { var b byte n := write(netpollBreakWr, unsafe.Pointer(\u0026b), 1) if n == 1 || n == -_EAGAIN { break } if n == -_EINTR { continue } println(\"runtime: netpollBreak write failed with\", -n) throw(\"runtime: netpollBreak write failed\") } } } wakeNetPoller方法其实就是向netpoll初始化的全局epfd文件描述符写入了数据（epfd和golang netpoll有关，想了解netpoll的请自行了解）。主要目的是为了唤醒netpoll\n停止timer 可以通过Ticker#Stop和Timer#Stop停止timer\n// Stop prevents the Timer from firing. // It returns true if the call stops the timer, false if the timer has already // expired or been stopped. // Stop does not close the channel, to prevent a read from the channel succeeding // incorrectly. // // To ensure the channel is empty after a call to Stop, check the // return value and drain the channel. // For example, assuming the program has not received from t.C already: // // if !t.Stop() { // \u003c-t.C // } // // This cannot be done concurrent to other receives from the Timer's // channel or other calls to the Timer's Stop method. // // For a timer created with AfterFunc(d, f), if t.Stop returns false, then the timer // has already expired and the function f has been started in its own goroutine; // Stop does not wait for f to complete before returning. // If the caller needs to know whether f is completed, it must coordinate // with f explicitly. func (t *Timer) Stop() bool { if t.r.f == nil { panic(\"time: Stop called on uninitialized Timer\") } return stopTimer(\u0026t.r) } // Stop turns off a ticker. After Stop, no more ticks will be sent. // Stop does not close the channel, to prevent a concurrent goroutine // reading from the channel from seeing an erroneous \"tick\". func (t *Ticker) Stop() { stopTimer(\u0026t.r) } 最后都是调用runtime.stopTimer方法；通过//go:linkname进行关联\n// stopTimer stops a timer. // It reports whether t was stopped before being run. //go:linkname stopTimer time.stopTimer func stopTimer(t *timer) bool { return deltimer(t) } // 返回的是这个timer在执行前被移除的，已经执行过了就返回false，还没有执行就返回true // deltimer deletes the timer t. It may be on some other P, so we can't // actually remove it from the timers heap. We can only mark it as deleted. // It will be removed in due course by the P whose heap it is on. // Reports whether the timer was removed before it was run. func deltimer(t *timer) bool { for { switch s := atomic.Load(\u0026t.status); s { case timerWaiting, timerModifiedLater: // timer还没启动或修改为更晚的时间 // Prevent preemption while the timer is in timerModifying. // This could lead to a self-deadlock. See #38070. mp := acquirem() // timerWaiting/timerModifiedLater --\u003e timerModifying --\u003e timerDeleted if atomic.Cas(\u0026t.status, s, timerModifying) { // TODO 为什么要先切换为timerModifying // Must fetch t.pp before changing status, // as cleantimers in another goroutine // can clear t.pp of a timerDeleted timer. tpp := t.pp.ptr() if !atomic.Cas(\u0026t.status, timerModifying, timerDeleted) { // 置为timerDeleted状态 badTimer() } releasem(mp) atomic.Xadd(\u0026tpp.deletedTimers, 1) // Timer was not yet run. return true } else { // 修改为timerModifying失败，说明t的状态已经不再是timerWaiting, timerModifiedLater了 releasem(mp) // 下一次再来处理 } case timerModifiedEarlier: // Prevent preemption while the timer is in timerModifying. // This could lead to a self-deadlock. See #38070. mp := acquirem() // timerModifiedEarlier --\u003e timerModifying --\u003e timerDeleted if atomic.Cas(\u0026t.status, s, timerModifying) { // Must fetch t.pp before setting status // to timerDeleted. tpp := t.pp.ptr() atomic.Xadd(\u0026tpp.adjustTimers, -1) // timerModifiedEarlier的timer被stop了，所以需要将adjustTimers-1 if !atomic.Cas(\u0026t.status, timerModifying, timerDeleted) { badTimer() } releasem(mp) atomic.Xadd(\u0026tpp.deletedTimers, 1) // Timer was not yet run. return true } else { releasem(mp) // 下一次再来处理 } case timerDeleted, timerRemoving, timerRemoved: // Timer was already run. // Timer 已经运行 return false case timerRunning, timerMoving: // 正在执行或被移动了，等待完成，下一次再来处理 // The timer is being run or moved, by a different P. // Wait for it to complete. osyield() case timerNoStatus: // Removing timer that was never added or // has already been run. Also see issue 21874. return false case timerModifying: // 同时调用了deltimer，modtimer；等待其他调用完成，下一次再来处理 // Simultaneous calls to deltimer and modtimer. // Wait for the other call to complete. osyield() default: badTimer() } } } 从deltimer方法中可以看出，timer会发生如下的状态变化\ntimerWaiting, timerModifiedLater → timerModifying → timerDeleted\n如果要停止的timer状态是timerWaiting, timerModifiedLater，说明timer还没有执行，将状态切换成timerModifying改变中，最后将状态切换成timerDeleted\ntimerModifiedEarlier → timerModifying –\u003e timerDeleted\n如果要停止的timer状态是timerModifiedEarlier，说明timer的时间被改变过，比如reset过，将状态切换成timerModifying改变中，最后将状态切换成timerDeleted\ntimerDeleted, timerRemoving, timerRemoved → 什么都不做\ntimerRunning, timerMoving → 等待操作完成\ntimerNoStatus → 直接返回\ntimerModifying → 等待操作完成\n我在这里有2个问题\n为什么timer状态变化的时候需要需要先改为timerModifying然后再修改成最后的状态？\n答：首先声明这个只是我个人的理解可能会存在错误；在timer的status状态常量这有这么一段注释\n// We don't permit calling addtimer/deltimer/modtimer/resettimer simultaneously, // but adjusttimers and runtimer can be called at the same time as any of those. 为了保证addtimer/deltimer/modtimer/resettimer不能被同时调用，所以需要timerModifying这个状态\ndeltimer并没有从 四叉堆中删除timer，只是将timer的状态切换成timerDeleted，这个是为什么？\n这个在deltimer的注释上已经说明了\n// deltimer deletes the timer t. It may be on some other P, so we can't // actually remove it from the timers heap. We can only mark it as deleted. // It will be removed in due course by the P whose heap it is on. deltimer删除的timer可能在其他P上，以为调度循环的 时候不仅会从其他P上偷G，还会偷timer，所以只是对timer进行标记，在timer所在的P中，通过 cleantimers/adjusttimers等方法来真正从堆中删除\n其他timer的方法 分析了2个timer的方法后，就不再逐个看其他的方法了，大概都差不多，都是对timers堆中的timer状态进行修改，timers的调整等\n修改timer // modtimer modifies an existing timer. // This is called by the netpoll code or time.Ticker.Reset or time.Timer.Reset. // Reports whether the timer was modified before it was run. func modtimer(t *timer, when, period int64, f func(interface{}, uintptr), arg interface{}, seq uintptr) bool { if when \u003c= 0 { throw(\"timer when must be positive\") } if period \u003c 0 { throw(\"timer period must be non-negative\") } status := uint32(timerNoStatus) wasRemoved := false var pending bool var mp *m loop: for { switch status = atomic.Load(\u0026t.status); status { case timerWaiting, timerModifiedEarlier, timerModifiedLater: // Prevent preemption while the timer is in timerModifying. // This could lead to a self-deadlock. See #38070. mp = acquirem() // timerWaiting, timerModifiedEarlier, timerModifiedLater --\u003e timerModifying if atomic.Cas(\u0026t.status, status, timerModifying) { pending = true // timer not yet run break loop } releasem(mp) case timerNoStatus, timerRemoved: // Prevent preemption while the timer is in timerModifying. // This could lead to a self-deadlock. See #38070. mp = acquirem() // Timer was already run and t is no longer in a heap. // Act like addtimer. // timerNoStatus, timerRemoved --\u003e timerModifying if atomic.Cas(\u0026t.status, status, timerModifying) { wasRemoved = true pending = false // timer already run or stopped break loop } releasem(mp) case timerDeleted: // Prevent preemption while the timer is in timerModifying. // This could lead to a self-deadlock. See #38070. mp = acquirem() // timerDeleted --\u003e timerModifying if atomic.Cas(\u0026t.status, status, timerModifying) { atomic.Xadd(\u0026t.pp.ptr().deletedTimers, -1) pending = false // timer already stopped break loop } releasem(mp) case timerRunning, timerRemoving, timerMoving: // The timer is being run or moved, by a different P. // Wait for it to complete. osyield() // 等待状态改变 case timerModifying: // Multiple simultaneous calls to modtimer. // Wait for the other call to complete. osyield() // 等待状态改变 default: badTimer() } } t.period = period t.f = f t.arg = arg t.seq = seq if wasRemoved { t.when = when pp := getg().m.p.ptr() lock(\u0026pp.timersLock) doaddtimer(pp, t) unlock(\u0026pp.timersLock) if !atomic.Cas(\u0026t.status, timerModifying, timerWaiting) { badTimer() } releasem(mp) wakeNetPoller(when) } else { // The timer is in some other P's heap, so we can't change // the when field. If we did, the other P's heap would // be out of order. So we put the new when value in the // nextwhen field, and let the other P set the when field // when it is prepared to resort the heap. t.nextwhen = when newStatus := uint32(timerModifiedLater) if when \u003c t.when { newStatus = timerModifiedEarlier } tpp := t.pp.ptr() // Update the adjustTimers field. Subtract one if we // are removing a timerModifiedEarlier, add one if we // are adding a timerModifiedEarlier. adjust := int32(0) if status == timerModifiedEarlier { adjust-- } if newStatus == timerModifiedEarlier { adjust++ updateTimerModifiedEarliest(tpp, when) } if adjust != 0 { atomic.Xadd(\u0026tpp.adjustTimers, adjust) } // Set the new status of the timer. if !atomic.Cas(\u0026t.status, timerModifying, newStatus) { badTimer() } releasem(mp) // If the new status is earlier, wake up the poller. if newStatus == timerModifiedEarlier { wakeNetPoller(when) } } return pending } 调整timer // 与cleantimers类似，只是 cleantimers 只处理队列头部的timer // adjusttimers looks through the timers in the current P's heap for // any timers that have been modified to run earlier, and puts them in // the correct place in the heap. While looking for those timers, // it also moves timers that have been modified to run later, // and removes deleted timers. The caller must have locked the timers for pp. func adjusttimers(pp *p, now int64) { if atomic.Load(\u0026pp.adjustTimers) == 0 { if verifyTimers { verifyTimerHeap(pp) } // There are no timers to adjust, so it is safe to clear // timerModifiedEarliest. Do so in case it is stale. // Everything will work if we don't do this, // but clearing here may save future calls to adjusttimers. atomic.Store64(\u0026pp.timerModifiedEarliest, 0) return } // If we haven't yet reached the time of the first timerModifiedEarlier // timer, don't do anything. This speeds up programs that adjust // a lot of timers back and forth if the timers rarely expire. // We'll postpone looking through all the adjusted timers until // one would actually expire. if first := atomic.Load64(\u0026pp.timerModifiedEarliest); first != 0 { if int64(first) \u003e now { if verifyTimers { verifyTimerHeap(pp) } return } // We are going to clear all timerModifiedEarlier timers. atomic.Store64(\u0026pp.timerModifiedEarliest, 0) } var moved []*timer loop: for i := 0; i \u003c len(pp.timers); i++ { t := pp.timers[i] if t.pp.ptr() != pp { throw(\"adjusttimers: bad p\") } switch s := atomic.Load(\u0026t.status); s { case timerDeleted: if atomic.Cas(\u0026t.status, s, timerRemoving) { dodeltimer(pp, i) if !atomic.Cas(\u0026t.status, timerRemoving, timerRemoved) { badTimer() } atomic.Xadd(\u0026pp.deletedTimers, -1) // Look at this heap position again. i-- } case timerModifiedEarlier, timerModifiedLater: if atomic.Cas(\u0026t.status, s, timerMoving) { // Now we can change the when field. t.when = t.nextwhen // Take t off the heap, and hold onto it. // We don't add it back yet because the // heap manipulation could cause our // loop to skip some other timer. dodeltimer(pp, i) moved = append(moved, t) if s == timerModifiedEarlier { if n := atomic.Xadd(\u0026pp.adjustTimers, -1); int32(n) \u003c= 0 { break loop } } // Look at this heap position again. i-- } case timerNoStatus, timerRunning, timerRemoving, timerRemoved, timerMoving: badTimer() case timerWaiting: // OK, nothing to do. case timerModifying: // Check again after modification is complete. osyield() i-- default: badTimer() } } if len(moved) \u003e 0 { addAdjustedTimers(pp, moved) } if verifyTimers { verifyTimerHeap(pp) } } 运行timer // runtimer 检查timers四叉堆顶部的timer // runtimer examines the first timer in timers. If it is ready based on now, // it runs the timer and removes or updates it. // Returns 0 if it ran a timer, -1 if there are no more timers, or the time // when the first timer should run. // The caller must have locked the timers for pp. // If a timer is run, this will temporarily unlock the timers. //go:systemstack func runtimer(pp *p, now int64) int64 { for { t := pp.timers[0] if t.pp.ptr() != pp { throw(\"runtimer: bad p\") } switch s := atomic.Load(\u0026t.status); s { case timerWaiting: if t.when \u003e now { // 还没到时间执行 // Not ready to run. return t.when } // 该执行这个timer了 if !atomic.Cas(\u0026t.status, s, timerRunning) { continue } // Note that runOneTimer may temporarily unlock // pp.timersLock. runOneTimer(pp, t, now) return 0 case timerDeleted: // 删除已经执行了的timer if !atomic.Cas(\u0026t.status, s, timerRemoving) { continue } dodeltimer0(pp) if !atomic.Cas(\u0026t.status, timerRemoving, timerRemoved) { badTimer() } atomic.Xadd(\u0026pp.deletedTimers, -1) if len(pp.timers) == 0 { return -1 } case timerModifiedEarlier, timerModifiedLater: // 调整timerModifiedEarlier, timerModifiedLater timer的时间 if !atomic.Cas(\u0026t.status, s, timerMoving) { continue } t.when = t.nextwhen dodeltimer0(pp) doaddtimer(pp, t) if s == timerModifiedEarlier { atomic.Xadd(\u0026pp.adjustTimers, -1) } if !atomic.Cas(\u0026t.status, timerMoving, timerWaiting) { badTimer() } case timerModifying: // Wait for modification to complete. osyield() // 等到其他操作结束 case timerNoStatus, timerRemoved: // Should not see a new or inactive timer on the heap. badTimer() case timerRunning, timerRemoving, timerMoving: // These should only be set when timers are locked, // and we didn't do it. badTimer() default: badTimer() } } } 触发timer 前面介绍的都是将 timer加入到 堆中，从堆中删除这些，那么timer时间到了，是怎么触发的呢？\n触发timer一定会执行前面所说的runtimer方法，可以发现runtimer是在checkTimers方法中被调用的\n// checkTimers runs any timers for the P that are ready. // If now is not 0 it is the current time. // It returns the current time or 0 if it is not known, // and the time when the next timer should run or 0 if there is no next timer, // and reports whether it ran any timers. // If the time when the next timer should run is not 0, // it is always larger than the returned time. // We pass now in and out to avoid extra calls of nanotime. //go:yeswritebarrierrec func checkTimers(pp *p, now int64) (rnow, pollUntil int64, ran bool) { // If it's not yet time for the first timer, or the first adjusted // timer, then there is nothing to do. next := int64(atomic.Load64(\u0026pp.timer0When)) nextAdj := int64(atomic.Load64(\u0026pp.timerModifiedEarliest)) if next == 0 || (nextAdj != 0 \u0026\u0026 nextAdj \u003c next) { next = nextAdj } if next == 0 { // 没有timer需要执行和调整 // No timers to run or adjust. return now, 0, false } if now == 0 { now = nanotime() } if now \u003c next { // 最快的 timer还没到 执行的时间 // Next timer is not ready to run, but keep going // if we would clear deleted timers. // This corresponds to the condition below where // we decide whether to call clearDeletedTimers. if pp != getg().m.p.ptr() || int(atomic.Load(\u0026pp.deletedTimers)) \u003c= int(atomic.Load(\u0026pp.numTimers)/4) { return now, next, false } } lock(\u0026pp.timersLock) if len(pp.timers) \u003e 0 { adjusttimers(pp, now) // 删除已经执行的timer，调整timerModifiedEarlier 和 timerModifiedLater 的计时器的时间 for len(pp.timers) \u003e 0 { // 执行所有到期的timer // Note that runtimer may temporarily unlock // pp.timersLock. if tw := runtimer(pp, now); tw != 0 { if tw \u003e 0 { pollUntil = tw } break } ran = true } } // If this is the local P, and there are a lot of deleted timers, // clear them out. We only do this for the local P to reduce // lock contention on timersLock. // 当前 Goroutine 的处理器和传入的处理器相同,并且处理器中删除的计时器是堆中计时器的 1/4 以上， if pp == getg().m.p.ptr() \u0026\u0026 int(atomic.Load(\u0026pp.deletedTimers)) \u003e len(pp.timers)/4 { clearDeletedTimers(pp) } unlock(\u0026pp.timersLock) return now, pollUntil, ran } 而checkTimers在findrunnable和schedule中被调用，而这2个方法都是runtime调度会执行的方法（PS：runtime调度也是一个很重要的知识点，有兴趣的可以自行了解）\n除了runtime调度时会执行timer外，系统监控sysmon也会执行timer，其实这里我没有理解，所以这里直接用draveness大佬文章中的说明\n系统监控函数 runtime.sysmon 也可能会触发函数的计时器，下面的代码片段中省略了大量与计时器无关的代码：\nfunc sysmon() { ... for { ... now := nanotime() next, _ := timeSleepUntil() ... lastpoll := int64(atomic.Load64(\u0026sched.lastpoll)) if netpollinited() \u0026\u0026 lastpoll != 0 \u0026\u0026 lastpoll+10*1000*1000 \u003c now { atomic.Cas64(\u0026sched.lastpoll, uint64(lastpoll), uint64(now)) list := netpoll(0) if !list.empty() { incidlelocked(-1) injectglist(\u0026list) incidlelocked(1) } } if next \u003c now { startm(nil, false) } ... } 调用 [runtime.timeSleepUntil](https://draveness.me/golang/tree/runtime.timeSleepUntil) 获取计时器的到期时间以及持有该计时器的堆； 如果超过 10ms 的时间没有轮询，调用 [runtime.netpoll](https://draveness.me/golang/tree/runtime.netpoll) 轮询网络； 如果当前有应该运行的计时器没有执行，可能存在无法被抢占的处理器，这时我们应该启动新的线程处理计时器； 在上述过程中 [runtime.timeSleepUntil](https://draveness.me/golang/tree/runtime.timeSleepUntil) 会遍历运行时的全部处理器并查找下一个需要执行的计时器。\n遗留问题 最后是我还存在的问题\nsysmon中为什么会触发timer\naddtimer方法中调用了wakeNetPoller(when)方法唤醒netpoll，但是netpoll()方法中对netpollBreakRd的处理并没有发现与timer有啥关系\n// netpoll checks for ready network connections. // Returns list of goroutines that become runnable. // delay \u003c 0: blocks indefinitely // delay == 0: does not block, just polls // delay \u003e 0: block for up to that many nanoseconds // delay \u003c 0 无限block等待 // delay == 0 不会block // delay block 最多delay时间 // runtime.netpoll 返回的 Goroutine 列表都会被 runtime.injectglist 注入到处理器或者全局的运行队列上。 // 因为系统监控 Goroutine 直接运行在线程上，所以它获取的 Goroutine 列表会直接加入全局的运行队列， // 其他 Goroutine 获取的列表都会加入 Goroutine 所在处理器的运行队列上。 func netpoll(delay int64) gList { if epfd == -1 { // 没有epfd 相当于netpoll没有初始化 return gList{} } var waitms int32 if delay \u003c 0 { waitms = -1 } else if delay == 0 { waitms = 0 } else if delay \u003c 1e6 { waitms = 1 } else if delay \u003c 1e15 { waitms = int32(delay / 1e6) } else { // An arbitrary cap on how long to wait for a timer. // 1e9 ms == ~11.5 days. waitms = 1e9 } var events [128]epollevent retry: // 等待文件描述符转换成可读或者可写 n := epollwait(epfd, \u0026events[0], int32(len(events)), waitms) if n \u003c 0 { // 如果返回了负值，可能会返回空的 Goroutine 列表或者重新调用 epollwait 陷入等待： if n != -_EINTR { println(\"runtime: epollwait on fd\", epfd, \"failed with\", -n) throw(\"runtime: netpoll failed\") } // If a timed sleep was interrupted, just return to // recalculate how long we should sleep now. if waitms \u003e 0 { return gList{} } goto retry } // 当 epollwait 系统调用返回的值大于 0 时，意味着被监控的文件描述符出现了待处理的事件 var toRun gList for i := int32(0); i \u003c n; i++ { ev := \u0026events[i] if ev.events == 0 { continue } // runtime.netpollBreak 触发的事件 if *(**uintptr)(unsafe.Pointer(\u0026ev.data)) == \u0026netpollBreakRd { if ev.events != _EPOLLIN { println(\"runtime: netpoll: break fd ready for\", ev.events) throw(\"runtime: netpoll: break fd ready for something unexpected\") } if delay != 0 { // netpollBreak could be picked up by a // nonblocking poll. Only read the byte // if blocking. var tmp [16]byte read(int32(netpollBreakRd), noescape(unsafe.Pointer(\u0026tmp[0])), int32(len(tmp))) atomic.Store(\u0026netpollWakeSig, 0) } continue } // 另一种是其他文件描述符的正常读写事件 var mode int32 if ev.events\u0026(_EPOLLIN|_EPOLLRDHUP|_EPOLLHUP|_EPOLLERR) != 0 { mode += 'r' } if ev.events\u0026(_EPOLLOUT|_EPOLLHUP|_EPOLLERR) != 0 { mode += 'w' } if mode != 0 { pd := *(**pollDesc)(unsafe.Pointer(\u0026ev.data)) pd.everr = false if ev.events == _EPOLLERR { pd.everr = true } netpollready(\u0026toRun, pd, mode) } } return toRun } draveness大佬文章的评论中也有人提到这个疑问，但是还是未能理解，我也加入 了讨论，期待后续的解答\n参考资料 6.3 计时器 Go中定时器实现原理及源码解析 难以驾驭的 Go timer，一文带你参透计时器的奥秘 go1.14基于netpoll优化timer定时器实现原理 https://www.youtube.com/watch?v=XJx0eTP-y9I ",
-  "wordCount" : "3752",
-  "inLanguage": "zh",
-  "datePublished": "2021-04-22T22:50:29+08:00",
-  "dateModified": "2021-04-22T22:50:29+08:00",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Carlos的废话集",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://carlos19960601.github.io/favicon.ico"
-    }
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/carlos19960601.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "Timer源码阅读",
+      "headline" : "Timer源码阅读",
+      "description" : "根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：\nGo 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M\/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2021",
+      "datePublished": "2021-04-22 22:50:29 \u002b0800 \u002b0800",
+      "dateModified" : "2021-04-22 22:50:29 \u002b0800 \u002b0800",
+      "url" : "https:\/\/carlos19960601.github.io\/posts\/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB\/",
+      "keywords" : [ "Golang", ]
   }
-}
 </script>
+<title>Timer源码阅读</title>
+  <meta property="og:title" content="Timer源码阅读" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
+Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析
+" />
+  <meta name="description" content="根据6.3 计时器中的描述，Golang Timer的设计经历了如下阶段：
+Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护； Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护； Go 1.14 版本之后，每个处理器单独管理计时器并通过网络轮询器触发； Go 1.9 版本之前由于使用全局的四叉堆，在多核情况下会出现锁竞争导致性能问题 Go 1.10 ~ 1.13使用了64个四叉堆，有每个P来维护对应的四叉堆，相当于将锁的粒度减小，但是当timer在未到时间和到时间需要执行进行切换的时候，会发生P和M的绑定和解绑，尤其是当timer触发时间间隔比较小的情况下，会导致CPU占用过高，M/P切换的开销增加(TODO 为什么会发生P和M的绑定和解绑) Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发 我使用的是Go 1.16的版本进行分析
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Carlos的废话集">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
 </head>
 
-<body class="" id="top">
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.body.classList.add('dark');
-    } else if (localStorage.getItem("pref-theme") === "light") {
-        document.body.classList.remove('dark')
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-    }
 
-</script>
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://carlos19960601.github.io/" accesskey="h" title="Carlos的废话集 (Alt + H)">Carlos的废话集</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
-                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://carlos19960601.github.io/archives" title="归档">
-                    <span>归档</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://carlos19960601.github.io/tags" title="标签">
-                    <span>标签</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://carlos19960601.github.io/search" title="搜索">
-                    <span>搜索</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Carlos的废话集</a
+    >
+  </div>
+  <div class="header-subtitle">Log something useless, but interesting.</div>
 </header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    
-    <h1 class="post-title entry-hint-parent">
-      Timer源码阅读
-    </h1>
-    <div class="post-meta"><span title='2021-04-22 22:50:29 +0800 +0800'>2021-04-22</span>&nbsp;·&nbsp;18 分钟
-
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="https://github.com/carlos19960601" target="_blank">Github</a>
+  </div>
+  
 </div>
-  </header> <div class="toc">
-    <details >
-        <summary accesskey="c" title="(Alt + C)">
-            <span class="details">目录</span>
-        </summary>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
 
-        <div class="inner"><ul>
-                <li>
-                    <a href="#timer%e5%8c%85%e7%9a%84%e4%bd%bf%e7%94%a8" aria-label="timer包的使用">timer包的使用</a></li>
-                <li>
-                    <a href="#%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84" aria-label="数据结构">数据结构</a></li>
-                <li>
-                    <a href="#%e6%b7%bb%e5%8a%a0timer" aria-label="添加timer">添加timer</a></li>
-                <li>
-                    <a href="#%e5%81%9c%e6%ad%a2timer" aria-label="停止timer">停止timer</a></li>
-                <li>
-                    <a href="#%e5%85%b6%e4%bb%96timer%e7%9a%84%e6%96%b9%e6%b3%95" aria-label="其他timer的方法">其他timer的方法</a><ul>
-                        
-                <li>
-                    <a href="#%e4%bf%ae%e6%94%b9timer" aria-label="修改timer">修改timer</a></li>
-                <li>
-                    <a href="#%e8%b0%83%e6%95%b4timer" aria-label="调整timer">调整timer</a></li>
-                <li>
-                    <a href="#%e8%bf%90%e8%a1%8ctimer" aria-label="运行timer">运行timer</a></li></ul>
-                </li>
-                <li>
-                    <a href="#%e8%a7%a6%e5%8f%91timer" aria-label="触发timer">触发timer</a></li>
-                <li>
-                    <a href="#%e9%81%97%e7%95%99%e9%97%ae%e9%a2%98" aria-label="遗留问题">遗留问题</a></li>
-                <li>
-                    <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料">参考资料</a>
-                </li>
-            </ul>
         </div>
-    </details>
-</div>
+        <header class="post-header">
+          <h1 class="post-title">Timer源码阅读</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2021-04-22 22:50:29 &#43;0800">
+                22 Apr 2021
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
 
-  <div class="post-content"><p>根据<a href="https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/">6.3 计时器</a>中的描述，Golang Timer的设计经历了如下阶段：</p>
+        <div class="post-content markdown-body">
+          
+          <p>根据<a href="https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/">6.3 计时器</a>中的描述，Golang Timer的设计经历了如下阶段：</p>
 <ol>
 <li>Go 1.9 版本之前，所有的计时器由全局唯一的四叉堆维护；</li>
 <li>Go 1.10 ~ 1.13，全局使用 64 个四叉堆维护全部的计时器，每个处理器（P）创建的计时器会由对应的四叉堆维护；</li>
@@ -269,7 +128,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 <li>Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度器进行触发</li>
 </ul>
 <p>我使用的是Go 1.16的版本进行分析</p>
-<h1 id="timer包的使用">timer包的使用<a hidden class="anchor" aria-hidden="true" href="#timer包的使用">#</a></h1>
+<h1 id="timer包的使用">timer包的使用</h1>
 <p>主要分为2类，一次性触发的timer和多次触发的ticker</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">TestTimer</span>(<span style="color:#a6e22e">t</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">testing</span>.<span style="color:#a6e22e">T</span>) {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">timer</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTimer</span>(<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
@@ -344,7 +203,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>需要注意的是，在for循环中使用的时候需要考虑是否会造成timer的泄漏；具体的示例分析可以参考 <a href="https://mp.weixin.qq.com/s/KSBdPkkvonSES9Z9iggElg">Go 内存泄露之痛，这篇把 Go timer.After 问题根因讲透了！</a></p>
-<h1 id="数据结构">数据结构<a hidden class="anchor" aria-hidden="true" href="#数据结构">#</a></h1>
+<h1 id="数据结构">数据结构</h1>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewTimer</span>(<span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Duration</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Timer</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">Time</span>, <span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">t</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">Timer</span>{
@@ -383,7 +242,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>	<span style="color:#75715e">// The status field holds one of the values below.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">status</span> <span style="color:#66d9ef">uint32</span> <span style="color:#75715e">// 计时器的状态
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><h1 id="添加timer">添加timer<a hidden class="anchor" aria-hidden="true" href="#添加timer">#</a></h1>
+</span></span></code></pre></div><h1 id="添加timer">添加timer</h1>
 <p>前面的startTimer方法其实是runtime/time.go中的startTimer方法，通过//go:linkname关联起来的</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 把 t 添加到 timer 堆
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// startTimer adds t to the timer heap.
@@ -559,7 +418,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>wakeNetPoller方法其实就是向netpoll初始化的全局epfd文件描述符写入了数据（epfd和golang netpoll有关，想了解netpoll的请自行了解）。主要目的是为了唤醒netpoll</p>
-<h1 id="停止timer">停止timer<a hidden class="anchor" aria-hidden="true" href="#停止timer">#</a></h1>
+<h1 id="停止timer">停止timer</h1>
 <p>可以通过Ticker#Stop和Timer#Stop停止timer</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// Stop prevents the Timer from firing.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// It returns true if the call stops the timer, false if the timer has already
@@ -714,9 +573,9 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span></span></code></pre></div><p>deltimer删除的timer可能在其他P上，以为调度循环的 时候不仅会从其他P上偷G，还会偷timer，所以只是对timer进行标记，在timer所在的P中，通过 cleantimers/adjusttimers等方法来真正从堆中删除</p>
 </li>
 </ol>
-<h1 id="其他timer的方法">其他timer的方法<a hidden class="anchor" aria-hidden="true" href="#其他timer的方法">#</a></h1>
+<h1 id="其他timer的方法">其他timer的方法</h1>
 <p>分析了2个timer的方法后，就不再逐个看其他的方法了，大概都差不多，都是对timers堆中的timer状态进行修改，timers的调整等</p>
-<h2 id="修改timer">修改timer<a hidden class="anchor" aria-hidden="true" href="#修改timer">#</a></h2>
+<h2 id="修改timer">修改timer</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// modtimer modifies an existing timer.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// This is called by the netpoll code or time.Ticker.Reset or time.Timer.Reset.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Reports whether the timer was modified before it was run.
@@ -843,7 +702,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">pending</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="调整timer">调整timer<a hidden class="anchor" aria-hidden="true" href="#调整timer">#</a></h2>
+</span></span></code></pre></div><h2 id="调整timer">调整timer</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 与cleantimers类似，只是 cleantimers 只处理队列头部的timer
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// adjusttimers looks through the timers in the current P&#39;s heap for
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// any timers that have been modified to run earlier, and puts them in
@@ -937,7 +796,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verifyTimerHeap</span>(<span style="color:#a6e22e">pp</span>)
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="运行timer">运行timer<a hidden class="anchor" aria-hidden="true" href="#运行timer">#</a></h2>
+</span></span></code></pre></div><h2 id="运行timer">运行timer</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// runtimer 检查timers四叉堆顶部的timer
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// runtimer examines the first timer in timers. If it is ready based on now,
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// it runs the timer and removes or updates it.
@@ -1010,7 +869,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h1 id="触发timer">触发timer<a hidden class="anchor" aria-hidden="true" href="#触发timer">#</a></h1>
+</span></span></code></pre></div><h1 id="触发timer">触发timer</h1>
 <p>前面介绍的都是将 timer加入到 堆中，从堆中删除这些，那么timer时间到了，是怎么触发的呢？</p>
 <p>触发timer一定会执行前面所说的runtimer方法，可以发现runtimer是在checkTimers方法中被调用的</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// checkTimers runs any timers for the P that are ready.
@@ -1109,7 +968,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 <li>如果当前有应该运行的计时器没有执行，可能存在无法被抢占的处理器，这时我们应该启动新的线程处理计时器；</li>
 </ol>
 <p>在上述过程中 <code>[runtime.timeSleepUntil](https://draveness.me/golang/tree/runtime.timeSleepUntil)</code> 会遍历运行时的全部处理器并查找下一个需要执行的计时器。</p>
-<h1 id="遗留问题">遗留问题<a hidden class="anchor" aria-hidden="true" href="#遗留问题">#</a></h1>
+<h1 id="遗留问题">遗留问题</h1>
 <p>最后是我还存在的问题</p>
 <ol>
 <li>
@@ -1209,7 +1068,7 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 </span></span></code></pre></div><p>draveness大佬文章的评论中也有人提到这个疑问，但是还是未能理解，我也加入 了<a href="https://github.com/draveness/blog-comments/issues/152#issuecomment-824642345">讨论</a>，期待后续的解答</p>
 </li>
 </ol>
-<h1 id="参考资料">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h1>
+<h1 id="参考资料">参考资料</h1>
 <ul>
 <li><a href="https://draveness.me/golang/docs/part3-runtime/ch06-concurrency/golang-timer/">6.3 计时器</a></li>
 <li><a href="https://www.luozhiyun.com/archives/458">Go中定时器实现原理及源码解析</a></li>
@@ -1217,214 +1076,57 @@ Go 1.14 版本后每个P管理计时器四叉堆，由网络轮询器和调度�
 <li><a href="http://xiaorui.cc/archives/6483">go1.14基于netpoll优化timer定时器实现原理</a></li>
 <li><a href="https://www.youtube.com/watch?v=XJx0eTP-y9I">https://www.youtube.com/watch?v=XJx0eTP-y9I</a></li>
 </ul>
+        </div>
 
-  </div>
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+            <div class="post-tags">
+              <a href="/tags/golang/">
+                Golang
+              </a>
+            </div>
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
 
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://carlos19960601.github.io/tags/golang/">Golang</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://carlos19960601.github.io/posts/timer%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB%E5%88%86%E4%BA%AB/">
-    <span class="title">« 上一页</span>
-    <br>
-    <span>Timer源码阅读分享</span>
-  </a>
-  <a class="next" href="https://carlos19960601.github.io/posts/java%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-    <span class="title">下一页 »</span>
-    <br>
-    <span>Java线程池</span>
-  </a>
-</nav>
+          
 
 
-<ul class="share-buttons">
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on x"
-            href="https://x.com/intent/tweet/?text=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f&amp;hashtags=Golang">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on linkedin"
-            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f&amp;title=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb&amp;summary=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb&amp;source=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on reddit"
-            href="https://reddit.com/submit?url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f&title=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on facebook"
-            href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on whatsapp"
-            href="https://api.whatsapp.com/send?text=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb%20-%20https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f">
-            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on telegram"
-            href="https://telegram.me/share/url?text=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb&amp;url=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f">
-            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
-                <path
-                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
-            </svg>
-        </a>
-    </li>
-    <li>
-        <a target="_blank" rel="noopener noreferrer" aria-label="share Timer源码阅读 on ycombinator"
-            href="https://news.ycombinator.com/submitlink?t=Timer%e6%ba%90%e7%a0%81%e9%98%85%e8%af%bb&u=https%3a%2f%2fcarlos19960601.github.io%2fposts%2ftimer%25E6%25BA%2590%25E7%25A0%2581%25E9%2598%2585%25E8%25AF%25BB%2f">
-            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
-                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
-                <path
-                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
-            </svg>
-        </a>
-    </li>
-</ul>
 
-  </footer>
-</article>
-    </main>
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
     
-<footer class="footer">
-        <span>&copy; 2024 <a href="https://carlos19960601.github.io/">Carlos的废话集</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
-
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
+    
+  
 </script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
 
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        if (document.body.className.includes("dark")) {
-            document.body.classList.remove('dark');
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            document.body.classList.add('dark');
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
+  
 
-</script>
-<script>
-    document.querySelectorAll('pre > code').forEach((codeblock) => {
-        const container = codeblock.parentNode.parentNode;
-
-        const copybutton = document.createElement('button');
-        copybutton.classList.add('copy-code');
-        copybutton.innerHTML = '复制';
-
-        function copyingDone() {
-            copybutton.innerHTML = '已复制！';
-            setTimeout(() => {
-                copybutton.innerHTML = '复制';
-            }, 2000);
-        }
-
-        copybutton.addEventListener('click', (cb) => {
-            if ('clipboard' in navigator) {
-                navigator.clipboard.writeText(codeblock.textContent);
-                copyingDone();
-                return;
-            }
-
-            const range = document.createRange();
-            range.selectNodeContents(codeblock);
-            const selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-            try {
-                document.execCommand('copy');
-                copyingDone();
-            } catch (e) { };
-            selection.removeRange(range);
-        });
-
-        if (container.classList.contains("highlight")) {
-            container.appendChild(copybutton);
-        } else if (container.parentNode.firstChild == container) {
-            
-        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
-            
-            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
-        } else {
-            
-            codeblock.parentNode.appendChild(copybutton);
-        }
-    });
-</script>
 </body>
 
 </html>
