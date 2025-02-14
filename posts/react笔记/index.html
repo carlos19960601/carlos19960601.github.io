@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.140.2">
+  <meta name="generator" content="Hugo 0.143.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -133,30 +133,25 @@ Easy to read abstraction over array state " />
 <h3 id="solve-re-render-issues-with-composition">Solve re-render issues with composition</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_1c2c3b.gif" alt=""></p>
 <blockquote>
-<p>个人理解：功能单一，利用组合模式减少耦合，带来不必要的重新渲染</p>
-</blockquote>
+<p>个人理解：功能单一，利用组合模式减少耦合，带来不必要的重新渲染</p></blockquote>
 <h3 id="utility-types-for-enhanced-reusablity">Utility Types For Enhanced Reusablity</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_9378eb.gif" alt=""></p>
 <blockquote>
-<p>个人理解：Typescript Pick的使用</p>
-</blockquote>
+<p>个人理解：Typescript Pick的使用</p></blockquote>
 <h3 id="bad-use-case-for-usecallback">Bad use case for useCallback</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_ed1930.gif" alt=""></p>
 <blockquote>
-<p>useCallback 使用在复杂逻辑的组件，简单组件不会消耗造成性能问题时不必使用</p>
-</blockquote>
+<p>useCallback 使用在复杂逻辑的组件，简单组件不会消耗造成性能问题时不必使用</p></blockquote>
 <h3 id="intersection-types-to-extends-native-props-in-a-component">Intersection types to extends native props in a component</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_29194f.gif" alt=""></p>
 <h3 id="dont-listen-for-ref-changes-with-useeffect">Don&rsquo;t listen for ref changes with useEffect</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_8216ce.gif" alt=""></p>
 <blockquote>
-<p>本人曾经这么干过</p>
-</blockquote>
+<p>本人曾经这么干过</p></blockquote>
 <h3 id="useeffect-vs-uselayouteffect">useEffect vs useLayoutEffect</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_d587ed.gif" alt=""></p>
 <blockquote>
-<p>个人理解：useLayoutEffect在DOM更新后，浏览器绘制前执行。useEffect在DOM更新后，浏览器绘制后执行。</p>
-</blockquote>
+<p>个人理解：useLayoutEffect在DOM更新后，浏览器绘制前执行。useEffect在DOM更新后，浏览器绘制后执行。</p></blockquote>
 <h3 id="separation-of-concerns-in-react">Separation of Concerns in React</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_e8833e.gif" alt=""></p>
 <blockquote>
@@ -168,18 +163,15 @@ Easy to read abstraction over array state " />
 <li>将可复用的逻辑抽离成自定义Hook</li>
 <li>将大型组件拆分成更小的、功能单一的组件</li>
 </ol>
-<p>遵循这一原则可以提高代码的可维护性、可读性和可重用性。</p>
-</blockquote>
+<p>遵循这一原则可以提高代码的可维护性、可读性和可重用性。</p></blockquote>
 <h3 id="easy-to-read-abstraction-over-array-state">Easy to read abstraction over array state</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_ae4db6.gif" alt=""></p>
 <blockquote>
-<p>个人理解：对数组状态进行抽象，简化逻辑</p>
-</blockquote>
+<p>个人理解：对数组状态进行抽象，简化逻辑</p></blockquote>
 <h3 id="how-to-import-server-components-from-client-components">How to import Server Components from Client Components</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_c72511.gif" alt=""></p>
 <blockquote>
-<p>个人理解：服务端渲染框架中使用的小技巧</p>
-</blockquote>
+<p>个人理解：服务端渲染框架中使用的小技巧</p></blockquote>
 <h3 id="avoid-transforming-data-in-useeffect">Avoid Transforming Data in useEffect</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_bc91e5.gif" alt=""></p>
 <blockquote>
@@ -193,15 +185,13 @@ Easy to read abstraction over array state " />
 <ul>
 <li>在渲染过程中直接转换数据。</li>
 <li>使用 useMemo 缓存计算结果。</li>
-</ul>
-</blockquote>
+</ul></blockquote>
 <h3 id="how-and-when-to-use-flushsync">How and when to use flushSync</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_cf6586.gif" alt=""></p>
 <h3 id="defer-creation-of-non-primitive-values-if-you-are-using-them-within-a-dependency-array">Defer creation of non-primitive values if you are using them within a dependency array</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_a5e9d8.gif" alt=""></p>
 <blockquote>
-<p>个人理解: useEffect使用Tips</p>
-</blockquote>
+<p>个人理解: useEffect使用Tips</p></blockquote>
 <h3 id="avoid-premature-optimization">Avoid premature optimization</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_622a12.gif" alt=""></p>
 <h3 id="how-to-expose-custom-refs-with-useimperativehandle-hook">How to expose custom refs with useImperativeHandle hook</h3>
@@ -339,6 +329,26 @@ Easy to read abstraction over array state " />
 </span></span><span style="display:flex;"><span>        {(<span style="color:#a6e22e">cProps</span>) <span style="color:#f92672">=&gt;</span> &lt;<span style="color:#f92672">Children</span> {<span style="color:#a6e22e">...cProps</span>} { <span style="color:#a6e22e">...aProps</span> }  /&gt;}
 </span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">Container</span>&gt;
 </span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Component</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ComponentProps</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">ButtonWithLogging</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">onClick</span> }<span style="color:#f92672">:</span> <span style="color:#a6e22e">ComponentProps</span><span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;button&#34;</span><span style="color:#f92672">&gt;</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">handleClick</span>: <span style="color:#66d9ef">MouseEventHandler</span>&lt;<span style="color:#f92672">HTMLButtonElement</span>&gt; <span style="color:#f92672">=</span> (<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Button clicked&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">onClick</span><span style="color:#f92672">?</span>.(<span style="color:#a6e22e">e</span>);
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">button</span> {<span style="color:#a6e22e">...props</span>} <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClick</span>} /&gt;;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ComponentProps</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 自定义组件
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyComponent</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span> }) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MyComponentWithLogging</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">props</span>: <span style="color:#66d9ef">ComponentProps</span>&lt;<span style="color:#f92672">typeof</span> <span style="color:#a6e22e">MyComponent</span>&gt;) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
 </span></span></code></pre></div><p>参考资料:</p>
 <ul>
 <li><a href="https://juejin.cn/post/7007214462813863950">「React 进阶」 学好这些 React 设计模式，能让你的 React 项目飞起来</a></li>

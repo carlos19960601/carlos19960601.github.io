@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.140.2">
+  <meta name="generator" content="Hugo 0.143.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -138,8 +138,7 @@ pipx inject notebook pandas numpy 问题记录 如果pipx inject的时候需要�
 <p>我在这仅说明一下我自己的理解。<code>pipx</code>相当于一个安装工具。<code>python</code>有自己的安装包的工具<code>pip</code>。那么<code>pip</code>和<code>pipx</code>有什么区别呢？</p>
 <p>如果直接<code>pip</code>安装包会安装在<code>python</code>目录下的<code>site-packages</code>下。由于这是个全局目录。如果在不同的项目里面，可能使用的各个包版本不同，可能会产生冲突。所以我们偏向使用一个干净的<code>site-package</code>。其实<code>python</code>提供了解决方案&ndash;虚拟环境。<code>pipx</code>只是基于这个概念，让使用者更好的使用。</p>
 <blockquote>
-<p>注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等</p>
-</blockquote>
+<p>注意 pipx 安装的是一些可执行的python应用。比如 poetry, jupyter等</p></blockquote>
 <h1 id="简单使用">简单使用</h1>
 <p>安装pipx</p>
 <pre tabindex="0"><code class="language-shells" data-lang="shells">brew install pipx

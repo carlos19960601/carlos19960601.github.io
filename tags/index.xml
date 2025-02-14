@@ -6,8 +6,15 @@
     <description>Recent content in Tags on Carlos的废话集</description>
     <generator>Hugo</generator>
     <language>cn</language>
-    <lastBuildDate>Wed, 18 Dec 2024 17:56:13 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Feb 2025 18:43:45 +0800</lastBuildDate>
     <atom:link href="https://carlos19960601.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang</title>
+      <link>https://carlos19960601.github.io/tags/golang/</link>
+      <pubDate>Fri, 14 Feb 2025 18:43:45 +0800</pubDate>
+      <guid>https://carlos19960601.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
     <item>
       <title>React</title>
       <link>https://carlos19960601.github.io/tags/react/</link>
@@ -34,13 +41,6 @@
       <link>https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</link>
       <pubDate>Wed, 26 Jun 2024 22:54:31 +0800</pubDate>
       <guid>https://carlos19960601.github.io/tags/%E7%9F%A5%E8%AF%86%E7%82%B9/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Golang</title>
-      <link>https://carlos19960601.github.io/tags/golang/</link>
-      <pubDate>Wed, 26 Jun 2024 17:39:28 +0800</pubDate>
-      <guid>https://carlos19960601.github.io/tags/golang/</guid>
       <description></description>
     </item>
     <item>

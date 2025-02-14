@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.140.2">
+  <meta name="generator" content="Hugo 0.143.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -178,10 +178,10 @@ X’00’ NO AUTHENTICATION REQUIRED X’01’ GSSAPI X’02’ USERNAME/PASSWOR
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 返回信息,需要认证
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">authenticator</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 版本和认证方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 返回信息,需要认证</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">authenticator</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 版本和认证方法</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
@@ -213,31 +213,30 @@ PASSWD: 密码对应的数据
 | 1  |   1    |
 +----+--------+
 </code></pre><blockquote>
-<p>注意这里的<code>VER</code>并不少socks的版本</p>
-</blockquote>
+<p>注意这里的<code>VER</code>并不少socks的版本</p></blockquote>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">ServerHandshake</span>(<span style="color:#a6e22e">rw</span> <span style="color:#a6e22e">net</span>.<span style="color:#a6e22e">Conn</span>, <span style="color:#a6e22e">authenticator</span> <span style="color:#a6e22e">auth</span>.<span style="color:#a6e22e">Authenticator</span>) (<span style="color:#a6e22e">addr</span> <span style="color:#a6e22e">Addr</span>, <span style="color:#a6e22e">command</span> <span style="color:#a6e22e">Command</span>, <span style="color:#a6e22e">user</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">...</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 返回信息,需要认证
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">authenticator</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 版本和认证方法
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 返回信息,需要认证</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">authenticator</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 版本和认证方法</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">2</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 认证阶段
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">header</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 认证阶段</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">header</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadFull</span>(<span style="color:#a6e22e">rw</span>, <span style="color:#a6e22e">header</span>); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">authBuf</span> <span style="color:#f92672">:=</span> make([]<span style="color:#66d9ef">byte</span>, <span style="color:#a6e22e">MaxAuthLen</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 读取username
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#a6e22e">userLen</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">header</span>[<span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 读取username</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">userLen</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">header</span>[<span style="color:#ae81ff">1</span>])
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">userLen</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ErrAuth</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
@@ -246,14 +245,14 @@ PASSWD: 密码对应的数据
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">user</span> = string(<span style="color:#a6e22e">authBuf</span>[:<span style="color:#a6e22e">userLen</span>])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 读取pass
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">header</span>[:<span style="color:#ae81ff">1</span>]); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 读取pass</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Read</span>(<span style="color:#a6e22e">header</span>[:<span style="color:#ae81ff">1</span>]); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">passLen</span> <span style="color:#f92672">:=</span> int(<span style="color:#a6e22e">header</span>[<span style="color:#ae81ff">0</span>])
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">passLen</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ErrAuth</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
@@ -263,19 +262,19 @@ PASSWD: 密码对应的数据
 </span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">pass</span> <span style="color:#f92672">:=</span> string(<span style="color:#a6e22e">authBuf</span>[:<span style="color:#a6e22e">userLen</span>])
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">authenticator</span>.<span style="color:#a6e22e">Verify</span>(<span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">pass</span>); !<span style="color:#a6e22e">ok</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回认证失败</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>})
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ErrAuth</span>
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 返回认成功
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 返回认成功</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 告诉客户端不需要验证
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 告诉客户端不需要验证</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>([]<span style="color:#66d9ef">byte</span>{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>}); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>	}
@@ -356,8 +355,8 @@ PASSWD: 密码对应的数据
 <li>BND.ADDR 服务绑定的地址</li>
 <li>BND.PORT 服务绑定的端口DST.PORT</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 请求阶段
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadFull</span>(<span style="color:#a6e22e">rw</span>, <span style="color:#a6e22e">buf</span>[:<span style="color:#ae81ff">3</span>]); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// 请求阶段</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">ReadFull</span>(<span style="color:#a6e22e">rw</span>, <span style="color:#a6e22e">buf</span>[:<span style="color:#ae81ff">3</span>]); <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">command</span> = <span style="color:#a6e22e">buf</span>[<span style="color:#ae81ff">1</span>]
@@ -372,8 +371,8 @@ PASSWD: 密码对应的数据
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">localAddr</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">ErrAddressNotSupported</span>
 </span></span><span style="display:flex;"><span>		} <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回响应
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>			<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Join</span>([][]<span style="color:#66d9ef">byte</span>{{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>}, <span style="color:#a6e22e">localAddr</span>}, []<span style="color:#66d9ef">byte</span>{}))
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// 返回响应</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> = <span style="color:#a6e22e">rw</span>.<span style="color:#a6e22e">Write</span>(<span style="color:#a6e22e">bytes</span>.<span style="color:#a6e22e">Join</span>([][]<span style="color:#66d9ef">byte</span>{{<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>}, <span style="color:#a6e22e">localAddr</span>}, []<span style="color:#66d9ef">byte</span>{}))
 </span></span><span style="display:flex;"><span>		}
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">...</span>
 </span></span><span style="display:flex;"><span>}

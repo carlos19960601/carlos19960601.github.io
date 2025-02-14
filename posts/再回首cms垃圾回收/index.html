@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.140.2">
+  <meta name="generator" content="Hugo 0.143.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -187,8 +187,7 @@ GC Root有哪些？ 我们知道怎么进行标记了，但最初标记的时候
 <li>（看情况）Java类的运行时常量池里的引用类型常量（String或Class类型）</li>
 <li>（看情况）String常量池（StringTable）里的引用</li>
 </ul>
-<p>注意，是一组必须活跃的<strong>引用</strong>，不是对象。</p>
-</blockquote>
+<p>注意，是一组必须活跃的<strong>引用</strong>，不是对象。</p></blockquote>
 <p>现在知道了GC Root，但是我们都知道有分代的概念，新生代的gc和老年的代的gc回收的区域是不一样，那么这里的GC Root是不是应该不一样呢？肯定是不一样的。</p>
 <p>首先看一下<strong>新生代的GC</strong></p>
 <p>新生代的区域一般都比较小，而且对象的存活率都比较低，所以按照前面说的GC Root在新生代的区域扫描就行了。但是会有一个问题？老年代存在引用新生代对象的可能啊？如果只扫描新生代的区域，会漏掉被老年代引用的对象，这些对象就会被清除掉，这是不允许的。</p>

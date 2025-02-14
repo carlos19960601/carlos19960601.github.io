@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.140.2">
+  <meta name="generator" content="Hugo 0.143.1">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -166,8 +166,7 @@ Access-Control-Allow-Origin: Used to set the source address that allows cross-do
 <pre tabindex="0"><code>Access to XMLHttpRequest at &#39;http://api.admin.collie.io/v1/vocabulary/search?keyword=&#39; from origin &#39;http://localhost:3000&#39; has been blocked by CORS policy: Response to preflight request doesn&#39;t pass access control check: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource.
 </code></pre><p>在Nginx的文档中是这么描述的</p>
 <blockquote>
-<p>There could be several add_header directives. These directives are inherited from the previous configuration level if and only if there are no add_header directives defined on the current level.</p>
-</blockquote>
+<p>There could be several add_header directives. These directives are inherited from the previous configuration level if and only if there are no add_header directives defined on the current level.</p></blockquote>
 <p>所以如果在同一级下有了add_header指令，就不会继承上一级的add_header指令了，也就是说，如果按照上面这样配置<code>Access-Control-Allow-Origin</code>就会没有，出现最开始的这个错误。</p>
 <p>后续还是会出现其他错误，基本上就是添加<code>Access-Control-Allow-Methods</code>、<code>Access-Control-Allow-Headers</code>这些问题就不再继续下去了。</p>
 <p>最后就是我最后的Nginx的配置</p>
