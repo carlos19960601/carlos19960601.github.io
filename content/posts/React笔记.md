@@ -279,6 +279,33 @@ export default function App (){
 ```
 
 
+Component
+
+```tsx
+import { ComponentProps } from 'react';
+
+const ButtonWithLogging = ({ onClick }: ComponentProps<"button">) => {
+  const handleClick: MouseEventHandler<HTMLButtonElement> = (e) => {
+    console.log("Button clicked");
+    onClick?.(e);
+  };
+  return <button {...props} onClick={handleClick} />;
+};
+```
+
+```tsx
+import { ComponentProps } from 'react';
+
+// 自定义组件
+const MyComponent = (props: { name: string }) => {
+  // ...
+};
+
+const MyComponentWithLogging = (props: ComponentProps<typeof MyComponent>) => {
+  // ...
+};
+```
+
 
 参考资料: 
 * [「React 进阶」 学好这些 React 设计模式，能让你的 React 项目飞起来](https://juejin.cn/post/7007214462813863950)
