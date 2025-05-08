@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Hugo 0.143.1">
+  <meta name="generator" content="Hugo 0.147.2">
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -128,7 +128,7 @@ Easy to read abstraction over array state " />
 
         <div class="post-content markdown-body">
           
-          <h2 id="twitterx-博主_georgemollerhttpsxcom_georgemoller的分享">Twitter/X 博主<a href="https://x.com/_georgemoller">@_georgemoller</a>的分享</h2>
+          <h2 id="twitterx-博主_的分享">Twitter/X 博主<a href="https://x.com/_georgemoller">@_georgemoller</a>的分享</h2>
 <p>主要记录Twitter博主<a href="https://x.com/_georgemoller">@_georgemoller</a>分享的React技巧。对于我这种React小白很使用。于是搬运过来，并附上个人的一些理解。如有问题请邮箱本人，欢迎各位指正。</p>
 <h3 id="solve-re-render-issues-with-composition">Solve re-render issues with composition</h3>
 <p><img src="/React%E7%AC%94%E8%AE%B0/georgemoller_1c2c3b.gif" alt=""></p>
@@ -353,6 +353,12 @@ Easy to read abstraction over array state " />
 <ul>
 <li><a href="https://juejin.cn/post/7007214462813863950">「React 进阶」 学好这些 React 设计模式，能让你的 React 项目飞起来</a></li>
 </ul>
+<h2 id="react最佳实践小技巧">React最佳实践小技巧</h2>
+<p><strong>使用 ComponentProps、ComponentPropsWithoutRef 等高效访问元素的props</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#a6e22e">ComponentProps</span><span style="color:#f92672">&lt;</span><span style="color:#e6db74">&#34;button&#34;</span><span style="color:#f92672">&gt;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#a6e22e">ComponentProps</span>&lt;<span style="color:#f92672">typeof</span> <span style="color:#a6e22e">MyComponent</span>&gt;
+</span></span></code></pre></div><p>参考资料:
+<a href="https://juejin.cn/post/7424136556964528139">100个React最佳实践小技巧</a></p>
 
         </div>
 

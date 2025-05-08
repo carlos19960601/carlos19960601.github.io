@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Hugo 0.147.2">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <meta property="og:url" content="https://carlos19960601.github.io/posts/%E4%BB%8E%E6%9C%9F%E5%BE%85%E5%88%B0%E5%A4%B1%E6%9C%9Bopenmanus/" />
+  <link rel="canonical" href="https://carlos19960601.github.io/posts/%E4%BB%8E%E6%9C%9F%E5%BE%85%E5%88%B0%E5%A4%B1%E6%9C%9Bopenmanus/" /><link rel="alternate" type="application/atom+xml" href="https://carlos19960601.github.io/index.xml" title="Carlos的废话集">
+
+  <script type="application/ld+json">
+  {
+      "@context" : "http://schema.org",
+      "@type" : "BlogPosting",
+      "mainEntityOfPage": {
+           "@type": "WebPage",
+           "@id": "https:\/\/carlos19960601.github.io\/"
+      },
+      "articleSection" : "posts",
+      "name" : "从期待到失望：OpenManus",
+      "headline" : "从期待到失望：OpenManus",
+      "description" : "前面一段时间，Manus这个AI工具火得一塌糊涂，但问题是它得靠邀请码才能用，这可把不少想尝鲜的朋友给急坏了。不过别担心，看看下面这个项目。\n项目简介 根据OpenManus项目的介绍，OpenManus是2位核心作者和来自MetaGPT团队的3位成员用了3个小时完成了第一版的开发。\n在Manus的无脑宣传下，很多人包括我在内对Manus充满了期待。在没有Manus邀请码的情况下，这个期待自然就转移到OpenManus上来了。\n实战体验 使用OpenManus只需要配置config\/config.toml中的llm、browser、search就能使用了。\n# Global LLM configuration [llm] api_type = \u0026#39;Openai\u0026#39; model = \u0026#34;\u0026#34; # The LLM model to use base_url = \u0026#34;\u0026#34; # API endpoint URL api_key = \u0026#34;\u0026#34; # Your API key max_tokens = 4096 # Maximum number of tokens in the response temperature = 0.0 # Controls randomness [browser] # Whether to run browser in headless mode (default: false) headless = false # Disable browser security features (default: true) disable_security = true # Optional configuration, Proxy settings for the browser [browser.proxy] server = \u0026#34;http:\/\/127.0.0.1:7890\u0026#34; username = \u0026#34;\u0026#34; password = \u0026#34;\u0026#34; # Optional configuration, Search settings. [search] # Search engine for agent to use. Default is \u0026#34;Google\u0026#34;, can be set to \u0026#34;Baidu\u0026#34; or \u0026#34;DuckDuckGo\u0026#34; or \u0026#34;Bing\u0026#34;. engine = \u0026#34;Google\u0026#34; # Language code for search results. Options: \u0026#34;en\u0026#34; (English), \u0026#34;zh\u0026#34; (Chinese), etc. lang = \u0026#34;zh\u0026#34; # Country code for search results. Options: \u0026#34;us\u0026#34; (United States), \u0026#34;cn\u0026#34; (China), etc. country = \u0026#34;cn\u0026#34; 启动运行\n",
+      "inLanguage" : "en-US",
+      "author" : "",
+      "creator" : "",
+      "publisher": "",
+      "accountablePerson" : "",
+      "copyrightHolder" : "",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-05-08 11:27:36 \u002b0800 \u002b0800",
+      "dateModified" : "2025-05-08 11:27:36 \u002b0800 \u002b0800",
+      "url" : "https:\/\/carlos19960601.github.io\/posts\/%E4%BB%8E%E6%9C%9F%E5%BE%85%E5%88%B0%E5%A4%B1%E6%9C%9Bopenmanus\/",
+      "keywords" : [  ]
+  }
+</script>
+<title>从期待到失望：OpenManus</title>
+  <meta property="og:title" content="从期待到失望：OpenManus" />
+  <meta property="og:type" content="article" />
+  <meta property="og:description" content="前面一段时间，Manus这个AI工具火得一塌糊涂，但问题是它得靠邀请码才能用，这可把不少想尝鲜的朋友给急坏了。不过别担心，看看下面这个项目。
+项目简介 根据OpenManus项目的介绍，OpenManus是2位核心作者和来自MetaGPT团队的3位成员用了3个小时完成了第一版的开发。
+在Manus的无脑宣传下，很多人包括我在内对Manus充满了期待。在没有Manus邀请码的情况下，这个期待自然就转移到OpenManus上来了。
+实战体验 使用OpenManus只需要配置config/config.toml中的llm、browser、search就能使用了。
+# Global LLM configuration [llm] api_type = &#39;Openai&#39; model = &#34;&#34; # The LLM model to use base_url = &#34;&#34; # API endpoint URL api_key = &#34;&#34; # Your API key max_tokens = 4096 # Maximum number of tokens in the response temperature = 0.0 # Controls randomness [browser] # Whether to run browser in headless mode (default: false) headless = false # Disable browser security features (default: true) disable_security = true # Optional configuration, Proxy settings for the browser [browser.proxy] server = &#34;http://127.0.0.1:7890&#34; username = &#34;&#34; password = &#34;&#34; # Optional configuration, Search settings. [search] # Search engine for agent to use. Default is &#34;Google&#34;, can be set to &#34;Baidu&#34; or &#34;DuckDuckGo&#34; or &#34;Bing&#34;. engine = &#34;Google&#34; # Language code for search results. Options: &#34;en&#34; (English), &#34;zh&#34; (Chinese), etc. lang = &#34;zh&#34; # Country code for search results. Options: &#34;us&#34; (United States), &#34;cn&#34; (China), etc. country = &#34;cn&#34; 启动运行
+" />
+  <meta name="description" content="前面一段时间，Manus这个AI工具火得一塌糊涂，但问题是它得靠邀请码才能用，这可把不少想尝鲜的朋友给急坏了。不过别担心，看看下面这个项目。
+项目简介 根据OpenManus项目的介绍，OpenManus是2位核心作者和来自MetaGPT团队的3位成员用了3个小时完成了第一版的开发。
+在Manus的无脑宣传下，很多人包括我在内对Manus充满了期待。在没有Manus邀请码的情况下，这个期待自然就转移到OpenManus上来了。
+实战体验 使用OpenManus只需要配置config/config.toml中的llm、browser、search就能使用了。
+# Global LLM configuration [llm] api_type = &#39;Openai&#39; model = &#34;&#34; # The LLM model to use base_url = &#34;&#34; # API endpoint URL api_key = &#34;&#34; # Your API key max_tokens = 4096 # Maximum number of tokens in the response temperature = 0.0 # Controls randomness [browser] # Whether to run browser in headless mode (default: false) headless = false # Disable browser security features (default: true) disable_security = true # Optional configuration, Proxy settings for the browser [browser.proxy] server = &#34;http://127.0.0.1:7890&#34; username = &#34;&#34; password = &#34;&#34; # Optional configuration, Search settings. [search] # Search engine for agent to use. Default is &#34;Google&#34;, can be set to &#34;Baidu&#34; or &#34;DuckDuckGo&#34; or &#34;Bing&#34;. engine = &#34;Google&#34; # Language code for search results. Options: &#34;en&#34; (English), &#34;zh&#34; (Chinese), etc. lang = &#34;zh&#34; # Country code for search results. Options: &#34;us&#34; (United States), &#34;cn&#34; (China), etc. country = &#34;cn&#34; 启动运行
+" />
+  <meta property="og:locale" content="cn" /><meta property="og:image" content="" />
+  
+
+  
+    <style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}.markdown-body{font-size:18px;max-width:100%}.markdown-body a{text-decoration:underline;text-decoration-color:#000}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body pre{padding:16px;overflow:auto;border-radius:10px}.markdown-body code{padding:.2em .4em;font-size:85%;background-color:#f6f8fa;border-radius:6px}.markdown-body pre>code{padding:0;font-size:100%;background-color:inherit;border:0}.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px}.site-footer-item{margin-right:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:6px}.post-content .post-gallery{display:flex;flex-wrap:wrap;gap:6px}.post-content .post-gallery img{margin-right:auto;margin-top:auto;width:calc(50% - 3px)}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{}.posts-line{font-size:16px}.markdown-body{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}.post-content .post-gallery img{width:100%}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
+  
+  
+    <style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
+  
+
+  
+
+  <link href="/index.xml" rel="alternate" type="application/rss+xml"
+    title="Carlos的废话集">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel="stylesheet">
+  
+  
+
+  
+  
+</head>
+
+
+<body>
+  <article class="post " id="article">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="site-header">
+          
+<header>
+  <div class="header-title">
+    <a href="/"
+      >Carlos的废话集</a
+    >
+  </div>
+  <div class="header-subtitle">Log something useless, but interesting.</div>
+</header>
+<div class="row end-md header-items">
+  
+  <div class="header-item">
+    <a href="https://github.com/carlos19960601" target="_blank">Github</a>
+  </div>
+  
+</div>
+<div class="row">
+   
+</div>
+<div class="header-line"></div>
+
+        </div>
+        <header class="post-header">
+          <h1 class="post-title">从期待到失望：OpenManus</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-05-08 11:27:36 &#43;0800">
+                08 May 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <p>前面一段时间，Manus这个AI工具火得一塌糊涂，但问题是它得靠邀请码才能用，这可把不少想尝鲜的朋友给急坏了。不过别担心，看看下面这个项目。</p>
+<h1 id="项目简介">项目简介</h1>
+<p>根据<code>OpenManus</code>项目的介绍，<code>OpenManus</code>是2位核心作者和来自<code>MetaGPT</code>团队的3位成员用了3个小时完成了第一版的开发。</p>
+<p>在<code>Manus</code>的无脑宣传下，很多人包括我在内对<code>Manus</code>充满了期待。在没有<code>Manus</code>邀请码的情况下，这个期待自然就转移到<code>OpenManus</code>上来了。</p>
+<h1 id="实战体验">实战体验</h1>
+<p>使用<code>OpenManus</code>只需要配置<code>config/config.toml</code>中的<code>llm</code>、<code>browser</code>、<code>search</code>就能使用了。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># Global LLM configuration</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">llm</span>] 
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">api_type</span> = <span style="color:#e6db74">&#39;Openai&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">model</span> = <span style="color:#e6db74">&#34;&#34;</span>                         <span style="color:#75715e"># The LLM model to use</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">base_url</span> = <span style="color:#e6db74">&#34;&#34;</span>                      <span style="color:#75715e"># API endpoint URL</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">api_key</span> = <span style="color:#e6db74">&#34;&#34;</span>                       <span style="color:#75715e"># Your API key</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">max_tokens</span> = <span style="color:#ae81ff">4096</span>                  <span style="color:#75715e"># Maximum number of tokens in the response</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">temperature</span> = <span style="color:#ae81ff">0.0</span>                  <span style="color:#75715e"># Controls randomness</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">browser</span>]
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Whether to run browser in headless mode (default: false)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">headless</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Disable browser security features (default: true)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">disable_security</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional configuration, Proxy settings for the browser</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">browser</span>.<span style="color:#a6e22e">proxy</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span> = <span style="color:#e6db74">&#34;http://127.0.0.1:7890&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">username</span> = <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">password</span> = <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional configuration, Search settings.</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">search</span>]
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search engine for agent to use. Default is &#34;Google&#34;, can be set to &#34;Baidu&#34; or &#34;DuckDuckGo&#34; or &#34;Bing&#34;.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">engine</span> = <span style="color:#e6db74">&#34;Google&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Language code for search results. Options: &#34;en&#34; (English), &#34;zh&#34; (Chinese), etc.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">lang</span> = <span style="color:#e6db74">&#34;zh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Country code for search results. Options: &#34;us&#34; (United States), &#34;cn&#34; (China), etc.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">country</span> = <span style="color:#e6db74">&#34;cn&#34;</span>
+</span></span></code></pre></div><p>启动运行</p>
+<pre tabindex="0"><code>uv run main.py
+</code></pre><p>输入我的prompt是: <code>2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存位markdown格式</code>，下面是<code>OpenManus</code>的输出</p>
+<pre tabindex="0"><code>INFO     [browser_use] BrowserUse logging setup complete with level info
+INFO     [root] Anonymized telemetry enabled. See https://docs.browser-use.com/development/telemetry for more information.
+2025-05-08 16:46:06.393 | INFO     | app.agent.manus:initialize_mcp_servers:71 - Connected to MCP server server1 at http://localhost:8000/sse
+Enter your prompt: 2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存位markdown格式
+2025-05-08 16:46:07.786 | INFO     | app.agent.base:update_memory:73 - Adding message to memory: user 2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存位markdown格式
+2025-05-08 16:46:07.786 | INFO     | app.agent.base:run:104 - Executing step 1/20
+2025-05-08 16:46:24.971 | INFO     | app.llm:update_token_count:56 - Token usage: Input=1916, Completion=491, Cumulative Input=1916, Cumulative Completion=491, Total=2407, Cumulative Total=2407
+2025-05-08 16:46:24.972 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:46:24.972 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:46:24.972 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:46:24.972 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;web_search&#34;, &#34;query&#34;: &#34;成都周边两日游推荐 2025&#34;}
+2025-05-08 16:46:24.972 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:46:27.087 | INFO     | app.tool.web_search:_try_all_engines:245 - 🔎 Attempting search with Google...
+2025-05-08 16:46:58.936 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Error: Browser action &#39;web_search&#39; failed: Page.goto: Timeout 30000ms exceeded.
+Call log:
+  - navigating to &#34;https://hk.trip.com/travel-guide/destination/chengdu-104/&#34;, waiting until &#34;load&#34;
+
+2025-05-08 16:46:58.937 | INFO     | app.agent.base:run:104 - Executing step 2/20
+2025-05-08 16:47:38.161 | INFO     | app.llm:update_token_count:56 - Token usage: Input=2110, Completion=709, Cumulative Input=4026, Cumulative Completion=1200, Total=2819, Cumulative Total=5226
+2025-05-08 16:47:38.161 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:47:38.161 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:47:38.161 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:47:38.162 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;go_to_url&#34;, &#34;url&#34;: &#34;https://www.ctrip.com&#34;}
+2025-05-08 16:47:38.162 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:47:42.261 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Navigated to https://www.ctrip.com
+2025-05-08 16:47:42.262 | INFO     | app.agent.base:run:104 - Executing step 3/20
+2025-05-08 16:48:00.168 | INFO     | app.llm:update_token_count:56 - Token usage: Input=2256, Completion=494, Cumulative Input=6282, Cumulative Completion=1694, Total=2750, Cumulative Total=7976
+2025-05-08 16:48:00.168 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:48:00.169 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:48:00.169 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:48:00.169 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;web_search&#34;, &#34;query&#34;: &#34;成都周边两日游推荐 2025&#34;}
+2025-05-08 16:48:00.169 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:48:00.169 | INFO     | app.tool.web_search:_try_all_engines:245 - 🔎 Attempting search with Google...
+2025-05-08 16:48:06.630 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Search results for &#39;成都周边两日游推荐 2025&#39;:
+
+1. 成都自由行旅遊攻略（2025）：附近熱門好去處、人氣景點、行程規劃
+   URL: https://hk.trip.com/travel-guide/destination/chengdu-104/
+   Description:  想探索成都但不知從何入手？Trip.com 全面的旅遊指南可以助您探索成都。輕鬆搜尋附近餐廳、景點和娛樂，為您提供詳細的資訊和準確位置。另外更可以獲取即時交通資訊 ... 
+   Content: 成都自由行旅遊攻略（2025）：附近熱門好去處、人氣景點、行程規劃、住宿、美食、交通、天氣等等——重要資訊一文睇清（更新於2025年5月）｜Trip.com https://hk.trip.com/travel-guide/destination/chengdu-104/  App 聯絡我們 HKD 搜尋訂單 住宿 機票 高鐵 / 火車票 租車／接送 租車 機場接送 門票 / 體驗 門票 / 體驗 eSIM &amp; SIM 機票+酒店 旅遊攻略 旅遊地圖 禮品卡 旅程策劃師 郵輪 保險 Trip.com 獎賞計劃 優惠 聯絡我們 客戶服務支援 服務保障 更多服務資訊 關於 關於 Trip.com 傳媒中心 加入我們 條款及細則 私隱條款 關於 Trip.com Group 其他服務 投資者關係 Trip.com 獎賞 分銷夥伴合作計劃 刊登我的住宿 全部酒店 安全性 付款方式 我們的合作夥伴 Copyright © 2025 Trip.com Travel Singapore Pte. Ltd. 版權所有。 網站營運者：Trip.com Travel Singapore Pte. Ltd. 由Ctrip.com (Hong Kong) Limited持有香港旅行代理商牌照編號 352367
+2025-05-08 16:48:06.630 | INFO     | app.agent.base:run:104 - Executing step 4/20
+2025-05-08 16:48:46.256 | INFO     | app.llm:update_token_count:56 - Token usage: Input=2866, Completion=477, Cumulative Input=9148, Cumulative Completion=2171, Total=3343, Cumulative Total=11319
+2025-05-08 16:48:46.256 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:48:46.256 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:48:46.256 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:48:46.257 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;click_element&#34;, &#34;index&#34;: 1}
+2025-05-08 16:48:46.257 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:48:46.257 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Error: Browser action &#39;click_element&#39; failed: 1
+2025-05-08 16:48:46.257 | INFO     | app.agent.base:run:104 - Executing step 5/20
+2025-05-08 16:49:31.367 | INFO     | app.llm:update_token_count:56 - Token usage: Input=3009, Completion=426, Cumulative Input=12157, Cumulative Completion=2597, Total=3435, Cumulative Total=14754
+2025-05-08 16:49:31.367 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:49:31.367 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:49:31.367 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:49:31.368 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;go_to_url&#34;, &#34;url&#34;: &#34;https://hk.trip.com/travel-guide/destination/chengdu-104/&#34;}
+2025-05-08 16:49:31.368 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:49:35.645 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Navigated to https://hk.trip.com/travel-guide/destination/chengdu-104/
+2025-05-08 16:49:35.645 | INFO     | app.agent.base:run:104 - Executing step 6/20
+2025-05-08 16:50:45.262 | INFO     | app.llm:update_token_count:56 - Token usage: Input=3178, Completion=481, Cumulative Input=15335, Cumulative Completion=3078, Total=3659, Cumulative Total=18413
+2025-05-08 16:50:45.262 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:50:45.262 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:50:45.262 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;browser_use&#39;]
+2025-05-08 16:50:45.262 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;action&#34;: &#34;extract_content&#34;, &#34;goal&#34;: &#34;提取成都周边两日游推荐行程信息，包括景点、美食、交通建议，输出结构化数据&#34;}
+2025-05-08 16:50:45.262 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;browser_use&#39;...
+2025-05-08 16:50:45.855 | ERROR    | app.llm:ask_tool:138 - Unexpected error in ask_tool: Error code: 400 - {&#39;code&#39;: 20015, &#39;message&#39;: &#39;Value error, The `required` option for tool_choice is not yet supported.&#39;, &#39;data&#39;: None}
+2025-05-08 16:50:45.855 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;browser_use&#39; completed its mission! Result: Observed output of cmd `browser_use` executed:
+Error: Browser action &#39;extract_content&#39; failed: Error code: 400 - {&#39;code&#39;: 20015, &#39;message&#39;: &#39;Value error, The `required` option for tool_choice is not yet supported.&#39;, &#39;data&#39;: None}
+2025-05-08 16:50:45.855 | INFO     | app.agent.base:run:104 - Executing step 7/20
+2025-05-08 16:55:44.972 | INFO     | app.llm:update_token_count:56 - Token usage: Input=3382, Completion=1264, Cumulative Input=18717, Cumulative Completion=4342, Total=4646, Cumulative Total=23059
+2025-05-08 16:55:44.973 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+
+2025-05-08 16:55:44.973 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:55:44.973 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;str_replace_editor&#39;]
+2025-05-08 16:55:44.973 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;command&#34;: &#34;create&#34;, &#34;path&#34;: &#34;/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md&#34;, &#34;file_text&#34;: &#34;```markdown\n# 成都周边两日游计划（2025年5月10日-11日）\n\n## 行程概览\n- **日期**：2025年5月10日-11日\n- **出发地**：成都市区\n- **主题**：自然风光+文化体验\n\n## 详细行程\n\n### 第一天：九寨沟一日游\n- **上午**：成都市区出发，乘坐高铁前往九寨沟（约3.5小时）\n- **下午**：游览五花海、长海等核心景点（建议游览5小时）\n- **晚上**：入住九寨沟景区附近酒店，体验藏式美食\n\n### 第二天：乐山大佛+峨眉山\n- **上午**：前往乐山大佛景区，参观凌云寺、佛像（约2小时）\n- **下午**：乘景区车前往峨眉山，登金顶观日出（需提前预约）\n- **晚上**：返回成都市区，品尝地道川菜\n\n## 交通建议\n- **高铁**：成都东站至九寨沟站（约400元/人）\n- **当地交通**：景区观光车+包车（九寨沟至黄龙景区可选）\n\n## 美食推荐\n- **九寨沟**：藏族糌粑、酥油茶\n- **乐山**：跷脚牛肉、甜皮鸭\n- **成都**：麻辣烫、钟水饺\n\n## 注意事项\n- 5月气候多变，需备防风外套\n- 九寨沟景区需提前3天预约门票\n- 峨眉山金顶需凌晨起床，建议携带手电筒\n\n```&#34;}
+2025-05-08 16:55:44.973 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;str_replace_editor&#39;...
+2025-05-08 16:55:44.975 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;str_replace_editor&#39; completed its mission! Result: Observed output of cmd `str_replace_editor` executed:
+File created successfully at: /Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md
+2025-05-08 16:55:44.975 | INFO     | app.agent.base:run:104 - Executing step 8/20
+2025-05-08 16:56:35.605 | INFO     | app.llm:update_token_count:56 - Token usage: Input=3964, Completion=322, Cumulative Input=22681, Cumulative Completion=4664, Total=4286, Cumulative Total=27345
+2025-05-08 16:56:35.605 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
+
+旅游计划文档已成功保存至路径：`/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md`。文件内容包含：
+
+```markdown
+# 成都周边两日游计划（2025年5月10日-11日）
+...
+</code></pre><p>是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
+2025-05-08 16:56:35.605 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
+2025-05-08 16:56:35.605 | INFO     | app.agent.base:run:104 - Executing step 9/20
+2025-05-08 16:56:43.556 | INFO     | app.llm:update_token_count:56 - Token usage: Input=4140, Completion=451, Cumulative Input=26821, Cumulative Completion=5115, Total=4591, Cumulative Total=31936
+2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&rsquo;s thoughts:</p>
+<p>旅游计划文档已成功保存至路径：<code>/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md</code>。文件内容包含：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 成都周边两日游计划（2025年5月10日-11日）
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p>是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
+2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
+2025-05-08 16:56:43.556 | INFO     | app.agent.base:run:104 - Executing step 10/20
+2025-05-08 16:56:51.487 | INFO     | app.llm:update_token_count:56 - Token usage: Input=4316, Completion=427, Cumulative Input=31137, Cumulative Completion=5542, Total=4743, Cumulative Total=36679
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&rsquo;s thoughts:</p>
+<p>2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&rsquo;terminate&rsquo;]
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&ldquo;status&rdquo;: &ldquo;success&rdquo;}
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &rsquo;terminate&rsquo;&hellip;
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &rsquo;terminate&rsquo; completed its mission! Result: Observed output of cmd <code>terminate</code> executed:
+The interaction has been completed with status: success</p>
+<pre tabindex="0"><code>
+这个是`OpenManus`给我输出的markdown文件内通
+
+```markdown
+# 成都周边两日游计划（2025年5月10日-11日）
+
+## 行程概览
+- **日期**：2025年5月10日-11日
+- **出发地**：成都市区
+- **主题**：自然风光+文化体验
+
+## 详细行程
+
+### 第一天：九寨沟一日游
+- **上午**：成都市区出发，乘坐高铁前往九寨沟（约3.5小时）
+- **下午**：游览五花海、长海等核心景点（建议游览5小时）
+- **晚上**：入住九寨沟景区附近酒店，体验藏式美食
+
+### 第二天：乐山大佛+峨眉山
+- **上午**：前往乐山大佛景区，参观凌云寺、佛像（约2小时）
+- **下午**：乘景区车前往峨眉山，登金顶观日出（需提前预约）
+- **晚上**：返回成都市区，品尝地道川菜
+
+## 交通建议
+- **高铁**：成都东站至九寨沟站（约400元/人）
+- **当地交通**：景区观光车+包车（九寨沟至黄龙景区可选）
+
+## 美食推荐
+- **九寨沟**：藏族糌粑、酥油茶
+- **乐山**：跷脚牛肉、甜皮鸭
+- **成都**：麻辣烫、钟水饺
+
+## 注意事项
+- 5月气候多变，需备防风外套
+- 九寨沟景区需提前3天预约门票
+- 峨眉山金顶需凌晨起床，建议携带手电筒
+</code></pre><h1 id="项目分析">项目分析</h1>
+<p>最后来看看<code>OpenManus</code>是怎么实现的，首先使用<code>deepwiki</code>分析一下：https://deepwiki.com/mannaandpoem/OpenManus</p>
+<p>总体来看，<code>OpenManus</code>按照<code>ReAct</code>的思想来实现。提供给llm一些prompt和tool，让给llm决策是否使用tool，然后调用tool，将tool返回的继续添加到对话中，如此循环</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReActAgent</span>(BaseAgent, ABC):
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">think</span>(self) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Process current state and decide next action&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">@abstractmethod</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">act</span>(self) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Execute decided actions&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">step</span>(self) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;&#34;&#34;Execute a single step: think and act.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>      should_act <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>think()
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> should_act:
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Thinking complete - no action needed&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>act()
+</span></span></code></pre></div><p>再来看看<code>OpenManus</code>内置了哪些工具</p>
+<ul>
+<li>ask_human.py: 需要人类提供更多信息的时候，会让人再进行输入</li>
+<li>browser_use_tool.py: 使用浏览器的工具</li>
+<li>file_operators.py：操作文件的工具</li>
+<li>python_execute.py：执行代码的工具</li>
+<li>search：各种搜索引擎的搜索实现</li>
+<li>str_replace_editor.py：内部使用了file_operators.py完成文件的操作</li>
+<li>terminate.py：终止</li>
+<li>web_search.py：使用搜索引擎的能力，内部使用search包中的各种搜索引擎实现</li>
+</ul>
+<p>实现<code>ReAct</code>的模式主要是 toolcall.py</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">think</span>(self) <span style="color:#f92672">-&gt;</span> bool:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>next_step_prompt:
+</span></span><span style="display:flex;"><span>            user_msg <span style="color:#f92672">=</span> Message<span style="color:#f92672">.</span>user_message(self<span style="color:#f92672">.</span>next_step_prompt)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>messages <span style="color:#f92672">+=</span> [user_msg]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>llm<span style="color:#f92672">.</span>ask_tool(
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>messages,
+</span></span><span style="display:flex;"><span>        system_msgs<span style="color:#f92672">=</span>(
+</span></span><span style="display:flex;"><span>            [Message<span style="color:#f92672">.</span>system_message(self<span style="color:#f92672">.</span>system_prompt)]
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>system_prompt
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        ),
+</span></span><span style="display:flex;"><span>        tools<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>available_tools<span style="color:#f92672">.</span>to_params(),
+</span></span><span style="display:flex;"><span>        tool_choice<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tool_choices,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>tool_calls <span style="color:#f92672">=</span> tool_calls <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        response<span style="color:#f92672">.</span>tool_calls <span style="color:#66d9ef">if</span> response <span style="color:#f92672">and</span> response<span style="color:#f92672">.</span>tool_calls <span style="color:#66d9ef">else</span> []
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    assistant_msg <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>        Message<span style="color:#f92672">.</span>from_tool_calls(
+</span></span><span style="display:flex;"><span>            content<span style="color:#f92672">=</span>content,
+</span></span><span style="display:flex;"><span>            tool_calls<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tool_calls,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>tool_calls
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span> Message<span style="color:#f92672">.</span>assistant_message(content)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    self<span style="color:#f92672">.</span>memory<span style="color:#f92672">.</span>add_message(assistant_msg)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">act</span>(self) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> command <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>tool_calls:
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>execute_tool(command)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Add tool response to memory</span>
+</span></span><span style="display:flex;"><span>        tool_msg <span style="color:#f92672">=</span> Message<span style="color:#f92672">.</span>tool_message(
+</span></span><span style="display:flex;"><span>            content<span style="color:#f92672">=</span>result,
+</span></span><span style="display:flex;"><span>            tool_call_id<span style="color:#f92672">=</span>command<span style="color:#f92672">.</span>id,
+</span></span><span style="display:flex;"><span>            name<span style="color:#f92672">=</span>command<span style="color:#f92672">.</span>function<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>memory<span style="color:#f92672">.</span>add_message(tool_msg)
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append(result)
+</span></span></code></pre></div><p>最后再看一下<code>OpenManus</code>的提示词</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>SYSTEM_PROMPT <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;You are OpenManus, an all-capable AI assistant, aimed at solving any task presented by the user. You have various tools at your disposal that you can call upon to efficiently complete complex requests. Whether it&#39;s programming, information retrieval, file processing, web browsing, or human interaction (only for extreme cases), you can handle it all.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;The initial directory is: </span><span style="color:#e6db74">{directory}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>NEXT_STEP_PROMPT <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;&#34;Based on user needs, proactively select the most appropriate tool or combination of tools. For complex tasks, you can break down the problem and use different tools step by step to solve it. After using each tool, clearly explain the execution results and suggest the next steps.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">If you want to stop the interaction at any point, use the `terminate` tool/function call.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><p>到这里基本上<code>OpenManus</code>就大概了解了。当然<code>OpenManus</code>肯定也不止这些，其还支持<code>MCP</code>、目前不稳定的<code>workflow</code>等。我就不深入研究了，思想就是上面介绍的<code>ReAct</code>。</p>
+<h1 id="小结">小结</h1>
+<ul>
+<li><code>OpenManus</code>运行游很多不确定性，有时可能成功，有时失败，但是失败占大多数。成功的时候，输出的内容也和预期相差很远。</li>
+<li><code>OpenManus</code>项目有很多的Issue，而且开发者看Issue的回复和处理效率也不是很高，可能这都是大部分开源项目的通病吧，最后可能也是一堆shit.</li>
+<li><code>OpenManus</code>可以作为玩具来试试，但是用于实际场景可能还有点差距。不过可以通过<code>OpenManus</code>学习一些agent开发思想也不错</li>
+</ul>
+<p>一些Issue</p>
+<ul>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/965">issues#965</a></li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1028">issues#1028</a></li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1074">issues#1074</a></li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1115">issues#1115</a></li>
+</ul>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
+
+        <div class="site-footer">
+  
+  
+</div>
+
+      </div>
+    </div>
+  </article>
+
+  
+
+<script>
+  
+  
+    
+    
+  
+</script>
+
+  
+
+</body>
+
+</html>
