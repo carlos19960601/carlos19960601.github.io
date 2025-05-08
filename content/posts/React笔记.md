@@ -309,3 +309,20 @@ const MyComponentWithLogging = (props: ComponentProps<typeof MyComponent>) => {
 
 参考资料: 
 * [「React 进阶」 学好这些 React 设计模式，能让你的 React 项目飞起来](https://juejin.cn/post/7007214462813863950)
+
+## React最佳实践小技巧
+
+**使用 ComponentProps、ComponentPropsWithoutRef 等高效访问元素的props**
+
+```tsx
+ComponentProps<"button">
+```
+
+```tsx
+ComponentProps<typeof MyComponent>
+```
+
+
+
+参考资料: 
+[100个React最佳实践小技巧](https://juejin.cn/post/7424136556964528139)

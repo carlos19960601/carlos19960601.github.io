@@ -1,7 +1,6 @@
 # If your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
 title: Carlos的废话集
-paginate: 10
 theme: ["yinyang"]
 baseURL: "https://carlos19960601.github.io/"
 DefaultContentLanguage: "cn"
@@ -13,6 +12,8 @@ params:
   headTitle: "Carlos的废话集"
   description: "Log something useless, but interesting." 
   mainSections: ["posts"]
+  pagination:
+    pagerSize: 6
   socials:
     - name: "Github"
       link: "https://github.com/carlos19960601"
