@@ -56,7 +56,7 @@ country = "cn"
 uv run main.py
 ```
 
-输入我的prompt是: `2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存位markdown格式`，下面是`OpenManus`的输出
+输入我的prompt是: `2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存为markdown格式`，下面是`OpenManus`的输出
 
 ```
 INFO     [browser_use] BrowserUse logging setup complete with level info
@@ -158,23 +158,8 @@ File created successfully at: /Users/zengqiang/codespace/everest/OpenManus/works
 
 旅游计划文档已成功保存至路径：`/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md`。文件内容包含：
 
-```markdown
 # 成都周边两日游计划（2025年5月10日-11日）
 ...
-```
-
-是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
-2025-05-08 16:56:35.605 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
-2025-05-08 16:56:35.605 | INFO     | app.agent.base:run:104 - Executing step 9/20
-2025-05-08 16:56:43.556 | INFO     | app.llm:update_token_count:56 - Token usage: Input=4140, Completion=451, Cumulative Input=26821, Cumulative Completion=5115, Total=4591, Cumulative Total=31936
-2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:93 - ✨ Manus's thoughts: 
-
-旅游计划文档已成功保存至路径：`/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md`。文件内容包含：
-
-```markdown
-# 成都周边两日游计划（2025年5月10日-11日）
-...
-```
 
 是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
 2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
@@ -191,7 +176,7 @@ File created successfully at: /Users/zengqiang/codespace/everest/OpenManus/works
 The interaction has been completed with status: success
 ```
 
-这个是`OpenManus`给我输出的markdown文件内通
+这个是`OpenManus`给我输出的markdown文件内容
 
 ```markdown
 # 成都周边两日游计划（2025年5月10日-11日）
@@ -331,13 +316,12 @@ If you want to stop the interaction at any point, use the `terminate` tool/funct
 
 # 小结
 
-* `OpenManus`运行游很多不确定性，有时可能成功，有时失败，但是失败占大多数。成功的时候，输出的内容也和预期相差很远。
+* `OpenManus`运行有很多不确定性，有时可能成功，有时失败，但是失败占大多数。成功的时候，输出的内容也和预期相差很远。
 * `OpenManus`项目有很多的Issue，而且开发者看Issue的回复和处理效率也不是很高，可能这都是大部分开源项目的通病吧，最后可能也是一堆shit.
 * `OpenManus`可以作为玩具来试试，但是用于实际场景可能还有点差距。不过可以通过`OpenManus`学习一些agent开发思想也不错
 
 一些Issue
 
-* [issues#965](https://github.com/FoundationAgents/OpenManus/issues/965)
-* [issues#1028](https://github.com/FoundationAgents/OpenManus/issues/1028)
-* [issues#1074](https://github.com/FoundationAgents/OpenManus/issues/1074)
-* [issues#1115](https://github.com/FoundationAgents/OpenManus/issues/1115)
+* [Agent stuck](https://github.com/FoundationAgents/OpenManus/issues/1028): 
+* [一次居然消费了7681991次token？](https://github.com/FoundationAgents/OpenManus/issues/1074): 
+* [tool_calls的参数不正确](https://github.com/FoundationAgents/OpenManus/issues/1115)

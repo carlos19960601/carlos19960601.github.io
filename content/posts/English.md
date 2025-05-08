@@ -25,4 +25,3 @@ tags:
    - 例如：They invited us to go out to dinner at a nice restaurant.（他们邀请我们去一家不错的餐厅吃晚餐。）
 
 总体来说，这两个短语的意思非常接近，可以互换使用，但“go out for dinner”更强调目的，而“go out to dinner”更强调动作本身。
->>>>>>> f43f5f8 (English)

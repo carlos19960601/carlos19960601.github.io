@@ -22,7 +22,6 @@ categories:
 
 * `[stroke-dasharray:450,0]`: 设置stroke-dasharray为450,0。
 
-
 #### [styling-based-on-parent-state](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-based-on-parent-state)
 
 这种是在子元素依赖于父元素hover等状态时使用的。
@@ -48,4 +47,8 @@ categories:
 * stroke-dasharray: 2 4; 表示dash的长度为2，间隔长度为4。
 * stroke-dasharray: 5 10 15; 表示dash的长度为5，间隔长度为10，dash的长度为15，间隔长度为5。
 
+
+### [stroke-dashoffset属性](https://css-tricks.com/almanac/properties/s/stroke-dashoffset/)
+
+CSS中的stroke-dashoffset属性定义了在SVG路径上虚线stroke开始的位置。数字越大，虚线开始的位置就越远。
 
