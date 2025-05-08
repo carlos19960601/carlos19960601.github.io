@@ -159,7 +159,7 @@
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">country</span> = <span style="color:#e6db74">&#34;cn&#34;</span>
 </span></span></code></pre></div><p>启动运行</p>
 <pre tabindex="0"><code>uv run main.py
-</code></pre><p>输入我的prompt是: <code>2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存位markdown格式</code>，下面是<code>OpenManus</code>的输出</p>
+</code></pre><p>输入我的prompt是: <code>2025年5月10日到5月11日，从成都市区出发，输出一份成都周边游计划，最后结果保存为markdown格式</code>，下面是<code>OpenManus</code>的输出</p>
 <pre tabindex="0"><code>INFO     [browser_use] BrowserUse logging setup complete with level info
 INFO     [root] Anonymized telemetry enabled. See https://docs.browser-use.com/development/telemetry for more information.
 2025-05-08 16:46:06.393 | INFO     | app.agent.manus:initialize_mcp_servers:71 - Connected to MCP server server1 at http://localhost:8000/sse
@@ -259,65 +259,56 @@ File created successfully at: /Users/zengqiang/codespace/everest/OpenManus/works
 
 旅游计划文档已成功保存至路径：`/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md`。文件内容包含：
 
-```markdown
 # 成都周边两日游计划（2025年5月10日-11日）
 ...
-</code></pre><p>是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
-2025-05-08 16:56:35.605 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
-2025-05-08 16:56:35.605 | INFO     | app.agent.base:run:104 - Executing step 9/20
-2025-05-08 16:56:43.556 | INFO     | app.llm:update_token_count:56 - Token usage: Input=4140, Completion=451, Cumulative Input=26821, Cumulative Completion=5115, Total=4591, Cumulative Total=31936
-2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&rsquo;s thoughts:</p>
-<p>旅游计划文档已成功保存至路径：<code>/Users/zengqiang/codespace/everest/OpenManus/workspace/成都周边游计划.md</code>。文件内容包含：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 成都周边两日游计划（2025年5月10日-11日）
-</span></span><span style="display:flex;"><span>...
-</span></span></code></pre></div><p>是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
+
+是否需要调整行程细节（如更换景点、优化交通方式等）？或需要我协助完成其他任务？
 2025-05-08 16:56:43.556 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 0 tools to use
 2025-05-08 16:56:43.556 | INFO     | app.agent.base:run:104 - Executing step 10/20
 2025-05-08 16:56:51.487 | INFO     | app.llm:update_token_count:56 - Token usage: Input=4316, Completion=427, Cumulative Input=31137, Cumulative Completion=5542, Total=4743, Cumulative Total=36679
-2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&rsquo;s thoughts:</p>
-<p>2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
-2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&rsquo;terminate&rsquo;]
-2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&ldquo;status&rdquo;: &ldquo;success&rdquo;}
-2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &rsquo;terminate&rsquo;&hellip;
-2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &rsquo;terminate&rsquo; completed its mission! Result: Observed output of cmd <code>terminate</code> executed:
-The interaction has been completed with status: success</p>
-<pre tabindex="0"><code>
-这个是`OpenManus`给我输出的markdown文件内通
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:93 - ✨ Manus&#39;s thoughts: 
 
-```markdown
-# 成都周边两日游计划（2025年5月10日-11日）
 
-## 行程概览
-- **日期**：2025年5月10日-11日
-- **出发地**：成都市区
-- **主题**：自然风光+文化体验
-
-## 详细行程
-
-### 第一天：九寨沟一日游
-- **上午**：成都市区出发，乘坐高铁前往九寨沟（约3.5小时）
-- **下午**：游览五花海、长海等核心景点（建议游览5小时）
-- **晚上**：入住九寨沟景区附近酒店，体验藏式美食
-
-### 第二天：乐山大佛+峨眉山
-- **上午**：前往乐山大佛景区，参观凌云寺、佛像（约2小时）
-- **下午**：乘景区车前往峨眉山，登金顶观日出（需提前预约）
-- **晚上**：返回成都市区，品尝地道川菜
-
-## 交通建议
-- **高铁**：成都东站至九寨沟站（约400元/人）
-- **当地交通**：景区观光车+包车（九寨沟至黄龙景区可选）
-
-## 美食推荐
-- **九寨沟**：藏族糌粑、酥油茶
-- **乐山**：跷脚牛肉、甜皮鸭
-- **成都**：麻辣烫、钟水饺
-
-## 注意事项
-- 5月气候多变，需备防风外套
-- 九寨沟景区需提前3天预约门票
-- 峨眉山金顶需凌晨起床，建议携带手电筒
-</code></pre><h1 id="项目分析">项目分析</h1>
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:94 - 🛠️ Manus selected 1 tools to use
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:98 - 🧰 Tools being prepared: [&#39;terminate&#39;]
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:think:101 - 🔧 Tool arguments:  {&#34;status&#34;: &#34;success&#34;}
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:execute_tool:169 - 🔧 Activating tool: &#39;terminate&#39;...
+2025-05-08 16:56:51.487 | INFO     | app.agent.toolcall:act:140 - 🎯 Tool &#39;terminate&#39; completed its mission! Result: Observed output of cmd `terminate` executed:
+The interaction has been completed with status: success
+</code></pre><p>这个是<code>OpenManus</code>给我输出的markdown文件内容</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 成都周边两日游计划（2025年5月10日-11日）
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 行程概览
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **日期**：2025年5月10日-11日
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **出发地**：成都市区
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **主题**：自然风光+文化体验
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 详细行程
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 第一天：九寨沟一日游
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **上午**：成都市区出发，乘坐高铁前往九寨沟（约3.5小时）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **下午**：游览五花海、长海等核心景点（建议游览5小时）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **晚上**：入住九寨沟景区附近酒店，体验藏式美食
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 第二天：乐山大佛+峨眉山
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **上午**：前往乐山大佛景区，参观凌云寺、佛像（约2小时）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **下午**：乘景区车前往峨眉山，登金顶观日出（需提前预约）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **晚上**：返回成都市区，品尝地道川菜
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 交通建议
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **高铁**：成都东站至九寨沟站（约400元/人）
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **当地交通**：景区观光车+包车（九寨沟至黄龙景区可选）
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 美食推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> **九寨沟**：藏族糌粑、酥油茶
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **乐山**：跷脚牛肉、甜皮鸭
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> **成都**：麻辣烫、钟水饺
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 注意事项
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">-</span> 5月气候多变，需备防风外套
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 九寨沟景区需提前3天预约门票
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 峨眉山金顶需凌晨起床，建议携带手电筒
+</span></span></code></pre></div><h1 id="项目分析">项目分析</h1>
 <p>最后来看看<code>OpenManus</code>是怎么实现的，首先使用<code>deepwiki</code>分析一下：https://deepwiki.com/mannaandpoem/OpenManus</p>
 <p>总体来看，<code>OpenManus</code>按照<code>ReAct</code>的思想来实现。提供给llm一些prompt和tool，让给llm决策是否使用tool，然后调用tool，将tool返回的继续添加到对话中，如此循环</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ReActAgent</span>(BaseAgent, ABC):
@@ -401,16 +392,15 @@ The interaction has been completed with status: success</p>
 </span></span></code></pre></div><p>到这里基本上<code>OpenManus</code>就大概了解了。当然<code>OpenManus</code>肯定也不止这些，其还支持<code>MCP</code>、目前不稳定的<code>workflow</code>等。我就不深入研究了，思想就是上面介绍的<code>ReAct</code>。</p>
 <h1 id="小结">小结</h1>
 <ul>
-<li><code>OpenManus</code>运行游很多不确定性，有时可能成功，有时失败，但是失败占大多数。成功的时候，输出的内容也和预期相差很远。</li>
+<li><code>OpenManus</code>运行有很多不确定性，有时可能成功，有时失败，但是失败占大多数。成功的时候，输出的内容也和预期相差很远。</li>
 <li><code>OpenManus</code>项目有很多的Issue，而且开发者看Issue的回复和处理效率也不是很高，可能这都是大部分开源项目的通病吧，最后可能也是一堆shit.</li>
 <li><code>OpenManus</code>可以作为玩具来试试，但是用于实际场景可能还有点差距。不过可以通过<code>OpenManus</code>学习一些agent开发思想也不错</li>
 </ul>
 <p>一些Issue</p>
 <ul>
-<li><a href="https://github.com/FoundationAgents/OpenManus/issues/965">issues#965</a></li>
-<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1028">issues#1028</a></li>
-<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1074">issues#1074</a></li>
-<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1115">issues#1115</a></li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1028">Agent stuck</a>:</li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1074">一次居然消费了7681991次token？</a>:</li>
+<li><a href="https://github.com/FoundationAgents/OpenManus/issues/1115">tool_calls的参数不正确</a></li>
 </ul>
 
         </div>
@@ -454,6 +444,25 @@ The interaction has been completed with status: success</p>
     
     
   
+
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const disqus = document.getElementById('disqus_thread');
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        const iframes = disqus.getElementsByTagName('iframe');
+        if (iframes.length > 1) {
+          const commentsIframe = iframes[1];
+          while (disqus.firstChild) {
+            disqus.removeChild(disqus.firstChild);
+          }
+          disqus.appendChild(commentsIframe);
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(disqus, { childList: true, subtree: true });
+  });
 </script>
 
   

@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="author" content="" />
-  <meta property="og:url" content="https://carlos19960601.github.io/categories/react/" />
-  <link rel="canonical" href="https://carlos19960601.github.io/categories/react/" /><link rel="alternate" type="application/atom+xml" href="https://carlos19960601.github.io/index.xml" title="Carlos的废话集">
+  <meta property="og:url" content="https://carlos19960601.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" />
+  <link rel="canonical" href="https://carlos19960601.github.io/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" /><link rel="alternate" type="application/atom+xml" href="https://carlos19960601.github.io/index.xml" title="Carlos的废话集">
 
   <script type="application/ld+json">
   {
@@ -18,28 +18,42 @@
            "@type": "WebPage",
            "@id": "https:\/\/carlos19960601.github.io\/"
       },
-      "articleSection" : "categories",
-      "name" : "React",
-      "headline" : "React",
-      "description" : "",
+      "articleSection" : "posts",
+      "name" : "机器学习笔记",
+      "headline" : "机器学习笔记",
+      "description" : "误差反向传播 误差反向传播是通过计算损失函数对网络中每个权重的梯度，并利用梯度下降法更新权重，以最小化预测误差的过程。它结合了链式法则（微积分中的求导规则）和梯度下降法，实现对多层神经网络的高效训练。\n如果不能理解，可以去看看深度学习入门，这本书中作者使用了简单的例子，利用计算图的方式说明了误差反向传播。当理解了误差反向传播后，需要通过代码加深理解，可以参考深度学习入门2:自制框架以及Andrej Karpathy大神的视频The spelled-out intro to neural networks and backpropagation: building micrograd。\n神经网络 初始损失值问题\n通常在进行神经网络训练的时候，对于权重和bias初始化都是随机初始化的，这可能会导致初始损失值会非常大。比如基于character进行预测的时候，初始情况我们是希望所以character出现的概率是一样的，即损失值是一个比较小的值，但是如果是权重和bias初始化都是随机初始化即可能会导致初始损失值非常大的情况。\n解决思路：对于影响初始损失值的bias，我们可以使用0进行初始化。对于权重我们可以乘一个系数比如0.01。这样可以在一定程度上减小初始损失值过大的问题。这样神经网络前面的训练就不是在压缩权重，将更多的计算资源用在真正需要调整的计算上，进而提高神经网络的训练效率。\n可以参考Andrej Karpathy大神的视频的Building makemore Part 3: Activations \u0026amp; Gradients, BatchNorm的fixing the initial loss部分\nTransformer 机器学习的经典论文Attention Is All You Need提到的Transformer架构，可以参考学习李沐大神的视频Transformer论文逐段精读\n",
       "inLanguage" : "en-US",
       "author" : "",
       "creator" : "",
       "publisher": "",
       "accountablePerson" : "",
       "copyrightHolder" : "",
-      "copyrightYear" : "2024",
-      "datePublished": "2024-12-18 17:56:13 \u002b0800 \u002b0800",
-      "dateModified" : "2024-12-18 17:56:13 \u002b0800 \u002b0800",
-      "url" : "https:\/\/carlos19960601.github.io\/categories\/react\/",
+      "copyrightYear" : "2025",
+      "datePublished": "2025-03-22 11:14:03 \u002b0800 \u002b0800",
+      "dateModified" : "2025-03-22 11:14:03 \u002b0800 \u002b0800",
+      "url" : "https:\/\/carlos19960601.github.io\/posts\/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0\/",
       "keywords" : [  ]
   }
 </script>
-<title>React</title>
-  <meta property="og:title" content="React" />
+<title>机器学习笔记</title>
+  <meta property="og:title" content="机器学习笔记" />
   <meta property="og:type" content="article" />
-  <meta property="og:description" content="" />
-  <meta name="description" content="" />
+  <meta property="og:description" content="误差反向传播 误差反向传播是通过计算损失函数对网络中每个权重的梯度，并利用梯度下降法更新权重，以最小化预测误差的过程。它结合了链式法则（微积分中的求导规则）和梯度下降法，实现对多层神经网络的高效训练。
+如果不能理解，可以去看看深度学习入门，这本书中作者使用了简单的例子，利用计算图的方式说明了误差反向传播。当理解了误差反向传播后，需要通过代码加深理解，可以参考深度学习入门2:自制框架以及Andrej Karpathy大神的视频The spelled-out intro to neural networks and backpropagation: building micrograd。
+神经网络 初始损失值问题
+通常在进行神经网络训练的时候，对于权重和bias初始化都是随机初始化的，这可能会导致初始损失值会非常大。比如基于character进行预测的时候，初始情况我们是希望所以character出现的概率是一样的，即损失值是一个比较小的值，但是如果是权重和bias初始化都是随机初始化即可能会导致初始损失值非常大的情况。
+解决思路：对于影响初始损失值的bias，我们可以使用0进行初始化。对于权重我们可以乘一个系数比如0.01。这样可以在一定程度上减小初始损失值过大的问题。这样神经网络前面的训练就不是在压缩权重，将更多的计算资源用在真正需要调整的计算上，进而提高神经网络的训练效率。
+可以参考Andrej Karpathy大神的视频的Building makemore Part 3: Activations &amp; Gradients, BatchNorm的fixing the initial loss部分
+Transformer 机器学习的经典论文Attention Is All You Need提到的Transformer架构，可以参考学习李沐大神的视频Transformer论文逐段精读
+" />
+  <meta name="description" content="误差反向传播 误差反向传播是通过计算损失函数对网络中每个权重的梯度，并利用梯度下降法更新权重，以最小化预测误差的过程。它结合了链式法则（微积分中的求导规则）和梯度下降法，实现对多层神经网络的高效训练。
+如果不能理解，可以去看看深度学习入门，这本书中作者使用了简单的例子，利用计算图的方式说明了误差反向传播。当理解了误差反向传播后，需要通过代码加深理解，可以参考深度学习入门2:自制框架以及Andrej Karpathy大神的视频The spelled-out intro to neural networks and backpropagation: building micrograd。
+神经网络 初始损失值问题
+通常在进行神经网络训练的时候，对于权重和bias初始化都是随机初始化的，这可能会导致初始损失值会非常大。比如基于character进行预测的时候，初始情况我们是希望所以character出现的概率是一样的，即损失值是一个比较小的值，但是如果是权重和bias初始化都是随机初始化即可能会导致初始损失值非常大的情况。
+解决思路：对于影响初始损失值的bias，我们可以使用0进行初始化。对于权重我们可以乘一个系数比如0.01。这样可以在一定程度上减小初始损失值过大的问题。这样神经网络前面的训练就不是在压缩权重，将更多的计算资源用在真正需要调整的计算上，进而提高神经网络的训练效率。
+可以参考Andrej Karpathy大神的视频的Building makemore Part 3: Activations &amp; Gradients, BatchNorm的fixing the initial loss部分
+Transformer 机器学习的经典论文Attention Is All You Need提到的Transformer架构，可以参考学习李沐大神的视频Transformer论文逐段精读
+" />
   <meta property="og:locale" content="cn" /><meta property="og:image" content="" />
   
 
@@ -66,10 +80,11 @@
 
 
 <body>
-  <article class="posts">
+  <article class="post " id="article">
     <div class="row">
       <div class="col-xs-12">
-        
+        <div class="site-header">
+          
 <header>
   <div class="header-title">
     <a href="/"
@@ -90,68 +105,61 @@
 </div>
 <div class="header-line"></div>
 
-
-        <h1 class="taxonomy-term">React</h1>
-        <div id="posts-list">
-          <section>
-            <h1 class="site-date-catalog">2024</h1>
-
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2024-12-18 17:56:13 &#43;0800">Dec 18</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/react-rerender-context/">React Rerender Context</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2024-12-14 11:45:00 &#43;0800">Dec 14</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/react-rerender-children-as-props%E6%A8%A1%E5%BC%8F/">React Rerender-Children as Props模式</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2024-12-04 16:06:31 &#43;0800">Dec 04</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/react-rerender-move-state-down%E6%A8%A1%E5%BC%8F/">React Rerender-Move State Down模式</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div class="row posts-line">
-              <div class="posts-date col-xs-2">
-                <time datetime="2024-08-28 14:43:33 &#43;0800">Aug 28</time>
-              </div>
-              <div class="posts-title col-xs-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <a href="/posts/react%E7%AC%94%E8%AE%B0/">React笔记</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
         </div>
+        <header class="post-header">
+          <h1 class="post-title">机器学习笔记</h1>
+          
+          <div class="row post-desc">
+            <div class="col-xs-6">
+              
+              <time class="post-date" datetime="2025-03-22 11:14:03 &#43;0800">
+                22 Mar 2025
+              </time>
+              
+            </div>
+            <div class="col-xs-6">
+              
+            </div>
+          </div>
+          
+        </header>
+
+        <div class="post-content markdown-body">
+          
+          <h1 id="误差反向传播">误差反向传播</h1>
+<p>误差反向传播是通过计算损失函数对网络中每个权重的梯度，并利用梯度下降法更新权重，以最小化预测误差的过程。它结合了<strong>链式法则（微积分中的求导规则）<strong>和</strong>梯度下降法</strong>，实现对多层神经网络的高效训练。</p>
+<p>如果不能理解，可以去看看<a href="https://book.douban.com/subject/30270959/">深度学习入门</a>，这本书中作者使用了简单的例子，利用<strong>计算图</strong>的方式说明了误差反向传播。当理解了误差反向传播后，需要通过代码加深理解，可以参考<a href="https://book.douban.com/subject/36303408/">深度学习入门2:自制框架</a>以及<a href="https://www.youtube.com/@AndrejKarpathy">Andrej Karpathy</a>大神的视频<a href="https://www.youtube.com/watch?v=VMj-3S1tku0">The spelled-out intro to neural networks and backpropagation: building micrograd</a>。</p>
+<h1 id="神经网络">神经网络</h1>
+<p>初始损失值问题</p>
+<p>通常在进行神经网络训练的时候，对于权重和bias初始化都是随机初始化的，这可能会导致初始损失值会非常大。比如基于character进行预测的时候，初始情况我们是希望所以character出现的概率是一样的，即损失值是一个比较小的值，但是如果是权重和bias初始化都是随机初始化即可能会导致初始损失值非常大的情况。</p>
+<p>解决思路：对于影响初始损失值的bias，我们可以使用0进行初始化。对于权重我们可以乘一个系数比如0.01。这样可以在一定程度上减小初始损失值过大的问题。这样神经网络前面的训练就不是在压缩权重，将更多的计算资源用在真正需要调整的计算上，进而提高神经网络的训练效率。</p>
+<p>可以参考<a href="https://www.youtube.com/@AndrejKarpathy">Andrej Karpathy</a>大神的视频的<a href="https://www.youtube.com/watch?v=P6sfmUTpUmc">Building makemore Part 3: Activations &amp; Gradients, BatchNorm</a>的<a href="https://www.youtube.com/watch?v=P6sfmUTpUmc&amp;t=259s">fixing the initial loss</a>部分</p>
+<h1 id="transformer">Transformer</h1>
+<p>机器学习的经典论文<a href="https://arxiv.org/pdf/1706.03762">Attention Is All You Need</a>提到的Transformer架构，可以参考学习<a href="https://www.youtube.com/@mu_li">李沐</a>大神的视频<a href="https://www.youtube.com/watch?v=nzqlFIcCSWQ">Transformer论文逐段精读</a></p>
+
+        </div>
+
+        <div class="row middle-xs">
+          <div class="col-xs-12">
+            
+          </div>
+        </div>
+        
+          <div class="row">
+            <div class="col-xs-12">
+              
+            </div>
+          </div>
+
+          
+
+
+
+          
+          
+          <div style="height: 50px;"></div>
+          
+        
 
         <div class="site-footer">
   
@@ -190,6 +198,8 @@
     observer.observe(disqus, { childList: true, subtree: true });
   });
 </script>
+
+  
 
 </body>
 

@@ -112,6 +112,19 @@
             
             <div class="row posts-line">
               <div class="posts-date col-xs-2">
+                <time datetime="2025-03-22 11:14:03 &#43;0800">Mar 22</time>
+              </div>
+              <div class="posts-title col-xs-10">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/posts/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">机器学习笔记</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row posts-line">
+              <div class="posts-date col-xs-2">
                 <time datetime="2025-02-14 18:43:45 &#43;0800">Feb 14</time>
               </div>
               <div class="posts-title col-xs-10">
@@ -136,6 +149,19 @@
                 <div class="row">
                   <div class="col-xs-12">
                     <a href="/posts/react-rerender-context/">React Rerender Context</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row posts-line">
+              <div class="posts-date col-xs-2">
+                <time datetime="2024-12-15 18:54:01 &#43;0800">Dec 15</time>
+              </div>
+              <div class="posts-title col-xs-10">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <a href="/posts/english/">English 笔记</a>
                   </div>
                 </div>
               </div>
@@ -588,6 +614,25 @@
     
     
   
+
+  
+  document.addEventListener("DOMContentLoaded", function() {
+    const disqus = document.getElementById('disqus_thread');
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        const iframes = disqus.getElementsByTagName('iframe');
+        if (iframes.length > 1) {
+          const commentsIframe = iframes[1];
+          while (disqus.firstChild) {
+            disqus.removeChild(disqus.firstChild);
+          }
+          disqus.appendChild(commentsIframe);
+          observer.disconnect();
+        }
+      });
+    });
+    observer.observe(disqus, { childList: true, subtree: true });
+  });
 </script>
 
 </body>
